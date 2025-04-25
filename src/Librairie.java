@@ -2,9 +2,9 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-public class Authentifieur {
+public class Librairie {
     private List<Utilisateur> users;
-    public Authentifieur(){
+    public Librairie(){
         this.users=new ArrayList<>();
     }
     /**
@@ -34,28 +34,31 @@ public class Authentifieur {
         this.users.add(new Vendeur(nom, prenom, mdp));
     }
     
+    public boolean authentification(String nom,String prenom,String mdp,String role){
+        Utilisateur temp = null;
+        if (role.equals("Client")){
+            temp = new Client(nom,prenom , mdp);
+        }if (role.equals("Vendeur")){
+            temp = new Vendeur(nom,prenom , mdp);
+        }if (role.equals("Administrateur")){
+            temp = new Administrateur(nom,prenom,mdp);
+        }
+        for (Utilisateur usr:this.users){
+            if ( usr != null && usr.equals(temp))
+                return true;
+        }return false;
+    }
+
     public boolean authentificationConsole(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Name: ");
-        String name = scanner.nextLine();
+        String nom = scanner.nextLine();
         System.out.println("first name: ");
-        String fName = scanner.nextLine();
+        String prenom = scanner.nextLine();
         System.out.println("Qui êtes-vous un Client, un Vendeur,un Administrateur?");
         String role = scanner.nextLine();
         System.out.println("Password: ");
-        String pwd = scanner.nextLine();
-        if (role.equals("Client")){
-            Utilisateur temp = new Client(name,fName , pwd);
-        }if (role.equals("Vendeur")){
-            Utilisateur temp = new Vendeur(name,fName , pwd);
-        }if (role.equals("Administrateur")){
-            Utilisateur temp = new Administrateur(name,fName , pwd);
-        }else{
-            Utilisateur temp = null;
-        }
-        for (Utilisateur usr:this.users){
-            if (usr != null && usr.equals(temp)) 
-                return true;
-        }return false;
+        String mdp = scanner.nextLine();
+        return this.authentification(nom, prenom, mdp, role);
     }
 }
