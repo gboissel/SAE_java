@@ -1,9 +1,14 @@
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Scanner;// il faut tester mais normalement selon la doc ça permet de faire l'équivalent d'un input en python.
+
+
 public class Librairie {
+
     private List<Utilisateur> users;
+
+
     public Librairie(){
         this.users=new ArrayList<>();
     }
@@ -33,7 +38,11 @@ public class Librairie {
     public void createVendeur(String nom,String prenom,String mdp){
         this.users.add(new Vendeur(nom, prenom, mdp));
     }
-    
+
+    /**
+     * renvoie true si l'a connection est correcte l'utilisateur à rentre le bon identifiant et mot de passe
+     * @return boolean
+     */
     public boolean authentification(String nom,String prenom,String mdp,String role){
         Utilisateur temp = null;
         if (role.equals("Client")){
@@ -49,6 +58,11 @@ public class Librairie {
         }return false;
     }
 
+    /**
+     * fonction appeler par un programe en console pour vérifier la connection d'un utilisateur
+     * renvoie true si l'a connection est correcte l'utilisateur à rentre le bon identifiant et mot de passe
+     * @return boolean
+     */
     public boolean authentificationConsole(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Name: ");
