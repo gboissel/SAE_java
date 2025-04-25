@@ -26,7 +26,7 @@ public class Librairie {
      * ajoute un utilisateur déjà existant à la liste des utilisateur 
      * @param user
      */
-    public void createUsr(Utilisateur user){
+    public void createUser(Utilisateur user){
         this.users.add(user);
     }
     /**
@@ -73,6 +73,7 @@ public class Librairie {
         String role = scanner.nextLine();
         System.out.println("Password: ");
         String mdp = scanner.nextLine();
+        scanner.close();
         return this.authentification(nom, prenom, mdp, role);
     }
 }
