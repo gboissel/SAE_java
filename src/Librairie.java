@@ -13,6 +13,13 @@ public class Librairie {
         this.users=new ArrayList<>();
     }
     /**
+     * renvoie la liste des utilisateur
+     * @return List<Utilisateur>
+     */
+    public List<Utilisateur> getUsers() {
+        return this.users;
+    }
+    /**
      * Créer un client puis l'ajoute à la liste des utilisateur
      * @param nom
      * @param prenom
@@ -26,7 +33,7 @@ public class Librairie {
      * ajoute un utilisateur déjà existant à la liste des utilisateur 
      * @param user
      */
-    public void createUser(Utilisateur user){
+    public void ajouterUser(Utilisateur user){
         this.users.add(user);
     }
     /**
@@ -63,17 +70,21 @@ public class Librairie {
      * renvoie true si l'a connection est correcte l'utilisateur à rentre le bon identifiant et mot de passe
      * @return boolean
      */
-    public boolean authentificationConsole(){
+    public void authentificationConsole(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Name: ");
-        String nom = scanner.nextLine();
-        System.out.println("first name: ");
+        System.out.println("Nom: ");
+        String nom = scanner.nextLine();//l'input de l'utilisateur
+        System.out.println("Prénom: ");
         String prenom = scanner.nextLine();
         System.out.println("Qui êtes-vous un Client, un Vendeur,un Administrateur?");
         String role = scanner.nextLine();
-        System.out.println("Password: ");
+        System.out.println("Mot de Passe: ");
         String mdp = scanner.nextLine();
-        scanner.close();
-        return this.authentification(nom, prenom, mdp, role);
+        scanner.close();//ferme le scanner pour qu'il ne soit plus en écoute sinon il y a des erreur.
+        if (this.authentification(nom, prenom, mdp, role))
+            System.out.println("Connection réussi ...");
+        else{
+            System.out.println("Echec de la connection...");
+        }
     }
 }

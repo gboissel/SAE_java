@@ -35,10 +35,14 @@ public abstract class Utilisateur{
         if(!(obj instanceof Utilisateur)) return false;
         
         Utilisateur util = (Utilisateur) obj;
-        if(this.nom == util.nom && this.prenom == util.nom && this.mdp == util.mdp && this.getRoles()==util.getRoles()){
+        if(this.nom.equals(util.nom)  && this.prenom.equals(util.prenom) && this.mdp.equals(util.mdp) && this.getRoles().equals(util.getRoles())){
             return true;
         }return false;
     
+    }
+    @Override
+    public String toString(){
+        return "M.me "+this.nom +" "+this.prenom;
     }
 
 }
