@@ -9,6 +9,6 @@ public class Livre {
     private List<Auteur> auteurs;
     private List<String> editeurs;
     private List<String> classifications;
-
+    
     
 }
