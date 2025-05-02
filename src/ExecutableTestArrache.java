@@ -8,6 +8,6 @@ public class ExecutableTestArrache {
         System.out.println(lib.getUsers());
         System.out.println(lib.authentification("Doo", "Samie", "scooby", "Client"));
         lib.authentificationConsole(); */
-        GestionConsole.initialisation();
+        GestionConsole inst = new GestionConsole();
     }
 }
