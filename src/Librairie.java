@@ -13,6 +13,8 @@ public class Librairie {
         this.users= Arrays.asList(admin);
         this.curUser = null;
     }
+
+
     /**
      * renvoie la liste des utilisateur
      * @return List<Utilisateur>
@@ -20,6 +22,8 @@ public class Librairie {
     public List<Utilisateur> getUsers() {
         return this.users;
     }
+
+
     /**
      * Créer un client puis l'ajoute à la liste des utilisateur
      * @param nom
@@ -31,12 +35,19 @@ public class Librairie {
         this.users.add(new Client(nom, prenom, mdp));
 
     }
+
+    /**
+     * vérifie s'il y a un administrateur au sein de la Librarie sinon renvoie false.
+     * @return boolean
+     */
     public boolean hasAdmin(){
         for (Utilisateur user:this.users){
             if (user.getRoles().equals("Administrateur"))
                 return true;
         }return false;
     }
+
+
     /**
      * ajoute un utilisateur déjà existant à la liste des utilisateur 
      * @param user
@@ -65,6 +76,7 @@ public class Librairie {
         }return false;
     }
 
+    
     /**
      * fonction appeler par un programe en console pour vérifier la connection d'un utilisateur
      * renvoie true si l'a connection est correcte l'utilisateur à rentre le bon identifiant et mot de passe
@@ -88,13 +100,10 @@ public class Librairie {
             temp = new Vendeur(nom,prenom , mdp);
         }if (role.equals("Administrateur")){
             temp = new Administrateur(nom,prenom,mdp);
-        }
-        if (this.authentification(temp)){
+        }if (this.authentification(temp)){
             System.out.println("Connection réussi ...");
             return temp;
-        }
-
-        else{
+        }else{
             System.out.println("Echec de la connection...");
             return temp;
         }

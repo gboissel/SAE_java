@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public  class GestionConsole{
     public Librairie lib;
-    private static Scanner scan;
+    private static Scanner scan;// je le met en attribut car Scanner on ne peut en initialisé qu'un au sein d'un ficher et si on le ferme on ne peut pas en initialisée d'autre.
 
     public GestionConsole(){
         GestionConsole.scan = new Scanner(System.in);
@@ -19,7 +19,7 @@ public  class GestionConsole{
             throw new PasAdminException();
         }
     }
-
+    
     private static Librairie initialisation(){
 
         System.out.println("Création du profil de l'administrateur.");
