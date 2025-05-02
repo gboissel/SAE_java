@@ -1,43 +1,60 @@
 import java.util.Scanner;
 
 public  class GestionConsole{
-    private GestionConsole(){}
-    public static void initialisation(){
+    public Librairie lib;
+    private static Scanner scan;
+
+    public GestionConsole(){
+        GestionConsole.scan = new Scanner(System.in);
+        this.lib = GestionConsole.initialisation();
+        System.out.println("La librairie à été créée");
+        this.menuAuth();
+    }
+
+    public GestionConsole(Librairie lib) throws PasAdminException{
+        if (lib.hasAdmin()){
+            this.lib = lib;
+            this.menuAuth();
+        }else{
+            throw new PasAdminException();
+        }
+    }
+
+    private static Librairie initialisation(){
 
         System.out.println("Création du profil de l'administrateur.");
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Nom:");
-        String nom = scanner.nextLine();//l'input de l'utilisateur
+        String nom = GestionConsole.scan.nextLine();//l'input de l'utilisateur
         System.out.println("Prénom: ");
-        String prenom = scanner.nextLine();
+        String prenom = GestionConsole.scan.nextLine();
         String mdp = "";
         String conf = null;
         while(!mdp.equals(conf)){
             System.out.println("Mot de passe");
-            mdp = scanner.nextLine();
+            mdp = GestionConsole.scan.nextLine();
             System.out.println("Confirmation mot de passe:");
-            conf = scanner.nextLine();
-        }scanner.close();
+            conf = GestionConsole.scan.nextLine();
+        }
         Administrateur admin = new Administrateur(nom, prenom, mdp);
         Librairie lib = new Librairie(admin);
-        System.out.println("La librairie à été créée");
-        GestionConsole.menuAuth(lib);
+        return lib;
     }
-    public static void menuAuth(Librairie lib){
+    private void menuAuth(){
         System.out.println("----------Menu----------");
         System.out.println("-01- Connectez-vous    -");
         System.out.println("-02- Créer un compte   -");
         System.out.println("-03- Catalogue         -");
         System.out.println("-00- Quitter           -");
         System.out.println("------------------------");
-        Scanner scan = new Scanner(System.in);
-        String res = scan.nextLine();
-        scan.close();// il faut complétez le document
+        String res = GestionConsole.scan.nextLine();
         if (res.equals("01") || res.equals("1")){
-            lib.authentificationConsole();
+            this.lib.authentificationConsole();
         }else{
             System.out.println("application fermée");
         }
-
+    }
+    public Librairie quittez(){
+        GestionConsole.scan.close();
+        return this.lib;
     }
 }

@@ -31,6 +31,12 @@ public class Librairie {
         this.users.add(new Client(nom, prenom, mdp));
 
     }
+    public boolean hasAdmin(){
+        for (Utilisateur user:this.users){
+            if (user.getRoles().equals("Administrateur"))
+                return true;
+        }return false;
+    }
     /**
      * ajoute un utilisateur déjà existant à la liste des utilisateur 
      * @param user
