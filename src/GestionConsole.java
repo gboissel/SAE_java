@@ -43,7 +43,7 @@ public  class GestionConsole{
         return lib;
     }
     private void menuAuth(){
-        while (this.run){
+        while (this.run && this.lib.getCurUser()==null){
             System.out.println("----------Menu----------");
             System.out.println("-01- Connectez-vous    -");
             System.out.println("-02- Créer un compte   -");
@@ -60,6 +60,7 @@ public  class GestionConsole{
                 System.out.println("application fermée");
             }
         }
+        // si différent de null renvoie un autre menu qui correspondera a ce que peut faire l'utilisateur.
         
         
     }
