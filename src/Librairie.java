@@ -24,6 +24,14 @@ public class Librairie {
         return this.users;
     }
 
+    public Utilisateur getCurUser(){
+        return this.curUser;
+    }
+    
+    public void setCurUser(Utilisateur usr){
+        this.curUser=usr;
+    }
+
 
     /**
      * Créer un client puis l'ajoute à la liste des utilisateur
@@ -109,4 +117,4 @@ public class Librairie {
             this.curUser = null;
         }
     }
-}
+}//
