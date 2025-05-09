@@ -10,6 +10,8 @@ public class Livre {
     private List<Auteur> auteurs;
     private List<Editeur> editeurs;
     private List<Classification> classifications;
+    private List<Commande> commandes;
+    private List<Magasin> magasins;
     
     public Livre(int isbn,String titre,double prix,int pages,String datePubli,Auteur aut,Editeur editeur){
         this.isbn=isbn;
@@ -19,15 +21,35 @@ public class Livre {
         this.nombrePage=pages;
         this.editeurs = new ArrayList<>();
         this.classifications  = new ArrayList<>();
+        this.commandes  = new ArrayList<>();
+        this.magasins  = new ArrayList<>();
     }
 
     /**
+     * Retourne les commandes associés
+     * @return la liste des commandes
+     */
+    public int getCommandes() {
+        return this.isbn;
+    }
+
+/**
+     * Retourne les magasin du livre.
+     * @return la liste de magasins
+     */
+    public int getMagasins() {
+        return this.commandes;
+    }
+
+
+/**
      * Retourne le code ISBN du livre.
      * @return l'ISBN sous forme d'entier
      */
     public int getIsbn() {
         return this.isbn;
     }
+
 
     /**
      * Retourne le titre du livre.
@@ -95,6 +117,19 @@ public class Livre {
         }
     }
 
+    public void addCommande(Commande comm){
+        if (!(this.commandes.contains(comm))){
+            this.commandes.add(comm);
+        }
+    }
+
+    public void addMagasins(Magasin mag){
+        if (!(this.magasins.contains(mag))){
+            this.magasins.add(mag);
+        }
+    }
+
+
     @Override
     public boolean equals(Object obj){
         if (obj == null){
@@ -107,6 +142,11 @@ public class Livre {
             return false;
         }
         Livre auteur = (Livre)obj;
-        return (auteur.nom.equals(this.nom)&&auteur.datenaissance.equals(this.datenaissance));
+        return (auteur.titre.equals(this.titre)&&auteur.prix==this.prix);
+    }
+
+    @Override
+    public int hashCode(){
+        return this.titre.hashCode();
     }
 }

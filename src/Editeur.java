@@ -4,6 +4,8 @@ import java.util.List;
 public class Editeur {
     private String nom;
     private List<Livre> livres;
+
+
     public Editeur(String nom){
         this.nom=nom;
         this.livres=new ArrayList<>();
@@ -16,6 +18,15 @@ public class Editeur {
     public String getEdition(){
         return this.nom;
     }
+
+    /**
+     * Permet d'obtenir le nom de l'Editeur du livre
+     * @return String
+     */
+    public List<Livre> getLivre(){
+        return this.livres;
+    }
+
     /**
      * Ajoute un livre fais par cette éditeur à la List<Livre> qui correspond à la liste des livre fait par cette éditeur.
      * @param unLivre
@@ -43,7 +54,12 @@ public class Editeur {
         if (!(obj instanceof Auteur)){
             return false;
         }
-        Auteur edit = (Auteur)obj;
+        Editeur edit = (Editeur)obj;
         return (edit.nom.equals(this.nom));
+    }
+
+    @Override
+    public int hashCode(){
+        return this.nom.hashCode();
     }
 }
