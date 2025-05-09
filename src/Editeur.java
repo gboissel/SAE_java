@@ -21,7 +21,10 @@ public class Editeur {
      * @param unLivre
      */
     public void ajouterlivre(Livre unLivre){
-        this.livres.add(unLivre);
+        if (!(this.livres.contains(unLivre))){
+            this.livres.add(unLivre); 
+        }
+        
     }
     
     @Override
@@ -29,4 +32,18 @@ public class Editeur {
         return "Edition "+this.nom;
     }
     
+    @Override
+    public boolean equals(Object obj){
+        if (obj == null){
+            return false;
+        }
+        if (obj == this){
+            return true;
+        }
+        if (!(obj instanceof Auteur)){
+            return false;
+        }
+        Auteur edit = (Auteur)obj;
+        return (edit.nom.equals(this.nom));
+    }
 }

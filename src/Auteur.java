@@ -1,7 +1,12 @@
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Auteur {
     private String nom;
     private Integer datenaissance;
     private Integer datemort;
+    private List<Livre> listLivre;
 
     /**
      * RConstructeur de la class Auteur.
@@ -11,6 +16,8 @@ public class Auteur {
         this.nom=nom;
         this.datenaissance=datenaissance;
         this.datemort=datemort;
+        this.listLivre = new ArrayList<>();
+
     }
 
     /**
@@ -21,6 +28,7 @@ public class Auteur {
         this.nom=nom;
         this.datenaissance=datenaissance;
         this.datemort=null;
+        this.listLivre = new ArrayList<>();
     }
 
     /**
@@ -75,6 +83,27 @@ public class Auteur {
      */
     public void setDatemort(Integer datemort) {
         this.datemort = datemort;
+    }
+
+    public void addLivre(Livre livre){
+        if (!(this.listLivre.contains(livre))){
+            this.listLivre.add(livre);
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj == null){
+            return false;
+        }
+        if (obj == this){
+            return true;
+        }
+        if (!(obj instanceof Auteur)){
+            return false;
+        }
+        Auteur auteur = (Auteur)obj;
+        return (auteur.nom.equals(this.nom)&&auteur.datenaissance.equals(this.datenaissance));
     }
 }
 
