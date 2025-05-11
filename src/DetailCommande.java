@@ -1,14 +1,15 @@
 public class DetailCommande {
     private int qte;
-    private double prixvente;
+    private double prixVente;
     private Commande commande;
     private Livre livre;
 
-    public DetailCommande(int qte,double prixvente,Commande commande,Livre livre){
+    public DetailCommande(Commande com,Livre livre,int qte,double prix){
         this.qte=qte;
-        this.prixvente=prixvente;
-        this.commande=commande;
+        this.prixVente=prix;
         this.livre=livre;
+        this.commande=com;
+        livre.addCommande(com);
     }
 
     /**
@@ -17,7 +18,7 @@ public class DetailCommande {
      * @return La quantité.
      */
     public int getQte() {
-        return qte;
+        return this.qte;
     }
 
     /**
@@ -25,8 +26,8 @@ public class DetailCommande {
      *
      * @return Le prix de vente.
      */
-    public double getPrixvente() {
-        return prixvente;
+    public double getPrixVente() {
+        return this.prixVente;
     }
 
     /**
@@ -35,7 +36,7 @@ public class DetailCommande {
      * @return La commande.
      */
     public Commande getCommande() {
-        return commande;
+        return this.commande;
     }
 
     /**
@@ -44,7 +45,7 @@ public class DetailCommande {
      * @return Le livre.
      */
     public Livre getLivre() {
-        return livre;
+        return this.livre;
     }
 
     @Override
@@ -64,6 +65,6 @@ public class DetailCommande {
 
     @Override
     public int hashCode(){
-        return this.livre.hashCode()+this.qte*31+this.commande.hashCode();
+        return this.livre.hashCode()+this.commande.hashCode();
 }
 }

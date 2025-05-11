@@ -1,18 +1,18 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Editeur implements Comparable<Editeur>{
+public class Categorie implements Comparable<Categorie>{
     private String nom;
     private List<Livre> lesLivres;
 
 
-    public Editeur(String nom){
+    public Categorie(String nom){
         this.nom=nom;
         this.lesLivres=new ArrayList<>();
         
     }
     /**
-     * Permet d'obtenir le nom de l'éditeur du livre
+     * Permet d'obtenir le nom de la Categorie
      * @return String
      */
     public String getNom(){
@@ -20,7 +20,7 @@ public class Editeur implements Comparable<Editeur>{
     }
 
     /**
-     * Permet d'obtenir la liste des lesLivres ayant été édité par cet éditeur
+     * Permet d'obtenir la liste des lesLivres ayant cette classification
      * @return List<Livre>
      */
     public List<Livre> getLivre(){
@@ -28,7 +28,7 @@ public class Editeur implements Comparable<Editeur>{
     }
 
     /**
-     * Ajoute un livre fais par cette éditeur à la List<Livre> qui correspond à la liste des livre fait par cette éditeur.
+     * Ajoute un livre à la liste des lesLivres contenant cette classification.
      * @param livre
      */
     public void ajouterlivre(Livre livre){
@@ -40,7 +40,7 @@ public class Editeur implements Comparable<Editeur>{
     
     @Override
     public String toString(){
-        return "Edition "+this.nom;
+        return "Catégorie "+this.nom;
     }
     
     @Override
@@ -54,7 +54,7 @@ public class Editeur implements Comparable<Editeur>{
         if (!(obj instanceof Auteur)){
             return false;
         }
-        Editeur edit = (Editeur)obj;
+        Categorie edit = (Categorie)obj;
         return (edit.nom.equals(this.nom));
     }
 
@@ -64,7 +64,7 @@ public class Editeur implements Comparable<Editeur>{
     }
 
     @Override
-    public int compareTo(Editeur e) {
-        return this.nom.compareTo(e.nom);
+    public int compareTo(Categorie c) {
+        return this.nom.compareTo(c.nom);
     }
 }

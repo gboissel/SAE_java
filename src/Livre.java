@@ -1,55 +1,37 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Livre {
+public class Livre implements Comparable<Livre>{
     private int isbn;
     private String titre;
     private double prix;
-    private int nombrePage;
+    private int nbPages;
     private String datePubli;
     private List<Auteur> auteurs;
     private List<Editeur> editeurs;
-    private List<Classification> classifications;
-    private List<Commande> commandes;
-    private List<Magasin> magasins;
+    private List<Categorie> classification;
+    private List<Commande> lesCommandes;
+    private List<Magasin> lesMagasins;
     
     public Livre(int isbn,String titre,double prix,int pages,String datePubli,Auteur aut,Editeur editeur){
         this.isbn=isbn;
         this.auteurs= new ArrayList<>();
         this.titre=titre;
         this.datePubli=datePubli;
-        this.nombrePage=pages;
+        this.nbPages=pages;
         this.editeurs = new ArrayList<>();
-        this.classifications  = new ArrayList<>();
-        this.commandes  = new ArrayList<>();
-        this.magasins  = new ArrayList<>();
+        this.classification  = new ArrayList<>();
+        this.lesCommandes  = new ArrayList<>();
+        this.lesMagasins  = new ArrayList<>();
     }
 
     /**
-     * Retourne les commandes associés
-     * @return la liste des commandes
-     */
-    public int getCommandes() {
-        return this.isbn;
-    }
-
-/**
-     * Retourne les magasin du livre.
-     * @return la liste de magasins
-     */
-    public int getMagasins() {
-        return this.commandes;
-    }
-
-
-/**
      * Retourne le code ISBN du livre.
      * @return l'ISBN sous forme d'entier
      */
-    public int getIsbn() {
+    public int getISBN() {
         return this.isbn;
     }
-
 
     /**
      * Retourne le titre du livre.
@@ -57,6 +39,22 @@ public class Livre {
      */
     public String getTitre() {
         return this.titre;
+    }
+
+    /**
+     * Retourne le nombre de pages du livre.
+     * @return le nombre de pages en entier
+     */
+    public int getPages() {
+        return this.nbPages;
+    }
+
+    /**
+     * Retourne la date de publication du livre.
+     * @return la date sous forme de chaîne
+     */
+    public String getDate() {
+        return this.datePubli;
     }
 
     /**
@@ -68,67 +66,108 @@ public class Livre {
     }
 
     /**
-     * Retourne le nombre de pages du livre.
-     * @return le nombre de pages en entier
-     */
-    public int getNombrePage() {
-        return this.nombrePage;
-    }
-
-    /**
-     * Retourne la date de publication du livre.
-     * @return la date sous forme de chaîne
-     */
-    public String getDatePubli() {
-        return this.datePubli;
-    }
-
-    /**
      * Retourne les auteurs du livre.
-     * @return un objet de type Auteur
+     * @return la liste d'auteurs
      */
-    public List<Auteur> getAuteur() {
+    public List<Auteur> getAuteurs() {
         return this.auteurs;
     }
 
     /**
      * Retourne les éditeurs du livre.
-     * @return un objet de type Editeur
+     * @return la liste d'éditeurs
      */
-    public List<Editeur> getEditeur() {
+    public List<Editeur> getEditeurs() {
         return this.editeurs;
     }
 
+    /**
+     * Retourne les catégories auxquels appartient le livre
+     * @return la liste des catégories
+     */
+    public List<Categorie> getClassification() {
+        return this.classification;
+    }
+
+    /**
+     * Retourne les commandes associés
+     * @return la liste des commandes
+     */
+    public List<Commande> getCommandes() {
+        return this.lesCommandes;
+    }
+
+    /**
+     * Retourne les magasin du livre.
+     * @return la liste de magasins
+     */
+    public List<Magasin> getMagasins() {
+        return this.lesMagasins;
+    }
+
+    /**
+     * Associe un auteur au livre en l'ajoutant dans la liste des auteurs
+     * Ajoute aussi le livre dans la liste des livres de l'auteur donné en paramètre
+     * @param auteur un Auteur
+     */
     public void addAuteur(Auteur auteur){
         if (!(this.auteurs.contains(auteur))){
             this.auteurs.add(auteur);
+            auteur.ajouterLivre(this);
         }
     }
 
+    /**
+     * Associe un éditeur au livre en l'ajoutant dans la liste des éditeurs
+     * Ajoute aussi le livre dans la liste des livres de l'éditeur donné en paramètre
+     * @param edit un Editeur
+     */
     public void addEditeur(Editeur edit){
         if (!(this.editeurs.contains(edit))){
             this.editeurs.add(edit);
+            edit.ajouterlivre(this);
         }
     }
 
-    public void addClassification(Classification classi){
-        if (!(this.classifications.contains(classi))){
-            this.classifications.add(classi);
+    /**
+     * Associe une catégorie au livre en l'ajoutant dans la classification
+     * Ajoute aussi le livre dans la liste des livres de la catégorie donnée en paramètre
+     * @param classi une Catégorie
+     */
+    public void addClassification(Categorie classi){
+        if (!(this.classification.contains(classi))){
+            this.classification.add(classi);
+            classi.ajouterlivre(this);
         }
     }
 
+    /**
+     * Associe une commande au livre en l'ajoutant dans la liste des commandes
+     * @param comm une Commande
+     */
     public void addCommande(Commande comm){
-        if (!(this.commandes.contains(comm))){
-            this.commandes.add(comm);
+        if (!(this.lesCommandes.contains(comm))){
+            this.lesCommandes.add(comm);
         }
     }
 
-    public void addMagasins(Magasin mag){
-        if (!(this.magasins.contains(mag))){
-            this.magasins.add(mag);
+    /**
+     * Associe un magasin au livre en l'ajoutant dans la liste des magasins
+     * @param mag un Magasin
+     */
+    public void addMagasin(Magasin mag){
+        if (!(this.lesMagasins.contains(mag))){
+            this.lesMagasins.add(mag);
         }
     }
 
+    /**
+     * Dissocie un magasin du livre en le retirant de la liste des magasins
+     * @param mag un Magasin
+     */
+    public void removeMagasin(Magasin mag) {
+        this.lesMagasins.remove(mag);
+    }
 
     @Override
     public boolean equals(Object obj){
@@ -147,6 +186,11 @@ public class Livre {
 
     @Override
     public int hashCode(){
-        return this.titre.hashCode();
+        return this.isbn * 31;
+    }
+
+    @Override
+    public int compareTo(Livre l) {
+        return this.isbn - l.isbn;
     }
 }

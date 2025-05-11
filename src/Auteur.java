@@ -2,21 +2,21 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Auteur {
+public class Auteur implements Comparable<Auteur>{
     private String nom;
-    private Integer datenaissance;
-    private Integer datemort;
-    private List<Livre> listLivre;
+    private Integer naissance;
+    private Integer deces;
+    private List<Livre> lesLivres;
 
     /**
-     * RConstructeur de la class Auteur.
+     * Constructeur de la classe Auteur.
      *
      */
-    public Auteur(String nom,Integer datenaissance, Integer datemort){
+    public Auteur(String nom,Integer naissance, Integer deces){
         this.nom=nom;
-        this.datenaissance=datenaissance;
-        this.datemort=datemort;
-        this.listLivre = new ArrayList<>();
+        this.naissance=naissance;
+        this.deces=deces;
+        this.lesLivres = new ArrayList<>();
 
     }
 
@@ -24,11 +24,11 @@ public class Auteur {
      * Constructeur de la class Auteur si l'auteur est toujours en vie.
      *
      */
-    public Auteur(String nom,Integer datenaissance){
+    public Auteur(String nom,Integer naissance){
         this.nom=nom;
-        this.datenaissance=datenaissance;
-        this.datemort=null;
-        this.listLivre = new ArrayList<>();
+        this.naissance=naissance;
+        this.deces=null;
+        this.lesLivres = new ArrayList<>();
     }
 
     /**
@@ -37,7 +37,7 @@ public class Auteur {
      * @return Le nom.
      */
     public String getNom() {
-        return nom;
+        return this.nom;
     }
 
     /**
@@ -54,17 +54,17 @@ public class Auteur {
      *
      * @return L'année de naissance.
      */
-    public Integer getDatenaissance() {
-        return datenaissance;
+    public Integer getNaissance() {
+        return this.naissance;
     }
 
     /**
      * Modifie l'année de naissance de l'auteur.
      *
-     * @param datenaissance La nouvelle année de naissance.
+     * @param naissance La nouvelle année de naissance.
      */
-    public void setDatenaissance(Integer datenaissance) {
-        this.datenaissance = datenaissance;
+    public void setNaissance(Integer naissance) {
+        this.naissance = naissance;
     }
 
     /**
@@ -72,23 +72,42 @@ public class Auteur {
      *
      * @return L'année de décès ou null.
      */
-    public Integer getDatemort() {
-        return datemort;
+    public Integer getDeces() {
+        return this.deces;
     }
 
     /**
      * Modifie l'année de décès de l'auteur.
      *
-     * @param datemort La nouvelle année de décès.
+     * @param deces La nouvelle année de décès.
      */
-    public void setDatemort(Integer datemort) {
-        this.datemort = datemort;
+    public void setDeces(Integer deces) {
+        this.deces = deces;
     }
 
-    public void addLivre(Livre livre){
-        if (!(this.listLivre.contains(livre))){
-            this.listLivre.add(livre);
+    /**
+     * Ajoute un livre à la liste contenant les livres écris par cet auteur
+     */
+    public void ajouterLivre(Livre livre){
+        if (!(this.lesLivres.contains(livre))){
+            this.lesLivres.add(livre);
         }
+    }
+
+    public List<Livre> getLivre() {
+        return this.lesLivres;
+    }
+
+    @Override
+    public String toString() {
+        String texte = "Auteur " + this.nom;
+        if (this.naissance != null) {
+            texte = texte + " né(e) en " + this.naissance;
+        }
+        if (this.deces != null) {
+            texte = texte + " décédé(e) en " + this.deces;
+        }
+        return texte;
     }
 
     @Override
@@ -103,7 +122,17 @@ public class Auteur {
             return false;
         }
         Auteur auteur = (Auteur)obj;
-        return (auteur.nom.equals(this.nom)&&auteur.datenaissance.equals(this.datenaissance));
+        return auteur.nom.equals(this.nom);
     }
-}
+
+    @Override 
+    public int hashCode() {
+        return this.nom.hashCode();
+    }
+
+    @Override
+    public int compareTo(Auteur a) {
+        return this.nom.compareTo(a.nom);
+    }
+}   
 
