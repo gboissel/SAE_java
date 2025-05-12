@@ -14,7 +14,6 @@ public class Client extends Utilisateur{
     public String getRoles() {
         return "Client";
     }
-    public 
-    
+
     
 }
