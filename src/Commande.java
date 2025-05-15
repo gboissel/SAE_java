@@ -99,7 +99,7 @@ public class Commande implements Comparable<Commande>{
     public double prixTotal() {
         double res = 0;
         for (DetailCommande dC:this.lesLignes) {
-            res+=dC.getPriVente() * dC.getQte();
+            res+=dC.getPrixVente() * dC.getQte();
         }
         return res;
     }
