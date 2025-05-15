@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,13 +18,12 @@ public class Client extends Utilisateur{
         return "Client";
     }
 
-    public void commander(Livre livre, String type, String liaison){
-    LocalDate dateActuelle = LocalDate.now();
-    this.commandes.add(new Commande(0, liaison, 0, 0, this, null))
+    public void commander(Commande com){
+        this.commandes.add(com);
     }
 
-    public void modifierCommande(Commande commande, String liaison){
-
+    public void modifierModeLivraisonCommande(Commande commande, String livraison){
+        
     }
 
     public List<Commande> consulterCommandes(){  
