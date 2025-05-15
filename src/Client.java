@@ -15,5 +15,18 @@ public class Client extends Utilisateur{
         return "Client";
     }
 
+    public void commander(Livre livre, String type, String liaison){
+
+    }
+
+    public void modifierCommande(Commande commande, String liaison){
+
+    }
+
+    //public List<Commander> consulterCommandes(){    }
+
+    public void consulter(){
+
+    }
     
 }
