@@ -37,7 +37,7 @@ public  class GestionConsole{
         System.out.println("Prénom: ");
         String prenom = GestionConsole.scan.nextLine();
         String mdp = "";
-        String conf = null;
+        String conf = null;// pour la confirmation 
         while(!mdp.equals(conf)){
             System.out.println("Mot de passe");
             mdp = GestionConsole.scan.nextLine();
@@ -106,20 +106,11 @@ public  class GestionConsole{
                     this.lib.getCurUser().commander();
                     break;
                 case "02","2":
-                    System.out.println(this.lib.getCurUser().allCommandes();
+                    System.out.println(this.lib.getCurUser().consulterCommandes();
                 default:
                     this.lib.setCurUser(null);
                     System.out.println("vous êtes déconnecter");
                     break;
-            }
-            if (res.equals("01") || res.equals("1")){
-                
-            }else if (res.equals("02")||res.equals("2")){
-                ;
-            }else{
-                this.lib.setCurUser(null);
-                System.out.println("vous êtes déconnecter");
-            }
         }
         this.menuAuth();
     }
