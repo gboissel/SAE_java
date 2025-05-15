@@ -113,6 +113,7 @@ public  class GestionConsole{
                     break;
         }
         this.menuAuth();
+        }
     }
     public void menuAdm(){}
     public void menuVend(){}
