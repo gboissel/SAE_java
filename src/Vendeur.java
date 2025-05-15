@@ -1,4 +1,6 @@
 import java.util.Map;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Vendeur extends Utilisateur{
     private Magasin magasin;
@@ -32,7 +34,13 @@ public class Vendeur extends Utilisateur{
 
     public void commanderClient(Client client, Map<Livre, Integer> lesLivres) {
         // A modifier lorsque l'on mettra en place le JDBC pour attribuer un nouveau numéro
-        commande = new Commande(0, , 0, 0, client, magasin)
+        LocalDateTime dateActuelle = LocalDateTime.now();
+        DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String date = dateActuelle.format(formatDate);
+
+        Commande commande = new Commande(0, date, false, false, client, this.magasin);
+
+        for (Livre livre:lesLivres.keySet())
     }
 
     public String getRoles(){
