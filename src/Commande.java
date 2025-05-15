@@ -6,17 +6,17 @@ import java.util.HashMap;
 public class Commande implements Comparable<Commande>{
     private int num;
     private String date;
-    private char enLigne;
-    private char livraison;
+    private boolean enLigne;
+    private boolean domicile;
     private Client client;
     private Magasin magasin;
     private List<DetailCommande> lesLignes;
 
-    public Commande(int num, String date, char enLigne, char livraison, Client client, Magasin magasin) {
+    public Commande(int num, String date, boolean enLigne, boolean domicile, Client client, Magasin magasin) {
         this.num = num;
         this.date = date;
         this.enLigne = enLigne;
-        this.livraison = livraison;
+        this.domicile = domicile;
         this.client = client;
         this.magasin = magasin;
         this.lesLignes = new ArrayList<>();
@@ -44,16 +44,16 @@ public class Commande implements Comparable<Commande>{
      * @return Si false elle a été réalisée en magasin
      */
     public boolean estEnLigne() {
-        return this.enLigne == 'O';
+        return this.enLigne;
     }
 
     /**
      * Permet de savoir si, pour une commande en ligne, elle est livrée à domicile
-     * @return Si 'C' alors la commande est livrée à domicile
-     * @return Sinon 'M'
+     * @return Si true si la commande est en ligne et livrée à domicile
+     * @return Sinon false
      */
-    public char getLivraison() {
-        return this.livraison;
+    public boolean livreDomicile() {
+        return this.domicile;
     }
 
     /**
@@ -106,10 +106,12 @@ public class Commande implements Comparable<Commande>{
 
     /**
      * Permet de modifier le type de livraison de la commande
-     * @param livraison Le nouveau type de livraison, 'C' pour une livraison à domicile, 'M' pour le reste
+     * @param livraison Le nouveau type de livraison, true si elle est à domicile, false pour le reste
      */
-    public void setLivraison(char livraison) {
-        this.livraison = livraison;
+    public void setLivraison(boolean domicile) {
+        if (this.enLigne) {
+            this.domicile = domicile;
+        }
     }
 
     /**

@@ -32,7 +32,7 @@ public class Vendeur extends Utilisateur{
 
     public void commanderClient(Client client, Map<Livre, Integer> lesLivres) {
         // A modifier lorsque l'on mettra en place le JDBC pour attribuer un nouveau numéro
-        commande = new Commande(0, mdp, 0, 0, client, magasin)
+        commande = new Commande(0, , 0, 0, client, magasin)
     }
 
     public String getRoles(){
