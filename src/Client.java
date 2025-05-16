@@ -1,6 +1,9 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
+import java.util.TreeMap;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -52,14 +55,50 @@ public class Client extends Utilisateur{
         throw new PasAvoirCommande();
     }
 
-    public void modifierModeLivraisonCommande(Commande commande, boolean domicile){
-        commande.setLivraison(domicile);
+    public void modifierModeLivraisonCommande(int num, boolean domicile){
+        try{
+            Commande commande = this.getCommande(num);
+            commande.setLivraison(domicile);
+        }
+        catch (PasAvoirCommande e) {}
     }
 
     public List<Commande> consulterCommandes(){  
         return this.commandes;
     }
-    public List<Livre> consulterCatalogueLivre(Magasin mag){
-        return mag.getLivres();
+
+    private Map<Categorie, Integer> categoriesPreferees() {
+        Map<Categorie, Integer> dicoCat = new HashMap<>();
+        TrieMapCategorie tri = new TrieMapCategorie(dicoCat);
+        Map<Categorie, Integer> dicoTrie = new TreeMap<>(tri);
+
+        for (Commande commande:this.commandes) {
+            for (DetailCommande dC:commande.getDetailsCommande()) {
+                for (Categorie cat:dC.getLivre().getClassification()) {
+                    dicoCat.put(cat, dicoCat.getOrDefault(dicoCat, 0) + 1);
+                }
+            }
+        }
+        dicoTrie.putAll(dicoCat);
+        return dicoTrie;
+    }
+
+    private Map<Auteur, Integer> auteursPreferes() {
+        Map<Auteur, Integer> dicoAut = new HashMap<>();
+        TrieMapAuteur tri = new TrieMapAuteur(dicoAut);
+        Map<Auteur, Integer> dicoTrie = new TreeMap<>(tri);
+        for (Commande commande:this.commandes) {
+            for (DetailCommande dC:commande.getDetailsCommande()) {
+                for (Auteur cat:dC.getLivre().getAuteurs()) {
+                    dicoAut.put(cat, dicoAut.getOrDefault(dicoAut, 0) + 1);
+                }
+            }
+        }
+        dicoTrie.putAll(dicoAut);
+        return dicoTrie;
+    }
+
+    public List<Livre> onVousRecommande(){
+
     }
 }
