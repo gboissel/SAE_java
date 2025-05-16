@@ -5,7 +5,7 @@ public class Execjcdb {
         String url = "jdbc:mysql://servinfo-maria:3306/DBaudor";
         String utilisateur = "audor";
         String motDePasse = "audor";
-
+//"jdbc:mysql://"+"servinfo-maria"+":3306/"+"DBaudor","audor","audor"
         try (Connection conn = DriverManager.getConnection(url, utilisateur, motDePasse);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT nomauteur FROM AUTEUR;")) {

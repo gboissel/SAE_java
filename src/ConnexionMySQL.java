@@ -9,12 +9,12 @@ public class ConnexionMySQL {
 		Class.forName("org.mariadb.jdbc.Driver");
 		}
 
-	public void connecter(String nomServeur, String nomBase, String nomLogin, String motDePasse) throws SQLException {
+	public void connecter(String nomBase, String nomLogin, String motDePasse) throws SQLException {
 		// si tout s'est bien passé la connexion n'est plus nulle
 		this.mysql=null;
 		this.connecte=false;
 		this.mysql = DriverManager.getConnection(
-			"jdbc:mysql://"+nomServeur+":3306/"+nomBase,nomLogin,motDePasse);
+			"jdbc:mysql://servinfo-maria:3306/"+nomBase,nomLogin,motDePasse);
 		this.connecte=true;
 	}
 	
