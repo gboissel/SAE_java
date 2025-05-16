@@ -68,32 +68,31 @@ public class Magasin implements Comparable<Magasin>{
      * Met à jour la quantité d'un livre, en ajoute un, ou bien en supprime un
      * @param livre
      * @param qte
+     * @exception PasAssezDeLivre arrive lorsque la quantité de livre est strictement inférieure à 0
      */
-    public void setQteLivre(Livre livre, int qte){
+    public void setQteLivre(Livre livre, int qte) throws PasAssezDeLivre{
         if (qte > 0) {
             this.stock.put(livre, qte);
             livre.addMagasin(this);
         }
-        else {
+        else if (qte == 0) {
             this.stock.remove(livre);
             livre.removeMagasin(this);
         }
+        else {
+            throw new PasAssezDeLivre();
+        };
     }
 
     /**
-     * Décrémente de 1 la quantité du livre, et le suprime si il y en a plus 
+     * Décrémente de 1 la quantité du livre, et le supprime si il y en a plus 
      * @param livre Le livre a enlever
      */
     public void removeLivre(Livre livre){
-        if (this.getQteLivre(livre) > 0) {
-            if (this.getQteLivre(livre) == 1) {
-                this.stock.remove(livre);
-                livre.removeMagasin(this);
-            }
-            else {
-                this.stock.put(livre, this.stock.get(livre) - 1);
-            }
+        try {
+            this.setQteLivre(livre, this.getQteLivre(livre) - 1);
         }
+        catch (PasAssezDeLivre e) {}
     }
 
     /**
