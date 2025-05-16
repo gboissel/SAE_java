@@ -21,11 +21,17 @@ public class Vendeur extends Utilisateur{
     }
 
     public void ajouterLivre(Livre livre, int qteDispo) {
-        this.magasin.setQteLivre(livre, this.magasin.getQteLivre(livre) + qteDispo);
+        try{
+            this.magasin.setQteLivre(livre, this.magasin.getQteLivre(livre) + qteDispo);
+        }
+        catch (PasAssezDeLivre e) {};
     }
 
     public void miseAJourQteLivre(Livre livre, int qte) {
-        this.magasin.setQteLivre(livre, qte);
+        try{
+            this.magasin.setQteLivre(livre, qte);
+        }
+        catch (PasAssezDeLivre e) {};
     }
 
     public boolean disponibiliteLivre(Livre livre) {
@@ -33,28 +39,30 @@ public class Vendeur extends Utilisateur{
     }
 
     public void commanderClient(Client client, Map<Livre, Integer> lesLivres) {
-        LocalDateTime dateActuelle = LocalDateTime.now();
-        DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String date = dateActuelle.format(formatDate);
+        try{
+            LocalDateTime dateActuelle = LocalDateTime.now();
+            DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String date = dateActuelle.format(formatDate);
 
-        // A modifier lorsque l'on mettra en place le JDBC pour attribuer un nouveau numéro
-        Commande commande = new Commande(0, date, false, false, client, this.magasin);
+            // A modifier lorsque l'on mettra en place le JDBC pour attribuer un nouveau numéro
+            Commande commande = new Commande(0, date, false, false, client, this.magasin);
 
-        for (Livre livre:lesLivres.keySet()) {
-            commande.addLigne(livre, lesLivres.get(livre), livre.getPrix());
+            for (Livre livre:lesLivres.keySet()) {
+                this.magasin.setQteLivre(livre, lesLivres.get(livre));
+                commande.addLigne(livre, lesLivres.get(livre), livre.getPrix());
+            }
+            client.ajouterCommande(commande);
         }
-        client.ajouterCommande(commande);
+        catch (PasAssezDeLivre e) {};
     }
 
-    public void transfererLivre(Livre livre, Magasin magasin, int qte) throws PasAssezDeLivre{
-        if (magasin.getQteLivre(livre) < qte) {
-            throw new PasAssezDeLivre();
-        }
-        else {
+    public void transfererLivre(Livre livre, Magasin magasin, int qte){
+        try{
             magasin.setQteLivre(livre, magasin.getQteLivre(livre) - qte);
             this.magasin.setQteLivre(livre, this.magasin.getQteLivre(livre) + qte);
         }
-    };
+        catch (PasAssezDeLivre e) {}
+    }
 
     public String getRoles(){
         return "Vendeur";
