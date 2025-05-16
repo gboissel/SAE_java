@@ -70,8 +70,8 @@ public class Librairie {
      * @param prenom
      * @param mdp
      */
-    private void createVendeur(String nom,String prenom,String mdp){
-        this.users.add(new Vendeur(nom, prenom, mdp));
+    public void createVendeur(String nom,String prenom,String mdp,Magasin mag){
+        this.users.add(new Vendeur(nom, prenom, mdp,mag));
     }
 
     /**
@@ -101,20 +101,27 @@ public class Librairie {
         String role = scanner.nextLine();
         System.out.println("Mot de Passe: ");
         String mdp = scanner.nextLine();
-        scanner.close();//ferme le scanner pour qu'il ne soit plus en écoute sinon il y a des erreur.
         Utilisateur temp = null;
         if (role.equals("Client")){
             temp = new Client(nom,prenom , mdp);
         }if (role.equals("Vendeur")){
-            temp = new Vendeur(nom,prenom , mdp);
+            System.out.println("Nom du magasin");
+            String nomMag = scanner.nextLine();
+            System.out.println("Ville du magasin");
+            String ville = scanner.nextLine();
+            Magasin magasin = new Magasin(nomMag, ville);
+            temp = new Vendeur(nom,prenom , mdp, magasin);
         }if (role.equals("Administrateur")){
             temp = new Administrateur(nom,prenom,mdp);
-        }if (this.authentification(temp)){
+        }
+        scanner.close();//ferme le scanner pour qu'il ne soit plus en écoute sinon il y a des erreur.
+        if (this.authentification(temp)){
             System.out.println("Connection réussi ...");
             this.curUser = temp;
         }else{
             System.out.println("Echec de la connection...");
             this.curUser = null;
         }
+       
     }
 }//

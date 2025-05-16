@@ -118,7 +118,7 @@ public  class GestionConsole{
             Client leclient = (Client) this.lib.getCurUser();
             switch (res) {
                 case "01","1":
-                    leclient.menuCommander();
+                    this.menuCommander();
                     break;
                 case "02","2":
                     System.out.println(leclient.consulterCommandes());
@@ -126,19 +126,19 @@ public  class GestionConsole{
                     this.lib.setCurUser(null);
                     System.out.println("vous êtes déconnecter");
                     break;
-        }
-        this.menuAuth();
+            }this.menuAuth();
         }
     }
     public void menuCommander(){
         
         System.out.println("Indiquez la recherche de quel type (Par defaut vous consultez le catalogue):");
         System.out.println("--------Creation de votre commande-------");
-        System.out.println("-01- CATALOGUE                           -");
+        System.out.println("-01- CATALOGUE                          -");
         System.out.println("-02- ISBN                               -");
         System.out.println("-03- AUTEUR                             -");
         System.out.println("-04- TITRE                              -");
-        System.out.println("-00- Annuler                            -");//mettre recomandation dans l'affichage du catalogue
+        System.out.println("-00- Valider commande                   -");
+        System.out.println("-05- Annuler la commande                -");//mettre recomandation dans l'affichage du catalogue
         System.out.println("-----------------------------------------");
         String res = GestionConsole.scan.nextLine();
         Client leclient = (Client) this.lib.getCurUser();
@@ -157,6 +157,7 @@ public  class GestionConsole{
                     break;
             }
     }
+
     public void catalogue(){}
     public void menuAdm(){}
     public void menuVend(){}
