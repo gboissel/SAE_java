@@ -1,11 +1,10 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.TreeMap;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Client extends Utilisateur{
     private List<Commande> commandes;
@@ -99,6 +98,7 @@ public class Client extends Utilisateur{
     }
 
     public List<Livre> onVousRecommande(){
-
+        List<Livre> res  = new ArrayList<>();
+        return res;
     }
 }
