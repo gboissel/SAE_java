@@ -7,17 +7,17 @@ public  class GestionConsole{
     private static Scanner scan;// je le met en attribut car Scanner on ne peut en initialisé qu'un au sein d'un ficher et si on le ferme on ne peut pas en initialisée d'autre.
 
     /* private GestionConsole(){
-        this.run = true;
-        GestionConsole.scan = new Scanner(System.in);
-        this.lib = GestionConsole.initialisation();
-        System.out.println("La librairie à été créée");
-        this.menuAuth();
-    }
- */
+    *    this.run = true;
+    *    GestionConsole.scan = new Scanner(System.in);
+    *    this.lib = GestionConsole.initialisation();
+    *    System.out.println("La librairie à été créée");
+    *    this.menuAuth();
+    *}
+    */
     public GestionConsole(){
             ConnexionMySQL connec = new ConnexionMySQL();
             List<String> attCo = this.connexConsole();
-            connec.connexion();
+            connec.connecter(attCo.get(0),attCo.get(1),attCo.get(2));
             this.run = true;
             this.menuAuth();
     }
@@ -35,12 +35,12 @@ public  class GestionConsole{
     }
     private List<String> connexConsole(){
         List<String> res = new ArrayList<>();
-        System.out.println("Nom:");
-        res.add(GestionConsole.scan.nextLine());
-        System.out.println("Prénom: ");
-        res.add(GestionConsole.scan.nextLine());
+        System.out.println("Nom Base:");
+        res.add(""+GestionConsole.scan.nextLine());
+        System.out.println("Login: ");
+        res.add(""+GestionConsole.scan.nextLine());
         System.out.println("Mot de passe");
-        res.add(GestionConsole.scan.nextLine());
+        res.add(""+GestionConsole.scan.nextLine());
         System.out.println();
         return res;
     }
