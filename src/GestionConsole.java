@@ -17,6 +17,7 @@ public  class GestionConsole{
     public GestionConsole(){
             ConnexionMySQL connec = new ConnexionMySQL();
             List<String> attCo = this.connexConsole();
+            connec.connexion();
             this.run = true;
             this.menuAuth();
     }
@@ -35,15 +36,14 @@ public  class GestionConsole{
     private List<String> connexConsole(){
         List<String> res = new ArrayList<>();
         System.out.println("Nom:");
-        String nom = GestionConsole.scan.nextLine();//l'input de l'utilisateur
+        res.add(GestionConsole.scan.nextLine());
         System.out.println("Prénom: ");
-        String prenom = GestionConsole.scan.nextLine();
+        res.add(GestionConsole.scan.nextLine());
         System.out.println("Mot de passe");
-        String mdp = GestionConsole.scan.nextLine();
-        res.add();
-
+        res.add(GestionConsole.scan.nextLine());
+        System.out.println();
     }
-    private static Librairie initialisation(){
+    private static Librairie initialisation(){//cette fonction était censé etre capable de créer une base de donné pour le momment c'est pas le cas
 
         System.out.println("Création du profil de l'administrateur.");
         System.out.println("Nom:");
