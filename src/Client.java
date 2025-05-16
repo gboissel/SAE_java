@@ -22,16 +22,18 @@ public class Client extends Utilisateur{
         this.commandes.add(com);
     }
 
-    public void modifierModeLivraisonCommande(Commande commande, String livraison){
-        
+    public void modifierModeLivraisonCommande(Commande commande, char livraison){
+        for (Commande com: this.commandes){
+            if (com.equals(commande)){
+                com.setLivraison(livraison);
+            }
+        }
     }
 
     public List<Commande> consulterCommandes(){  
         return this.commandes;
     }
-
-    public void consulter(){
-
+    public List<Livre> consulterCatalogueLivre(Magasin mag){
+        return mag.getLivres();
     }
-    
 }
