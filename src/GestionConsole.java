@@ -42,6 +42,7 @@ public  class GestionConsole{
         System.out.println("Mot de passe");
         res.add(GestionConsole.scan.nextLine());
         System.out.println();
+        return res;
     }
     private static Librairie initialisation(){//cette fonction était censé etre capable de créer une base de donné pour le momment c'est pas le cas
 
