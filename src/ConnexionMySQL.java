@@ -17,6 +17,7 @@ public class ConnexionMySQL {
 			"jdbc:mysql://"+nomServeur+":3306/"+nomBase,nomLogin,motDePasse);
 		this.connecte=true;
 	}
+	
 	public void close() throws SQLException {
 		// fermer la connexion
 		this.mysql.close();
@@ -25,9 +26,8 @@ public class ConnexionMySQL {
 
     public boolean isConnecte() { 
 		return this.connecte;
-		}
-	
-	
+	}
+
 	public Statement createStatement() throws SQLException {
 		return this.mysql.createStatement();
 	}
