@@ -33,15 +33,28 @@ public class Vendeur extends Utilisateur{
     }
 
     public void commanderClient(Client client, Map<Livre, Integer> lesLivres) {
-        // A modifier lorsque l'on mettra en place le JDBC pour attribuer un nouveau numéro
         LocalDateTime dateActuelle = LocalDateTime.now();
         DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String date = dateActuelle.format(formatDate);
 
+        // A modifier lorsque l'on mettra en place le JDBC pour attribuer un nouveau numéro
         Commande commande = new Commande(0, date, false, false, client, this.magasin);
 
-        for (Livre livre:lesLivres.keySet())
+        for (Livre livre:lesLivres.keySet()) {
+            commande.addLigne(livre, lesLivres.get(livre), livre.getPrix());
+        }
+        client.ajouterCommande(commande);
     }
+
+    public void transfererLivre(Livre livre, Magasin magasin, int qte) throws PasAssezDeLivre{
+        if (magasin.getQteLivre(livre) < qte) {
+            throw new PasAssezDeLivre();
+        }
+        else {
+            magasin.setQteLivre(livre, magasin.getQteLivre(livre) - qte);
+            this.magasin.setQteLivre(livre, this.magasin.getQteLivre(livre) + qte);
+        }
+    };
 
     public String getRoles(){
         return "Vendeur";
