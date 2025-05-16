@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.List;
+import java.sql.SQLException;
 import java.util.ArrayList;
 public  class GestionConsole{
     private boolean run;
@@ -15,11 +16,20 @@ public  class GestionConsole{
     *}
     */
     public GestionConsole(){
+        try{
+            GestionConsole.scan = new Scanner(System.in);
             ConnexionMySQL connec = new ConnexionMySQL();
             List<String> attCo = this.connexConsole();
             connec.connecter(attCo.get(0),attCo.get(1),attCo.get(2));
+            System.out.println("Connexion REUSSI!!!!");
             this.run = true;
             this.menuAuth();
+        }catch(SQLException exp){
+            System.out.println("erreur sql");
+        }catch(ClassNotFoundException exp1){
+            System.out.println("erreur connexion jdbc");
+        }
+
     }
 
     public Librairie quittez(){
