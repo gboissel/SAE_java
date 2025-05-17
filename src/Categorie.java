@@ -23,7 +23,7 @@ public class Categorie implements Comparable<Categorie>{
      * Permet d'obtenir la liste des lesLivres ayant cette classification
      * @return List<Livre>
      */
-    public List<Livre> getLivre(){
+    public List<Livre> getLivres(){
         return this.lesLivres;
     }
 

@@ -1,6 +1,7 @@
-import java.util.Map;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
+import java.util.Random;
 
 public class Vendeur extends Utilisateur{
     private Magasin magasin;
@@ -24,14 +25,14 @@ public class Vendeur extends Utilisateur{
         try{
             this.magasin.setQteLivre(livre, this.magasin.getQteLivre(livre) + qteDispo);
         }
-        catch (PasAssezDeLivre e) {};
+        catch (PasAssezDeLivre e) {}
     }
 
     public void miseAJourQteLivre(Livre livre, int qte) {
         try{
             this.magasin.setQteLivre(livre, qte);
         }
-        catch (PasAssezDeLivre e) {};
+        catch (PasAssezDeLivre e) {}
     }
 
     public boolean disponibiliteLivre(Livre livre) {
@@ -45,7 +46,7 @@ public class Vendeur extends Utilisateur{
             String date = dateActuelle.format(formatDate);
 
             // A modifier lorsque l'on mettra en place le JDBC pour attribuer un nouveau numéro
-            Commande commande = new Commande(0, date, false, false, client, this.magasin);
+            Commande commande = new Commande(new Random().nextInt(1000), date, false, false, client, this.magasin);
 
             for (Livre livre:lesLivres.keySet()) {
                 this.magasin.setQteLivre(livre, lesLivres.get(livre));
@@ -53,7 +54,7 @@ public class Vendeur extends Utilisateur{
             }
             client.ajouterCommande(commande);
         }
-        catch (PasAssezDeLivre e) {};
+        catch (PasAssezDeLivre e) {}
     }
 
     public void transfererLivre(Livre livre, Magasin magasin, int qte){
@@ -64,6 +65,7 @@ public class Vendeur extends Utilisateur{
         catch (PasAssezDeLivre e) {}
     }
 
+    @Override
     public String getRoles(){
         return "Vendeur";
     }

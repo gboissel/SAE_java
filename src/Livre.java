@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Livre implements Comparable<Livre>{
     private int isbn;
@@ -7,20 +9,20 @@ public class Livre implements Comparable<Livre>{
     private double prix;
     private int nbPages;
     private String datePubli;
-    private List<Auteur> auteurs;
-    private List<Editeur> editeurs;
-    private List<Categorie> classification;
+    private Set<Auteur> auteurs;
+    private Set<Editeur> editeurs;
+    private Set<Categorie> classification;
     private List<Commande> lesCommandes;
     private List<Magasin> lesMagasins;
     
-    public Livre(int isbn,String titre,double prix,int pages,String datePubli,Auteur aut,Editeur editeur){
+    public Livre(int isbn,String titre,double prix,int pages,String datePubli){
         this.isbn=isbn;
-        this.auteurs= new ArrayList<>();
+        this.auteurs= new HashSet<>();
         this.titre=titre;
         this.datePubli=datePubli;
         this.nbPages=pages;
-        this.editeurs = new ArrayList<>();
-        this.classification  = new ArrayList<>();
+        this.editeurs = new HashSet<>();
+        this.classification  = new HashSet<>();
         this.lesCommandes  = new ArrayList<>();
         this.lesMagasins  = new ArrayList<>();
     }
@@ -67,25 +69,25 @@ public class Livre implements Comparable<Livre>{
 
     /**
      * Retourne les auteurs du livre.
-     * @return la liste d'auteurs
+     * @return l'ensemble des auteurs
      */
-    public List<Auteur> getAuteurs() {
+    public Set<Auteur> getAuteurs() {
         return this.auteurs;
     }
 
     /**
      * Retourne les éditeurs du livre.
-     * @return la liste d'éditeurs
+     * @return l'ensemble des éditeurs
      */
-    public List<Editeur> getEditeurs() {
+    public Set<Editeur> getEditeurs() {
         return this.editeurs;
     }
 
     /**
      * Retourne les catégories auxquels appartient le livre
-     * @return la liste des catégories
+     * @return l'ensemble des catégories
      */
-    public List<Categorie> getClassification() {
+    public Set<Categorie> getClassification() {
         return this.classification;
     }
 
@@ -167,6 +169,11 @@ public class Livre implements Comparable<Livre>{
      */
     public void removeMagasin(Magasin mag) {
         this.lesMagasins.remove(mag);
+    }
+
+    @Override
+    public String toString() {
+        return this.titre;
     }
 
     @Override

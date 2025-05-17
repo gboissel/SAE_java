@@ -94,7 +94,7 @@ public class Auteur implements Comparable<Auteur>{
         }
     }
 
-    public List<Livre> getLivre() {
+    public List<Livre> getLivres() {
         return this.lesLivres;
     }
 

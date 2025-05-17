@@ -10,6 +10,11 @@ public class TrieMapCategorie implements Comparator<Categorie>{
 
     @Override
     public int compare(Categorie c1, Categorie c2) {
-        return dico.get(c1) - dico.get(c2);
+        if (dico.get(c2).equals(dico.get(c1))) {
+            return c1.compareTo(c2);
+        }
+        else{
+            return dico.get(c2) - dico.get(c1);
+        }
     }
 }

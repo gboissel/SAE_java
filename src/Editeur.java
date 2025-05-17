@@ -23,7 +23,7 @@ public class Editeur implements Comparable<Editeur>{
      * Permet d'obtenir la liste des lesLivres ayant été édité par cet éditeur
      * @return List<Livre>
      */
-    public List<Livre> getLivre(){
+    public List<Livre> getLivres(){
         return this.lesLivres;
     }
 
