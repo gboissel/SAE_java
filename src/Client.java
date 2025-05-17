@@ -18,6 +18,7 @@ public class Client extends Utilisateur{
         super(nom,prenom,mdp);
         this.commandes = new ArrayList<>();
     }
+
     @Override
     public String getRoles() {
         return "Client";
@@ -98,7 +99,15 @@ public class Client extends Utilisateur{
     }
 
     public List<Livre> onVousRecommande(){
-        List<Livre> res  = new ArrayList<>();
+        List<Livre> res = new ArrayList<>();
         return res;
+    }
+
+    public static void main(String[] args) {
+        Client c1 = new Client("Cher", "Naïck", "mdp1");
+        Client c2 = new Client("Hameau", "Alexis", "mdp2");
+        Client c3 = new Client("Boissel", "Gauthier", "mdp3");
+        Client c4 = new Client("Cher", "Naïck", "mdp4");
+
     }
 }
