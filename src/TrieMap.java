@@ -1,10 +1,10 @@
 import java.util.Comparator;
 import java.util.Map;
 
-public class TrieMapLivre implements Comparator<Livre>{
+public class TrieMap implements Comparator<Livre>{
     private Map<Livre, Integer> dico;
 
-    public TrieMapLivre(Map<Livre, Integer> dico) {
+    public TrieMap(Map<Livre, Integer> dico) {
         this.dico = dico;
     }
 

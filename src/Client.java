@@ -82,9 +82,6 @@ public class Client extends Utilisateur{
 
     private Map<Categorie, Integer> categoriesPreferees() {
         Map<Categorie, Integer> dicoCat = new HashMap<>();
-        TrieMapCategorie tri = new TrieMapCategorie(dicoCat);
-        Map<Categorie, Integer> dicoTrie = new TreeMap<>(tri);
-
         for (Commande commande:this.commandes) {
             for (DetailCommande dC:commande.getDetailsCommande()) {
                 for (Categorie cat:dC.getLivre().getClassification()) {
@@ -92,14 +89,11 @@ public class Client extends Utilisateur{
                 }
             }
         }
-        dicoTrie.putAll(dicoCat);
-        return dicoTrie;
+        return dicoCat;
     }
 
     private Map<Auteur, Integer> auteursPreferes() {
         Map<Auteur, Integer> dicoAut = new HashMap<>();
-        TrieMapAuteur tri = new TrieMapAuteur(dicoAut);
-        Map<Auteur, Integer> dicoTrie = new TreeMap<>(tri);
         for (Commande commande:this.commandes) {
             for (DetailCommande dC:commande.getDetailsCommande()) {
                 for (Auteur auteur:dC.getLivre().getAuteurs()) {
@@ -107,14 +101,11 @@ public class Client extends Utilisateur{
                 }
             }
         }
-        dicoTrie.putAll(dicoAut);
-        return dicoTrie;
+        return dicoAut;
     }
 
     private Map<Livre, Integer> livresPreferes() {
         Map<Livre, Integer> dicoLivre = new HashMap<>();
-        TrieMapLivre tri = new TrieMapLivre(dicoLivre);
-        Map<Livre, Integer> dicoTrie = new TreeMap<>(tri);
         Map<Categorie, Integer> dicoCat = this.categoriesPreferees();
         Map<Auteur, Integer> dicoAut = this.auteursPreferes();
         for (Livre livre:this.getLivres()) {
@@ -129,8 +120,7 @@ public class Client extends Utilisateur{
                 }
             }
         }
-        dicoTrie.putAll(dicoLivre);
-        return dicoTrie;
+        return dicoLivre;
     }
 
     public List<Livre> onVousRecommande(){
@@ -151,7 +141,7 @@ public class Client extends Utilisateur{
                 }
             }
         }
-        TrieMapLivre tri = new TrieMapLivre(recommandation);
+        TrieMap tri = new TrieMap(recommandation);
         Map<Livre, Integer> recoTrie = new TreeMap<>(tri);
         recoTrie.putAll(recommandation);
         return new ArrayList<>(recoTrie.keySet());
