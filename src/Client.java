@@ -141,7 +141,7 @@ public class Client extends Utilisateur{
                 }
             }
         }
-        TrieMap tri = new TrieMap(recommandation);
+        TrieMap<Livre> tri = new TrieMap<>(recommandation);
         Map<Livre, Integer> recoTrie = new TreeMap<>(tri);
         recoTrie.putAll(recommandation);
         return new ArrayList<>(recoTrie.keySet());
