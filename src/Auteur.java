@@ -21,7 +21,7 @@ public class Auteur implements Comparable<Auteur>{
     }
 
     /**
-     * Constructeur de la class Auteur si l'auteur est toujours en vie.
+     * Constructeur de la classe Auteur si l'auteur est toujours en vie.
      *
      */
     public Auteur(String nom,Integer naissance){

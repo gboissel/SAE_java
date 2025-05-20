@@ -1,7 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 
 
 public class Magasin implements Comparable<Magasin>{
@@ -37,10 +37,19 @@ public class Magasin implements Comparable<Magasin>{
         return this.ville;
     }
 
+    /**
+     * Récupère la liste des livres trouvable avec un stock supérieur à 0 dans ce magasin
+     * @return Une liste de livres
+     */
     public List<Livre> getLivres() {
         return new ArrayList<>(this.stock.keySet());
     }
 
+    /**
+     * Récupère le stock en magasin du livre donné en paramètre
+     * @param livre Le livre
+     * @return La quantité disponible du livre
+     */
     public int getQteLivre(Livre livre) {
         if (this.stock.containsKey(livre)) {
             return this.stock.get(livre);
@@ -81,7 +90,7 @@ public class Magasin implements Comparable<Magasin>{
         }
         else {
             throw new PasAssezDeLivre();
-        };
+        }
     }
 
     /**
