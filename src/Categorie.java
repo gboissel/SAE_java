@@ -5,7 +5,10 @@ public class Categorie implements Comparable<Categorie>{
     private String nom;
     private List<Livre> lesLivres;
 
-
+    /**
+     * Constructeur de la classe Categorie
+     * @param nom Le nom de catégorie
+     */
     public Categorie(String nom){
         this.nom=nom;
         this.lesLivres=new ArrayList<>();

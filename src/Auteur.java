@@ -10,7 +10,9 @@ public class Auteur implements Comparable<Auteur>{
 
     /**
      * Constructeur de la classe Auteur.
-     *
+     * @param nom Le nom de l'auteur
+     * @param naissance L'année de naissance de l'auteur
+     * @param deces L'année de décès de l'auteur
      */
     public Auteur(String nom,Integer naissance, Integer deces){
         this.nom=nom;
@@ -22,13 +24,11 @@ public class Auteur implements Comparable<Auteur>{
 
     /**
      * Constructeur de la classe Auteur si l'auteur est toujours en vie.
-     *
+     * @param nom Le nom de l'auteur
+     * @param naissance L'année de naissance de l'auteur
      */
     public Auteur(String nom,Integer naissance){
-        this.nom=nom;
-        this.naissance=naissance;
-        this.deces=null;
-        this.lesLivres = new ArrayList<>();
+        this(nom, naissance, null);
     }
 
     /**

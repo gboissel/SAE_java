@@ -15,6 +15,14 @@ public class Livre implements Comparable<Livre>{
     private List<Commande> lesCommandes;
     private List<Magasin> lesMagasins;
     
+    /**
+     * Constructeur de la classe Livre
+     * @param isbn L'ISBN du livre
+     * @param titre Le titre du livre
+     * @param prix Le prix du livre en €
+     * @param pages Le nombre de pages du livre
+     * @param datePubli La date du publication du livre au format JJ/MM/AAAA
+     */
     public Livre(int isbn,String titre,double prix,int pages,String datePubli){
         this.isbn=isbn;
         this.auteurs= new HashSet<>();

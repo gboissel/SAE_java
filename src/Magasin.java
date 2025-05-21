@@ -11,6 +11,11 @@ public class Magasin implements Comparable<Magasin>{
     private List<Commande> commandes;
     private Map<Livre, Integer> stock;
 
+    /**
+     * Constructeur de la classe Magasin
+     * @param nom Le nom du magasin
+     * @param ville La ville où se situe le magasin
+     */
     public Magasin(String nom,String ville){
         this.nom = nom;
         this.ville = ville;

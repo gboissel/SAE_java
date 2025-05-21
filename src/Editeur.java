@@ -5,7 +5,10 @@ public class Editeur implements Comparable<Editeur>{
     private String nom;
     private List<Livre> lesLivres;
 
-
+    /**
+     * Contructeur de la classe Editeur
+     * @param nom Le nom de l'éditeur
+     */
     public Editeur(String nom){
         this.nom=nom;
         this.lesLivres=new ArrayList<>();

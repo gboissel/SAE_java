@@ -4,6 +4,13 @@ public class DetailCommande {
     private Commande commande;
     private Livre livre;
 
+    /**
+     * Constructeur de la classe DetailCommande, représentant les informations en rapport avec un livre dans une commande
+     * @param com La commande auquelle est reliée cette instance
+     * @param livre Le livre dont est question cette instance
+     * @param qte La quantité de livre vendue dans cette commande
+     * @param prix Le prix à l'unité auquel a été vendu le livre dans cette commande
+     */
     public DetailCommande(Commande com,Livre livre,int qte,double prix){
         this.qte=qte;
         this.prixVente=prix;

@@ -16,7 +16,7 @@ public class Vendeur extends Utilisateur{
         super(nom, prenom, mdp);
         this.magasin = magasin;
     }
-
+    
     /**
      * Ajoute de 1 la quantité disponible d'un livre dans le magasin
      * @param livre Le livre
