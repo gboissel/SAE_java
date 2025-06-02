@@ -7,8 +7,8 @@ public class Livre implements Comparable<Livre>{
     private int isbn;
     private String titre;
     private double prix;
-    private int nbPages;
-    private String datePubli;
+    private Integer nbPages;
+    private Integer datePubli;
     private Set<Auteur> auteurs;
     private Set<Editeur> editeurs;
     private Set<Categorie> classification;
@@ -21,9 +21,9 @@ public class Livre implements Comparable<Livre>{
      * @param titre Le titre du livre
      * @param prix Le prix du livre en €
      * @param pages Le nombre de pages du livre
-     * @param datePubli La date du publication du livre au format JJ/MM/AAAA
+     * @param datePubli L'année de publication du livre au format
      */
-    public Livre(int isbn,String titre,double prix,int pages,String datePubli){
+    public Livre(int isbn,String titre,double prix,Integer pages,Integer datePubli){
         this.isbn=isbn;
         this.auteurs= new HashSet<>();
         this.titre=titre;
@@ -63,7 +63,7 @@ public class Livre implements Comparable<Livre>{
      * Retourne la date de publication du livre.
      * @return la date sous forme de chaîne
      */
-    public String getDate() {
+    public Integer getDate() {
         return this.datePubli;
     }
 
