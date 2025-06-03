@@ -77,6 +77,7 @@ public class Vendeur extends Utilisateur{
                 commande.addLigne(livre, lesLivres.get(livre), livre.getPrix());
             }
             client.ajouterCommande(commande);
+            this.magasin.addCommande(commande);
         }
         catch (PasAssezDeLivre e) {}
     }

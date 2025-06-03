@@ -51,7 +51,7 @@ public class Client extends Utilisateur{
                 magasin.setQteLivre(livre, lesLivres.get(livre));
                 commande.addLigne(livre, lesLivres.get(livre), livre.getPrix());
             }
-
+            magasin.addCommande(commande);
             this.commandes.add(commande);
         }
         catch (PasAssezDeLivre e) {}

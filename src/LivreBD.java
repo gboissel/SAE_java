@@ -10,8 +10,8 @@ public class LivreBD {
     }
 
     /**
-     * Méthode permettant de récupérer tous les livres de la bases de données,
-     * en plus de les associés avec les auteurs, editeurs et catégories déjà chargés
+     * Méthode permettant de récupérer tous les livres de la base de données,
+     * en plus de les associer avec les auteurs, editeurs et catégories déjà chargés
      * @param lesAuteurs La liste des auteurs
      * @param lesEditeurs La liste des éditeurs
      * @param lesCategories La liste des catégories
@@ -29,7 +29,7 @@ public class LivreBD {
         Integer pages;
         Integer datePubli;
         while (rs.next()) {
-            isbn = rs.getInt("isbn");
+            isbn = Integer.parseInt(rs.getString("isbn"));
             titre = rs.getString("titre");
             prix = rs.getDouble("prix");
             pages = rs.getInt("nbpages");
@@ -44,6 +44,29 @@ public class LivreBD {
         }
         return lesLivres;
     }
+
+    /**
+	 * Méthode permettant de récupérer tous les auteurs de la base de données
+	 * @return Une liste d'auteurs
+	 * @throws SQLException
+	 */
+	public List<Auteur> recupererAuteurs() throws SQLException{
+		List<Auteur> lesAuteurs = new ArrayList<>();
+		st=laConnexion.createStatement();
+		ResultSet rs=st.executeQuery("SELECT nomauteur, anneenais, anneedeces from AUTEUR");
+		String nom;
+		Integer naissance;
+		Integer deces;
+		while (rs.next()) {
+			nom = rs.getString("nomauteur");
+			naissance = rs.getInt("anneenais");
+			if (naissance.equals(0)) {naissance = null;}
+			deces = rs.getInt("anneedeces");
+			if (deces.equals(0)) {deces = null;}
+			lesAuteurs.add(new Auteur(nom, naissance, deces));
+		}
+		return lesAuteurs;
+	}
 
     /**
      * Méthode permettant d'associer un livre avec les auteurs déjà chargés
@@ -64,6 +87,23 @@ public class LivreBD {
     }
 
     /**
+	 * Méthode permettant de récupérer tous les éditeurs de la base de données
+	 * @return Une liste d'éditeurs
+	 * @throws SQLException
+	 */
+	public List<Editeur> recupererEditeurs() throws SQLException{
+		List<Editeur> lesEditeurs = new ArrayList<>();
+		st=laConnexion.createStatement();
+		ResultSet rs=st.executeQuery("SELECT nomedit from EDITEUR");
+		String nom;
+		while (rs.next()) {
+			nom = rs.getString("nomedit");
+			lesEditeurs.add(new Editeur(nom));
+		}
+		return lesEditeurs;
+	}
+
+    /**
      * Méthode permettant d'associer un livre avec les éditeurs déjà chargés
      * @param livre Le livre
      * @param lesEditeurs La liste des éditeurs
@@ -80,6 +120,23 @@ public class LivreBD {
             livre.addEditeur(lesEditeurs.get(lesEditeurs.indexOf(new Editeur(nomediteur))));
         }
     }
+
+    /**
+	 * Méthode permettant de récupérer toutes les catégories de la base de données
+	 * @return Une liste de catégories
+	 * @throws SQLException
+	 */
+	public List<Categorie> recupererCategories() throws SQLException{
+		List<Categorie> lesCategories = new ArrayList<>();
+		st=laConnexion.createStatement();
+		ResultSet rs=st.executeQuery("SELECT nomclass from CLASSIFICATION");
+		String nom;
+		while (rs.next()) {
+			nom = rs.getString("nomclass");
+			lesCategories.add(new Categorie(nom));
+		}
+		return lesCategories;
+	}
 
     /**
      * Méthode permettant de classifier un livre en l'associant avec les catégories déjà chargées
