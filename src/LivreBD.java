@@ -28,14 +28,13 @@ public class LivreBD {
         double prix;
         Integer pages;
         Integer datePubli;
-        while (!rs.isLast()) {
-            rs.next();
-            isbn = rs.getInt(1);
-            titre = rs.getString(2);
-            prix = rs.getDouble(5);
-            pages = rs.getInt(3);
+        while (rs.next()) {
+            isbn = rs.getInt("isbn");
+            titre = rs.getString("titre");
+            prix = rs.getDouble("prix");
+            pages = rs.getInt("nbpages");
             if (pages.equals(0)) {pages = null;}
-            datePubli = rs.getInt(4);
+            datePubli = rs.getInt("datepubli");
             if (datePubli.equals(0)) {pages = null;}
             livre = new Livre(isbn, titre, prix, pages, datePubli);
             lesLivres.add(livre);
@@ -58,9 +57,8 @@ public class LivreBD {
                                     "NATURAL JOIN LIVRE " +
                                     "WHERE isbn = " + livre.getISBN());
         String nomauteur;
-        while (!rs.isLast()) {
-            rs.next();
-            nomauteur = rs.getString(2);
+        while (rs.next()) {
+            nomauteur = rs.getString("nomauteur");
             livre.addAuteur(lesAuteurs.get(lesAuteurs.indexOf(new Auteur(nomauteur, null))));
         }
     }
@@ -77,9 +75,8 @@ public class LivreBD {
                                     "NATURAL JOIN EDITEUR " +
                                     "WHERE isbn = " + livre.getISBN());
         String nomediteur;
-        while (!rs.isLast()) {
-            rs.next();
-            nomediteur = rs.getString(2);
+        while (rs.next()) {
+            nomediteur = rs.getString("nomedit");
             livre.addEditeur(lesEditeurs.get(lesEditeurs.indexOf(new Editeur(nomediteur))));
         }
     }
@@ -96,9 +93,8 @@ public class LivreBD {
                                     "NATURAL JOIN CLASSIFICATION " +
                                     "WHERE isbn = " + livre.getISBN());
         String nomcategorie;
-        while (!rs.isLast()) {
-            rs.next();
-            nomcategorie = rs.getString(2);
+        while (rs.next()) {
+            nomcategorie = rs.getString("nomclass");
             livre.addClassification(lesCategories.get(lesCategories.indexOf(new Categorie(nomcategorie))));
         }
     }

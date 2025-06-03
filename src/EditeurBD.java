@@ -19,9 +19,8 @@ public class EditeurBD{
 		st=laConnexion.createStatement();
 		ResultSet rs=st.executeQuery("SELECT nomedit from EDITEUR");
 		String nom;
-		while (!rs.isLast()) {
-			rs.next();
-			nom = rs.getString(1);
+		while (rs.next()) {
+			nom = rs.getString("nomedit");
 			lesEditeurs.add(new Editeur(nom));
 		}
 		return lesEditeurs;

@@ -21,12 +21,11 @@ public class AuteurBD{
 		String nom;
 		Integer naissance;
 		Integer deces;
-		while (!rs.isLast()) {
-			rs.next();
-			nom = rs.getString(1);
-			naissance = rs.getInt(2);
+		while (rs.next()) {
+			nom = rs.getString("nomauteur");
+			naissance = rs.getInt("anneenais");
 			if (naissance.equals(0)) {naissance = null;}
-			deces = rs.getInt(3);
+			deces = rs.getInt("anneedeces");
 			if (deces.equals(0)) {deces = null;}
 			lesAuteurs.add(new Auteur(nom, naissance, deces));
 		}
