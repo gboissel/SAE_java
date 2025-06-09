@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.List;
+import java.sql.SQLException;
 import java.util.ArrayList;
 public  class GestionConsole{
     private boolean run;
@@ -7,19 +8,28 @@ public  class GestionConsole{
     private static Scanner scan;// je le met en attribut car Scanner on ne peut en initialisé qu'un au sein d'un ficher et si on le ferme on ne peut pas en initialisée d'autre.
 
     /* private GestionConsole(){
-        this.run = true;
-        GestionConsole.scan = new Scanner(System.in);
-        this.lib = GestionConsole.initialisation();
-        System.out.println("La librairie à été créée");
-        this.menuAuth();
-    }
- */
+    *    this.run = true;
+    *    GestionConsole.scan = new Scanner(System.in);
+    *    this.lib = GestionConsole.initialisation();
+    *    System.out.println("La librairie à été créée");
+    *    this.menuAuth();
+    *}
+    */
     public GestionConsole(){
+        try{
+            GestionConsole.scan = new Scanner(System.in);
             ConnexionMySQL connec = new ConnexionMySQL();
             List<String> attCo = this.connexConsole();
-            connec.connexion();
+            connec.connecter(attCo.get(0),attCo.get(1),attCo.get(2));
+            System.out.println("Connexion REUSSI!!!!");
             this.run = true;
             this.menuAuth();
+        }catch(SQLException exp){
+            System.out.println("erreur sql");
+        }catch(ClassNotFoundException exp1){
+            System.out.println("erreur connexion jdbc");
+        }
+
     }
 
     public Librairie quittez(){
@@ -35,13 +45,14 @@ public  class GestionConsole{
     }
     private List<String> connexConsole(){
         List<String> res = new ArrayList<>();
-        System.out.println("Nom:");
-        res.add(GestionConsole.scan.nextLine());
-        System.out.println("Prénom: ");
-        res.add(GestionConsole.scan.nextLine());
+        System.out.println("Nom Base:");
+        res.add(""+GestionConsole.scan.nextLine());
+        System.out.println("Login: ");
+        res.add(""+GestionConsole.scan.nextLine());
         System.out.println("Mot de passe");
-        res.add(GestionConsole.scan.nextLine());
+        res.add(""+GestionConsole.scan.nextLine());
         System.out.println();
+        return res;
     }
     private static Librairie initialisation(){//cette fonction était censé etre capable de créer une base de donné pour le momment c'est pas le cas
 
@@ -118,7 +129,7 @@ public  class GestionConsole{
             Client leclient = (Client) this.lib.getCurUser();
             switch (res) {
                 case "01","1":
-                    leclient.menuCommander();
+                    this.menuCommander();
                     break;
                 case "02","2":
                     System.out.println(leclient.consulterCommandes());
@@ -126,19 +137,19 @@ public  class GestionConsole{
                     this.lib.setCurUser(null);
                     System.out.println("vous êtes déconnecter");
                     break;
-        }
-        this.menuAuth();
+            }this.menuAuth();
         }
     }
     public void menuCommander(){
         
         System.out.println("Indiquez la recherche de quel type (Par defaut vous consultez le catalogue):");
         System.out.println("--------Creation de votre commande-------");
-        System.out.println("-01- CATALOGUE                           -");
+        System.out.println("-01- CATALOGUE                          -");
         System.out.println("-02- ISBN                               -");
         System.out.println("-03- AUTEUR                             -");
         System.out.println("-04- TITRE                              -");
-        System.out.println("-00- Annuler                            -");//mettre recomandation dans l'affichage du catalogue
+        System.out.println("-00- Valider commande                   -");
+        System.out.println("-05- Annuler la commande                -");//mettre recomandation dans l'affichage du catalogue
         System.out.println("-----------------------------------------");
         String res = GestionConsole.scan.nextLine();
         Client leclient = (Client) this.lib.getCurUser();
@@ -157,6 +168,7 @@ public  class GestionConsole{
                     break;
             }
     }
+
     public void catalogue(){}
     public void menuAdm(){}
     public void menuVend(){}
