@@ -10,15 +10,24 @@ import java.util.Set;
 import java.util.TreeMap;
 
 public class Client extends Utilisateur{
+    private String adresse;
+    private String cp;
+    private String ville;
     private List<Commande> commandes;
     /**
      * Creer une instance d'un Utilisateur qui est un Client
      * @param nom
      * @param prenom
+     * @param adresse
+     * @param cp
+     * @param ville
      * @param mdp
      */
-    public Client(String nom,String prenom,String mdp){
-        super(nom,prenom,mdp);
+    public Client(String nom, String prenom, String adresse, String cp, String ville, String mdp){
+        super(nom, prenom, mdp);
+        this.adresse = adresse;
+        this.cp = cp;
+        this.ville = ville;
         this.commandes = new ArrayList<>();
     }
 
@@ -63,6 +72,18 @@ public class Client extends Utilisateur{
      */
     public void ajouterCommande(Commande commande){
         this.commandes.add(commande);
+    }
+
+    public String getAdresse() {
+        return this.adresse;
+    }
+
+    public String getCodePostal() {
+        return this.cp;
+    }
+
+    public String getVille() {
+        return this.ville;
     }
 
     /**
