@@ -166,8 +166,9 @@ public class JDBC {
      * @param lesLivres La liste des livres
      * @return Une liste de magasins
      * @throws SQLException
+     * @throws PasAssezDeLivreException
      */
-    public List<Magasin> recupererMagasins(List<Livre> lesLivres) throws SQLException, PasAssezDeLivre{
+    public List<Magasin> recupererMagasins(List<Livre> lesLivres) throws SQLException, PasAssezDeLivreException{
         List<Magasin> lesMagasins = new ArrayList<>();
         st=laConnexion.createStatement();
         ResultSet rs=st.executeQuery("SELECT nommag, villemag FROM MAGASIN");
@@ -189,8 +190,9 @@ public class JDBC {
      * @param magasin Le magasin
      * @param lesLivres La liste de livres
      * @throws SQLException
+     * @throws PasAssezDeLivreException
      */
-    private void ajouterLivres(Magasin magasin, List<Livre> lesLivres) throws SQLException, PasAssezDeLivre {
+    private void ajouterLivres(Magasin magasin, List<Livre> lesLivres) throws SQLException, PasAssezDeLivreException {
         st=laConnexion.createStatement();
         PreparedStatement ps = laConnexion.prepareStatement("SELECT idmag, isbn, qte FROM POSSEDER "+
                                     "NATURAL JOIN MAGASIN "+
@@ -272,7 +274,7 @@ public class JDBC {
         st=laConnexion.createStatement();
         PreparedStatement ps=laConnexion.prepareStatement("SELECT numcom, date DATE_FORMAT(datecom, '%d/%m/%Y'), enligne, livraison, nommag, villemag " +
                                                         "FROM CLIENT NATURAL JOIN COMMANDE NATURAL JOIN MAGASIN "+
-                                                        "WHERE nomcli=?, prenomcli=?, adressecli=?, codepostal=?, villecli=?");
+                                                        "WHERE nomcli=? AND prenomcli=? AND adressecli=? AND codepostal=? AND villecli=?");
         ps.setString(1, client.getNom());
         ps.setString(2, client.getPrenom());
         ps.setString(3, client.getAdresse());
@@ -305,10 +307,10 @@ public class JDBC {
      * @throws SQLException
      */
     private void ajouterLignesCommandes(Commande commande, List<Livre> lesLivres) throws SQLException{
-        st=laConnexion.createStatement();
-        ResultSet rs=st.executeQuery("SELECT numlig, qte, prixvente, isbn FROM DETAILCOMMANDE "+
-                                    "WHERE numcom=" + commande.getNum() +
-                                    " ORDER BY numlig");
+        PreparedStatement ps=laConnexion.prepareStatement("SELECT numlig, qte, prixvente, isbn FROM DETAILCOMMANDE "+
+                                                            "WHERE numcom=? ORDER BY numlig");
+        ps.setInt(1, commande.getNum());
+        ResultSet rs=ps.executeQuery();
         int qte;
         double prix;
         int isbn;
@@ -320,6 +322,110 @@ public class JDBC {
             livre = lesLivres.get(lesLivres.indexOf(new Livre(isbn, null, prix, null, null)));
             commande.addLigne(livre, qte, prix);
             livre.addCommande(commande);
+        }
+    }
+
+    /**
+     * Méthode permettant de récupérer le numéro de commande le plus haut de la base de donnée
+     * @return Le numéro de commande max
+     * @throws SQLException
+     */
+    public int maxNumeroCommande() throws SQLException{
+        st=laConnexion.createStatement();
+        ResultSet rs=st.executeQuery("SELECT max MAX(numcom) FROM COMMANDE");
+        rs.next();
+        return rs.getInt("max");
+    }
+
+    /**
+     * Méthode permettant de modifier le mode de livraison d'un commande dans la base de donnée
+     * @param commande La commande
+     * @throws SQLException
+     */
+    public void modifierLivraisonCommande(Commande commande) throws SQLException{
+        PreparedStatement ps=laConnexion.prepareStatement("UPDATE COMMANDE SET livraison=? WHERE numcom=?");
+        String livraison;
+        if (commande.livreDomicile()) {livraison="C";}
+        else {livraison="M";}
+        ps.setString(1, livraison);
+        ps.setInt(2, commande.getNum());
+        ps.executeUpdate();
+    }
+
+    /**
+     * Méthode permettant d'insérer une nouvelle commande dans la base de donnée
+     * @param commande La commande
+     * @throws SQLException
+     */
+    public void insererCommande(Commande commande) throws SQLException{
+        PreparedStatement ps=laConnexion.prepareStatement("SELECT idmag FROM MAGASIN WHERE nommag=? AND villemag=?");
+        ps.setString(1, commande.getMagasin().getNom());
+        ps.setString(2, commande.getMagasin().getVille());
+        ResultSet rs=ps.executeQuery();
+        rs.next();
+        int idMagasin = rs.getInt("idmag");
+
+        ps=laConnexion.prepareStatement("SELECT idcli FROM CLIENT WHERE nomcli=? AND prenomcli=? AND adressecli=? AND codepostal=? AND villecli=?");
+        ps.setString(1, commande.getClient().getNom());
+        ps.setString(2, commande.getClient().getPrenom());
+        ps.setString(3, commande.getClient().getAdresse());
+        ps.setString(4, commande.getClient().getCodePostal());
+        ps.setString(5, commande.getClient().getVille());
+        rs=ps.executeQuery();
+        rs.next();
+        int idClient = rs.getInt("idcli");
+
+        ps=laConnexion.prepareStatement("INSERT INTO COMMANDE VALUES(?, str_to_date(?, '%d/%m/%Y'), ?, ?, ?, ?)");
+        ps.setInt(1, commande.getNum());
+        ps.setString(2, commande.getDate());
+        String enLigne;
+        if (commande.estEnLigne()) {enLigne="O";}
+        else {enLigne="N";}
+        ps.setString(3, enLigne);
+        String livraison;
+        if (commande.livreDomicile()) {livraison="C";}
+        else {livraison="M";}
+        ps.setString(4, livraison);
+        ps.setInt(5, idClient);
+        ps.setInt(6, idMagasin);
+        ps.executeUpdate();
+
+        for (int i=0; i<commande.getDetailsCommande().size(); ++i) {
+            ps=laConnexion.prepareStatement("INSERT INTO DETAILCOMMANDE VALUES(?, ?, ?, ?, ?)");
+            ps.setInt(1, commande.getNum());
+            ps.setInt(2, i+1);
+            ps.setInt(3, commande.getDetailsCommande().get(i).getQte());
+            ps.setDouble(4, commande.getDetailsCommande().get(i).getPrixVente());
+            ps.setString(5, String.valueOf(commande.getDetailsCommande().get(i).getLivre().getISBN()));
+            ps.executeUpdate();
+        }
+    }
+
+    public void updateStock(Magasin magasin, Livre livre) throws SQLException{
+        PreparedStatement ps=laConnexion.prepareStatement("SELECT idmag FROM MAGASIN WHERE nommag=? AND villemag=?");
+        ps.setString(1, magasin.getNom());
+        ps.setString(2, magasin.getVille());
+        ResultSet rs=ps.executeQuery();
+        rs.next();
+        int idMagasin = rs.getInt("idmag");
+
+        ps=laConnexion.prepareStatement("SELECT nb COUNT(idmag) FROM POSSEDER WHERE idmag=? AND isbn=?");
+        ps.setInt(1, idMagasin);
+        ps.setString(2, String.valueOf(livre.getISBN()));
+        rs=ps.executeQuery();
+        rs.next();
+        if (rs.getInt("nb")==0) {
+            ps=laConnexion.prepareStatement("INSERT INTO POSSEDER VALUES (?, ?, ?)");
+            ps.setInt(1, idMagasin);
+            ps.setString(2, String.valueOf(livre.getISBN()));
+            ps.setInt(3, magasin.getQteLivre(livre));
+            ps.executeUpdate();
+        }
+        else {
+            ps=laConnexion.prepareStatement("UPDATE POSSEDER SET qte=? WHERE idmag=? AND isbn=?");
+            ps.setInt(1, magasin.getQteLivre(livre));
+            ps.setInt(2, idMagasin);
+            ps.setString(3, String.valueOf(livre.getISBN()));
         }
     }
 }

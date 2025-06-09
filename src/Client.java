@@ -63,7 +63,7 @@ public class Client extends Utilisateur{
             magasin.addCommande(commande);
             this.commandes.add(commande);
         }
-        catch (PasAssezDeLivre e) {}
+        catch (PasAssezDeLivreException e) {}
     }
 
     /**
@@ -90,16 +90,16 @@ public class Client extends Utilisateur{
      * Permet de récupérer le numéro d'une commande en fonction de son numéro parmis celles que le client a réalisées
      * @param num Le numéro de la commande
      * @return La commande portant le numéro indiqué en paramètre
-     * @throws PasAvoirCommande Arrive lorsque le client n'a pas réalisé de commande avec ce numéro
+     * @throws PasAvoirCommandeException Arrive lorsque le client n'a pas réalisé de commande avec ce numéro
      */
-    public Commande getCommande(int num) throws PasAvoirCommande{
+    public Commande getCommande(int num) throws PasAvoirCommandeException{
         Commande commandeExemple = new Commande(num, "", false, false, null, null); 
         for (Commande com : this.commandes) {
             if (com.equals(commandeExemple)) {
                 return com;
             }
         }
-        throw new PasAvoirCommande();
+        throw new PasAvoirCommandeException();
     }
 
     /**
@@ -124,7 +124,7 @@ public class Client extends Utilisateur{
             Commande commande = this.getCommande(num);
             commande.setLivraison(domicile);
         }
-        catch (PasAvoirCommande | CommandeEnMagasin e) {}
+        catch (PasAvoirCommandeException | CommandeEnMagasinException e) {}
     }
 
     /**

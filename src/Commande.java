@@ -107,14 +107,14 @@ public class Commande implements Comparable<Commande>{
     /**
      * Permet de modifier le type de livraison de la commande
      * @param livraison Le nouveau type de livraison, true si elle est à domicile, false pour le reste
-     * @throws CommandeEnMagasin Arrive lorsque l'on tente de modifier le mode de livraison d'une commande en magasin
+     * @throws CommandeEnMagasinException Arrive lorsque l'on tente de modifier le mode de livraison d'une commande en magasin
      */
-    public void setLivraison(boolean domicile) throws CommandeEnMagasin{
+    public void setLivraison(boolean domicile) throws CommandeEnMagasinException{
         if (this.enLigne) {
             this.domicile = domicile;
         }
         else {
-            throw new CommandeEnMagasin();
+            throw new CommandeEnMagasinException();
         }
     }
 

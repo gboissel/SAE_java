@@ -34,7 +34,7 @@ public class Vendeur extends Utilisateur{
         try{
             this.magasin.setQteLivre(livre, this.magasin.getQteLivre(livre) + qteDispo);
         }
-        catch (PasAssezDeLivre e) {}
+        catch (PasAssezDeLivreException e) {}
     }
 
     /**
@@ -46,7 +46,7 @@ public class Vendeur extends Utilisateur{
         try{
             this.magasin.setQteLivre(livre, qte);
         }
-        catch (PasAssezDeLivre e) {}
+        catch (PasAssezDeLivreException e) {}
     }
 
     /**
@@ -79,7 +79,7 @@ public class Vendeur extends Utilisateur{
             client.ajouterCommande(commande);
             this.magasin.addCommande(commande);
         }
-        catch (PasAssezDeLivre e) {}
+        catch (PasAssezDeLivreException e) {}
     }
 
     /**
@@ -93,7 +93,7 @@ public class Vendeur extends Utilisateur{
             magasin.setQteLivre(livre, magasin.getQteLivre(livre) - qte);
             this.magasin.setQteLivre(livre, this.magasin.getQteLivre(livre) + qte);
         }
-        catch (PasAssezDeLivre e) {}
+        catch (PasAssezDeLivreException e) {}
     }
 
     @Override
