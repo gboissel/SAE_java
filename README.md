@@ -1,4 +1,4 @@
-groupe:
+Groupe:
 BOISSEL Gauthier
 CHER Naick 
 AUDOR Etienne

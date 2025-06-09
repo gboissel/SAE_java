@@ -5,13 +5,17 @@ import java.util.Scanner;// il faut tester mais normalement selon la doc ça per
 
 
 public class Librairie {
-
+    private Utilisateur curUser;
     private List<Utilisateur> users;
 
 
-    public Librairie(){
-        this.users=new ArrayList<>();
+    public Librairie(Administrateur admin){
+        this.users= new ArrayList<>();
+        this.users.add(admin);
+        this.curUser = null;
     }
+
+
     /**
      * renvoie la liste des utilisateur
      * @return List<Utilisateur>
@@ -19,6 +23,16 @@ public class Librairie {
     public List<Utilisateur> getUsers() {
         return this.users;
     }
+
+    public Utilisateur getCurUser(){
+        return this.curUser;
+    }
+    
+    public void setCurUser(Utilisateur usr){
+        this.curUser=usr;
+    }
+
+
     /**
      * Créer un client puis l'ajoute à la liste des utilisateur
      * @param nom
@@ -28,7 +42,21 @@ public class Librairie {
      */
     public void createClient(String nom,String prenom,String mdp){
         this.users.add(new Client(nom, prenom, mdp));
+
     }
+
+    /**
+     * vérifie s'il y a un administrateur au sein de la Librarie sinon renvoie false.
+     * @return boolean
+     */
+    public boolean hasAdmin(){
+        for (Utilisateur user:this.users){
+            if (user.getRoles().equals("Administrateur"))
+                return true;
+        }return false;
+    }
+
+
     /**
      * ajoute un utilisateur déjà existant à la liste des utilisateur 
      * @param user
@@ -42,7 +70,7 @@ public class Librairie {
      * @param prenom
      * @param mdp
      */
-    public void createVendeur(String nom,String prenom,String mdp){
+    private void createVendeur(String nom,String prenom,String mdp){
         this.users.add(new Vendeur(nom, prenom, mdp));
     }
 
@@ -50,21 +78,14 @@ public class Librairie {
      * renvoie true si l'a connection est correcte l'utilisateur à rentre le bon identifiant et mot de passe
      * @return boolean
      */
-    public boolean authentification(String nom,String prenom,String mdp,String role){
-        Utilisateur temp = null;
-        if (role.equals("Client")){
-            temp = new Client(nom,prenom , mdp);
-        }if (role.equals("Vendeur")){
-            temp = new Vendeur(nom,prenom , mdp);
-        }if (role.equals("Administrateur")){
-            temp = new Administrateur(nom,prenom,mdp);
-        }
+    public boolean authentification(Utilisateur temp){
         for (Utilisateur usr:this.users){
             if ( usr != null && usr.equals(temp))
                 return true;
         }return false;
     }
 
+    
     /**
      * fonction appeler par un programe en console pour vérifier la connection d'un utilisateur
      * renvoie true si l'a connection est correcte l'utilisateur à rentre le bon identifiant et mot de passe
@@ -81,10 +102,19 @@ public class Librairie {
         System.out.println("Mot de Passe: ");
         String mdp = scanner.nextLine();
         scanner.close();//ferme le scanner pour qu'il ne soit plus en écoute sinon il y a des erreur.
-        if (this.authentification(nom, prenom, mdp, role))
+        Utilisateur temp = null;
+        if (role.equals("Client")){
+            temp = new Client(nom,prenom , mdp);
+        }if (role.equals("Vendeur")){
+            temp = new Vendeur(nom,prenom , mdp);
+        }if (role.equals("Administrateur")){
+            temp = new Administrateur(nom,prenom,mdp);
+        }if (this.authentification(temp)){
             System.out.println("Connection réussi ...");
-        else{
+            this.curUser = temp;
+        }else{
             System.out.println("Echec de la connection...");
+            this.curUser = null;
         }
     }
-}
+}//
