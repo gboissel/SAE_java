@@ -1,6 +1,6 @@
 public class ExecutableTestArrache {
     public static void main(String[] args){
-        Librairie lib = new Librairie();
+        /*Librairie lib = new Librairie();
         lib.createClient("pascal", "no", "1234");
         lib.createClient("Jarl", "twt", "5");
         lib.createClient("Doo", "Samie", "scooby");
@@ -9,5 +9,6 @@ public class ExecutableTestArrache {
         System.out.println(lib.getUsers());
         System.out.println(lib.authentification("Doo", "Samie", "scooby", "Client"));
         lib.authentificationConsole();
+        */
     }
 }
