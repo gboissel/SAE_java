@@ -117,4 +117,9 @@ public class Librairie {
             this.curUser = null;
         }
     }
+
+    public void editerFacture(int mois, int annee){
+        String res = "";
+        
+    }
 }//
