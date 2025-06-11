@@ -1,3 +1,4 @@
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -5,7 +6,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -46,24 +46,27 @@ public class Client extends Utilisateur{
      * @param enLigne Si true, alors la commande sera réalisée en ligne, sinon false
      * @param domicile Si la commande est en ligne et que ce paramètre est à true, alors la commande sera livrée à domicile, sinon false
      * @param magasin Le magasin où sont acheté les différents livres
+     * @param jdbc Une instance de la classe permettant d'intéragir avec la base de données
      */
-    public void commander(Map<Livre, Integer> lesLivres, boolean enLigne, boolean domicile, Magasin magasin){
+    public void commander(Map<Livre, Integer> lesLivres, boolean enLigne, boolean domicile, Magasin magasin, JDBC jdbc){
         try{
             LocalDateTime dateActuelle = LocalDateTime.now();
             DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             String date = dateActuelle.format(formatDate);
 
-            // A modifier lorsque l'on mettra en place le JDBC pour attribuer un nouveau numéro
-            Commande commande = new Commande(new Random().nextInt(10000), date, enLigne, domicile, this, magasin);
+            
+            Commande commande = new Commande(jdbc.maxNumeroCommande(), date, enLigne, domicile, this, magasin);
 
             for (Livre livre:lesLivres.keySet()) {
-                magasin.setQteLivre(livre, lesLivres.get(livre));
+                magasin.setQteLivre(livre, lesLivres.get(livre), jdbc);
                 commande.addLigne(livre, lesLivres.get(livre), livre.getPrix());
             }
             magasin.addCommande(commande);
             this.commandes.add(commande);
+            jdbc.insererCommande(commande);
         }
         catch (PasAssezDeLivreException e) {}
+        catch (SQLException e) {}
     }
 
     /**
@@ -118,11 +121,12 @@ public class Client extends Utilisateur{
      * Permet de modifier le mode de livraison pour une commande en ligne
      * @param num Le numéro de la commande
      * @param domicile Le nouveau mode de livraison
+     * @param jdbc Une instance de la classe permettant d'intéragir avec la base de données
      */
-    public void modifierModeLivraisonCommande(int num, boolean domicile){
+    public void modifierModeLivraisonCommande(int num, boolean domicile, JDBC jdbc){
         try{
             Commande commande = this.getCommande(num);
-            commande.setLivraison(domicile);
+            commande.setLivraison(domicile, jdbc);
         }
         catch (PasAvoirCommandeException | CommandeEnMagasinException e) {}
     }

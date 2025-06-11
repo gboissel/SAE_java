@@ -10,6 +10,7 @@ import com.itextpdf.layout.element.Paragraph;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class Librairie {
     private Utilisateur curUser;
@@ -44,14 +45,21 @@ public class Librairie {
 
     /**
      * Créer un client puis l'ajoute à la liste des utilisateur
-     * @param nom
-     * @param prenom
-     * @param mdp
-     * 
+     * @param nom Son nom
+     * @param prenom Son prénom
+     * @param adresse Son adresse
+     * @param cp Le code postal de sa ville
+     * @param ville La ville où il habite
+     * @param mdp Son mot de passe
+     * @param jdbc Une instance de la classe permettant d'intéragir avec la base de données
      */
-    public void createClient(String nom,String prenom,String mdp){
-        this.users.add(new Client(nom, prenom, mdp));
-
+    public void createClient(String nom,String prenom, String adresse, String cp, String ville, String mdp, JDBC jdbc){
+        try {
+            Client client = new Client(nom, prenom, adresse, cp, ville, mdp)
+            this.users.add(client);
+            jdbc.insererClient(client, mdp);
+        }
+        catch (SQLException e) {}
     }
 
     /**
@@ -67,20 +75,27 @@ public class Librairie {
 
 
     /**
-     * ajoute un utilisateur déjà existant à la liste des utilisateur 
+     * ajoute un utilisateur déjà existant à la liste des utilisateurs 
      * @param user
      */
     public void ajouterUser(Utilisateur user){
         this.users.add(user);
     }
     /**
-     * créer un vendeur et l'ajoute à la liste des utilisateur 
-     * @param nom
-     * @param prenom
-     * @param mdp
+     * créer un vendeur et l'ajoute à la liste des utilisateurs
+     * @param nom Son nom
+     * @param prenom Son prénom
+     * @param mdp Son mot de passe
+     * @param magasin Le magasin auquel le vendeur est raccordé
+     * @param jdbc Une instance de la classe permettant d'intéragir avec la base de données
      */
-    private void createVendeur(String nom,String prenom,String mdp){
-        this.users.add(new Vendeur(nom, prenom, mdp));
+    private void createVendeur(String nom,String prenom,String mdp, Magasin magasin, JDBC jdbc){
+        try{
+            Vendeur vendeur = new Vendeur(nom, prenom, mdp, magasin);
+            this.users.add(vendeur);
+            jdbc.insererVendeur(vendeur, mdp);
+        }
+        catch (SQLException e) {}
     }
 
     /**
@@ -187,7 +202,7 @@ public class Librairie {
 
             document.close();
 
-            System.out.println("le PDF a bien etais créé");
+            System.out.println("le PDF a bien été créé");
         } catch (IOException e) {
             e.printStackTrace();
         }

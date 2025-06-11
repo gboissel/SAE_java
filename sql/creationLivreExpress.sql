@@ -38,7 +38,7 @@ CREATE TABLE COMMANDE (
   enligne char(1),
   livraison char(1),
   idcli   int NOT NULL,
-  idmag   VARCHAR(42) NOT NULL
+  idmag   int NOT NULL
 );
 
 CREATE TABLE DETAILCOMMANDE (
@@ -79,14 +79,14 @@ CREATE TABLE LIVRE (
 
 CREATE TABLE MAGASIN (
   PRIMARY KEY (idmag),
-  idmag    VARCHAR(42) NOT NULL,
+  idmag    int NOT NULL,
   nommag   VARCHAR(42),
   villemag VARCHAR(42)
 );
 
 CREATE TABLE POSSEDER (
   PRIMARY KEY (idmag, isbn),
-  idmag VARCHAR(42) NOT NULL,
+  idmag int NOT NULL,
   isbn  varchar(13) NOT NULL,
   qte   int
 );

@@ -166,9 +166,8 @@ public class JDBC {
      * @param lesLivres La liste des livres
      * @return Une liste de magasins
      * @throws SQLException
-     * @throws PasAssezDeLivreException
      */
-    public List<Magasin> recupererMagasins(List<Livre> lesLivres) throws SQLException, PasAssezDeLivreException{
+    public List<Magasin> recupererMagasins(List<Livre> lesLivres) throws SQLException {
         List<Magasin> lesMagasins = new ArrayList<>();
         st=laConnexion.createStatement();
         ResultSet rs=st.executeQuery("SELECT nommag, villemag FROM MAGASIN");
@@ -190,9 +189,8 @@ public class JDBC {
      * @param magasin Le magasin
      * @param lesLivres La liste de livres
      * @throws SQLException
-     * @throws PasAssezDeLivreException
      */
-    private void ajouterLivres(Magasin magasin, List<Livre> lesLivres) throws SQLException, PasAssezDeLivreException {
+    private void ajouterLivres(Magasin magasin, List<Livre> lesLivres) throws SQLException {
         st=laConnexion.createStatement();
         PreparedStatement ps = laConnexion.prepareStatement("SELECT idmag, isbn, qte FROM POSSEDER "+
                                     "NATURAL JOIN MAGASIN "+
@@ -204,7 +202,8 @@ public class JDBC {
         while (rs.next()) {
             isbn = Integer.parseInt(rs.getString("isbn"));
             qte = rs.getInt("qte");
-            magasin.setQteLivre(lesLivres.get(lesLivres.indexOf(new Livre(isbn, "", 0, null, null))), qte);
+            try {magasin.setQteLivre(lesLivres.get(lesLivres.indexOf(new Livre(isbn, "", 0, null, null))), qte);}
+            catch (PasAssezDeLivreException e) {}
         }
     }
 
@@ -353,7 +352,7 @@ public class JDBC {
     }
 
     /**
-     * Méthode permettant d'insérer une nouvelle commande dans la base de donnée
+     * Méthode permettant d'insérer une nouvelle commande dans la base de données, avec les détails de cette même commande
      * @param commande La commande
      * @throws SQLException
      */
@@ -401,6 +400,12 @@ public class JDBC {
         }
     }
 
+    /**
+     * Méthode permettant de mettre à jour le stock de livre d'un magasin
+     * @param magasin Le magasin
+     * @param livre Le livre
+     * @throws SQLException
+     */
     public void updateStock(Magasin magasin, Livre livre) throws SQLException{
         PreparedStatement ps=laConnexion.prepareStatement("SELECT idmag FROM MAGASIN WHERE nommag=? AND villemag=?");
         ps.setString(1, magasin.getNom());
@@ -429,5 +434,51 @@ public class JDBC {
         }
     }
 
-    
+    /**
+     * Méthode permettant d'insérer un nouveau vendeur dans la base de données
+     * @param vendeur Le vendeur
+     * @param mdp Le mot de passe du vendeur
+     * @throws SQLException
+     */
+    public void insererVendeur(Vendeur vendeur, String mdp) throws SQLException{
+        PreparedStatement ps=laConnexion.prepareStatement("SELECT idmag FROM MAGASIN "+
+                                                        "WHERE nommag=? AND villemag=?");
+        ps.setString(1, vendeur.getMagasin().getNom());
+        ps.setString(2, vendeur.getMagasin().getVille());
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        int idMag = rs.getInt("idmag");
+        st=laConnexion.createStatement();
+        rs=st.executeQuery("SELECT id MAX(idven) FROM VENDEUR");
+        rs.next();
+        int idCli = rs.getInt("id");
+        ps=laConnexion.prepareStatement("INSERT INTO VENDEUR VALUES (?, ?, ?, ?, ?)");
+        ps.setInt(1, idCli+1);
+        ps.setString(2, vendeur.getNom());
+        ps.setString(3, vendeur.getPrenom());
+        ps.setString(4, mdp);
+        ps.setInt(5, idMag);
+        ps.executeUpdate();
+    }
+
+    /**
+     * Méthode permettant d'insérer un nouveau client dans la base de données
+     * @param client Le client
+     * @throws SQLException
+     */
+    public void insererClient(Client client, String mdp) throws SQLException{
+        st=laConnexion.createStatement();
+        ResultSet rs=st.executeQuery("SELECT id MAX(idcli) FROM CLIENT");
+        rs.next();
+        int id = rs.getInt("id");
+        PreparedStatement ps=laConnexion.prepareStatement("INSERT INTO CLIENT VALUES (?, ?, ?, ?, ?, ?, ?)");
+        ps.setInt(1, id+1);
+        ps.setString(2, client.getNom());
+        ps.setString(3, client.getPrenom());
+        ps.setString(4, client.getAdresse());
+        ps.setString(5, client.getCodePostal());
+        ps.setString(6, client.getVille());
+        ps.setString(7, mdp);
+        ps.executeUpdate();
+    }
 }
