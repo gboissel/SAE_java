@@ -31,14 +31,17 @@ public abstract class Utilisateur{
     @Override
     public boolean equals(Object obj) {
         if(obj == null) return false;
-
+        if (obj == this) return true;
         if(!(obj instanceof Utilisateur)) return false;
         
         Utilisateur util = (Utilisateur) obj;
-        if(this.nom.equals(util.nom)  && this.prenom.equals(util.prenom) && this.mdp.equals(util.mdp) && this.getRoles().equals(util.getRoles())){
-            return true;
-        }return false;
+        return this.nom.equals(util.nom)  && this.prenom.equals(util.prenom) && this.mdp.equals(util.mdp) && this.getRoles().equals(util.getRoles());
+
     
+    }
+    @Override
+    public int hashCode(){
+        return this.prenom.hashCode()*2027 + this.nom.hashCode()*2081 + this.getRoles().hashCode()*10069;
     }
     @Override
     public String toString(){
