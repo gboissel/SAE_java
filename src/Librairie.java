@@ -7,6 +7,8 @@ import java.util.Scanner;// il faut tester mais normalement selon la doc ça per
 public class Librairie {
     private Utilisateur curUser;
     private List<Utilisateur> users;
+    private List<Magasin> lesMagasins;
+    private List<Livre> lesLivres;
 
 
     public Librairie(Administrateur admin){
@@ -120,6 +122,12 @@ public class Librairie {
 
     public void editerFacture(int mois, int annee){
         String res = "";
-        
+        for(Magasin mag: this.lesMagasins){
+            res+=mag.getNom()+"    "+mag.getVille()+"\n";
+            for(Commande com:mag.getCommandes()){
+                if
+            }
+        }
+        System.out.println(res);
     }
-}//
+}
