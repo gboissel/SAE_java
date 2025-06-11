@@ -3,6 +3,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;// il faut tester mais normalement selon la doc ça permet de faire l'équivalent d'un input en python.
 
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+
+import java.io.File;
+import java.io.IOException;
 
 public class Librairie {
     private Utilisateur curUser;
@@ -119,15 +126,70 @@ public class Librairie {
             this.curUser = null;
         }
     }
-
+    /**
+     * permet d'obtenir les factures de chaque magasin avec un mois et une annee donnée
+     * @param mois
+     * @param annee
+     */
     public void editerFacture(int mois, int annee){
-        String res = "";
+        String res = "Facture du "+mois+"/"+annee+"\n";
+        int i = 1;
+        String interligne = "      ISBN       Titre         qte     prix   total  \n";
+        double ca_global = 0.0;
+        int livre_vendu_glo = 0;
         for(Magasin mag: this.lesMagasins){
-            res+=mag.getNom()+"    "+mag.getVille()+"\n";
+            int livre_vendu_mag = 0;
+            res+="Edition des factures du magasin  "+mag.getNom()+"\n";
+            res+="-----------------------------------------------------";
             for(Commande com:mag.getCommandes()){
-                if
+                String date = com.getDate();
+                String[] parties = date.split("/");
+                if(parties[2].equals(mois+"")&&parties[3].equals(annee+"")){
+                    int cpt = 1;
+                    Client cli = com.getClient();
+                    double totalCli = 0.0;
+                    res+=cli.getNom()+" "+cli.getPrenom()+"\n";
+                    res+=cli.getAdresse()+"\n";
+                    res+=cli.getCodePostal()+"  "+cli.getVille()+"\n";
+                    res+="Commande n° "+i+" du "+date+"\n";
+                    res+=interligne;
+                    for(DetailCommande det:com.getDetailsCommande()){
+                        Livre livre = det.getLivre();
+                        totalCli+=det.getQte()*det.getPrixVente();
+                        livre_vendu_glo+=det.getQte();
+                        livre_vendu_mag+=det.getQte();
+                        res+=cpt+"  "+livre.getISBN()+"  "+livre.getTitre()+"  "+det.getQte()+"  "+det.getPrixVente()+"  "+det.getQte()*det.getPrixVente()+"\n";
+                        ++cpt;
+                    }
+                    res+="-------";
+                    res+="Total   "+totalCli+"\n";
+                    ca_global+=totalCli;
+                    res+="-----------------------------------------------------";
+                }
             }
+            res+=mag.getCommandes().size()+"  factures éditées \n";
+            res+=livre_vendu_mag+" livres vendus\n";
         }
-        System.out.println(res);
+        res+="*************************************";
+        res+="Chiffre d'affaires global: "+ca_global+"\n";
+        res+="Nombre livres vendus: "+livre_vendu_glo+"\n";
+        //System.out.println(res);
+        //mis en place de la transcription en pdf:
+        try {
+            String destination = "facture.pdf";
+
+            // Création du fichier PDF
+            PdfWriter writer = new PdfWriter(destination);
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf);
+
+            document.add(new Paragraph(res));
+
+            document.close();
+
+            System.out.println("le PDF a bien etais créé");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
