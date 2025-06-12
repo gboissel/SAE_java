@@ -16,8 +16,12 @@ public class TesteMagasin {
     @Test
     public void TesteMagasingetLivres() {
         Magasin m = new Magasin("Librairie du coin", "Paris");
-        Livre livre1 = new Livre(123456789,"Titre1",20.0,50,"05-07-2023");
-        Livre livre2 = new Livre(123456789,"Titre1",20.0,50,"05-07-2023");
+        Livre livre1 = new Livre(123456789,"Titre1",20.0,50,"05/07/2023");
+        Livre livre2 = new Livre(987654321,"Titre2",40.5,86,"25/12/1225");
+        Livre livre3 = new Livre(121212121, "Titre3", 8, 30, "12/06/2025");
+        m.setQteLivre(livre1, 5);
+        m.setQteLivre(livre2, 3);
+        m.setQteLivre(livre3, 0);
         
         assertEquals(2, m.getLivres().size());
         assertEquals(5, m.getQteLivre(livre1));
