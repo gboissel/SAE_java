@@ -23,6 +23,7 @@ public  class GestionConsole{
             connec.connecter(attCo.get(0),attCo.get(1),attCo.get(2));
             System.out.println("Connexion REUSSI!!!!");
             this.run = true;
+            this.lib = new Librairie(new Administrateur(null, null, null));
             this.menuAuth();
         }catch(SQLException exp){
             System.out.println("erreur sql");
