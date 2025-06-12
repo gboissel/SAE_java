@@ -3,6 +3,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import modele.*;
+import exception.PasAssezDeLivreException;
 
 public class JDBC {
     ConnexionMySQL laConnexion;
