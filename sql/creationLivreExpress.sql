@@ -7,6 +7,14 @@ grant ALL on DBaudor.* to 'cher'@'%' with grant option;
 grant ALL on DBaudor.* to 'hameau'@'%' with grant option;
  */
 
+CREATE TABLE ADMIN (
+  PRIMARY KEY (idadmin),
+  idadmin      int NOT NULL,
+  nomadmin     varchar(50),
+  prenomadmin  varchar(30),
+  mdpadmin     varchar(50)
+)
+
 CREATE TABLE AUTEUR (
   PRIMARY KEY (idauteur),
   idauteur   varchar(11) NOT NULL,
@@ -28,7 +36,8 @@ CREATE TABLE CLIENT (
   prenomcli  varchar(30),
   adressecli varchar(100),
   codepostal varchar(5),
-  villecli   varchar(100)
+  villecli   varchar(100),
+  mdpcli     varchar(50)
 );
 
 CREATE TABLE COMMANDE (
@@ -97,6 +106,15 @@ CREATE TABLE THEMES (
   iddewey varchar(3) NOT NULL
 );
 
+CREATE TABLE VENDEUR (
+  PRIMARY KEY (idven),
+  idven      int NOT NULL,
+  nomven     varchar(50),
+  prenomven  varchar(30),
+  mdpven     varchar(50),
+  idmag      int NOT NULL
+)
+
 ALTER TABLE COMMANDE ADD FOREIGN KEY (idmag) REFERENCES MAGASIN (idmag);
 ALTER TABLE COMMANDE ADD FOREIGN KEY (idcli) REFERENCES CLIENT (idcli);
 
@@ -114,3 +132,7 @@ ALTER TABLE POSSEDER ADD FOREIGN KEY (idmag) REFERENCES MAGASIN (idmag);
 
 ALTER TABLE THEMES ADD FOREIGN KEY (iddewey) REFERENCES CLASSIFICATION (iddewey);
 ALTER TABLE THEMES ADD FOREIGN KEY (isbn) REFERENCES LIVRE (isbn);
+
+ALTER TABLE VENDEUR ADD FOREIGN KEY (idmag) REFERENCES MAGASIN (idmag);
+
+
