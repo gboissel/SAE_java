@@ -1,11 +1,16 @@
-package modele;
+package view;
+import JDBC.*;
+import modele.*;
 import java.util.Scanner;
 import JDBC.ConnexionMySQL;
+import modele.Administrateur;
+import modele.Client;
+import modele.Librairie;
 
 import java.util.List;
 import java.sql.SQLException;
 import java.util.ArrayList;
-public  class GestionConsole{
+public  class affichageConsole{
     private boolean run;
     public Librairie lib;
     private static Scanner scan;// je le met en attribut car Scanner on ne peut en initialisé qu'un au sein d'un ficher et si on le ferme on ne peut pas en initialisée d'autre.
@@ -18,9 +23,9 @@ public  class GestionConsole{
     *    this.menuAuth();
     *}
     */
-    public GestionConsole(){
+    public affichageConsole(){
         try{
-            GestionConsole.scan = new Scanner(System.in);
+            affichageConsole.scan = new Scanner(System.in);
             ConnexionMySQL connec = new ConnexionMySQL();
             List<String> attCo = this.connexConsole();
             connec.connecter(attCo.get(0),attCo.get(1),attCo.get(2));
@@ -38,7 +43,7 @@ public  class GestionConsole{
 
     public Librairie quittez(){
         this.run = false;
-        GestionConsole.scan.close();
+        affichageConsole.scan.close();
         return this.lib;
     }
     public boolean estConnecte(){
@@ -50,11 +55,11 @@ public  class GestionConsole{
     private List<String> connexConsole(){
         List<String> res = new ArrayList<>();
         System.out.println("Nom Base:");
-        res.add(""+GestionConsole.scan.nextLine());
+        res.add(""+affichageConsole.scan.nextLine());
         System.out.println("Login: ");
-        res.add(""+GestionConsole.scan.nextLine());
+        res.add(""+affichageConsole.scan.nextLine());
         System.out.println("Mot de passe");
-        res.add(""+GestionConsole.scan.nextLine());
+        res.add(""+affichageConsole.scan.nextLine());
         System.out.println();
         return res;
     }
@@ -62,16 +67,16 @@ public  class GestionConsole{
 
         System.out.println("Création du profil de l'administrateur.");
         System.out.println("Nom:");
-        String nom = GestionConsole.scan.nextLine();//l'input de l'utilisateur
+        String nom = affichageConsole.scan.nextLine();//l'input de l'utilisateur
         System.out.println("Prénom: ");
-        String prenom = GestionConsole.scan.nextLine();
+        String prenom = affichageConsole.scan.nextLine();
         String mdp = "";
         String conf = null;// pour la confirmation 
         while(!mdp.equals(conf)){
             System.out.println("Mot de passe");
-            mdp = GestionConsole.scan.nextLine();
+            mdp = affichageConsole.scan.nextLine();
             System.out.println("Confirmation mot de passe:");
-            conf = GestionConsole.scan.nextLine();
+            conf = affichageConsole.scan.nextLine();
         }
         Administrateur admin = new Administrateur(nom, prenom, mdp);
         Librairie lib = new Librairie(admin);
@@ -80,16 +85,16 @@ public  class GestionConsole{
 
     public void creaClientCons(){
         System.out.println("Nom:");
-        String nom = GestionConsole.scan.nextLine();//l'input de l'utilisateur
+        String nom = affichageConsole.scan.nextLine();//l'input de l'utilisateur
         System.out.println("Prénom: ");
-        String prenom = GestionConsole.scan.nextLine();
+        String prenom = affichageConsole.scan.nextLine();
         String mdp = "";
         String conf = null;
         while(!mdp.equals(conf)){
             System.out.println("Mot de passe");
-            mdp = GestionConsole.scan.nextLine();
+            mdp = affichageConsole.scan.nextLine();
             System.out.println("Confirmation mot de passe:");
-            conf = GestionConsole.scan.nextLine();
+            conf = affichageConsole.scan.nextLine();
         }this.lib.createClient(nom, prenom, mdp);
     }
 
@@ -101,7 +106,7 @@ public  class GestionConsole{
             System.out.println("-03- Catalogue         -");
             System.out.println("-00- Quitter           -");
             System.out.println("------------------------");
-            String res = GestionConsole.scan.nextLine();
+            String res = affichageConsole.scan.nextLine();
             switch (res) {
                 case "01","1":
                     this.lib.authentificationConsole();
@@ -129,7 +134,7 @@ public  class GestionConsole{
             System.out.println("-04- Recommandation    -");
             System.out.println("-00- Déconnection      -");
             System.out.println("------------------------");
-            String res = GestionConsole.scan.nextLine();
+            String res = affichageConsole.scan.nextLine();
             Client leclient = (Client) this.lib.getCurUser();
             switch (res) {
                 case "01","1":
@@ -155,7 +160,7 @@ public  class GestionConsole{
         System.out.println("-00- Valider commande                   -");
         System.out.println("-05- Annuler la commande                -");//mettre recomandation dans l'affichage du catalogue
         System.out.println("-----------------------------------------");
-        String res = GestionConsole.scan.nextLine();
+        String res = affichageConsole.scan.nextLine();
         Client leclient = (Client) this.lib.getCurUser();
         switch (res) {
                 case "0","00":
