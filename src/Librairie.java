@@ -3,12 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;// il faut tester mais normalement selon la doc ça permet de faire l'équivalent d'un input en python.
 
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Paragraph;
-
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class Librairie {
@@ -173,22 +169,15 @@ public class Librairie {
         res+="*************************************";
         res+="Chiffre d'affaires global: "+ca_global+"\n";
         res+="Nombre livres vendus: "+livre_vendu_glo+"\n";
-        //System.out.println(res);
-        //mis en place de la transcription en pdf:
+        System.out.println(res);
+        //mis en place de la transcription en txt:
         try {
-            String destination = "facture.pdf";
-
-            // Création du fichier PDF
-            PdfWriter writer = new PdfWriter(destination);
-            PdfDocument pdf = new PdfDocument(writer);
-            Document document = new Document(pdf);
-
-            document.add(new Paragraph(res));
-
-            document.close();
-
-            System.out.println("le PDF a bien etais créé");
+            FileWriter writer = new FileWriter("mon_fichier.txt");
+            writer.write(res);
+            writer.close();
+            System.out.println("Fichier texte créé avec succès !");
         } catch (IOException e) {
+            System.out.println("Une erreur est survenue.");
             e.printStackTrace();
         }
     }
