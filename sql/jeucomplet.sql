@@ -24633,7 +24633,7 @@ INSERT INTO VENDEUR (idven, nomven, prenomven, mdpven, idmag) VALUES
 	(16, 'Robert', 'Manon', 'mdpklm', 2),
 	(17, 'Fournier', 'Paul', 'mdpnop', 3),
 	(18, 'Costa', 'Javier', 'mdpqrs', 4),
-	(19, 'Michel', 'Lucas', 'mdptuv', 5)
+	(19, 'Michel', 'Lucas', 'mdptuv', 5),
 	(20, 'Durand', 'Chloé', 'mdpwxy', 6);
 
 INSERT INTO ADMIN (idadmin,nomadmin,prenomadmin,mdpadmin) VALUES
