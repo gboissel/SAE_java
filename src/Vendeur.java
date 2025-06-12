@@ -1,7 +1,7 @@
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
-import java.util.Random;
 
 public class Vendeur extends Utilisateur{
     private Magasin magasin;
@@ -16,37 +16,48 @@ public class Vendeur extends Utilisateur{
         super(nom, prenom, mdp);
         this.magasin = magasin;
     }
+
+    /**
+     * Méthode permettant de connaître le magasin auquel est relié ce vendeur
+     * @return Le magasin
+     */
+    public Magasin getMagasin() {
+        return this.magasin;
+    }
     
     /**
      * Ajoute de 1 la quantité disponible d'un livre dans le magasin
      * @param livre Le livre
+     * @param jdbc Une instance de la classe permettant d'intéragir avec la base de données
      */
-    public void ajouterLivre(Livre livre) {
-        this.ajouterLivre(livre, 1);
+    public void ajouterLivre(Livre livre, JDBC jdbc) {
+        this.ajouterLivre(livre, 1, jdbc);
     }
 
     /**
      * Ajoute un nombre à la quantité disponible d'un livre dans le magasin
      * @param livre Le livre
      * @param qteDispo La quantité que l'on veut rajouter au livre
+     * @param jdbc Une instance de la classe permettant d'intéragir avec la base de données
      */
-    public void ajouterLivre(Livre livre, int qteDispo) {
+    public void ajouterLivre(Livre livre, int qteDispo, JDBC jdbc) {
         try{
-            this.magasin.setQteLivre(livre, this.magasin.getQteLivre(livre) + qteDispo);
+            this.magasin.setQteLivre(livre, this.magasin.getQteLivre(livre) + qteDispo, jdbc);
         }
-        catch (PasAssezDeLivre e) {}
+        catch (PasAssezDeLivreException e) {}
     }
 
     /**
      * Met à jour la quantité disponible d'un livre en magasin
      * @param livre Le livre
      * @param qteDispo La quantité que l'on veut rajouter au livre
+     * @param jdbc Une instance de la classe permettant d'intéragir avec la base de données
      */
-    public void miseAJourQteLivre(Livre livre, int qte) {
+    public void miseAJourQteLivre(Livre livre, int qte, JDBC jdbc) {
         try{
-            this.magasin.setQteLivre(livre, qte);
+            this.magasin.setQteLivre(livre, qte, jdbc);
         }
-        catch (PasAssezDeLivre e) {}
+        catch (PasAssezDeLivreException e) {}
     }
 
     /**
@@ -63,22 +74,24 @@ public class Vendeur extends Utilisateur{
      * @param client Le client à qui appartient la commande
      * @param lesLivres Un dictionnaire prenant ayant pour clés des livres et pour valeurs la quantité achetée pour chaque livre
      */
-    public void commanderClient(Client client, Map<Livre, Integer> lesLivres) {
+    public void commanderClient(Client client, Map<Livre, Integer> lesLivres, JDBC jdbc) {
         try{
             LocalDateTime dateActuelle = LocalDateTime.now();
             DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             String date = dateActuelle.format(formatDate);
 
-            // A modifier lorsque l'on mettra en place le JDBC pour attribuer un nouveau numéro
-            Commande commande = new Commande(new Random().nextInt(1000), date, false, false, client, this.magasin);
+            Commande commande = new Commande(jdbc.maxNumeroCommande(), date, false, false, client, this.magasin);
 
             for (Livre livre:lesLivres.keySet()) {
-                this.magasin.setQteLivre(livre, lesLivres.get(livre));
+                this.magasin.setQteLivre(livre, lesLivres.get(livre), jdbc);
                 commande.addLigne(livre, lesLivres.get(livre), livre.getPrix());
             }
             client.ajouterCommande(commande);
+            this.magasin.addCommande(commande);
+            jdbc.insererCommande(commande);
         }
-        catch (PasAssezDeLivre e) {}
+        catch (PasAssezDeLivreException e) {}
+        catch (SQLException e) {}
     }
 
     /**
@@ -87,12 +100,12 @@ public class Vendeur extends Utilisateur{
      * @param magasin Le magasin où on récupère les livres
      * @param qte La quantité de livres que l'on transfère
      */
-    public void transfererLivre(Livre livre, Magasin magasin, int qte){
+    public void transfererLivre(Livre livre, Magasin magasin, int qte, JDBC jdbc){
         try{
-            magasin.setQteLivre(livre, magasin.getQteLivre(livre) - qte);
-            this.magasin.setQteLivre(livre, this.magasin.getQteLivre(livre) + qte);
+            magasin.setQteLivre(livre, magasin.getQteLivre(livre) - qte, jdbc);
+            this.magasin.setQteLivre(livre, this.magasin.getQteLivre(livre) + qte, jdbc);
         }
-        catch (PasAssezDeLivre e) {}
+        catch (PasAssezDeLivreException e) {}
     }
 
     @Override

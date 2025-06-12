@@ -1,3 +1,4 @@
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -107,14 +108,19 @@ public class Commande implements Comparable<Commande>{
     /**
      * Permet de modifier le type de livraison de la commande
      * @param livraison Le nouveau type de livraison, true si elle est à domicile, false pour le reste
-     * @throws CommandeEnMagasin Arrive lorsque l'on tente de modifier le mode de livraison d'une commande en magasin
+     * @param jdbc Une instance de la classe permettant d'intéragir avec la base de données
+     * @throws CommandeEnMagasinException Arrive lorsque l'on tente de modifier le mode de livraison d'une commande en magasin
      */
-    public void setLivraison(boolean domicile) throws CommandeEnMagasin{
+    public void setLivraison(boolean domicile, JDBC jdbc) throws CommandeEnMagasinException{
         if (this.enLigne) {
-            this.domicile = domicile;
+            try{
+                this.domicile = domicile;
+                jdbc.modifierLivraisonCommande(this);
+            }
+            catch (SQLException e) {}
         }
         else {
-            throw new CommandeEnMagasin();
+            throw new CommandeEnMagasinException();
         }
     }
 

@@ -1,6 +1,6 @@
 import java.sql.*;
 
-public class Execjcdb {
+public class ExecJDBC {
     public static void main(String[] args) {
         String url = "jdbc:mysql://servinfo-maria:3306/DBaudor";
         String utilisateur = "audor";

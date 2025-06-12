@@ -1,3 +1,4 @@
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -79,12 +80,13 @@ public class Magasin implements Comparable<Magasin>{
     }
 
      /**
-     * Met à jour la quantité d'un livre, en ajoute un, ou bien en supprime un
-     * @param livre
-     * @param qte
-     * @exception PasAssezDeLivre arrive lorsque la quantité de livre est strictement inférieure à 0
+     * Met à jour la quantité d'un livre, en ajoute un dans la liste des livres du magasin, ou bien en supprime un
+     * Cette fonction ne modifie pas la base de données et ne sert que pour en charger les données
+     * @param livre Le livre dont on souhaite modifier la quantité
+     * @param qte La nouvelle quantité de livre dans le stock
+     * @exception PasAssezDeLivreException arrive lorsque la quantité de livre est strictement inférieure à 0
      */
-    public void setQteLivre(Livre livre, int qte) throws PasAssezDeLivre{
+    public void setQteLivre(Livre livre, int qte) throws PasAssezDeLivreException{
         if (qte > 0) {
             this.stock.put(livre, qte);
             livre.addMagasin(this);
@@ -94,19 +96,47 @@ public class Magasin implements Comparable<Magasin>{
             livre.removeMagasin(this);
         }
         else {
-            throw new PasAssezDeLivre();
+            throw new PasAssezDeLivreException();
         }
+    }
+
+    /**
+     * Met à jour la quantité d'un livre, en ajoute un dans la liste des livres du magasin, ou bien en supprime un,
+     * tout en modifiant la base de données
+     * @param livre Le livre dont on souhaite modifier la quantité
+     * @param qte La nouvelle quantité de livre dans le stock
+     * @param jdbc Une instance de la classe permettant d'intéragir avec la base de données
+     * @exception PasAssezDeLivreException arrive lorsque la quantité de livre est strictement inférieure à 0, ou bien lorsque la connexion à la base de données à échouée
+     */
+    public void setQteLivre(Livre livre, int qte, JDBC jdbc) throws PasAssezDeLivreException{
+        try{
+            if (qte > 0) {
+                this.stock.put(livre, qte);
+                livre.addMagasin(this);
+                jdbc.updateStock(this, livre);
+            }
+            else if (qte == 0) {
+                this.stock.remove(livre);
+                livre.removeMagasin(this);
+                jdbc.updateStock(this, livre);
+            }
+            else {
+                throw new PasAssezDeLivreException();
+            }
+        }
+        catch (SQLException e) {throw new PasAssezDeLivreException();}
     }
 
     /**
      * Décrémente de 1 la quantité du livre, et le supprime si il y en a plus 
      * @param livre Le livre a enlever
+     * @param jdbc Une instance de la classe permettant d'intéragir avec la base de données
      */
-    public void removeLivre(Livre livre){
+    public void removeLivre(Livre livre, JDBC jdbc){
         try {
-            this.setQteLivre(livre, this.getQteLivre(livre) - 1);
+            this.setQteLivre(livre, this.getQteLivre(livre) - 1, jdbc);
         }
-        catch (PasAssezDeLivre e) {}
+        catch (PasAssezDeLivreException e) {}
     }
 
     /**
