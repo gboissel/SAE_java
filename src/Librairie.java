@@ -125,7 +125,8 @@ public class Librairie {
         String mdp = scanner.nextLine();
         Utilisateur temp = null;
         if (role.equals("Client")){
-            //temp = new Client(nom,prenom , mdp); il faudra le faire je me le reserve pour plus tard
+            System.out.println("adresse:");
+            //temp = new Client(nom,prenom , mdp); il faudra le faire pour tout le monde
         }if (role.equals("Vendeur")){
             System.out.println("Nom du magasin");
             String nomMag = scanner.nextLine();
