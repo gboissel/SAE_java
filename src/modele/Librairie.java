@@ -1,7 +1,9 @@
+package modele;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;// il faut tester mais normalement selon la doc ça permet de faire l'équivalent d'un input en python.
+import JDBC.JDBC;
 
 import java.io.File;
 import java.io.FileWriter;

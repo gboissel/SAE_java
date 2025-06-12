@@ -1,21 +1,22 @@
+package modele;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Categorie implements Comparable<Categorie>{
+public class Editeur implements Comparable<Editeur>{
     private String nom;
     private List<Livre> lesLivres;
 
     /**
-     * Constructeur de la classe Categorie
-     * @param nom Le nom de catégorie
+     * Contructeur de la classe Editeur
+     * @param nom Le nom de l'éditeur
      */
-    public Categorie(String nom){
+    public Editeur(String nom){
         this.nom=nom;
         this.lesLivres=new ArrayList<>();
         
     }
     /**
-     * Permet d'obtenir le nom de la Categorie
+     * Permet d'obtenir le nom de l'éditeur du livre
      * @return String
      */
     public String getNom(){
@@ -23,7 +24,7 @@ public class Categorie implements Comparable<Categorie>{
     }
 
     /**
-     * Permet d'obtenir la liste des lesLivres ayant cette classification
+     * Permet d'obtenir la liste des lesLivres ayant été édité par cet éditeur
      * @return List<Livre>
      */
     public List<Livre> getLivres(){
@@ -31,7 +32,7 @@ public class Categorie implements Comparable<Categorie>{
     }
 
     /**
-     * Ajoute un livre à la liste des lesLivres contenant cette classification.
+     * Ajoute un livre fais par cette éditeur à la List<Livre> qui correspond à la liste des livre fait par cette éditeur.
      * @param livre
      */
     public void ajouterlivre(Livre livre){
@@ -43,7 +44,7 @@ public class Categorie implements Comparable<Categorie>{
     
     @Override
     public String toString(){
-        return "Catégorie "+this.nom;
+        return "Edition "+this.nom;
     }
     
     @Override
@@ -57,7 +58,7 @@ public class Categorie implements Comparable<Categorie>{
         if (!(obj instanceof Auteur)){
             return false;
         }
-        Categorie edit = (Categorie)obj;
+        Editeur edit = (Editeur)obj;
         return (edit.nom.equals(this.nom));
     }
 
@@ -67,7 +68,7 @@ public class Categorie implements Comparable<Categorie>{
     }
 
     @Override
-    public int compareTo(Categorie c) {
-        return this.nom.compareTo(c.nom);
+    public int compareTo(Editeur e) {
+        return this.nom.compareTo(e.nom);
     }
 }

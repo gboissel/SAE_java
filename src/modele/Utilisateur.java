@@ -1,3 +1,4 @@
+package modele;
 public abstract class Utilisateur{
     protected String nom;
     protected String prenom;

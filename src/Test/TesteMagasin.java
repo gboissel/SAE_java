@@ -1,4 +1,11 @@
+package Test;
+import modele.*;
 import org.junit.*;
+
+import modele.Livre;
+import modele.Magasin;
+import modele.Vendeur;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

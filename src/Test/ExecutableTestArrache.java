@@ -1,3 +1,5 @@
+package Test;
+import modele.*;
 public class ExecutableTestArrache {
     public static void main(String[] args){
         /*Librairie lib = new Librairie();

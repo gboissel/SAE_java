@@ -1,8 +1,12 @@
+package modele;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import JDBC.JDBC;
+import exception.CommandeEnMagasinException;
 
 public class Commande implements Comparable<Commande>{
     private int num;

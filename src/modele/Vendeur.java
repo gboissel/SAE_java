@@ -1,7 +1,11 @@
+package modele;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
+
+import JDBC.JDBC;
+import exception.PasAssezDeLivreException;
 
 public class Vendeur extends Utilisateur{
     private Magasin magasin;

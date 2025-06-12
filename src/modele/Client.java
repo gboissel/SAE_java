@@ -1,3 +1,5 @@
+package modele;
+import JDBC.*;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -8,6 +10,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+
+import JDBC.JDBC;
+import exception.*;
 
 public class Client extends Utilisateur{
     private String adresse;

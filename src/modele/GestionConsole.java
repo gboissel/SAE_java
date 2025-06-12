@@ -1,4 +1,7 @@
+package modele;
 import java.util.Scanner;
+import JDBC.ConnexionMySQL;
+
 import java.util.List;
 import java.sql.SQLException;
 import java.util.ArrayList;

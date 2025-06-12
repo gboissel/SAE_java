@@ -1,6 +1,8 @@
+package JDBC;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import modele.*;
 
 public class JDBC {
     ConnexionMySQL laConnexion;
