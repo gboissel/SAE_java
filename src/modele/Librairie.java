@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;// il faut tester mais normalement selon la doc ça permet de faire l'équivalent d'un input en python.
 import JDBC.JDBC;
+import exception.UtilisateurInexistantException;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -53,7 +54,7 @@ public class Librairie {
      */
     public void createClient(String nom,String prenom, String adresse, String cp, String ville, String mdp, JDBC jdbc){
         try {
-            Client client = new Client(nom, prenom, adresse, cp, ville, mdp)
+            Client client = new Client(nom, prenom, adresse, cp, ville, mdp);
             this.users.add(client);
             jdbc.insererClient(client, mdp);
         }
@@ -109,7 +110,11 @@ public class Librairie {
         }return false;
     }
 
-    
+    public Utilisateur reccupUser(Utilisateur rech) throws UtilisateurInexistantException{
+        for (Utilisateur usr:this.users){
+            if (rech.equals(usr)) return usr;
+        }throw new UtilisateurInexistantException();
+    }
     /**
      * fonction appeler par un programe en console pour vérifier la connection d'un utilisateur
      * renvoie true si l'a connection est correcte l'utilisateur à rentre le bon identifiant et mot de passe
@@ -128,7 +133,7 @@ public class Librairie {
         Utilisateur temp = null;
         if (role.equals("Client")){
             System.out.println("adresse:");
-            //temp = new Client(nom,prenom , mdp); il faudra le faire pour tout le monde
+            temp = new Client(nom,prenom , null,null,null,mdp);
         }if (role.equals("Vendeur")){
             System.out.println("Nom du magasin");
             String nomMag = scanner.nextLine();
@@ -139,8 +144,15 @@ public class Librairie {
         }if (role.equals("Administrateur")){
             temp = new Administrateur(nom,prenom,mdp);
         }
+        Utilisateur res;
+        try{
+            res = this.reccupUser(temp);
+        }catch(UtilisateurInexistantException e){
+            res = null;
+            System.out.println("Utilisateur inexistant");
+        }
         scanner.close();//ferme le scanner pour qu'il ne soit plus en écoute sinon il y a des erreur.
-        if (this.authentification(temp)){
+        if (this.authentification(res)){
             System.out.println("Connection réussi ...");
             this.curUser = temp;
         }else{
