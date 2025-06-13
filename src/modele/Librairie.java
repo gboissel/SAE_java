@@ -115,52 +115,7 @@ public class Librairie {
             if (rech.equals(usr)) return usr;
         }throw new UtilisateurInexistantException();
     }
-    /**
-     * fonction appeler par un programe en console pour vérifier la connection d'un utilisateur
-     * renvoie true si l'a connection est correcte l'utilisateur à rentre le bon identifiant et mot de passe
-     * @return boolean
-     */
-    public void authentificationConsole(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Nom: ");
-        String nom = scanner.nextLine();//l'input de l'utilisateur
-        System.out.println("Prénom: ");
-        String prenom = scanner.nextLine();
-        System.out.println("Qui êtes-vous un Client, un Vendeur,un Administrateur?");
-        String role = scanner.nextLine();
-        System.out.println("Mot de Passe: ");
-        String mdp = scanner.nextLine();
-        Utilisateur temp = null;
-        if (role.equals("Client")){
-            System.out.println("adresse:");
-            temp = new Client(nom,prenom , null,null,null,mdp);
-        }if (role.equals("Vendeur")){
-            System.out.println("Nom du magasin");
-            String nomMag = scanner.nextLine();
-            System.out.println("Ville du magasin");
-            String ville = scanner.nextLine();
-            Magasin magasin = new Magasin(nomMag, ville);
-            temp = new Vendeur(nom,prenom , mdp, magasin);
-        }if (role.equals("Administrateur")){
-            temp = new Administrateur(nom,prenom,mdp);
-        }
-        Utilisateur res;
-        try{
-            res = this.reccupUser(temp);
-        }catch(UtilisateurInexistantException e){
-            res = null;
-            System.out.println("Utilisateur inexistant");
-        }
-        scanner.close();//ferme le scanner pour qu'il ne soit plus en écoute sinon il y a des erreur.
-        if (this.authentification(res)){
-            System.out.println("Connection réussi ...");
-            this.curUser = temp;
-        }else{
-            System.out.println("Echec de la connection...");
-            this.curUser = null;
-        }
-       
-    }
+
     /**
      * permet d'obtenir les factures de chaque magasin avec un mois et une annee donnée
      * @param mois
