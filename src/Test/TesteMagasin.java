@@ -1,4 +1,5 @@
 package Test;
+import exception.PasAssezDeLivreException;
 import modele.*;
 import org.junit.*;
 
@@ -9,6 +10,8 @@ import modele.Vendeur;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import  org.junit.Assert.assertTrue;
 
 import java.util.List;
 import java.util.Map;
@@ -23,20 +26,30 @@ public class TesteMagasin {
     @Test
     public void TesteMagasingetLivres() {
         Magasin m = new Magasin("Librairie du coin", "Paris");
-        Livre livre1 = new Livre(123456789,"Titre1",20.0,50,"05/07/2023");
-        Livre livre2 = new Livre(987654321,"Titre2",40.5,86,"25/12/1225");
-        Livre livre3 = new Livre(121212121, "Titre3", 8, 30, "12/06/2025");
-        m.setQteLivre(livre1, 5);
-        m.setQteLivre(livre2, 3);
-        m.setQteLivre(livre3, 0);
+        Livre livre1 = new Livre(123456789,"Titre1",20.0,50,05/07/2023);
+        Livre livre2 = new Livre(987654321,"Titre2",40.5,86,25/12/2024);
+        Livre livre3 = new Livre(121212121, "Titre3", 8.0, 30, 12/06/2025);
+        try {
+            m.setQteLivre(livre3, 0);
+            m.setQteLivre(livre1, 5);
+            m.setQteLivre(livre2, 3);
+        } catch (PasAssezDeLivreException ex) {
+        }
         
-        assertEquals(2, m.getLivres().size());
+        assertEquals(3, m.getLivres().size());
         assertEquals(5, m.getQteLivre(livre1));
         assertEquals(3, m.getQteLivre(livre2));
     }
     @Test
-    public void testmagasinCommande() {
+    public void testmagasingetteurs() {
         Magasin m = new Magasin("Librairie du coin", "Paris");
-        Vendeur v 
+        Vendeur v = new Vendeur("Jean","Michel","mdp124",m);
+        Client cl = new Client(null, null, null, null, null, null);
+        Commande c = new Commande(2, "12/09/2024", false, false, cl, m);
+        m.addVendeur(v);
+        m.addCommande(c);
+        assertEquals(1,m.getVendeurs());
+        assertEquals(1,m.getCommandes());
     }
+    
 }
