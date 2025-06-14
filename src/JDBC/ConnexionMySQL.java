@@ -15,7 +15,7 @@ public class ConnexionMySQL {
 		this.mysql=null;
 		this.connecte=false;
 		this.mysql = DriverManager.getConnection(
-			"jdbc:mysql://"+Driver+":3306/"+nomBase,nomLogin,motDePasse);//servinfo-maria pour l'IUT ,MYSQL (chez nous):  
+			"jdbc:mariadb://"+Driver+":3306/"+nomBase,nomLogin,motDePasse);//servinfo-maria pour l'IUT ,MYSQL (chez nous):  
 		this.connecte=true;// 3306  est le port par défaut pas besoin de le modifier
 	}
 	
