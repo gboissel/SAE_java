@@ -1,14 +1,15 @@
-package TestTout;
-import org.junit.*;
-import org.junit.Test;
+
+import modele.*;
+
+
 
 import java.sql.*;
 import java.nio.file.*;
 import java.io.*;
-import  org.junit.Assert.assertEquals;
-import  org.junit.Assert.assertFalse;
-import  org.junit.Assert.assertTrue;
-import  org.junit.Test;
+
+import  org.junit.jupiter.api.Test;
+import  org.junit.jupiter.api.Assertions.assertEquals;
+import  org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class TesteBD {
