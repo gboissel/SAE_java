@@ -1,12 +1,19 @@
 package modele;
 import exception.PasAssezDeLivreException;
+import exception.RechercheSansResultatException;
+
+import java.lang.module.ResolutionException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.transform.Result;
+
+import java.util.Collections;
 import JDBC.JDBC;
+import tri.TriLivreParNom;
 
 
 public class Magasin implements Comparable<Magasin>{
@@ -160,6 +167,47 @@ public class Magasin implements Comparable<Magasin>{
         if (!(this.vendeurs.contains(ven))){
             this.vendeurs.add(ven);
         }
+    }
+
+    /**
+     * Permet de trouver une liste de livres, triées par ordre croissant de titre, correspondant à une recherche dans ce magasin
+     * Les résultats de la recherche sont des livres ayant un titre commençant par le texte donné en paramètre, en ignorant les majuscules/minuscules
+     * @param texte La chaîne de caractère avec laquelle on recherche des livres correspondant
+     * @return Une liste de livres, résultats de la recherche
+     * 
+     */
+    public List<Livre> rechercherLivre(String texte) throws RechercheSansResultatException{
+        /*Recherche dichotomique pour trouver le premier résultat de notre recherche*/
+        texte = texte.toLowerCase();
+        List<Livre> tousLesLivres = this.getLivres();
+        Collections.sort(tousLesLivres, new TriLivreParNom());
+        List<Livre> resultat = new ArrayList<>();
+        int debut = 0;
+        int fin = tousLesLivres.size();
+        int ind = (debut+fin)/2;
+        boolean trouve = false;
+        while (!trouve && fin>debut) {
+            if (tousLesLivres.get(ind).getTitre().toLowerCase().startsWith(texte)) {
+                if (ind == 0 || !tousLesLivres.get(ind - 1).getTitre().toLowerCase().startsWith(texte)) {
+                    trouve = true; /*Nous avons trouvé le premier élément correspondant à notre recherche */
+                }
+                else {fin = ind; /*Nous avons trouvé un élément correspondant à notre recherche mais il n'est pas le premier élément */}
+            }
+            else if (tousLesLivres.get(ind).getTitre().compareToIgnoreCase(texte) < 0) {
+                fin = ind; /*Les éléments recherchés se trouvent avant celui-ci dans la liste*/
+            }
+            else {debut = ind + 1; /*Les éléments recherchés se trouvent après celui-ci dans la liste*/}
+            if (!trouve) {ind = (debut+fin)/2;}
+        }
+        /**On récupère maintenant tous les éléments correspondant à notre recherche */
+        while (tousLesLivres.get(ind).getTitre().toLowerCase().startsWith(texte)) {
+            resultat.add(tousLesLivres.get(ind));
+            ++ind;
+        }
+        if (resultat.isEmpty()) {
+            throw new RechercheSansResultatException();
+        }
+        return resultat;
     }
 
     @Override
