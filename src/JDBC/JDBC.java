@@ -80,9 +80,7 @@ public class JDBC {
      * @throws SQLException
      */
     private void ajouterAuteurs(Livre livre, List<Auteur> lesAuteurs) throws SQLException{
-        PreparedStatement ps = laConnexion.prepareStatement("SELECT isbn, nomauteur FROM ECRIRE " +
-                                    "NATURAL JOIN LIVRE " +
-                                    "WHERE isbn = ?");
+        PreparedStatement ps = laConnexion.prepareStatement("SELECT isbn, nomauteur FROM ECRIRE NATURAL JOIN LIVRE WHERE isbn = ?");
         ps.setString(1, livre.getISBN());
         ResultSet rs=ps.executeQuery();
         String nomauteur;
@@ -118,9 +116,7 @@ public class JDBC {
      * @throws SQLException
      */
     private void ajouterEditeurs(Livre livre, List<Editeur> lesEditeurs) throws SQLException{
-        PreparedStatement ps = laConnexion.prepareStatement("SELECT isbn, nomedit FROM EDITER " +
-                                    "NATURAL JOIN EDITEUR " +
-                                    "WHERE isbn = ?");
+        PreparedStatement ps = laConnexion.prepareStatement("SELECT isbn, nomedit FROM EDITER NATURAL JOIN EDITEUR WHERE isbn = ?");
         ps.setString(1, livre.getISBN());
         ResultSet rs=ps.executeQuery();
         String nomediteur;
@@ -157,9 +153,7 @@ public class JDBC {
      */
     private void ajouterClassification(Livre livre, List<Categorie> lesCategories) throws SQLException{
 
-        PreparedStatement ps=laConnexion.prepareStatement("SELECT isbn, nomclass FROM THEMES " +
-                                    "NATURAL JOIN CLASSIFICATION " +
-                                    "WHERE isbn = ?");
+        PreparedStatement ps=laConnexion.prepareStatement("SELECT isbn, nomclass FROM THEMES NATURAL JOIN CLASSIFICATION WHERE isbn = ?");
         ps.setString(1, livre.getISBN());
         ResultSet rs=ps.executeQuery();
         String nomcategorie;
@@ -203,9 +197,7 @@ public class JDBC {
      */
     private void ajouterLivres(Magasin magasin, List<Livre> lesLivres) throws SQLException {
         st=laConnexion.createStatement();
-        PreparedStatement ps = laConnexion.prepareStatement("SELECT idmag, isbn, qte FROM POSSEDER "+
-                                    "NATURAL JOIN MAGASIN "+
-                                    "WHERE nommag=?");
+        PreparedStatement ps = laConnexion.prepareStatement("SELECT idmag, isbn, qte FROM POSSEDER NATURAL JOIN MAGASIN WHERE nommag=?");
         ps.setString(1, magasin.getNom());
         ResultSet rs=ps.executeQuery();
         String isbn;
@@ -250,8 +242,7 @@ public class JDBC {
 		}
         rs.close();
 		st=laConnexion.createStatement();
-		rs=st.executeQuery("SELECT nomven, prenomven, mdpven, nommag, villemag FROM VENDEUR "+
-							"NATURAL JOIN MAGASIN");
+		rs=st.executeQuery("SELECT nomven, prenomven, mdpven, nommag, villemag FROM VENDEUR NATURAL JOIN MAGASIN");
 		Vendeur vendeur;
 		Magasin magasin;
 		while (rs.next()) {
@@ -286,9 +277,7 @@ public class JDBC {
      */
     private void ajouterCommandes(Client client, List<Magasin> lesMagasins, List<Livre> lesLivres) throws SQLException{
         st=laConnexion.createStatement();
-        PreparedStatement ps=laConnexion.prepareStatement("SELECT numcom, date DATE_FORMAT(datecom, '%d/%m/%Y'), enligne, livraison, nommag, villemag " +
-                                                        "FROM CLIENT NATURAL JOIN COMMANDE NATURAL JOIN MAGASIN "+
-                                                        "WHERE nomcli=? AND prenomcli=? AND adressecli=? AND codepostal=? AND villecli=?");
+        PreparedStatement ps=laConnexion.prepareStatement("SELECT numcom, date DATE_FORMAT(datecom, '%d/%m/%Y'), enligne, livraison, nommag, villemag FROM CLIENT NATURAL JOIN COMMANDE NATURAL JOIN MAGASIN WHERE nomcli=? AND prenomcli=? AND adressecli=? AND codepostal=? AND villecli=?");
         ps.setString(1, client.getNom());
         ps.setString(2, client.getPrenom());
         ps.setString(3, client.getAdresse());
@@ -322,8 +311,7 @@ public class JDBC {
      * @throws SQLException
      */
     private void ajouterLignesCommandes(Commande commande, List<Livre> lesLivres) throws SQLException{
-        PreparedStatement ps=laConnexion.prepareStatement("SELECT numlig, qte, prixvente, isbn FROM DETAILCOMMANDE "+
-                                                            "WHERE numcom=? ORDER BY numlig");
+        PreparedStatement ps=laConnexion.prepareStatement("SELECT numlig, qte, prixvente, isbn FROM DETAILCOMMANDE WHERE numcom=? ORDER BY numlig");
         ps.setInt(1, commande.getNum());
         ResultSet rs=ps.executeQuery();
         int qte;
@@ -465,8 +453,7 @@ public class JDBC {
      * @throws SQLException
      */
     public void insererVendeur(Vendeur vendeur, String mdp) throws SQLException{
-        PreparedStatement ps=laConnexion.prepareStatement("SELECT idmag FROM MAGASIN "+
-                                                        "WHERE nommag=? AND villemag=?");
+        PreparedStatement ps=laConnexion.prepareStatement("SELECT idmag FROM MAGASIN WHERE nommag=? AND villemag=?");
         ps.setString(1, vendeur.getMagasin().getNom());
         ps.setString(2, vendeur.getMagasin().getVille());
         ResultSet rs = ps.executeQuery();
