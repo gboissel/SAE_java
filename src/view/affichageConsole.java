@@ -220,7 +220,7 @@ public  class affichageConsole{
 
 
     }
-    public void menuCommander(Magasin mag){
+    public void menuCommander(Magasin mag, Panier panier){
         
         System.out.println("Indiquez la recherche de quel type (Par defaut vous consultez vos recommandation):");
         System.out.println("--------Creation de votre commande-------");
@@ -230,7 +230,6 @@ public  class affichageConsole{
         System.out.println("-03- Voir le Panier                     -");
         System.out.println("-04- Annuler la commande                -");
         System.out.println("-----------------------------------------");
-        Map<Livre,Integer> panier = new HashMap<>();//c'est un probleme car le panier va se supprimer au porchain appel de la methode.
         String res = affichageConsole.scan.nextLine();
         switch (res) {
             case "0","00":
@@ -247,41 +246,6 @@ public  class affichageConsole{
                 break;
         }
     }
-    public void menuCommander(Magasin mag,Panier panier){// creer une classe panier,extends map
-
-        System.out.println("Indiquez la recherche de quel type (Par defaut vous consultez vos recommandation):");
-        System.out.println("--------Creation de votre commande-------");
-        System.out.println("-00- Valider commande                   -");
-        System.out.println("-01- Catalogue livres                   -");
-        System.out.println("-02- Ajouter au Panier                  -");
-        System.out.println("-03- Voir le Panier                     -");
-        System.out.println("-04- Annuler la commande                -");
-        System.out.println("-----------------------------------------");
-        List<Livre> panier = new ArrayList<>();//c'est un probleme car le panier va se supprimer au porchain appel de la methode.
-        String res = affichageConsole.scan.nextLine();
-        if (demandeur != null && !(demandeur instanceof Administrateur)){
-            if (demandeur instanceof Client){
-                Client usr = (Client) demandeur; 
-            }else{
-                Vendeur usr = (Vendeur) demandeur;
-            }switch (res) {
-                case "0","00":
-                    usr.commander(pannier);
-                    break;
-                case "01","1":
-                    this.catalogueLivre(1);
-                    break;
-                case "02","2":
-                    System.out.println(usr.consulterCommandes());
-                    break;
-                default:
-                    break;
-            }
-            
-        }
-
-    }
-
     public void catalogueMag(Magasin leMag,int laPage){
         
     }
