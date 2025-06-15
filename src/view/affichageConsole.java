@@ -72,26 +72,27 @@ public  class affichageConsole{
         System.out.println();
         return res;
     }
-    private static Librairie initialisation(){//cette fonction était censé etre capable de créer une base de donné pour le momment c'est pas le cas
+    //private static Librairie initialisation(){//cette fonction était censé etre capable de créer une base de donné pour le momment c'est pas le cas
 
-        System.out.println("Création du profil de l'administrateur.");
-        System.out.println("Nom:");
-        String nom = affichageConsole.scan.nextLine();//l'input de l'utilisateur
-        System.out.println("Prénom: ");
-        String prenom = affichageConsole.scan.nextLine();
-        String mdp = "";
-        String conf = null;// pour la confirmation 
-        while(!mdp.equals(conf)){
-            System.out.println("Mot de passe");
-            mdp = affichageConsole.scan.nextLine();
-            System.out.println("Confirmation mot de passe:");
-            conf = affichageConsole.scan.nextLine();
-        }
-        Administrateur admin = new Administrateur(nom, prenom, mdp);
-        Librairie lib = new Librairie(admin);
-        return lib;
-    }
-        /**
+        //System.out.println("Création du profil de l'administrateur.");
+        //System.out.println("Nom:");
+        //String nom = affichageConsole.scan.nextLine();//l'input de l'utilisateur
+        //System.out.println("Prénom: ");
+        //String prenom = affichageConsole.scan.nextLine();
+        //String mdp = "";
+        //String conf = null;// pour la confirmation 
+        //while(!mdp.equals(conf)){
+        //    System.out.println("Mot de passe");
+        //    mdp = affichageConsole.scan.nextLine();
+        //    System.out.println("Confirmation mot de passe:");
+        //    conf = affichageConsole.scan.nextLine();
+        //}
+        //Administrateur admin = new Administrateur(nom, prenom, mdp);
+        //Librairie lib = new Librairie(admin);
+        //return lib;
+    ////}
+
+    /**
      * fonction appeler par un programe en console pour vérifier la connection d'un utilisateur
      * renvoie true si l'a connection est correcte l'utilisateur à rentre le bon identifiant et mot de passe
      * @return boolean
@@ -177,20 +178,38 @@ public  class affichageConsole{
                     this.creaClientCons();
                     break;
                 case "03","3":
-                    this.catalogueMag();
+                    this.catalogueLivre(1);
                     break;
                 default:
                     this.quittez();
                     System.out.println("application fermée");
             }
-        if (this.lib.getCurUser().getRoles().equals("Client")) this.menuCli(new Panier());
+        if (this.lib.getCurUser().getRoles().equals("Client")) {
+            try{
+                Magasin mag = this.menuMagasinConsole();
+                this.menuCli(new Panier(),mag);
+            }catch(MagasinInexistantException exp){
+                System.out.println("Le nom du magasin saisie n'existe pas");
+            }
+        }
         else if(this.lib.getCurUser().getRoles().equals("Vendeur")){
             this.menuVend();
             }else{this.menuAdm();}
         // si différent de null renvoie un autre menu qui correspondera a ce que peut faire l'utilisateur.
         }
     }
-    public void menuCli(Panier panier){
+    public Magasin menuMagasinConsole()throws MagasinInexistantException{
+        System.out.println("Choisissez un magasin. Seulement le nom.");
+        List<Magasin> mags = this.lib.getMagasin();
+        for (Magasin mag : mags){
+            System.out.println(mag.toString());
+        }
+        String nomMag = affichageConsole.scan.nextLine();
+        for (Magasin mag : mags){
+            if (mag.getNom().equals(nomMag)) return mag; 
+        }throw new MagasinInexistantException();
+    }
+    public void menuCli(Panier panier,Magasin Mag){
         while (this.lib.getCurUser().getRoles().equals("Client")){
             System.out.println("-------Menu Client------");
             System.out.println("-01- Commander         -");
@@ -217,9 +236,8 @@ public  class affichageConsole{
     public void trouverLivreConsole(){
         System.out.println("Entrez l'ISBN du livre:");
         affichageConsole.scan.nextLine();
-
-
     }
+
     public void menuCommander(Magasin mag, Panier panier,Client leclient){
         
         System.out.println("Indiquez la recherche de quel type (Par defaut vous consultez vos recommandation):");
@@ -272,10 +290,10 @@ public  class affichageConsole{
         }else{
             System.out.println("Catalogue\n Pour plus de livres allez a la page suivante");
         }
-        System.out.println("-----------------------");
+        System.out.println("-------Catalogue------");
         System.out.println("-1 - Page Precedente -");
         System.out.println("-2 - Page Suivante   -");
-        System.out.println("-XX - Quitter         -");
+        System.out.println("-XX- Quitter         -");
         System.out.println("-----------------------");
         String choix = affichageConsole.scan.nextLine();
         switch(choix){
