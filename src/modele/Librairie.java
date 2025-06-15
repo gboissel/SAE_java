@@ -135,7 +135,7 @@ public class Librairie {
      * @param jdbc Une instance de la classe permettant d'intéragir avec la base de données
      */
 
-    private void createVendeur(String nom,String prenom,String mdp, Magasin magasin, JDBC jdbc){
+    public void createVendeur(String nom,String prenom,String mdp, Magasin magasin, JDBC jdbc){
         try{
             Vendeur vendeur = new Vendeur(nom, prenom, mdp, magasin);
             this.users.add(vendeur);
