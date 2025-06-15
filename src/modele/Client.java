@@ -233,6 +233,11 @@ public class Client extends Utilisateur{
     }
 
     @Override
+    public List<Commande> gestionCommande() {
+        return this.commandes;
+    }
+
+    @Override
     public String toString() {
         return "Client : " + this.prenom  + " " + this.nom;
     }

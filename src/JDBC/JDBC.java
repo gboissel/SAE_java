@@ -508,4 +508,17 @@ public class JDBC {
         ps.setString(7, mdp);
         ps.executeUpdate();
     }
+
+    public void insererMagasin(Magasin magasin) throws SQLException{
+        st=laConnexion.createStatement();
+        ResultSet rs=st.executeQuery("SELECT id MAX(idmag) FROM MAGASIN");
+        rs.next();
+        int id = rs.getInt("id");
+        rs.close();
+        PreparedStatement ps=laConnexion.prepareStatement("INSERT INTO MAGASIN VALUES (?, ?, ?)");
+        ps.setInt(1, id+1);
+        ps.setString(2, magasin.getNom());
+        ps.setString(3, magasin.getVille());
+        ps.executeUpdate();
+    }
 }

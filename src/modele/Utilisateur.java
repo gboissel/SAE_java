@@ -1,4 +1,6 @@
 package modele;
+import java.util.List;
+
 public abstract class Utilisateur{
     protected String nom;
     protected String prenom;
@@ -11,23 +13,29 @@ public abstract class Utilisateur{
     }
     /**
      * Permet d'obtenir le nom de l'utilisateur.
-     * @return String
+     * @return Le nom
      */
     public String getNom() {
         return nom;
     }
     /**
      * Permet d'obtenir le prenom de l'utilisateur.
-     * @return String
+     * @return Le prénom
      */
     public String  getPrenom(){
         return this.nom;
     }
     /**
      * Permet d'obtenir le rôle de l'utlisateur soit Administrateur ou Client ou Vendeur.
-     * @return String
+     * @return Le rôle
      */
     public abstract String getRoles();
+
+    /**
+     * Permet à un utilisateur de gérer les commandes qui lui sont associées, dépendammant de son rôle
+     * @return La liste des commandes
+     */
+    abstract List<Commande> gestionCommande();
 
     @Override
     public boolean equals(Object obj) {
@@ -48,5 +56,4 @@ public abstract class Utilisateur{
     public String toString(){
         return "M.me "+this.nom +" "+this.prenom;
     }
-
 }

@@ -3,6 +3,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
+import java.util.List;
 
 import JDBC.JDBC;
 import exception.PasAssezDeLivreException;
@@ -117,4 +118,8 @@ public class Vendeur extends Utilisateur{
         return "Vendeur";
     }
     
+    @Override
+    public List<Commande> gestionCommande() {
+        return this.magasin.getCommandes();
+    }
 }
