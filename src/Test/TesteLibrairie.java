@@ -1,15 +1,10 @@
-
+package test;
 import exception.PasAssezDeLivreException;
 import modele.*;
-import modele.Magasin;
 
-import org.junit.*;
-import  org.junit.Assert.assertEquals;
-import  org.junit.Assert.assertFalse;
-import  org.junit.Assert.assertTrue;
-import  org.junit.Test;
-
-import  org.junit.Assert.assertTrue;
+import  org.junit.jupiter.api.Test;
+import  org.junit.jupiter.api.Assertions.assertEquals;
+import  org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Map;
