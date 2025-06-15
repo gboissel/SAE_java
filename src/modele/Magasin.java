@@ -211,6 +211,11 @@ public class Magasin implements Comparable<Magasin>{
     }
 
     @Override
+    public String toString() {
+        return this.nom + " " +  this.ville;
+    }
+
+    @Override
     public boolean equals(Object obj){
         if (obj == null){
             return false;

@@ -1,17 +1,13 @@
 package view;
 import JDBC.*;
 import modele.*;
-import exception.MDPException;
 import java.util.Scanner;
 
 import exception.UtilisateurInexistantException;
 
 import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 public  class affichageConsole{
     private boolean run;
     public Librairie lib;
@@ -39,7 +35,7 @@ public  class affichageConsole{
             this.lib = new Librairie(new Administrateur("ad", "ad", "1234"));
             this.menuAuth();
         }catch(SQLException exp){
-            System.out.println(exp.getErrorCode());
+            System.out.println(exp.getMessage());
             System.out.println("erreur sql");
         }catch(ClassNotFoundException exp1){
             System.out.println(exp1.getMessage());
@@ -63,11 +59,11 @@ public  class affichageConsole{
         List<String> res = new ArrayList<>();
         System.out.println("Driver: (IUT:servinfo-maria)");
         res.add(""+affichageConsole.scan.nextLine());
-        System.out.println("Nom Base: ");
+        System.out.println("Nom Base:");
         res.add(""+affichageConsole.scan.nextLine());
         System.out.println("Login: ");
         res.add(""+affichageConsole.scan.nextLine());
-        System.out.println("Mot de passe: ");
+        System.out.println("Mot de passe");
         res.add(""+affichageConsole.scan.nextLine());
         System.out.println();
         return res;
@@ -194,7 +190,9 @@ public  class affichageConsole{
         }
         else if(this.lib.getCurUser().getRoles().equals("Vendeur")){
             this.menuVend();
-            }else{this.menuAdm();}
+            }else{
+                this.menuAdm();
+            }
         // si différent de null renvoie un autre menu qui correspondera a ce que peut faire l'utilisateur.
         }
     }
@@ -222,7 +220,7 @@ public  class affichageConsole{
             Client leclient = (Client) this.lib.getCurUser();
             switch (res) {
                 case "01","1":
-                    this.menuCommander();
+                    this.menuCommander(mag,panier,leclient);
                     break;
                 case "02","2":
                     System.out.println(leclient.consulterCommandes());
@@ -240,13 +238,14 @@ public  class affichageConsole{
 
     public void menuCommander(Magasin mag, Panier panier,Client leclient){
         
-        System.out.println("Indiquez la recherche de quel type (Par defaut vous consultez vos recommandation):");
+        System.out.println("Indiquez la recherche de quel type (Par defaut vous consultez le catalogue):");
         System.out.println("--------Creation de votre commande-------");
+        System.out.println("-01- CATALOGUE                          -");
+        System.out.println("-02- ISBN                               -");
+        System.out.println("-03- AUTEUR                             -");
+        System.out.println("-04- TITRE                              -");
         System.out.println("-00- Valider commande                   -");
-        System.out.println("-01- Catalogue livres                   -");
-        System.out.println("-02- Ajouter au Panier                  -");
-        System.out.println("-03- Voir le Panier                     -");
-        System.out.println("-04- Annuler la commande                -");
+        System.out.println("-05- Annuler la commande                -");//mettre recomandation dans l'affichage du catalogue
         System.out.println("-----------------------------------------");
         String res = affichageConsole.scan.nextLine();
         switch (res) {
@@ -331,7 +330,7 @@ public  class affichageConsole{
             Vendeur leVendeur = (Vendeur) this.lib.getCurUser();
             switch (res) {
                 case "01","1":
-                    this.menuCommander();
+                    this.catalogue();
                     break;
                 case "02","2":
                     break;
@@ -340,11 +339,10 @@ public  class affichageConsole{
                 case "04","4":
                     break;
                 default:
-                    this.lib.setCurUser(null);
-                    System.out.println("vous êtes déconnecter");
+                    this.catalogue();
                     break;
             }this.menuAuth();}}
     public static void main(String[] args){
         new affichageConsole();
     }
-}
+}}

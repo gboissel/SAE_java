@@ -17,13 +17,8 @@ public class Librairie {
     private List<Magasin> lesMagasins;
     private List<Livre> lesLivres;
 
-    public Librairie(){
-        this.users = new ArrayList<>();
-        this.lesMagasins = new ArrayList<>();
-        this.lesLivres = new ArrayList<>();
-        this.curUser = null;// personne n'est connectée
-    }
-    public Librairie(Administrateur admin){//il faut l'enlever je pense...
+
+    public Librairie(Administrateur admin){
         this.users= new ArrayList<>();
         this.users.add(admin);
         this.curUser = null;
@@ -32,21 +27,42 @@ public class Librairie {
 
     /**
      * renvoie la liste des utilisateur
-     * @return List<Utilisateur>
+     * @return La liste des utilisateurs
      */
     public List<Utilisateur> getUsers() {
         return this.users;
     }
 
+    /**
+     * renvoie la liste des livres
+     * @return La liste des livres
+     */
+    public List<Livre> getLivres() {
+        return this.lesLivres;
+    }
+
+    /**
+     * renvoie la liste des magasins
+     * @return La liste des magasins
+     */
+    public List<Magasin> getMagasins() {
+        return this.lesMagasins;
+    }
+
+    /**
+     * renvoie l'utilisateur courant
+     * @return L'utilisateur courant
+     */
     public Utilisateur getCurUser(){
         return this.curUser;
     }
     
+    /**
+     * change l'utilisateur courant
+     * @param usr Le nouvel utilisateur courant
+     */
     public void setCurUser(Utilisateur usr){
         this.curUser=usr;
-    }
-    public List<Livre> getLivres(){
-        return this.lesLivres;
     }
 
 
@@ -103,9 +119,7 @@ public class Librairie {
             this.users.add(vendeur);
             jdbc.insererVendeur(vendeur, mdp);
         }
-        catch (SQLException e) {
-            
-        }
+        catch (SQLException e) {}
 
     }
 
