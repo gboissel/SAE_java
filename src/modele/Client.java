@@ -232,6 +232,41 @@ public class Client extends Utilisateur{
         return new ArrayList<>(recoTrie.keySet());
     }
 
+    /**
+     * Méthode permettant d'obtenir la liste des livres que l'on recommande au client en fonction de si il y a du stock en magasin
+     * Cette liste sera ordonnée du plus recommandé au moins recommandé et ne contiendra pas un livre que le client a déjà commandé
+     * @param magasin Le magasin
+     * @return La liste des livres recommandés
+     */
+    public List<Livre> onVousRecommande(Magasin magasin){
+        Map<Categorie, Integer> dicoCat = this.categoriesPreferees();
+        Map<Auteur, Integer> dicoAut = this.auteursPreferes();
+        Map<Livre, Integer> livresPref = this.livresRecommandes(dicoCat, dicoAut);
+        Set<Livre> setLivres = new HashSet<>(livresPref.keySet());
+        Map<Livre, Integer> livresPrefClient;
+        Map<Livre, Integer> recommandation = new HashMap<>();
+        for (Livre livre:livresPref.keySet()) {
+            for (Commande com:livre.getCommandes()) {
+                if (!this.equals(com.getClient())) {
+                    livresPrefClient = com.getClient().livresRecommandes(dicoCat, dicoAut);
+                    for (Livre livreReco:livresPrefClient.keySet()) {
+                        if (!setLivres.contains(livreReco)) {
+                            if (magasin.getQteLivre(livreReco) > 0) {
+                                recommandation.put(livreReco, recommandation.getOrDefault(livreReco, 0) + livresPrefClient.get(livreReco));
+                            }
+                            setLivres.add(livreReco);
+                        }
+                    }
+                }
+            }
+        }
+        TrieMap<Livre> tri = new TrieMap<>(recommandation); 
+        Map<Livre, Integer> recoTrie = new TreeMap<>(tri); 
+        //TreeMap est une classe qui descend de Map, et permet d'ordonner ses clés comme un arbre, permettant de les trier selon une classe qui implémente Comparator comme TrieMap juste au-dessus, utile si on veut trier les clés d'un dictionnaire selon leurs valeurs
+        recoTrie.putAll(recommandation);
+        return new ArrayList<>(recoTrie.keySet());
+    }
+
     @Override
     public List<Commande> gestionCommande() {
         return this.commandes;

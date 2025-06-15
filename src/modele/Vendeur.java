@@ -80,23 +80,7 @@ public class Vendeur extends Utilisateur{
      * @param lesLivres Un dictionnaire prenant ayant pour clés des livres et pour valeurs la quantité achetée pour chaque livre
      */
     public void commanderClient(Client client, Map<Livre, Integer> lesLivres, JDBC jdbc) {
-        try{
-            LocalDateTime dateActuelle = LocalDateTime.now();
-            DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            String date = dateActuelle.format(formatDate);
-
-            Commande commande = new Commande(jdbc.maxNumeroCommande(), date, false, false, client, this.magasin);
-
-            for (Livre livre:lesLivres.keySet()) {
-                this.magasin.setQteLivre(livre, lesLivres.get(livre), jdbc);
-                commande.addLigne(livre, lesLivres.get(livre), livre.getPrix());
-            }
-            client.ajouterCommande(commande);
-            this.magasin.addCommande(commande);
-            jdbc.insererCommande(commande);
-        }
-        catch (PasAssezDeLivreException e) {}
-        catch (SQLException e) {}
+        client.commander(lesLivres, false, false, magasin, jdbc);
     }
 
     /**
