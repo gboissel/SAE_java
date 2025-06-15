@@ -197,7 +197,7 @@ public  class affichageConsole{
             System.out.println("-02- Consulter commande-");
             System.out.println("-03- Catalogue         -");
             System.out.println("-04- Recommandation    -");
-            System.out.println("-00- Déconnexion      -");
+            System.out.println("-00- Déconnexion       -");
             System.out.println("------------------------");
             String res = affichageConsole.scan.nextLine();
             Client leclient = (Client) this.lib.getCurUser();
@@ -220,7 +220,7 @@ public  class affichageConsole{
 
 
     }
-    public void menuCommander(Magasin mag, Panier panier){
+    public void menuCommander(Magasin mag, Panier panier,Client leclient){
         
         System.out.println("Indiquez la recherche de quel type (Par defaut vous consultez vos recommandation):");
         System.out.println("--------Creation de votre commande-------");
@@ -299,7 +299,7 @@ public  class affichageConsole{
     public void menuAdm(){
         
     }
-    public void menuVend(Map<Livre,Integer> Panier,Vendeur vend){
+    public void menuVend(){
         while (this.lib.getCurUser().getRoles().equals("Vendeur")){
             System.out.println("-------Menu Vendeur------");
             System.out.println("-01- Ajouter Livre      -");
