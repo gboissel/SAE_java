@@ -1,4 +1,4 @@
-package Test;
+
 import exception.PasAssezDeLivreException;
 import modele.*;
 import modele.Magasin;
@@ -7,11 +7,9 @@ import org.junit.*;
 import  org.junit.Assert.assertEquals;
 import  org.junit.Assert.assertFalse;
 import  org.junit.Assert.assertTrue;
+import  org.junit.Test;
 
 import  org.junit.Assert.assertTrue;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 import java.util.Map;

@@ -7,11 +7,13 @@ import modele.Livre;
 import modele.Magasin;
 import modele.Vendeur;
 
+
 import  org.junit.Assert.assertEquals;
 import  org.junit.Assert.assertFalse;
 import  org.junit.Assert.assertTrue;
 
 import  org.junit.Assert.assertTrue;
+import  org.junit.Test;
 
 import java.util.List;
 import java.util.Map;
