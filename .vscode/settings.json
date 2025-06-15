@@ -1,7 +1,5 @@
 {
-    "java.project.sourcePaths": [
-        "src"
-    ],
+    "java.project.sourcePaths": [],
     "java.project.referencedLibraries": [
         "c:\\Users\\gauth\\Documents\\iut-orleans\\SAE\\SAE_java\\lib\\mariadb-java-client-3.3.3.jar"
     ],
