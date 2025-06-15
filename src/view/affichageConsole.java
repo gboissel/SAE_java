@@ -190,7 +190,11 @@ public  class affichageConsole{
             System.out.println("-02- Consulter commande-");
             System.out.println("-03- Catalogue         -");
             System.out.println("-04- Recommandation    -");
+<<<<<<< HEAD
             System.out.println("-00- Déconnection      -");
+=======
+            System.out.println("-00- Déconnexion       -");
+>>>>>>> origin/affichage
             System.out.println("------------------------");
             String res = affichageConsole.scan.nextLine();
             Client leclient = (Client) this.lib.getCurUser();
@@ -207,7 +211,17 @@ public  class affichageConsole{
             }this.menuAuth();
         }
     }
+<<<<<<< HEAD
     public void menuCommander(){
+=======
+    public void trouverLivreConsole(){
+        System.out.println("Entrez l'ISBN du livre:");
+        affichageConsole.scan.nextLine();
+
+
+    }
+    public void menuCommander(Magasin mag, Panier panier,Client leclient){
+>>>>>>> origin/affichage
         
         System.out.println("Indiquez la recherche de quel type (Par defaut vous consultez le catalogue):");
         System.out.println("--------Creation de votre commande-------");
@@ -221,9 +235,92 @@ public  class affichageConsole{
         String res = affichageConsole.scan.nextLine();
         Client leclient = (Client) this.lib.getCurUser();
         switch (res) {
+<<<<<<< HEAD
                 case "0","00":
                     this.menuAuth();
                     break;
+=======
+            case "0","00":
+                this.menuAuth();
+                break;
+            case "01","1":
+                this.catalogueMag(mag,1);
+                break;
+            case "02","2":
+                System.out.println(leclient.consulterCommandes());
+                break;
+            default:
+                this.cataReco(leclient);
+                break;
+        }
+    }
+    public void catalogueMag(Magasin leMag,int laPage){
+        
+    }
+    /**
+     * Cette methode permet d'affivher tout les livres de la base et les ranges en différentes pages
+     * @param nbPage la valeur de la page du catalogue demander
+     */
+    public void catalogueLivre(int laPage){
+        if (laPage > 0){
+            int nbLivresParPage = 10;
+            String res = "----------------------\n";
+            try{
+                
+                List<Livre> lesLivres = this.lib.getLivres();
+                for (int i = 0;i<10;i++){
+                        res+=lesLivres.get((laPage*nbLivresParPage)-i).toString()+"\n";
+                }
+            }catch(NoSuchElementException plusDelivre){
+                res+="Fin du catalogue merci de l'avoir lu";
+            }finally{
+                res+="----------------------\n";
+                System.out.println(res);
+            }
+        }else{
+            System.out.println("Catalogue\n Pour plus de livres allez a la page suivante");
+        }
+        System.out.println("-----------------------");
+        System.out.println("-1 - Page Precedente -");
+        System.out.println("-2 - Page Suivante   -");
+        System.out.println("-XX - Quitter         -");
+        System.out.println("-----------------------");
+        String choix = affichageConsole.scan.nextLine();
+        switch(choix){
+            case "1","01":
+                this.catalogueLivre(laPage-1);
+                break;
+            case "2","02":
+                this.catalogueLivre(laPage+1);
+                break;
+            default:
+                this.menuAuth();
+        }
+    }
+    public void cataReco(Client lClient){
+        String affiche = "-----Recommandation-------\n";
+        for (Livre l: lClient.onVousRecommande()){
+            affiche += l.toString()+"\n";
+        }affiche+="-----------FIN------------";
+        System.out.println(affiche);
+    }
+    public void menuAdm(){
+        
+    }
+    public void menuVend(){
+        while (this.lib.getCurUser().getRoles().equals("Vendeur")){
+            System.out.println("-------Menu Vendeur------");
+            System.out.println("-01- Ajouter Livre      -");
+            System.out.println("-02- Consulter Commande -");
+            System.out.println("-02- Consulter Stock    -");
+            System.out.println("-03- Catalogue          -");
+            System.out.println("-04- Recommandation     -");
+            System.out.println("-00- Déconnection       -");
+            System.out.println("-------------------------");
+            String res = affichageConsole.scan.nextLine();
+            Vendeur leVendeur = (Vendeur) this.lib.getCurUser();
+            switch (res) {
+>>>>>>> origin/affichage
                 case "01","1":
                     this.catalogue();
                     break;
