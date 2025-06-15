@@ -7,6 +7,7 @@ import java.util.Scanner;
 import exception.UtilisateurInexistantException;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 public  class affichageConsole{
@@ -173,6 +174,9 @@ public  class affichageConsole{
                 case "02","2":
                     this.creaClientCons();
                     break;
+                case "03","3":
+                    this.catalogueMag();
+                    break;
                 default:
                     this.quittez();
                     System.out.println("application fermée");
@@ -210,13 +214,13 @@ public  class affichageConsole{
     }
     public void menuCommander(){
         
-        System.out.println("Indiquez la recherche de quel type (Par defaut vous consultez le catalogue):");
+        System.out.println("Indiquez la recherche de quel type (Par defaut vous consultez vos recommandation):");
         System.out.println("--------Creation de votre commande-------");
-        System.out.println("-01- CATALOGUE                          -");
-        System.out.println("-02- ISBN                               -");
-        System.out.println("-03- AUTEUR                             -");
-        System.out.println("-04- TITRE                              -");
         System.out.println("-00- Valider commande                   -");
+        System.out.println("-01- Catalogue livres                   -");
+        System.out.println("-02- Trie par ISBN                      -");
+        System.out.println("-03- trie par Autheur                   -");
+        System.out.println("-04- trie par TITRE                     -");
         System.out.println("-05- Annuler la commande                -");//mettre recomandation dans l'affichage du catalogue
         System.out.println("-----------------------------------------");
         String res = affichageConsole.scan.nextLine();
@@ -226,18 +230,65 @@ public  class affichageConsole{
                     this.menuAuth();
                     break;
                 case "01","1":
-                    this.catalogue();
+                    this.catalogueLivre(1);
                     break;
                 case "02","2":
                     System.out.println(leclient.consulterCommandes());
                     break;
                 default:
-                    this.catalogue();
+                    this.cataReco(leclient);
                     break;
             }
     }
 
-    public void catalogue(){}
+    public void catalogueMag(Magasin leMag){}
+    /**
+     * Cette methode permet d'affivher tout les livres de la base et les ranges en différentes pages
+     * @param nbPage la valeur de la page du catalogue demander
+     */
+    public void catalogueLivre(int laPage){
+        if (laPage > 0){
+            int nbLivresParPage = 10;
+            String res = "----------------------\n";
+            try{
+                
+                List<Livre> lesLivres = this.lib.getLivres();
+                for (int i = 0;i<10;i++){
+                        res+=lesLivres.get((laPage*nbLivresParPage)-i).toString()+"\n";
+                }
+            }catch(NoSuchElementException plusDelivre){
+                res+="Fin du catalogue merci de l'avoir lu";
+            }finally{
+                res+="----------------------\n";
+                System.out.println(res);
+            }
+        }else{
+            System.out.println("Catalogue\n Pour plus de livres allez a la page suivante");
+        }
+        System.out.println("-----------------------");
+        System.out.println("-1 - Page Precedente -");
+        System.out.println("-2 - Page Suivante   -");
+        System.out.println("-XX - Quitter         -");
+        System.out.println("-----------------------");
+        String choix = affichageConsole.scan.nextLine();
+        switch(choix){
+            case "1","01":
+                this.catalogueLivre(laPage-1);
+                break;
+            case "2","02":
+                this.catalogueLivre(laPage+1);
+                break;
+            default:
+                this.menuAuth();
+        }
+    }
+    public void cataReco(Client lClient){
+        String affiche = "-----Recommandation-------\n";
+        for (Livre l: lClient.onVousRecommande()){
+            affiche += l.toString()+"\n";
+        }affiche+="-----------FIN------------";
+        System.out.println(affiche);
+    }
     public void menuAdm(){}
     public void menuVend(){}
     public static void main(String[] args){
