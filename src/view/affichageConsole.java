@@ -6,6 +6,7 @@ import java.util.Scanner;
 import exception.UtilisateurInexistantException;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 public  class affichageConsole{
@@ -32,7 +33,7 @@ public  class affichageConsole{
             this.jdbc = new JDBC(connexion);
             System.out.println("Connexion REUSSI!!!!");
             this.run = true;
-            this.lib = new Librairie(new Administrateur("ad", "ad", "1234"));
+            this.lib = new Librairie(this.jdbc);
             this.menuAuth();
         }catch(SQLException exp){
             System.out.println(exp.getMessage());
@@ -207,7 +208,7 @@ public  class affichageConsole{
             if (mag.getNom().equals(nomMag)) return mag; 
         }throw new MagasinInexistantException();
     }
-    public void menuCli(Panier panier,Magasin Mag){
+    public void menuCli(Panier panier,Magasin mag){
         while (this.lib.getCurUser().getRoles().equals("Client")){
             System.out.println("-------Menu Client------");
             System.out.println("-01- Commander         -");
@@ -319,7 +320,7 @@ public  class affichageConsole{
     public void menuVend(){
         while (this.lib.getCurUser().getRoles().equals("Vendeur")){
             System.out.println("-------Menu Vendeur------");
-            System.out.println("-01- Ajouter Livre      -");
+            System.out.println("-01- Commande           -");
             System.out.println("-02- Consulter Commande -");
             System.out.println("-02- Consulter Stock    -");
             System.out.println("-03- Catalogue          -");
@@ -330,7 +331,7 @@ public  class affichageConsole{
             Vendeur leVendeur = (Vendeur) this.lib.getCurUser();
             switch (res) {
                 case "01","1":
-                    this.catalogue();
+                    
                     break;
                 case "02","2":
                     break;
@@ -345,4 +346,4 @@ public  class affichageConsole{
     public static void main(String[] args){
         new affichageConsole();
     }
-}}
+}
