@@ -7,9 +7,11 @@ import java.util.Scanner;
 import exception.UtilisateurInexistantException;
 
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 public  class affichageConsole{
     private boolean run;
     public Librairie lib;
@@ -212,36 +214,71 @@ public  class affichageConsole{
             }this.menuAuth();
         }
     }
-    public void menuCommander(){
+    public void trouverLivreConsole(){
+        System.out.println("Entrez l'ISBN du livre:");
+        affichageConsole.scan.nextLine();
+
+
+    }
+    public void menuCommander(Magasin mag){
         
         System.out.println("Indiquez la recherche de quel type (Par defaut vous consultez vos recommandation):");
         System.out.println("--------Creation de votre commande-------");
         System.out.println("-00- Valider commande                   -");
         System.out.println("-01- Catalogue livres                   -");
-        System.out.println("-02- Trie par ISBN                      -");
-        System.out.println("-03- trie par Autheur                   -");
-        System.out.println("-04- trie par TITRE                     -");
-        System.out.println("-05- Annuler la commande                -");//mettre recomandation dans l'affichage du catalogue
+        System.out.println("-02- Ajouter au Panier                  -");
+        System.out.println("-03- Voir le Panier                     -");
+        System.out.println("-04- Annuler la commande                -");
         System.out.println("-----------------------------------------");
+        Map<Livre,Integer> panier = new HashMap<>();//c'est un probleme car le panier va se supprimer au porchain appel de la methode.
         String res = affichageConsole.scan.nextLine();
         Client leclient = (Client) this.lib.getCurUser();
         switch (res) {
-                case "0","00":
-                    this.menuAuth();
-                    break;
-                case "01","1":
-                    this.catalogueLivre(1);
-                    break;
-                case "02","2":
-                    System.out.println(leclient.consulterCommandes());
-                    break;
-                default:
-                    this.cataReco(leclient);
-                    break;
-            }
+            case "0","00":
+                this.menuAuth();
+                break;
+            case "01","1":
+                this.catalogueMag(mag,1);
+                break;
+            case "02","2":
+                System.out.println(leclient.consulterCommandes());
+                break;
+            default:
+                this.cataReco(leclient);
+                break;
+        }
+    }
+    public void menuCommander(Map<Livre,Integer> pannier){
+        System.out.println("Indiquez la recherche de quel type (Par defaut vous consultez vos recommandation):");
+        System.out.println("--------Creation de votre commande-------");
+        System.out.println("-00- Valider commande                   -");
+        System.out.println("-01- Catalogue livres                   -");
+        System.out.println("-02- Ajouter au Panier                  -");
+        System.out.println("-03- Voir le Panier                     -");
+        System.out.println("-04- Annuler la commande                -");
+        System.out.println("-----------------------------------------");
+        List<Livre> panier = new ArrayList<>();//c'est un probleme car le panier va se supprimer au porchain appel de la methode.
+        String res = affichageConsole.scan.nextLine();
+        Client leclient = (Client) this.lib.getCurUser();
+        switch (res) {
+            case "0","00":
+                this.menuAuth();
+                break;
+            case "01","1":
+                this.catalogueLivre(1);
+                break;
+            case "02","2":
+                System.out.println(leclient.consulterCommandes());
+                break;
+            default:
+                this.cataReco(leclient);
+                break;
+        }
     }
 
-    public void catalogueMag(Magasin leMag){}
+    public void catalogueMag(Magasin leMag,int laPage){
+        
+    }
     /**
      * Cette methode permet d'affivher tout les livres de la base et les ranges en différentes pages
      * @param nbPage la valeur de la page du catalogue demander
@@ -289,8 +326,36 @@ public  class affichageConsole{
         }affiche+="-----------FIN------------";
         System.out.println(affiche);
     }
-    public void menuAdm(){}
-    public void menuVend(){}
+    public void menuAdm(){
+        
+    }
+    public void menuVend(Map<Livre,Integer> Panier,Vendeur vend){
+        while (this.lib.getCurUser().getRoles().equals("Vendeur")){
+            System.out.println("-------Menu Vendeur------");
+            System.out.println("-01- Ajouter Livre      -");
+            System.out.println("-02- Consulter Commande -");
+            System.out.println("-02- Consulter Stock    -");
+            System.out.println("-03- Catalogue          -");
+            System.out.println("-04- Recommandation     -");
+            System.out.println("-00- Déconnection       -");
+            System.out.println("-------------------------");
+            String res = affichageConsole.scan.nextLine();
+            Vendeur leVendeur = (Vendeur) this.lib.getCurUser();
+            switch (res) {
+                case "01","1":
+                    this.menuCommander();
+                    break;
+                case "02","2":
+                    break;
+                case "03","3":
+                    break;
+                case "04","4":
+                    break;
+                default:
+                    this.lib.setCurUser(null);
+                    System.out.println("vous êtes déconnecter");
+                    break;
+            }this.menuAuth();}}
     public static void main(String[] args){
         new affichageConsole();
     }
