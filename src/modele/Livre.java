@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Livre implements Comparable<Livre>{
-    private int isbn;
+    private String isbn;
     private String titre;
     private double prix;
     private Integer nbPages;
@@ -24,7 +24,7 @@ public class Livre implements Comparable<Livre>{
      * @param pages Le nombre de pages du livre
      * @param datePubli L'année de publication du livre au format
      */
-    public Livre(int isbn,String titre,double prix,Integer pages,Integer datePubli){
+    public Livre(String isbn,String titre,double prix,Integer pages,Integer datePubli){
         this.isbn=isbn;
         this.auteurs= new HashSet<>();
         this.titre=titre;
@@ -40,7 +40,7 @@ public class Livre implements Comparable<Livre>{
      * Retourne le code ISBN du livre.
      * @return l'ISBN sous forme d'entier
      */
-    public int getISBN() {
+    public String getISBN() {
         return this.isbn;
     }
 
@@ -196,17 +196,17 @@ public class Livre implements Comparable<Livre>{
         if (!(obj instanceof Livre)){
             return false;
         }
-        Livre auteur = (Livre)obj;
-        return (auteur.titre.equals(this.titre)&&auteur.prix==this.prix);
+        Livre livre = (Livre)obj;
+        return (this.isbn.equals(livre.isbn));
     }
 
     @Override
     public int hashCode(){
-        return this.isbn * 31;
+        return this.isbn.hashCode();
     }
 
     @Override
     public int compareTo(Livre l) {
-        return this.isbn - l.isbn;
+        return this.isbn.compareTo(l.isbn);
     }
 }

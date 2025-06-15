@@ -26,13 +26,13 @@ public class JDBC {
         st=laConnexion.createStatement();
         ResultSet rs=st.executeQuery("SELECT * FROM LIVRE");
         Livre livre;
-        int isbn;
+        String isbn;
         String titre;
         double prix;
         Integer pages;
         Integer datePubli;
         while (rs.next()) {
-            isbn = Integer.parseInt(rs.getString("isbn"));
+            isbn = rs.getString("isbn");
             titre = rs.getString("titre");
             prix = rs.getDouble("prix");
             pages = rs.getInt("nbpages");
@@ -83,7 +83,7 @@ public class JDBC {
         PreparedStatement ps = laConnexion.prepareStatement("SELECT isbn, nomauteur FROM ECRIRE " +
                                     "NATURAL JOIN LIVRE " +
                                     "WHERE isbn = ?");
-        ps.setString(1, "" + livre.getISBN());
+        ps.setString(1, livre.getISBN());
         ResultSet rs=ps.executeQuery();
         String nomauteur;
         while (rs.next()) {
@@ -121,7 +121,7 @@ public class JDBC {
         PreparedStatement ps = laConnexion.prepareStatement("SELECT isbn, nomedit FROM EDITER " +
                                     "NATURAL JOIN EDITEUR " +
                                     "WHERE isbn = ?");
-        ps.setString(1, "" + livre.getISBN());
+        ps.setString(1, livre.getISBN());
         ResultSet rs=ps.executeQuery();
         String nomediteur;
         while (rs.next()) {
@@ -160,7 +160,7 @@ public class JDBC {
         PreparedStatement ps=laConnexion.prepareStatement("SELECT isbn, nomclass FROM THEMES " +
                                     "NATURAL JOIN CLASSIFICATION " +
                                     "WHERE isbn = ?");
-        ps.setString(1, "" + livre.getISBN());
+        ps.setString(1, livre.getISBN());
         ResultSet rs=ps.executeQuery();
         String nomcategorie;
         while (rs.next()) {
@@ -208,10 +208,10 @@ public class JDBC {
                                     "WHERE nommag=?");
         ps.setString(1, magasin.getNom());
         ResultSet rs=ps.executeQuery();
-        int isbn;
+        String isbn;
         int qte;
         while (rs.next()) {
-            isbn = Integer.parseInt(rs.getString("isbn"));
+            isbn = rs.getString("isbn");
             qte = rs.getInt("qte");
             try {magasin.setQteLivre(lesLivres.get(lesLivres.indexOf(new Livre(isbn, "", 0, null, null))), qte);}
             catch (PasAssezDeLivreException e) {}
@@ -328,12 +328,12 @@ public class JDBC {
         ResultSet rs=ps.executeQuery();
         int qte;
         double prix;
-        int isbn;
+        String isbn;
         Livre livre;
         while (rs.next()) {
             qte = rs.getInt("qte");
             prix = rs.getDouble("prixvente");
-            isbn = Integer.parseInt(rs.getString("isbn"));
+            isbn = rs.getString("isbn");
             livre = lesLivres.get(lesLivres.indexOf(new Livre(isbn, null, prix, null, null)));
             commande.addLigne(livre, qte, prix);
             livre.addCommande(commande);
@@ -438,14 +438,14 @@ public class JDBC {
 
         ps=laConnexion.prepareStatement("SELECT nb COUNT(idmag) FROM POSSEDER WHERE idmag=? AND isbn=?");
         ps.setInt(1, idMagasin);
-        ps.setString(2, String.valueOf(livre.getISBN()));
+        ps.setString(2, livre.getISBN());
         rs=ps.executeQuery();
         rs.next();
         if (rs.getInt("nb")==0) {
             rs.close();
             ps=laConnexion.prepareStatement("INSERT INTO POSSEDER VALUES (?, ?, ?)");
             ps.setInt(1, idMagasin);
-            ps.setString(2, String.valueOf(livre.getISBN()));
+            ps.setString(2, livre.getISBN());
             ps.setInt(3, magasin.getQteLivre(livre));
             ps.executeUpdate();
         }
@@ -454,7 +454,7 @@ public class JDBC {
             ps=laConnexion.prepareStatement("UPDATE POSSEDER SET qte=? WHERE idmag=? AND isbn=?");
             ps.setInt(1, magasin.getQteLivre(livre));
             ps.setInt(2, idMagasin);
-            ps.setString(3, String.valueOf(livre.getISBN()));
+            ps.setString(3, livre.getISBN());
         }
     }
 
