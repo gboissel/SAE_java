@@ -132,6 +132,7 @@ public  class affichageConsole{
         }else{
             System.out.println("Echec de la connection...");
             this.lib.setCurUser(null);
+            this.menuAuth();
         }
        
     }
@@ -158,6 +159,9 @@ public  class affichageConsole{
         this.lib.createClient(nom, prenom,adresse, cp, ville, mdp,this.jdbc);
     }
 
+    /**
+     * Menu d'authentification 
+     */
     private void menuAuth(){
         while (this.estUtilise() && !this.estConnecte()){
             System.out.println("----------Menu----------");
@@ -180,8 +184,9 @@ public  class affichageConsole{
                 default:
                     this.quittez();
                     System.out.println("application fermée");
-            }
-        if (this.lib.getCurUser().getRoles().equals("Client")) {
+        }
+        if (this.lib.getCurUser() != null){
+            if (this.lib.getCurUser().getRoles().equals("Client")) {
             try{
                 Magasin mag = this.menuMagasinConsole();
                 this.menuCli(new Panier(),mag);
@@ -194,9 +199,16 @@ public  class affichageConsole{
             }else{
                 this.menuAdm();
             }
+        }this.menuAuth();
+        
         // si différent de null renvoie un autre menu qui correspondera a ce que peut faire l'utilisateur.
         }
     }
+    /**
+     * Menu du choix de la console
+     * @return Magasin le magasin rechercher
+     * @throws MagasinInexistantException
+     */
     public Magasin menuMagasinConsole()throws MagasinInexistantException{
         System.out.println("Choisissez un magasin. Seulement le nom.");
         List<Magasin> mags = this.lib.getMagasins();
