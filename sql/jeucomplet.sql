@@ -24636,7 +24636,7 @@ INSERT INTO VENDEUR (idven, nomven, prenomven, mdpven, idmag) VALUES
 	(19, 'Michel', 'Lucas', 'mdptuv', 5),
 	(20, 'Durand', 'Chloé', 'mdpwxy', 6);
 
-INSERT INTO ADMIN (idadmin,nomadmin,prenomadmin,mdpadmin) VALUES
+INSERT INTO ADMINISTRATEUR (idadmin,nomadmin,prenomadmin,mdpadmin) VALUES
     (1, 'Durand', 'Alice', 'mdpAlice123'),
     (2, 'Martin', 'Bruno', 'BrunoSecure!'),
     (3, 'Lefevre', 'Claire', 'ClairePwd2025'),

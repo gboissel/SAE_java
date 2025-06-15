@@ -1,13 +1,17 @@
-package modele;
+package view;
+import JDBC.*;
+import modele.*;
 import java.util.Scanner;
-import JDBC.ConnexionMySQL;
+
+import exception.UtilisateurInexistantException;
 
 import java.util.List;
 import java.sql.SQLException;
 import java.util.ArrayList;
-public  class GestionConsole{
+public  class affichageConsole{
     private boolean run;
     public Librairie lib;
+    private JDBC jdbc;
     private static Scanner scan;// je le met en attribut car Scanner on ne peut en initialisé qu'un au sein d'un ficher et si on le ferme on ne peut pas en initialisée d'autre.
 
     /* private GestionConsole(){
@@ -18,28 +22,32 @@ public  class GestionConsole{
     *    this.menuAuth();
     *}
     */
-    public GestionConsole(){
+    public affichageConsole(){
         try{
-            GestionConsole.scan = new Scanner(System.in);
-            ConnexionMySQL connec = new ConnexionMySQL();
-            List<String> attCo = this.connexConsole();
-            connec.connecter(attCo.get(0),attCo.get(1),attCo.get(2));
+            System.out.println("Initialisation de l'App ...");
+            affichageConsole.scan = new Scanner(System.in);
+            ConnexionMySQL connexion = new ConnexionMySQL();
+            List<String> attCo = this.connexConsole();//attribut de la connexionMSQL
+            connexion.connecter(attCo.get(0),attCo.get(1),attCo.get(2),attCo.get(3));
+            this.jdbc = new JDBC(connexion);
             System.out.println("Connexion REUSSI!!!!");
             this.run = true;
-            this.lib = new Librairie(new Administrateur(null, null, null));
+            this.lib = new Librairie(new Administrateur("ad", "ad", "1234"));
             this.menuAuth();
         }catch(SQLException exp){
+            System.out.println(exp.getMessage());
             System.out.println("erreur sql");
         }catch(ClassNotFoundException exp1){
+            System.out.println(exp1.getMessage());
             System.out.println("erreur connexion jdbc");
         }
 
     }
 
-    public Librairie quittez(){
+    public void quittez(){
         this.run = false;
-        GestionConsole.scan.close();
-        return this.lib;
+        affichageConsole.scan.close();
+        System.out.println("Application fermer");
     }
     public boolean estConnecte(){
         return this.lib.getCurUser() != null;
@@ -49,12 +57,14 @@ public  class GestionConsole{
     }
     private List<String> connexConsole(){
         List<String> res = new ArrayList<>();
+        System.out.println("Driver: (IUT:servinfo-maria)");
+        res.add(""+affichageConsole.scan.nextLine());
         System.out.println("Nom Base:");
-        res.add(""+GestionConsole.scan.nextLine());
+        res.add(""+affichageConsole.scan.nextLine());
         System.out.println("Login: ");
-        res.add(""+GestionConsole.scan.nextLine());
+        res.add(""+affichageConsole.scan.nextLine());
         System.out.println("Mot de passe");
-        res.add(""+GestionConsole.scan.nextLine());
+        res.add(""+affichageConsole.scan.nextLine());
         System.out.println();
         return res;
     }
@@ -62,35 +72,88 @@ public  class GestionConsole{
 
         System.out.println("Création du profil de l'administrateur.");
         System.out.println("Nom:");
-        String nom = GestionConsole.scan.nextLine();//l'input de l'utilisateur
+        String nom = affichageConsole.scan.nextLine();//l'input de l'utilisateur
         System.out.println("Prénom: ");
-        String prenom = GestionConsole.scan.nextLine();
+        String prenom = affichageConsole.scan.nextLine();
         String mdp = "";
         String conf = null;// pour la confirmation 
         while(!mdp.equals(conf)){
             System.out.println("Mot de passe");
-            mdp = GestionConsole.scan.nextLine();
+            mdp = affichageConsole.scan.nextLine();
             System.out.println("Confirmation mot de passe:");
-            conf = GestionConsole.scan.nextLine();
+            conf = affichageConsole.scan.nextLine();
         }
         Administrateur admin = new Administrateur(nom, prenom, mdp);
         Librairie lib = new Librairie(admin);
         return lib;
     }
-
+        /**
+     * fonction appeler par un programe en console pour vérifier la connection d'un utilisateur
+     * renvoie true si l'a connection est correcte l'utilisateur à rentre le bon identifiant et mot de passe
+     * @return boolean
+     */
+    public void authentificationConsole(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nom: ");
+        String nom = scanner.nextLine();//l'input de l'utilisateur
+        System.out.println("Prénom: ");
+        String prenom = scanner.nextLine();
+        System.out.println("Qui êtes-vous un Client, un Vendeur,un Administrateur?");
+        String role = scanner.nextLine();
+        System.out.println("Mot de Passe: ");
+        String mdp = scanner.nextLine();
+        Utilisateur temp = null;
+        if (role.equals("Client")){
+            System.out.println("adresse:");
+            temp = new Client(nom,prenom , null,null,null,mdp);
+        }if (role.equals("Vendeur")){
+            System.out.println("Nom du magasin");
+            String nomMag = scanner.nextLine();
+            System.out.println("Ville du magasin");
+            String ville = scanner.nextLine();
+            Magasin magasin = new Magasin(nomMag, ville);
+            temp = new Vendeur(nom,prenom , mdp, magasin);
+        }if (role.equals("Administrateur")){
+            temp = new Administrateur(nom,prenom,mdp);
+        }
+        Utilisateur res;
+        try{
+            res = this.lib.reccupUser(temp);
+        }catch(UtilisateurInexistantException e){
+            res = null;
+            System.out.println("Utilisateur inexistant");
+        }
+        scanner.close();//ferme le scanner pour qu'il ne soit plus en écoute sinon il y a des erreur.
+        if (this.lib.authentification(res)){
+            System.out.println("Connection réussi ...");
+            this.lib.setCurUser(temp);
+        }else{
+            System.out.println("Echec de la connection...");
+            this.lib.setCurUser(null);
+        }
+       
+    }
     public void creaClientCons(){
         System.out.println("Nom:");
-        String nom = GestionConsole.scan.nextLine();//l'input de l'utilisateur
+        String nom = affichageConsole.scan.nextLine();//l'input de l'utilisateur
         System.out.println("Prénom: ");
-        String prenom = GestionConsole.scan.nextLine();
+        String prenom = affichageConsole.scan.nextLine();
+        System.out.println("Adresse: ");
+        String adresse = affichageConsole.scan.nextLine();
+        System.out.println("Code postal: ");
+        String ville = affichageConsole.scan.nextLine();
+        System.out.println("Ville: ");
+        String cp = affichageConsole.scan.nextLine();
         String mdp = "";
         String conf = null;
         while(!mdp.equals(conf)){
             System.out.println("Mot de passe");
-            mdp = GestionConsole.scan.nextLine();
+            mdp = affichageConsole.scan.nextLine();
             System.out.println("Confirmation mot de passe:");
-            conf = GestionConsole.scan.nextLine();
-        }this.lib.createClient(nom, prenom, mdp);
+            conf = affichageConsole.scan.nextLine();
+        }
+
+        this.lib.createClient(nom, prenom,adresse, cp, ville, mdp,this.jdbc);
     }
 
     private void menuAuth(){
@@ -101,10 +164,10 @@ public  class GestionConsole{
             System.out.println("-03- Catalogue         -");
             System.out.println("-00- Quitter           -");
             System.out.println("------------------------");
-            String res = GestionConsole.scan.nextLine();
+            String res = affichageConsole.scan.nextLine();
             switch (res) {
                 case "01","1":
-                    this.lib.authentificationConsole();
+                    this.authentificationConsole();
                     break;
                 case "02","2":
                     this.creaClientCons();
@@ -129,7 +192,7 @@ public  class GestionConsole{
             System.out.println("-04- Recommandation    -");
             System.out.println("-00- Déconnection      -");
             System.out.println("------------------------");
-            String res = GestionConsole.scan.nextLine();
+            String res = affichageConsole.scan.nextLine();
             Client leclient = (Client) this.lib.getCurUser();
             switch (res) {
                 case "01","1":
@@ -155,7 +218,7 @@ public  class GestionConsole{
         System.out.println("-00- Valider commande                   -");
         System.out.println("-05- Annuler la commande                -");//mettre recomandation dans l'affichage du catalogue
         System.out.println("-----------------------------------------");
-        String res = GestionConsole.scan.nextLine();
+        String res = affichageConsole.scan.nextLine();
         Client leclient = (Client) this.lib.getCurUser();
         switch (res) {
                 case "0","00":
@@ -176,4 +239,7 @@ public  class GestionConsole{
     public void catalogue(){}
     public void menuAdm(){}
     public void menuVend(){}
+    public static void main(String[] args){
+        new affichageConsole();
+    }
 }

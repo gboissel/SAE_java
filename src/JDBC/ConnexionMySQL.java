@@ -10,13 +10,13 @@ public class ConnexionMySQL {
 		Class.forName("org.mariadb.jdbc.Driver");
 		}
 
-	public void connecter(String nomBase, String nomLogin, String motDePasse) throws SQLException {
+	public void connecter(String Driver,String nomBase, String nomLogin, String motDePasse) throws SQLException {
 		// si tout s'est bien passé la connexion n'est plus nulle
 		this.mysql=null;
 		this.connecte=false;
 		this.mysql = DriverManager.getConnection(
-			"jdbc:mysql://servinfo-maria:3306/"+nomBase,nomLogin,motDePasse);
-		this.connecte=true;
+			"jdbc:mariadb://"+Driver+":3306/"+nomBase,nomLogin,motDePasse);//servinfo-maria pour l'IUT ,MYSQL (chez nous):  
+		this.connecte=true;// 3306  est le port par défaut pas besoin de le modifier
 	}
 	
 	public void close() throws SQLException {

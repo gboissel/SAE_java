@@ -1,5 +1,7 @@
 package modele;
-public abstract class Utilisateur{
+import java.util.List;
+
+public abstract class Utilisateur implements Comparable<Utilisateur>{
     protected String nom;
     protected String prenom;
     protected String mdp;
@@ -11,23 +13,29 @@ public abstract class Utilisateur{
     }
     /**
      * Permet d'obtenir le nom de l'utilisateur.
-     * @return String
+     * @return Le nom
      */
     public String getNom() {
         return nom;
     }
     /**
      * Permet d'obtenir le prenom de l'utilisateur.
-     * @return String
+     * @return Le prénom
      */
     public String  getPrenom(){
         return this.nom;
     }
     /**
      * Permet d'obtenir le rôle de l'utlisateur soit Administrateur ou Client ou Vendeur.
-     * @return String
+     * @return Le rôle
      */
-    abstract String getRoles();
+    public abstract String getRoles();
+
+    /**
+     * Permet à un utilisateur de gérer les commandes qui lui sont associées, dépendammant de son rôle
+     * @return La liste des commandes
+     */
+    abstract List<Commande> gestionCommande();
 
     @Override
     public boolean equals(Object obj) {
@@ -49,4 +57,16 @@ public abstract class Utilisateur{
         return "M.me "+this.nom +" "+this.prenom;
     }
 
+    @Override
+    public int compareTo(Utilisateur u) {
+        if (this.getRoles().equals(u.getRoles())) {
+            if (this.nom.equals(u.nom)) {
+                return this.prenom.compareToIgnoreCase(this.nom);
+            }
+            return this.nom.compareToIgnoreCase(nom);
+        }
+        if (this.getRoles().equals("Client")) {return -1;}
+        else if (this.getRoles().equals("Vendeur") && this.getRoles().equals("Administrateur")) {return -1;}
+        else {return 1;}
+    }
 }

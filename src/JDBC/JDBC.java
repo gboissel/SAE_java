@@ -3,6 +3,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import modele.*;
+import exception.PasAssezDeLivreException;
 
 public class JDBC {
     ConnexionMySQL laConnexion;
@@ -44,6 +45,7 @@ public class JDBC {
             ajouterEditeurs(livre, lesEditeurs);
             ajouterClassification(livre, lesCategories);
         }
+        rs.close();
         return lesLivres;
     }
 
@@ -67,6 +69,7 @@ public class JDBC {
 			if (deces.equals(0)) {deces = null;}
 			lesAuteurs.add(new Auteur(nom, naissance, deces));
 		}
+        rs.close();
 		return lesAuteurs;
 	}
 
@@ -87,6 +90,7 @@ public class JDBC {
             nomauteur = rs.getString("nomauteur");
             livre.addAuteur(lesAuteurs.get(lesAuteurs.indexOf(new Auteur(nomauteur, null))));
         }
+        rs.close();
     }
 
     /**
@@ -103,6 +107,7 @@ public class JDBC {
 			nom = rs.getString("nomedit");
 			lesEditeurs.add(new Editeur(nom));
 		}
+        rs.close();
 		return lesEditeurs;
 	}
 
@@ -123,6 +128,7 @@ public class JDBC {
             nomediteur = rs.getString("nomedit");
             livre.addEditeur(lesEditeurs.get(lesEditeurs.indexOf(new Editeur(nomediteur))));
         }
+        rs.close();
     }
 
     /**
@@ -139,6 +145,7 @@ public class JDBC {
 			nom = rs.getString("nomclass");
 			lesCategories.add(new Categorie(nom));
 		}
+        rs.close();
 		return lesCategories;
 	}
 
@@ -160,6 +167,7 @@ public class JDBC {
             nomcategorie = rs.getString("nomclass");
             livre.addClassification(lesCategories.get(lesCategories.indexOf(new Categorie(nomcategorie))));
         }
+        rs.close();
     }
 
     /**
@@ -183,6 +191,7 @@ public class JDBC {
             lesMagasins.add(magasin);
             ajouterLivres(magasin, lesLivres);
         }
+        rs.close();
         return lesMagasins;
     }
 
@@ -207,6 +216,7 @@ public class JDBC {
             try {magasin.setQteLivre(lesLivres.get(lesLivres.indexOf(new Livre(isbn, "", 0, null, null))), qte);}
             catch (PasAssezDeLivreException e) {}
         }
+        rs.close();
     }
 
     /**
@@ -219,7 +229,7 @@ public class JDBC {
 	public List<Utilisateur> recupererUtilisateurs(List<Magasin> lesMagasins, List<Livre> lesLivres) throws SQLException {
 		List<Utilisateur> lesUtilisateurs = new ArrayList<>();
 		st=laConnexion.createStatement();
-		ResultSet rs=st.executeQuery("SELECT nomcli, prenomcli, adressecli, codepostal, villecli, mdpcli FROM ADMIN");
+		ResultSet rs=st.executeQuery("SELECT nomcli, prenomcli, adressecli, codepostal, villecli, mdpcli FROM ADMINISTRATEUR");
 		String nom;
 		String prenom;
 		String adresse;
@@ -238,6 +248,7 @@ public class JDBC {
 			lesUtilisateurs.add(client);
 			ajouterCommandes(client, lesMagasins, lesLivres);
 		}
+        rs.close();
 		st=laConnexion.createStatement();
 		rs=st.executeQuery("SELECT nomven, prenomven, mdpven, nommag, villemag FROM VENDEUR "+
 							"NATURAL JOIN MAGASIN");
@@ -252,14 +263,16 @@ public class JDBC {
 			magasin.addVendeur(vendeur);
 			lesUtilisateurs.add(vendeur);
 		}
+        rs.close();
 		st=laConnexion.createStatement();
-		rs = st.executeQuery("SELECT nomadmin, prenomadmin, mdpadmin FROM ADMIN");
+		rs = st.executeQuery("SELECT nomadmin, prenomadmin, mdpadmin FROM ADMINISTRATEUR");
 		while (rs.next()) {
 			nom = rs.getString("nomadmin");
 			prenom = rs.getString("prenomadmin");
 			mdp = rs.getString("mdpadmin");
 			lesUtilisateurs.add(new Administrateur(nom, prenom, mdp));
 		}
+        rs.close();
 		return lesUtilisateurs;
 	}
 
@@ -299,6 +312,7 @@ public class JDBC {
             client.ajouterCommande(commande);
             ajouterLignesCommandes(commande, lesLivres);
         }
+        rs.close();
     }
 
     /**
@@ -324,6 +338,7 @@ public class JDBC {
             commande.addLigne(livre, qte, prix);
             livre.addCommande(commande);
         }
+        rs.close();
     }
 
     /**
@@ -333,9 +348,11 @@ public class JDBC {
      */
     public int maxNumeroCommande() throws SQLException{
         st=laConnexion.createStatement();
-        ResultSet rs=st.executeQuery("SELECT max MAX(numcom) FROM COMMANDE");
+        ResultSet rs=st.executeQuery("SELECT max IFNULL(MAX(numcom), 0) FROM COMMANDE");
         rs.next();
-        return rs.getInt("max");
+        int max = rs.getInt("max");
+        rs.close();
+        return max;
     }
 
     /**
@@ -365,6 +382,7 @@ public class JDBC {
         ResultSet rs=ps.executeQuery();
         rs.next();
         int idMagasin = rs.getInt("idmag");
+        rs.close();
 
         ps=laConnexion.prepareStatement("SELECT idcli FROM CLIENT WHERE nomcli=? AND prenomcli=? AND adressecli=? AND codepostal=? AND villecli=?");
         ps.setString(1, commande.getClient().getNom());
@@ -375,6 +393,7 @@ public class JDBC {
         rs=ps.executeQuery();
         rs.next();
         int idClient = rs.getInt("idcli");
+        rs.close();
 
         ps=laConnexion.prepareStatement("INSERT INTO COMMANDE VALUES(?, str_to_date(?, '%d/%m/%Y'), ?, ?, ?, ?)");
         ps.setInt(1, commande.getNum());
@@ -415,6 +434,7 @@ public class JDBC {
         ResultSet rs=ps.executeQuery();
         rs.next();
         int idMagasin = rs.getInt("idmag");
+        rs.close();
 
         ps=laConnexion.prepareStatement("SELECT nb COUNT(idmag) FROM POSSEDER WHERE idmag=? AND isbn=?");
         ps.setInt(1, idMagasin);
@@ -422,6 +442,7 @@ public class JDBC {
         rs=ps.executeQuery();
         rs.next();
         if (rs.getInt("nb")==0) {
+            rs.close();
             ps=laConnexion.prepareStatement("INSERT INTO POSSEDER VALUES (?, ?, ?)");
             ps.setInt(1, idMagasin);
             ps.setString(2, String.valueOf(livre.getISBN()));
@@ -429,6 +450,7 @@ public class JDBC {
             ps.executeUpdate();
         }
         else {
+            rs.close();
             ps=laConnexion.prepareStatement("UPDATE POSSEDER SET qte=? WHERE idmag=? AND isbn=?");
             ps.setInt(1, magasin.getQteLivre(livre));
             ps.setInt(2, idMagasin);
@@ -450,10 +472,12 @@ public class JDBC {
         ResultSet rs = ps.executeQuery();
         rs.next();
         int idMag = rs.getInt("idmag");
+        rs.close();
         st=laConnexion.createStatement();
         rs=st.executeQuery("SELECT id MAX(idven) FROM VENDEUR");
         rs.next();
         int idCli = rs.getInt("id");
+        rs.close();
         ps=laConnexion.prepareStatement("INSERT INTO VENDEUR VALUES (?, ?, ?, ?, ?)");
         ps.setInt(1, idCli+1);
         ps.setString(2, vendeur.getNom());
@@ -473,6 +497,7 @@ public class JDBC {
         ResultSet rs=st.executeQuery("SELECT id MAX(idcli) FROM CLIENT");
         rs.next();
         int id = rs.getInt("id");
+        rs.close();
         PreparedStatement ps=laConnexion.prepareStatement("INSERT INTO CLIENT VALUES (?, ?, ?, ?, ?, ?, ?)");
         ps.setInt(1, id+1);
         ps.setString(2, client.getNom());
@@ -481,6 +506,19 @@ public class JDBC {
         ps.setString(5, client.getCodePostal());
         ps.setString(6, client.getVille());
         ps.setString(7, mdp);
+        ps.executeUpdate();
+    }
+
+    public void insererMagasin(Magasin magasin) throws SQLException{
+        st=laConnexion.createStatement();
+        ResultSet rs=st.executeQuery("SELECT id MAX(idmag) FROM MAGASIN");
+        rs.next();
+        int id = rs.getInt("id");
+        rs.close();
+        PreparedStatement ps=laConnexion.prepareStatement("INSERT INTO MAGASIN VALUES (?, ?, ?)");
+        ps.setInt(1, id+1);
+        ps.setString(2, magasin.getNom());
+        ps.setString(3, magasin.getVille());
         ps.executeUpdate();
     }
 }

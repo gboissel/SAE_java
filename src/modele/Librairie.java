@@ -1,9 +1,13 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;// il faut tester mais normalement selon la doc ça permet de faire l'équivalent d'un input en python.
 import JDBC.JDBC;
+import tri.TriLivreParNom;
+import exception.RechercheSansResultatException;
+import exception.UtilisateurInexistantException;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -17,10 +21,10 @@ public class Librairie {
     private List<Livre> lesLivres;
 
 
-    public Librairie(Administrateur admin){
+    public Librairie(JDBC jdbc){
         this.users= new ArrayList<>();
-        this.users.add(admin);
         this.curUser = null;
+        this.initialisationBD(jdbc);
     }
 
 
@@ -53,11 +57,30 @@ public class Librairie {
      */
     public void createClient(String nom,String prenom, String adresse, String cp, String ville, String mdp, JDBC jdbc){
         try {
-            Client client = new Client(nom, prenom, adresse, cp, ville, mdp)
+            Client client = new Client(nom, prenom, adresse, cp, ville, mdp);
             this.users.add(client);
             jdbc.insererClient(client, mdp);
         }
         catch (SQLException e) {}
+    }
+
+    /**
+     * Méthode à utiliser dans le contructeur permettant d'initialiser une base de données
+     * @param jdbc
+     */
+    private void initialisationBD(JDBC jdbc) {
+        try {
+            this.lesLivres = jdbc.recupererLivres(jdbc.recupererAuteurs(), jdbc.recupererEditeurs(), jdbc.recupererCategories());
+            Collections.sort(this.lesLivres, new TriLivreParNom());
+            this.lesMagasins = jdbc.recupererMagasins(this.lesLivres);
+            this.users = jdbc.recupererUtilisateurs(lesMagasins, lesLivres);
+            Collections.sort(this.users);
+        }
+        catch (SQLException e) {
+            this.lesLivres = new ArrayList<>();
+            this.lesMagasins = new ArrayList<>();
+            this.users = new ArrayList<>();
+        }
     }
 
     /**
@@ -109,46 +132,49 @@ public class Librairie {
         }return false;
     }
 
-    
-    /**
-     * fonction appeler par un programe en console pour vérifier la connection d'un utilisateur
-     * renvoie true si l'a connection est correcte l'utilisateur à rentre le bon identifiant et mot de passe
-     * @return boolean
-     */
-    public void authentificationConsole(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Nom: ");
-        String nom = scanner.nextLine();//l'input de l'utilisateur
-        System.out.println("Prénom: ");
-        String prenom = scanner.nextLine();
-        System.out.println("Qui êtes-vous un Client, un Vendeur,un Administrateur?");
-        String role = scanner.nextLine();
-        System.out.println("Mot de Passe: ");
-        String mdp = scanner.nextLine();
-        Utilisateur temp = null;
-        if (role.equals("Client")){
-            System.out.println("adresse:");
-            //temp = new Client(nom,prenom , mdp); il faudra le faire pour tout le monde
-        }if (role.equals("Vendeur")){
-            System.out.println("Nom du magasin");
-            String nomMag = scanner.nextLine();
-            System.out.println("Ville du magasin");
-            String ville = scanner.nextLine();
-            Magasin magasin = new Magasin(nomMag, ville);
-            temp = new Vendeur(nom,prenom , mdp, magasin);
-        }if (role.equals("Administrateur")){
-            temp = new Administrateur(nom,prenom,mdp);
-        }
-        scanner.close();//ferme le scanner pour qu'il ne soit plus en écoute sinon il y a des erreur.
-        if (this.authentification(temp)){
-            System.out.println("Connection réussi ...");
-            this.curUser = temp;
-        }else{
-            System.out.println("Echec de la connection...");
-            this.curUser = null;
-        }
-       
+    public Utilisateur reccupUser(Utilisateur rech) throws UtilisateurInexistantException{
+        for (Utilisateur usr:this.users){
+            if (rech.equals(usr)) return usr;
+        }throw new UtilisateurInexistantException();
     }
+
+    /**
+     * Permet de récupérer la liste des clients portant le nom de famille donné en paramètre, indépendament de la casse majuscule/minuscule
+     * @param nom Le nom de famille du client
+     * @return Une liste de clients portant ce nom de familles, trié par ordre alphabétique du prénom
+     * @throws RechercheSansResultatException Arrive lorsque la recherche ne donne aucun résultat
+     */
+    public List<Client> rechercheClientParNoms(String nom) throws RechercheSansResultatException{
+        /*Recherche dichotomique pour trouver le premier client correspondant à notre recherche */
+        List<Client> res = new ArrayList<>();
+        nom = nom.toLowerCase();
+        boolean trouve = false;
+        int debut = 0;
+        int fin = this.users.size();
+        int ind = (debut+fin) / 2;
+        while (!trouve && fin>debut) {
+            if (this.users.get(ind).getRoles().equals("Client")) {
+                if (this.users.get(ind).getNom().toLowerCase().equals(nom)) {
+                    if (ind == 0 || !this.users.get(ind - 1).getNom().toLowerCase().equals(nom)) {trouve = true;}
+                    else {fin = ind;}
+                }
+                else if (this.users.get(ind).getNom().compareToIgnoreCase(nom) < 0) {fin = ind;}
+                else {debut = ind + 1;}
+            }
+            else {fin = ind;}
+            if (!trouve) {ind = (debut+fin)/2;}
+        }
+        if (trouve) {
+            /*On récupère maintenant tous les clients correspondant à la recherche */
+            while (this.users.get(ind).getRoles().equals("Client") && this.users.get(ind).getNom().toLowerCase().equals(nom)) {
+                res.add((Client) this.users.get(ind));
+                ++ind;
+            }
+            return res;
+        }
+        throw new RechercheSansResultatException();
+    }
+
     /**
      * permet d'obtenir les factures de chaque magasin avec un mois et une annee donnée
      * @param mois
