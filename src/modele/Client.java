@@ -13,6 +13,7 @@ import java.util.TreeMap;
 
 import JDBC.JDBC;
 import exception.*;
+import tri.TrieMap;
 
 public class Client extends Utilisateur{
     private String adresse;

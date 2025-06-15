@@ -2,7 +2,7 @@ package view;
 import JDBC.*;
 import modele.*;
 import java.util.Scanner;
-import JDBC.ConnexionMySQL;
+
 import exception.UtilisateurInexistantException;
 
 import java.util.List;
@@ -24,18 +24,21 @@ public  class affichageConsole{
     */
     public affichageConsole(){
         try{
+            System.out.println("Initialisation de l'App ...");
             affichageConsole.scan = new Scanner(System.in);
             ConnexionMySQL connexion = new ConnexionMySQL();
-            List<String> attCo = this.connexConsole();
-            connexion.connecter(attCo.get(0),attCo.get(1),attCo.get(2));
+            List<String> attCo = this.connexConsole();//attribut de la connexionMSQL
+            connexion.connecter(attCo.get(0),attCo.get(1),attCo.get(2),attCo.get(3));
             this.jdbc = new JDBC(connexion);
             System.out.println("Connexion REUSSI!!!!");
             this.run = true;
             this.lib = new Librairie(new Administrateur("ad", "ad", "1234"));
             this.menuAuth();
         }catch(SQLException exp){
+            System.out.println(exp.getMessage());
             System.out.println("erreur sql");
         }catch(ClassNotFoundException exp1){
+            System.out.println(exp1.getMessage());
             System.out.println("erreur connexion jdbc");
         }
 
@@ -54,6 +57,8 @@ public  class affichageConsole{
     }
     private List<String> connexConsole(){
         List<String> res = new ArrayList<>();
+        System.out.println("Driver: (IUT:servinfo-maria)");
+        res.add(""+affichageConsole.scan.nextLine());
         System.out.println("Nom Base:");
         res.add(""+affichageConsole.scan.nextLine());
         System.out.println("Login: ");
