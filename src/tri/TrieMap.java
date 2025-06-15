@@ -1,4 +1,4 @@
-package modele;
+package tri;
 import java.util.Comparator;
 import java.util.Map;
 

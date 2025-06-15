@@ -2,10 +2,8 @@ package view;
 import JDBC.*;
 import modele.*;
 import java.util.Scanner;
-import JDBC.ConnexionMySQL;
-import modele.Administrateur;
-import modele.Client;
-import modele.Librairie;
+
+import exception.UtilisateurInexistantException;
 
 import java.util.List;
 import java.sql.SQLException;
@@ -13,6 +11,7 @@ import java.util.ArrayList;
 public  class affichageConsole{
     private boolean run;
     public Librairie lib;
+    private JDBC jdbc;
     private static Scanner scan;// je le met en attribut car Scanner on ne peut en initialisé qu'un au sein d'un ficher et si on le ferme on ne peut pas en initialisée d'autre.
 
     /* private GestionConsole(){
@@ -25,26 +24,30 @@ public  class affichageConsole{
     */
     public affichageConsole(){
         try{
+            System.out.println("Initialisation de l'App ...");
             affichageConsole.scan = new Scanner(System.in);
-            ConnexionMySQL connec = new ConnexionMySQL();
-            List<String> attCo = this.connexConsole();
-            connec.connecter(attCo.get(0),attCo.get(1),attCo.get(2));
+            ConnexionMySQL connexion = new ConnexionMySQL();
+            List<String> attCo = this.connexConsole();//attribut de la connexionMSQL
+            connexion.connecter(attCo.get(0),attCo.get(1),attCo.get(2),attCo.get(3));
+            this.jdbc = new JDBC(connexion);
             System.out.println("Connexion REUSSI!!!!");
             this.run = true;
-            this.lib = new Librairie(new Administrateur(null, null, null));
+            this.lib = new Librairie(new Administrateur("ad", "ad", "1234"));
             this.menuAuth();
         }catch(SQLException exp){
+            System.out.println(exp.getMessage());
             System.out.println("erreur sql");
         }catch(ClassNotFoundException exp1){
+            System.out.println(exp1.getMessage());
             System.out.println("erreur connexion jdbc");
         }
 
     }
 
-    public Librairie quittez(){
+    public void quittez(){
         this.run = false;
         affichageConsole.scan.close();
-        return this.lib;
+        System.out.println("Application fermer");
     }
     public boolean estConnecte(){
         return this.lib.getCurUser() != null;
@@ -54,6 +57,8 @@ public  class affichageConsole{
     }
     private List<String> connexConsole(){
         List<String> res = new ArrayList<>();
+        System.out.println("Driver: (IUT:servinfo-maria)");
+        res.add(""+affichageConsole.scan.nextLine());
         System.out.println("Nom Base:");
         res.add(""+affichageConsole.scan.nextLine());
         System.out.println("Login: ");
@@ -82,12 +87,63 @@ public  class affichageConsole{
         Librairie lib = new Librairie(admin);
         return lib;
     }
-
+        /**
+     * fonction appeler par un programe en console pour vérifier la connection d'un utilisateur
+     * renvoie true si l'a connection est correcte l'utilisateur à rentre le bon identifiant et mot de passe
+     * @return boolean
+     */
+    public void authentificationConsole(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nom: ");
+        String nom = scanner.nextLine();//l'input de l'utilisateur
+        System.out.println("Prénom: ");
+        String prenom = scanner.nextLine();
+        System.out.println("Qui êtes-vous un Client, un Vendeur,un Administrateur?");
+        String role = scanner.nextLine();
+        System.out.println("Mot de Passe: ");
+        String mdp = scanner.nextLine();
+        Utilisateur temp = null;
+        if (role.equals("Client")){
+            System.out.println("adresse:");
+            temp = new Client(nom,prenom , null,null,null,mdp);
+        }if (role.equals("Vendeur")){
+            System.out.println("Nom du magasin");
+            String nomMag = scanner.nextLine();
+            System.out.println("Ville du magasin");
+            String ville = scanner.nextLine();
+            Magasin magasin = new Magasin(nomMag, ville);
+            temp = new Vendeur(nom,prenom , mdp, magasin);
+        }if (role.equals("Administrateur")){
+            temp = new Administrateur(nom,prenom,mdp);
+        }
+        Utilisateur res;
+        try{
+            res = this.lib.reccupUser(temp);
+        }catch(UtilisateurInexistantException e){
+            res = null;
+            System.out.println("Utilisateur inexistant");
+        }
+        scanner.close();//ferme le scanner pour qu'il ne soit plus en écoute sinon il y a des erreur.
+        if (this.lib.authentification(res)){
+            System.out.println("Connection réussi ...");
+            this.lib.setCurUser(temp);
+        }else{
+            System.out.println("Echec de la connection...");
+            this.lib.setCurUser(null);
+        }
+       
+    }
     public void creaClientCons(){
         System.out.println("Nom:");
         String nom = affichageConsole.scan.nextLine();//l'input de l'utilisateur
         System.out.println("Prénom: ");
         String prenom = affichageConsole.scan.nextLine();
+        System.out.println("Adresse: ");
+        String adresse = affichageConsole.scan.nextLine();
+        System.out.println("Code postal: ");
+        String ville = affichageConsole.scan.nextLine();
+        System.out.println("Ville: ");
+        String cp = affichageConsole.scan.nextLine();
         String mdp = "";
         String conf = null;
         while(!mdp.equals(conf)){
@@ -95,7 +151,9 @@ public  class affichageConsole{
             mdp = affichageConsole.scan.nextLine();
             System.out.println("Confirmation mot de passe:");
             conf = affichageConsole.scan.nextLine();
-        }this.lib.createClient(nom, prenom, mdp);
+        }
+
+        this.lib.createClient(nom, prenom,adresse, cp, ville, mdp,this.jdbc);
     }
 
     private void menuAuth(){
@@ -109,7 +167,7 @@ public  class affichageConsole{
             String res = affichageConsole.scan.nextLine();
             switch (res) {
                 case "01","1":
-                    this.lib.authentificationConsole();
+                    this.authentificationConsole();
                     break;
                 case "02","2":
                     this.creaClientCons();
@@ -181,4 +239,7 @@ public  class affichageConsole{
     public void catalogue(){}
     public void menuAdm(){}
     public void menuVend(){}
+    public static void main(String[] args){
+        new affichageConsole();
+    }
 }

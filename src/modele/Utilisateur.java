@@ -27,7 +27,7 @@ public abstract class Utilisateur{
      * Permet d'obtenir le rôle de l'utlisateur soit Administrateur ou Client ou Vendeur.
      * @return String
      */
-    abstract String getRoles();
+    public abstract String getRoles();
 
     @Override
     public boolean equals(Object obj) {

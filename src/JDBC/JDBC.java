@@ -229,7 +229,7 @@ public class JDBC {
 	public List<Utilisateur> recupererUtilisateurs(List<Magasin> lesMagasins, List<Livre> lesLivres) throws SQLException {
 		List<Utilisateur> lesUtilisateurs = new ArrayList<>();
 		st=laConnexion.createStatement();
-		ResultSet rs=st.executeQuery("SELECT nomcli, prenomcli, adressecli, codepostal, villecli, mdpcli FROM ADMIN");
+		ResultSet rs=st.executeQuery("SELECT nomcli, prenomcli, adressecli, codepostal, villecli, mdpcli FROM ADMINISTRATEUR");
 		String nom;
 		String prenom;
 		String adresse;
@@ -265,7 +265,7 @@ public class JDBC {
 		}
         rs.close();
 		st=laConnexion.createStatement();
-		rs = st.executeQuery("SELECT nomadmin, prenomadmin, mdpadmin FROM ADMIN");
+		rs = st.executeQuery("SELECT nomadmin, prenomadmin, mdpadmin FROM ADMINISTRATEUR");
 		while (rs.next()) {
 			nom = rs.getString("nomadmin");
 			prenom = rs.getString("prenomadmin");

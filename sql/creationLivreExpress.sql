@@ -7,13 +7,13 @@ grant ALL on DBaudor.* to 'cher'@'%' with grant option;
 grant ALL on DBaudor.* to 'hameau'@'%' with grant option;
  */
 
-CREATE TABLE ADMIN (
+CREATE TABLE ADMINISTRATEUR (
   PRIMARY KEY (idadmin),
   idadmin      int NOT NULL,
   nomadmin     varchar(50),
   prenomadmin  varchar(30),
   mdpadmin     varchar(50)
-)
+);
 
 CREATE TABLE AUTEUR (
   PRIMARY KEY (idauteur),
@@ -113,7 +113,7 @@ CREATE TABLE VENDEUR (
   prenomven  varchar(30),
   mdpven     varchar(50),
   idmag      int NOT NULL
-)
+);
 
 ALTER TABLE COMMANDE ADD FOREIGN KEY (idmag) REFERENCES MAGASIN (idmag);
 ALTER TABLE COMMANDE ADD FOREIGN KEY (idcli) REFERENCES CLIENT (idcli);
