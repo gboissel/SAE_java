@@ -27,16 +27,40 @@ public class Librairie {
 
     /**
      * renvoie la liste des utilisateur
-     * @return List<Utilisateur>
+     * @return La liste des utilisateurs
      */
     public List<Utilisateur> getUsers() {
         return this.users;
     }
 
+    /**
+     * renvoie la liste des livres
+     * @return La liste des livres
+     */
+    public List<Livre> getLivres() {
+        return this.lesLivres;
+    }
+
+    /**
+     * renvoie la liste des magasins
+     * @return La liste des magasins
+     */
+    public List<Magasin> getMagasins() {
+        return this.lesMagasins;
+    }
+
+    /**
+     * renvoie l'utilisateur courant
+     * @return L'utilisateur courant
+     */
     public Utilisateur getCurUser(){
         return this.curUser;
     }
     
+    /**
+     * change l'utilisateur courant
+     * @param usr Le nouvel utilisateur courant
+     */
     public void setCurUser(Utilisateur usr){
         this.curUser=usr;
     }
