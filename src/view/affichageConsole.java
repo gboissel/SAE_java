@@ -63,11 +63,11 @@ public  class affichageConsole{
         List<String> res = new ArrayList<>();
         System.out.println("Driver: (IUT:servinfo-maria)");
         res.add(""+affichageConsole.scan.nextLine());
-        System.out.println("Nom Base:");
+        System.out.println("Nom Base: ");
         res.add(""+affichageConsole.scan.nextLine());
         System.out.println("Login: ");
         res.add(""+affichageConsole.scan.nextLine());
-        System.out.println("Mot de passe");
+        System.out.println("Mot de passe: ");
         res.add(""+affichageConsole.scan.nextLine());
         System.out.println();
         return res;
@@ -183,21 +183,21 @@ public  class affichageConsole{
                     this.quittez();
                     System.out.println("application fermée");
             }
-        if (this.lib.getCurUser().getRoles().equals("Client")) this.menuCli();
+        if (this.lib.getCurUser().getRoles().equals("Client")) this.menuCli(new Panier());
         else if(this.lib.getCurUser().getRoles().equals("Vendeur")){
             this.menuVend();
             }else{this.menuAdm();}
         // si différent de null renvoie un autre menu qui correspondera a ce que peut faire l'utilisateur.
         }
     }
-    public void menuCli(){
+    public void menuCli(Panier panier){
         while (this.lib.getCurUser().getRoles().equals("Client")){
             System.out.println("-------Menu Client------");
             System.out.println("-01- Commander         -");
             System.out.println("-02- Consulter commande-");
             System.out.println("-03- Catalogue         -");
             System.out.println("-04- Recommandation    -");
-            System.out.println("-00- Déconnection      -");
+            System.out.println("-00- Déconnexion      -");
             System.out.println("------------------------");
             String res = affichageConsole.scan.nextLine();
             Client leclient = (Client) this.lib.getCurUser();
@@ -232,7 +232,6 @@ public  class affichageConsole{
         System.out.println("-----------------------------------------");
         Map<Livre,Integer> panier = new HashMap<>();//c'est un probleme car le panier va se supprimer au porchain appel de la methode.
         String res = affichageConsole.scan.nextLine();
-        Client leclient = (Client) this.lib.getCurUser();
         switch (res) {
             case "0","00":
                 this.menuAuth();
@@ -248,7 +247,8 @@ public  class affichageConsole{
                 break;
         }
     }
-    public void menuCommander(Map<Livre,Integer> pannier){
+    public void menuCommander(Magasin mag,Panier panier){// creer une classe panier,extends map
+
         System.out.println("Indiquez la recherche de quel type (Par defaut vous consultez vos recommandation):");
         System.out.println("--------Creation de votre commande-------");
         System.out.println("-00- Valider commande                   -");
@@ -259,21 +259,27 @@ public  class affichageConsole{
         System.out.println("-----------------------------------------");
         List<Livre> panier = new ArrayList<>();//c'est un probleme car le panier va se supprimer au porchain appel de la methode.
         String res = affichageConsole.scan.nextLine();
-        Client leclient = (Client) this.lib.getCurUser();
-        switch (res) {
-            case "0","00":
-                this.menuAuth();
-                break;
-            case "01","1":
-                this.catalogueLivre(1);
-                break;
-            case "02","2":
-                System.out.println(leclient.consulterCommandes());
-                break;
-            default:
-                this.cataReco(leclient);
-                break;
+        if (demandeur != null && !(demandeur instanceof Administrateur)){
+            if (demandeur instanceof Client){
+                Client usr = (Client) demandeur; 
+            }else{
+                Vendeur usr = (Vendeur) demandeur;
+            }switch (res) {
+                case "0","00":
+                    usr.commander(pannier);
+                    break;
+                case "01","1":
+                    this.catalogueLivre(1);
+                    break;
+                case "02","2":
+                    System.out.println(usr.consulterCommandes());
+                    break;
+                default:
+                    break;
+            }
+            
         }
+
     }
 
     public void catalogueMag(Magasin leMag,int laPage){
