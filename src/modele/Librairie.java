@@ -231,7 +231,7 @@ public class Librairie {
             System.out.println("Fichier texte créé avec succès !");
         } catch (IOException e) {
             System.out.println("Une erreur est survenue.");
-            e.printStackTrace();
+            e.printStackTrace();//ca c'est bon
         }
     }
 }
