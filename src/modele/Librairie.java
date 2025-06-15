@@ -8,11 +8,11 @@ import JDBC.JDBC;
 import tri.TriLivreParNom;
 import exception.RechercheSansResultatException;
 import exception.UtilisateurInexistantException;
-
-import java.io.File;
-import java.io.FileWriter;
+import java.io.FileWriter;// il faut tester mais normalement selon la doc ça permet de faire l'équivalent d'un input en python.
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Librairie {
     private Utilisateur curUser;
