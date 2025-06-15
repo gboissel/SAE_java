@@ -17,8 +17,13 @@ public class Librairie {
     private List<Magasin> lesMagasins;
     private List<Livre> lesLivres;
 
-
-    public Librairie(Administrateur admin){
+    public Librairie(){
+        this.users = new ArrayList<>();
+        this.lesMagasins = new ArrayList<>();
+        this.lesLivres = new ArrayList<>();
+        this.curUser = null;// personne n'est connectée
+    }
+    public Librairie(Administrateur admin){//il faut l'enlever je pense...
         this.users= new ArrayList<>();
         this.users.add(admin);
         this.curUser = null;
@@ -39,6 +44,9 @@ public class Librairie {
     
     public void setCurUser(Utilisateur usr){
         this.curUser=usr;
+    }
+    public List<Livre> getLivres(){
+        return this.lesLivres;
     }
 
 
@@ -95,7 +103,9 @@ public class Librairie {
             this.users.add(vendeur);
             jdbc.insererVendeur(vendeur, mdp);
         }
-        catch (SQLException e) {}
+        catch (SQLException e) {
+            
+        }
 
     }
 

@@ -1,6 +1,7 @@
 package view;
 import JDBC.*;
 import modele.*;
+import exception.MDPException;
 import java.util.Scanner;
 
 import exception.UtilisateurInexistantException;
@@ -35,7 +36,7 @@ public  class affichageConsole{
             this.lib = new Librairie(new Administrateur("ad", "ad", "1234"));
             this.menuAuth();
         }catch(SQLException exp){
-            System.out.println(exp.getMessage());
+            System.out.println(exp.getErrorCode());
             System.out.println("erreur sql");
         }catch(ClassNotFoundException exp1){
             System.out.println(exp1.getMessage());
