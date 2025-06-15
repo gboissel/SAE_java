@@ -4,6 +4,7 @@ import modele.*;
 import java.util.Scanner;
 
 import exception.UtilisateurInexistantException;
+import exception.MagasinInexistantException;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -199,7 +200,7 @@ public  class affichageConsole{
     }
     public Magasin menuMagasinConsole()throws MagasinInexistantException{
         System.out.println("Choisissez un magasin. Seulement le nom.");
-        List<Magasin> mags = this.lib.getMagasin();
+        List<Magasin> mags = this.lib.getMagasins();
         for (Magasin mag : mags){
             System.out.println(mag.toString());
         }
@@ -340,7 +341,7 @@ public  class affichageConsole{
                 case "04","4":
                     break;
                 default:
-                    this.catalogue();
+                    this.catalogueMag(leVendeur.getMagasin(),1);
                     break;
             }this.menuAuth();}}
     public static void main(String[] args){

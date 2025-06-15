@@ -1,7 +1,5 @@
 package exception;
 
-public class MagasinInexistantException {
-    public MagasinInexistantException(){
-        super();
-    }
+public class MagasinInexistantException extends Exception{
+
 }
