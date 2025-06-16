@@ -10,10 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControlleurConnexionBD">
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #b4b4b4;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" prefHeight="111.0" prefWidth="800.0" style="-fx-background-color: #b4b4b4;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
             <Label text="Livre Express eshop">
@@ -25,7 +24,7 @@
       </HBox>
    </top>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #c2f6ff;" BorderPane.alignment="CENTER" xmlns:fx="http://javafx.com/fxml" fx:controller="controleur.ControlleurConnexionBD">
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #c2f6ff;" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="TOP_CENTER" text="Connexion a la BD">
                <font>
@@ -68,7 +67,7 @@
                   <TextField text="servinfo-maria" />
                </children>
             </HBox>
-            <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="Connexion" />
+            <Button fx:id="btnConnexion" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleMonBoutonAction" text="Connexion" />
          </children>
       </VBox>
    </center>

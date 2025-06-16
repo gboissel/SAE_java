@@ -9,8 +9,7 @@ import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-
-
+import controleur.ControlleurConnexionBD;
 public class ConnexionBDtestAffichage extends Application {
     @Override
     public void start(Stage primaryStage) {
