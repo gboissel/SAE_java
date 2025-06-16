@@ -25,13 +25,13 @@
             </ImageView>
             <Label alignment="CENTER" style="-fx-background-insets: 50;" text="Livre Express eshop">
                <font>
-                  <Font size="40.0" />
+                  <Font name="System Bold" size="40.0" />
                </font>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <HBox.margin>
-                  <Insets left="50.0" right="50.0" />
+                  <Insets left="45.0" right="45.0" />
                </HBox.margin>
             </Label>
             <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Se connecter / Créer un compte" textAlignment="CENTER">

@@ -17,7 +17,7 @@ public class ControleurRechercher implements EventHandler<ActionEvent>{
      * @param modele modèle du jeu
      * @param p vue du jeu
      */
-    public ConttroleurConnexion(MotMystere modele, LivreExpress vue) {
+    public ControleurRechercher(MotMystere modele, LivreExpress vue) {
         this.modele=modele;
         this.vue=vue;
     }
