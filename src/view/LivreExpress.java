@@ -141,13 +141,21 @@ public class LivreExpress extends Application{
     } 
     */
 
+    public Alert popUpReglesDuJeu(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText("Regle du jeu");
+        alert.setContentText("Il faut completer le mot pour gagné");
+        return alert;
+    }
+
     /**
      * Programme principal
      * @param args inutilisé
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        System.out.println(getClass().getResource("/view/accueil.fxml"));
+        System.out.println(getClass().getResource("accueil.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/accueil.fxml"));
         BorderPane root = loader.load();
         Scene scene = new Scene(root);

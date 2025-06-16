@@ -14,13 +14,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurAccueil">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #b4b4b4; -fx-background-insets: #15;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="87.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../image/logo_livre.png" />
+                  <Image url="@../../img/logo_livre(2).png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" style="-fx-background-insets: 50;" text="Livre Express eshop">
@@ -34,7 +34,7 @@
                   <Insets left="45.0" right="45.0" />
                </HBox.margin>
             </Label>
-            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Se connecter / Créer un compte" textAlignment="CENTER">
+            <Button fx:id="boutonConnexion" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#gererConnexion" text="Se connecter / Créer un compte" textAlignment="CENTER">
                <font>
                   <Font size="10.0" />
                </font>
@@ -51,10 +51,23 @@
    <left>
       <VBox prefHeight="377.0" prefWidth="160.0" style="-fx-background-color: #0cc0df;" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="100.0" style="-fx-background-color: #5ce1e6; -fx-border-radius: 15;">
+            <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="160.0" style="-fx-background-color: #5ce1e6; -fx-border-radius: 15;">
                <children>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="26.0" prefWidth="135.0" style="-fx-background-color: #5ce1e6;" />
-                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" style="-fx-background-color: #5ce1e6;" text="R" />
+                  <TextField fx:id="boutonRecherche" alignment="BOTTOM_CENTER" onAction="#gererRechercher" prefHeight="26.0" prefWidth="135.0" promptText="Recherche ....." style="-fx-background-color: #ffffff;">
+                     <HBox.margin>
+                        <Insets left="3.0" right="2.0" />
+                     </HBox.margin></TextField>
+                  <Button fx:id="boutonRechercher" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#gererRechercher" style="-fx-background-color: #b4b4b4;">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/image_loop.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets right="3.0" />
+                     </HBox.margin></Button>
                </children>
             </HBox>
          </children>
@@ -67,6 +80,9 @@
                <font>
                   <Font size="22.0" />
                </font>
+               <VBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </VBox.margin>
             </Label>
             <GridPane prefHeight="349.0" prefWidth="559.0">
               <columnConstraints>
@@ -80,44 +96,44 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
-                        <Font size="23.0" />
+                        <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
-                        <Font size="23.0" />
+                        <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
-                        <Font size="23.0" />
+                        <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
-                        <Font size="23.0" />
+                        <Font size="17.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
-                        <Font size="23.0" />
+                        <Font size="17.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
-                        <Font size="23.0" />
+                        <Font size="17.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <font>
-                        <Font size="23.0" />
+                        <Font size="17.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <font>
-                        <Font size="23.0" />
+                        <Font size="17.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <font>
-                        <Font size="23.0" />
+                        <Font size="17.0" />
                      </font></Button>
                </children>
             </GridPane>
