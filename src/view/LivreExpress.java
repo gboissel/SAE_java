@@ -26,46 +26,37 @@ import java.io.File;
 import java.lang.reflect.Array;
 import java.nio.Buffer;
 import java.util.ArrayList;
-
+import modele.Librairie;
+import controleur.ControlleurConnexionBD;
 public class LivreExpress extends Application{
-    
-    private BorderPane panelCentral;
 
-    private HBox bande;
+    private Librairie modele;
+    private BorderPane fenetreActuel;//charge le FXML normalement
 
-    private Button connection;
-
-    private Button création;
-
-    private ImageView logo;
-
-    private Label titre_app;
-
-    private BorderPane fenetreAccueil;
-
-    private BorderPane fenetreClient;
-
-    private BorderPane fenetreVendeur;
-
-    private BorderPane fenetreAdmini;
 
     @Override
     public void init(){
-        this.panelCentral = new BorderPane();
-        this.fenetreAccueil = new BorderPane();
-        this.fenetreAdmini = new BorderPane();
-        this.fenetreVendeur = new BorderPane();
-        this.fenetreClient = new BorderPane();
+        
+    }
+    public void initLibrairie(Librairie lib){
+        this.modele = lib;
+    }
+    /**
+     * @return le modèle de la librairie
+     */
+    public Librairie getModele(){
+        return this.modele;
     }
 
     /**
      * @return  le graphe de scène de la vue à partir de methodes précédantes
      */
     private Scene laScene(){
-        BorderPane fenetre = new BorderPane();
+        /* BorderPane fenetre = new BorderPane();
         fenetre.setTop(this.bande());
-        fenetre.setCenter(this.panelCentral); 
-        return new Scene(fenetre, 800, 1000);
+        fenetre.setCenter(this.fenetreActuel); 
+        return new Scene(fenetre, 800, 1000); */
+        return new Scene(this.fenetreActuel, 800, 1000);
     }
 
 
@@ -75,7 +66,7 @@ public class LivreExpress extends Application{
     private HBox titre(){
         return new HBox();
     }
-
+    
     /**
     * @return la fenêtre d'accueil sur laquelle on peut choisir les paramètres de jeu
     */
@@ -112,19 +103,19 @@ public class LivreExpress extends Application{
     }
 
     public void modeAccueil(){
-        this.panelCentral.setCenter(this.fenetreAccueil());
+        //this.panelCentral.setCenter(this.fenetreAccueil());
     }
     
     public void modeClient(){
-        this.panelCentral.setCenter(this.fenetreClient());
+        //this.panelCentral.setCenter(this.fenetreClient());
     }
 
     public void modeAdmin(){
-        this.panelCentral.setCenter(this.fenetreAdmini());
+        //this.panelCentral.setCenter(this.fenetreAdmini());
     }
     
     public void modeVendeur(){
-        this.panelCentral.setCenter(this.fenetreVendeur());
+        //this.panelCentral.setCenter(this.fenetreVendeur());
     }
 
     public BorderPane bande(){
@@ -155,13 +146,23 @@ public class LivreExpress extends Application{
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        System.out.println(getClass().getResource("accueil.fxml"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/accueil.fxml"));
-        BorderPane root = loader.load();
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("fenetre acceuil FXML");
-        primaryStage.show();
+        try {
+            // loader
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ConnexionConsole.fxml"));
+            BorderPane root = loader.load();
+            this.fenetreActuel = root;
+
+            // Init controleur Vue
+            ControlleurConnexionBD controleur = loader.getController();
+            controleur.setVue(this);
+            Scene scene = new Scene(this.fenetreActuel);
+            primaryStage.setScene(scene);
+            primaryStage.setTitle("Connexion à la base de données");
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Erreur de chargement du fichier FXML !");
+        }
     }
 
     public static void main(String[] args) {

@@ -31,44 +31,81 @@
                   <Font size="26.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="642.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="642.0">
+               <children>
+                  <Label text="Nom de la BD">
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="txtBD" />
+               </children>
+               <VBox.margin>
+                  <Insets left="100.0" top="30.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="642.0">
                <children>
                   <Label text="Identifiant">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                      <HBox.margin>
-                        <Insets />
+                        <Insets left="70.0" />
                      </HBox.margin>
                      <padding>
-                        <Insets right="10.0" />
+                        <Insets right="30.0" />
                      </padding>
                   </Label>
-                  <TextField />
+                  <TextField fx:id="txtNomUtilisateur" />
                </children>
+               <VBox.margin>
+                  <Insets left="30.0" top="20.0" />
+               </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="642.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="642.0">
                <children>
                   <Label text="Mot de passe">
                      <padding>
                         <Insets right="10.0" />
                      </padding>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
                   </Label>
-                  <TextField />
+                  <TextField fx:id="txtMotDePasse">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></TextField>
                </children>
+               <VBox.margin>
+                  <Insets left="70.0" top="20.0" />
+               </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="642.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="642.0">
                <children>
                   <Label text="Host">
                      <padding>
                         <Insets right="15.0" />
                      </padding>
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
                   </Label>
-                  <TextField text="servinfo-maria" />
+                  <TextField fx:id="hostID" text="servinfo-maria" />
                </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
             </HBox>
-            <Button fx:id="btnConnexion" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleMonBoutonAction" text="Connexion" />
+            <Button fx:id="btnConnexion" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleConnexion" text="Connexion" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets left="15.0" top="30.0" />
+               </VBox.margin></Button>
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </VBox>
    </center>
    <left>
