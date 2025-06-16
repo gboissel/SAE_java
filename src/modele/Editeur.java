@@ -55,11 +55,11 @@ public class Editeur implements Comparable<Editeur>{
         if (obj == this){
             return true;
         }
-        if (!(obj instanceof Auteur)){
+        if (!(obj instanceof Editeur)){
             return false;
         }
         Editeur edit = (Editeur)obj;
-        return (edit.nom.equals(this.nom));
+        return (this.nom.equals(edit.nom));
     }
 
     @Override
