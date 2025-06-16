@@ -1,4 +1,5 @@
 package view;
+import controleur.ControleurAccueil;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -26,12 +27,15 @@ import java.io.File;
 import java.lang.reflect.Array;
 import java.nio.Buffer;
 import java.util.ArrayList;
+import modele.Librairie;
 
 public class LivreExpress extends Application{
     
     private BorderPane panelCentral;
 
     private HBox bande;
+
+    private Librairie librairie;
 
     private Button connection;
 
@@ -155,9 +159,12 @@ public class LivreExpress extends Application{
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        System.out.println(getClass().getResource("accueil.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/accueil.fxml"));
         BorderPane root = loader.load();
+
+        ControleurAccueil controleur = loader.getController();
+        controleur.setModele(this.librairie);
+        controleur.setVue(this);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("fenetre acceuil FXML");

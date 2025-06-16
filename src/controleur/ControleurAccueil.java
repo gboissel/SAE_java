@@ -3,10 +3,14 @@ package controleur;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import view.*;
 import javafx.event.ActionEvent;
+import modele.*;
 
 public class ControleurAccueil {
 
+    private LivreExpress vue;  
+    private Librairie modele;
     @FXML
     private Button boutonRechercher;
 
@@ -37,6 +41,13 @@ public class ControleurAccueil {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    public void setVue(LivreExpress vue) {
+        this.vue = vue;
+    }
+
+    public void setModele(Librairie librairie) {
+        this.modele = librairie;
     }
 }
 
