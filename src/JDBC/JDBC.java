@@ -80,7 +80,7 @@ public class JDBC {
      * @throws SQLException
      */
     private void ajouterAuteurs(Livre livre, List<Auteur> lesAuteurs) throws SQLException{
-        PreparedStatement ps = laConnexion.prepareStatement("SELECT isbn, nomauteur FROM ECRIRE NATURAL JOIN LIVRE WHERE isbn = ?");
+        PreparedStatement ps = laConnexion.prepareStatement("SELECT isbn, nomauteur FROM ECRIRE NATURAL JOIN AUTEUR WHERE isbn = ?");
         ps.setString(1, livre.getISBN());
         ResultSet rs=ps.executeQuery();
         String nomauteur;

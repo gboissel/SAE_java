@@ -1,7 +1,5 @@
 {
-    "java.project.sourcePaths": [
-        "src"
-    ],
+    "java.project.sourcePaths": [],
     "java.project.referencedLibraries": [
         "/usr/share/java/javafx-base.jar",
         "/usr/share/java/javafx-base-11.jar",
