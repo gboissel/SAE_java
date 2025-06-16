@@ -1,15 +1,18 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;// il faut tester mais normalement selon la doc ça permet de faire l'équivalent d'un input en python.
 import JDBC.JDBC;
+import tri.TriLivreParNom;
+import exception.RechercheSansResultatException;
 import exception.UtilisateurInexistantException;
-
-import java.io.File;
-import java.io.FileWriter;
+import java.io.FileWriter;// il faut tester mais normalement selon la doc ça permet de faire l'équivalent d'un input en python.
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Librairie {
     private Utilisateur curUser;
@@ -18,25 +21,49 @@ public class Librairie {
     private List<Livre> lesLivres;
 
 
-    public Librairie(Administrateur admin){
+    public Librairie(JDBC jdbc){
         this.users= new ArrayList<>();
-        this.users.add(admin);
         this.curUser = null;
+        this.initialisationBD(jdbc);
     }
 
 
     /**
      * renvoie la liste des utilisateur
-     * @return List<Utilisateur>
+     * @return La liste des utilisateurs
      */
     public List<Utilisateur> getUsers() {
         return this.users;
     }
 
+    /**
+     * renvoie la liste des livres
+     * @return La liste des livres
+     */
+    public List<Livre> getLivres() {
+        return this.lesLivres;
+    }
+
+    /**
+     * renvoie la liste des magasins
+     * @return La liste des magasins
+     */
+    public List<Magasin> getMagasins() {
+        return this.lesMagasins;
+    }
+
+    /**
+     * renvoie l'utilisateur courant
+     * @return L'utilisateur courant
+     */
     public Utilisateur getCurUser(){
         return this.curUser;
     }
     
+    /**
+     * change l'utilisateur courant
+     * @param usr Le nouvel utilisateur courant
+     */
     public void setCurUser(Utilisateur usr){
         this.curUser=usr;
     }
@@ -59,6 +86,25 @@ public class Librairie {
             jdbc.insererClient(client, mdp);
         }
         catch (SQLException e) {}
+    }
+
+    /**
+     * Méthode à utiliser dans le contructeur permettant d'initialiser une base de données
+     * @param jdbc
+     */
+    private void initialisationBD(JDBC jdbc) {
+        try {
+            this.lesLivres = jdbc.recupererLivres(jdbc.recupererAuteurs(), jdbc.recupererEditeurs(), jdbc.recupererCategories());
+            Collections.sort(this.lesLivres, new TriLivreParNom());
+            this.lesMagasins = jdbc.recupererMagasins(this.lesLivres);
+            this.users = jdbc.recupererUtilisateurs(lesMagasins, lesLivres);
+            Collections.sort(this.users);
+        }
+        catch (SQLException e) {
+            this.lesLivres = new ArrayList<>();
+            this.lesMagasins = new ArrayList<>();
+            this.users = new ArrayList<>();
+        }
     }
 
     /**
@@ -89,7 +135,7 @@ public class Librairie {
      * @param jdbc Une instance de la classe permettant d'intéragir avec la base de données
      */
 
-    private void createVendeur(String nom,String prenom,String mdp, Magasin magasin, JDBC jdbc){
+    public void createVendeur(String nom,String prenom,String mdp, Magasin magasin, JDBC jdbc){
         try{
             Vendeur vendeur = new Vendeur(nom, prenom, mdp, magasin);
             this.users.add(vendeur);
@@ -114,6 +160,43 @@ public class Librairie {
         for (Utilisateur usr:this.users){
             if (rech.equals(usr)) return usr;
         }throw new UtilisateurInexistantException();
+    }
+
+    /**
+     * Permet de récupérer la liste des clients portant le nom de famille donné en paramètre, indépendament de la casse majuscule/minuscule
+     * @param nom Le nom de famille du client
+     * @return Une liste de clients portant ce nom de familles, trié par ordre alphabétique du prénom
+     * @throws RechercheSansResultatException Arrive lorsque la recherche ne donne aucun résultat
+     */
+    public List<Client> rechercheClientParNoms(String nom) throws RechercheSansResultatException{
+        /*Recherche dichotomique pour trouver le premier client correspondant à notre recherche */
+        List<Client> res = new ArrayList<>();
+        nom = nom.toLowerCase();
+        boolean trouve = false;
+        int debut = 0;
+        int fin = this.users.size();
+        int ind = (debut+fin) / 2;
+        while (!trouve && fin>debut) {
+            if (this.users.get(ind).getRoles().equals("Client")) {
+                if (this.users.get(ind).getNom().toLowerCase().equals(nom)) {
+                    if (ind == 0 || !this.users.get(ind - 1).getNom().toLowerCase().equals(nom)) {trouve = true;}
+                    else {fin = ind;}
+                }
+                else if (this.users.get(ind).getNom().compareToIgnoreCase(nom) < 0) {fin = ind;}
+                else {debut = ind + 1;}
+            }
+            else {fin = ind;}
+            if (!trouve) {ind = (debut+fin)/2;}
+        }
+        if (trouve) {
+            /*On récupère maintenant tous les clients correspondant à la recherche */
+            while (this.users.get(ind).getRoles().equals("Client") && this.users.get(ind).getNom().toLowerCase().equals(nom)) {
+                res.add((Client) this.users.get(ind));
+                ++ind;
+            }
+            return res;
+        }
+        throw new RechercheSansResultatException();
     }
 
     /**
@@ -172,7 +255,7 @@ public class Librairie {
             System.out.println("Fichier texte créé avec succès !");
         } catch (IOException e) {
             System.out.println("Une erreur est survenue.");
-            e.printStackTrace();
+            e.printStackTrace();//ca c'est bon
         }
     }
 }

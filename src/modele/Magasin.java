@@ -174,7 +174,7 @@ public class Magasin implements Comparable<Magasin>{
      * Les résultats de la recherche sont des livres ayant un titre commençant par le texte donné en paramètre, en ignorant les majuscules/minuscules
      * @param texte La chaîne de caractère avec laquelle on recherche des livres correspondant
      * @return Une liste de livres, résultats de la recherche
-     * 
+     * @throws RechercheSansResultatException Arrive lorsque la recherche ne donne aucun résultat
      */
     public List<Livre> rechercherLivre(String texte) throws RechercheSansResultatException{
         /*Recherche dichotomique pour trouver le premier résultat de notre recherche*/
@@ -208,6 +208,11 @@ public class Magasin implements Comparable<Magasin>{
             throw new RechercheSansResultatException();
         }
         return resultat;
+    }
+
+    @Override
+    public String toString() {
+        return this.nom + " " +  this.ville;
     }
 
     @Override

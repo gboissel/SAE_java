@@ -26,13 +26,13 @@ public class JDBC {
         st=laConnexion.createStatement();
         ResultSet rs=st.executeQuery("SELECT * FROM LIVRE");
         Livre livre;
-        int isbn;
+        String isbn;
         String titre;
         double prix;
         Integer pages;
         Integer datePubli;
         while (rs.next()) {
-            isbn = Integer.parseInt(rs.getString("isbn"));
+            isbn = rs.getString("isbn");
             titre = rs.getString("titre");
             prix = rs.getDouble("prix");
             pages = rs.getInt("nbpages");
@@ -80,10 +80,8 @@ public class JDBC {
      * @throws SQLException
      */
     private void ajouterAuteurs(Livre livre, List<Auteur> lesAuteurs) throws SQLException{
-        PreparedStatement ps = laConnexion.prepareStatement("SELECT isbn, nomauteur FROM ECRIRE " +
-                                    "NATURAL JOIN LIVRE " +
-                                    "WHERE isbn = ?");
-        ps.setString(1, "" + livre.getISBN());
+        PreparedStatement ps = laConnexion.prepareStatement("SELECT isbn, nomauteur FROM ECRIRE NATURAL JOIN LIVRE WHERE isbn = ?");
+        ps.setString(1, livre.getISBN());
         ResultSet rs=ps.executeQuery();
         String nomauteur;
         while (rs.next()) {
@@ -118,10 +116,8 @@ public class JDBC {
      * @throws SQLException
      */
     private void ajouterEditeurs(Livre livre, List<Editeur> lesEditeurs) throws SQLException{
-        PreparedStatement ps = laConnexion.prepareStatement("SELECT isbn, nomedit FROM EDITER " +
-                                    "NATURAL JOIN EDITEUR " +
-                                    "WHERE isbn = ?");
-        ps.setString(1, "" + livre.getISBN());
+        PreparedStatement ps = laConnexion.prepareStatement("SELECT isbn, nomedit FROM EDITER NATURAL JOIN EDITEUR WHERE isbn = ?");
+        ps.setString(1, livre.getISBN());
         ResultSet rs=ps.executeQuery();
         String nomediteur;
         while (rs.next()) {
@@ -157,10 +153,8 @@ public class JDBC {
      */
     private void ajouterClassification(Livre livre, List<Categorie> lesCategories) throws SQLException{
 
-        PreparedStatement ps=laConnexion.prepareStatement("SELECT isbn, nomclass FROM THEMES " +
-                                    "NATURAL JOIN CLASSIFICATION " +
-                                    "WHERE isbn = ?");
-        ps.setString(1, "" + livre.getISBN());
+        PreparedStatement ps=laConnexion.prepareStatement("SELECT isbn, nomclass FROM THEMES NATURAL JOIN CLASSIFICATION WHERE isbn = ?");
+        ps.setString(1, livre.getISBN());
         ResultSet rs=ps.executeQuery();
         String nomcategorie;
         while (rs.next()) {
@@ -203,15 +197,13 @@ public class JDBC {
      */
     private void ajouterLivres(Magasin magasin, List<Livre> lesLivres) throws SQLException {
         st=laConnexion.createStatement();
-        PreparedStatement ps = laConnexion.prepareStatement("SELECT idmag, isbn, qte FROM POSSEDER "+
-                                    "NATURAL JOIN MAGASIN "+
-                                    "WHERE nommag=?");
+        PreparedStatement ps = laConnexion.prepareStatement("SELECT idmag, isbn, qte FROM POSSEDER NATURAL JOIN MAGASIN WHERE nommag=?");
         ps.setString(1, magasin.getNom());
         ResultSet rs=ps.executeQuery();
-        int isbn;
+        String isbn;
         int qte;
         while (rs.next()) {
-            isbn = Integer.parseInt(rs.getString("isbn"));
+            isbn = rs.getString("isbn");
             qte = rs.getInt("qte");
             try {magasin.setQteLivre(lesLivres.get(lesLivres.indexOf(new Livre(isbn, "", 0, null, null))), qte);}
             catch (PasAssezDeLivreException e) {}
@@ -250,8 +242,7 @@ public class JDBC {
 		}
         rs.close();
 		st=laConnexion.createStatement();
-		rs=st.executeQuery("SELECT nomven, prenomven, mdpven, nommag, villemag FROM VENDEUR "+
-							"NATURAL JOIN MAGASIN");
+		rs=st.executeQuery("SELECT nomven, prenomven, mdpven, nommag, villemag FROM VENDEUR NATURAL JOIN MAGASIN");
 		Vendeur vendeur;
 		Magasin magasin;
 		while (rs.next()) {
@@ -286,9 +277,7 @@ public class JDBC {
      */
     private void ajouterCommandes(Client client, List<Magasin> lesMagasins, List<Livre> lesLivres) throws SQLException{
         st=laConnexion.createStatement();
-        PreparedStatement ps=laConnexion.prepareStatement("SELECT numcom, date DATE_FORMAT(datecom, '%d/%m/%Y'), enligne, livraison, nommag, villemag " +
-                                                        "FROM CLIENT NATURAL JOIN COMMANDE NATURAL JOIN MAGASIN "+
-                                                        "WHERE nomcli=? AND prenomcli=? AND adressecli=? AND codepostal=? AND villecli=?");
+        PreparedStatement ps=laConnexion.prepareStatement("SELECT numcom, date DATE_FORMAT(datecom, '%d/%m/%Y'), enligne, livraison, nommag, villemag FROM CLIENT NATURAL JOIN COMMANDE NATURAL JOIN MAGASIN WHERE nomcli=? AND prenomcli=? AND adressecli=? AND codepostal=? AND villecli=?");
         ps.setString(1, client.getNom());
         ps.setString(2, client.getPrenom());
         ps.setString(3, client.getAdresse());
@@ -322,18 +311,17 @@ public class JDBC {
      * @throws SQLException
      */
     private void ajouterLignesCommandes(Commande commande, List<Livre> lesLivres) throws SQLException{
-        PreparedStatement ps=laConnexion.prepareStatement("SELECT numlig, qte, prixvente, isbn FROM DETAILCOMMANDE "+
-                                                            "WHERE numcom=? ORDER BY numlig");
+        PreparedStatement ps=laConnexion.prepareStatement("SELECT numlig, qte, prixvente, isbn FROM DETAILCOMMANDE WHERE numcom=? ORDER BY numlig");
         ps.setInt(1, commande.getNum());
         ResultSet rs=ps.executeQuery();
         int qte;
         double prix;
-        int isbn;
+        String isbn;
         Livre livre;
         while (rs.next()) {
             qte = rs.getInt("qte");
             prix = rs.getDouble("prixvente");
-            isbn = Integer.parseInt(rs.getString("isbn"));
+            isbn = rs.getString("isbn");
             livre = lesLivres.get(lesLivres.indexOf(new Livre(isbn, null, prix, null, null)));
             commande.addLigne(livre, qte, prix);
             livre.addCommande(commande);
@@ -438,14 +426,14 @@ public class JDBC {
 
         ps=laConnexion.prepareStatement("SELECT nb COUNT(idmag) FROM POSSEDER WHERE idmag=? AND isbn=?");
         ps.setInt(1, idMagasin);
-        ps.setString(2, String.valueOf(livre.getISBN()));
+        ps.setString(2, livre.getISBN());
         rs=ps.executeQuery();
         rs.next();
         if (rs.getInt("nb")==0) {
             rs.close();
             ps=laConnexion.prepareStatement("INSERT INTO POSSEDER VALUES (?, ?, ?)");
             ps.setInt(1, idMagasin);
-            ps.setString(2, String.valueOf(livre.getISBN()));
+            ps.setString(2, livre.getISBN());
             ps.setInt(3, magasin.getQteLivre(livre));
             ps.executeUpdate();
         }
@@ -454,7 +442,7 @@ public class JDBC {
             ps=laConnexion.prepareStatement("UPDATE POSSEDER SET qte=? WHERE idmag=? AND isbn=?");
             ps.setInt(1, magasin.getQteLivre(livre));
             ps.setInt(2, idMagasin);
-            ps.setString(3, String.valueOf(livre.getISBN()));
+            ps.setString(3, livre.getISBN());
         }
     }
 
@@ -465,8 +453,7 @@ public class JDBC {
      * @throws SQLException
      */
     public void insererVendeur(Vendeur vendeur, String mdp) throws SQLException{
-        PreparedStatement ps=laConnexion.prepareStatement("SELECT idmag FROM MAGASIN "+
-                                                        "WHERE nommag=? AND villemag=?");
+        PreparedStatement ps=laConnexion.prepareStatement("SELECT idmag FROM MAGASIN WHERE nommag=? AND villemag=?");
         ps.setString(1, vendeur.getMagasin().getNom());
         ps.setString(2, vendeur.getMagasin().getVille());
         ResultSet rs = ps.executeQuery();
@@ -506,6 +493,19 @@ public class JDBC {
         ps.setString(5, client.getCodePostal());
         ps.setString(6, client.getVille());
         ps.setString(7, mdp);
+        ps.executeUpdate();
+    }
+
+    public void insererMagasin(Magasin magasin) throws SQLException{
+        st=laConnexion.createStatement();
+        ResultSet rs=st.executeQuery("SELECT id MAX(idmag) FROM MAGASIN");
+        rs.next();
+        int id = rs.getInt("id");
+        rs.close();
+        PreparedStatement ps=laConnexion.prepareStatement("INSERT INTO MAGASIN VALUES (?, ?, ?)");
+        ps.setInt(1, id+1);
+        ps.setString(2, magasin.getNom());
+        ps.setString(3, magasin.getVille());
         ps.executeUpdate();
     }
 }
