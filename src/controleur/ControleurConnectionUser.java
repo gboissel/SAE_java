@@ -54,6 +54,12 @@ public class ControleurConnectionUser {
 
 
 
+    public void setModele(Librairie lib){
+        this.modele=lib;
+    }
+    public void setVue(LivreExpress vue){
+        this.vue = vue;
+    }
     @FXML
     private void validerChoix() {
     RadioButton selection = (RadioButton) groupeUtilisateur.getSelectedToggle();
@@ -98,7 +104,4 @@ public class ControleurConnectionUser {
         alert.showAndWait();
     }
 
-    public void setVue(LivreExpress vue){
-        this.vue = vue;
-    }
 }
