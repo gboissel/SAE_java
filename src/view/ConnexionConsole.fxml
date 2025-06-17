@@ -92,7 +92,7 @@
                         <Insets left="100.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="hostID" text="servinfo-maria" />
+                  <TextField fx:id="txtHost" text="servinfo-maria" />
                </children>
                <VBox.margin>
                   <Insets top="20.0" />

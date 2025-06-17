@@ -19,18 +19,17 @@ public class ControlleurConnexionBD {
     @FXML
     private TextField txtHost;
     @FXML
-    private TextField txtNomBase;
+    private TextField txtBD;
     @FXML
     public void handleConnexion() {
         try{
             ConnexionMySQL laConnexion = new ConnexionMySQL();
-            laConnexion.connecter(getHost(), getBDname(), getNomUtilisateur(), getMDP());  
-        this.vue.initLibrairie(new Librairie(new JDBC(laConnexion)));
+            laConnexion.connecter(getHost(), getBDname(), getNomUtilisateur(), getMDP()); 
+            System.out.println("Connexion réussie à la base de données"); 
+            this.vue.initLibrairie(new Librairie (new JDBC(laConnexion)));
         }catch (Exception e) {
             e.printStackTrace();
             // Afficher un message d'erreur à l'utilisateur
-            Text errorText = new Text("Erreur de connexion : " + e.getMessage());
-            errorText.setFill(javafx.scene.paint.Color.RED);
             // Ajouter le texte d'erreur à la vue, par exemple dans un Label ou une zone de texte
             // this.vue.getPanelCentral().getChildren().add(errorText); // Exemple d'ajout
         }
@@ -43,7 +42,7 @@ public class ControlleurConnexionBD {
         return txtNomUtilisateur.getText();
     }
     private String getBDname() {
-        return txtNomBase.getText();
+        return txtBD.getText();
     }
     private String getHost() {
         return txtHost.getText();
@@ -52,3 +51,8 @@ public class ControlleurConnexionBD {
         this.vue = vue;
     }
 }
+// /usr/share/java/mariadb-java-client.jar
+// Pour lancer le programme :
+//java -cp bin:/usr/share/java/mariadb-java-client.jar  --module-path /usr/share/openjfx/lib/ --add-modules javafx.controls,javafx.fxml view.LivreExpress
+// Pour compiler le programme :
+/* javac -d bin --module-path /usr/share/openjfx/lib/ --add-modules javafx.controls,javafx.fxml $(find src/exception src/tri src/modele src/JDBC  src/view src/controleur -name "*.java" ! -name "affichageConsole.java") */
