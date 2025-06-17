@@ -34,7 +34,7 @@ public class VuePagePourClient extends Application{
 
 @Override
     public void start(Stage stage) throws Exception{
-	Pane root = FXMLLoader.load(getClass().getResource("VuePageClientMagasin.fxml"));
+	Pane root = FXMLLoader.load(getClass().getResource("/view/VuePageClientMagasin.fxml"));
     Scene scene = new Scene(root);
     stage.setScene(scene);
     stage.setTitle("Livre Express eshop");

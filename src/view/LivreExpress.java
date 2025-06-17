@@ -26,8 +26,8 @@ import java.io.File;
 import java.lang.reflect.Array;
 import java.nio.Buffer;
 import java.util.ArrayList;
-import modele.Librairie;
-import controleur.ControlleurConnexionBD;
+import modele.*;
+import controleur.*;
 public class LivreExpress extends Application{
 
     private Librairie modele;
@@ -147,12 +147,12 @@ public void changerVue(String fxmlChemin) {
     public void start(Stage primaryStage) throws Exception {
         try {
             // loader
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ConnexionConsole.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/VuePageClientMagasin.fxml"));
             BorderPane root = loader.load();
             this.fenetreActuel = root;
 
             // Init controleur Vue
-            ControlleurConnexionBD controleur = loader.getController();
+            ControleurClientMagasin controleur = loader.getController();
             controleur.setVue(this);
             Scene scene = new Scene(this.fenetreActuel);
             primaryStage.setScene(scene);

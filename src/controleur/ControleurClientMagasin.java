@@ -13,21 +13,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import java.awt.event.ActionEvent; 
 import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import modele.Librairie;
+import modele.*;
+import view.*;
 import javafx.scene.image.ImageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 
 public class ControleurClientMagasin {
-    private ControleurClientMagasin ccm;
-    private Librairie lib;
+    private Librairie modele;
+    private LivreExpress vue;
 
     @FXML
     private Button btnDeco;
@@ -107,6 +107,10 @@ public class ControleurClientMagasin {
     @FXML
     public void controleurBoutMag9(ActionEvent e){
         System.out.println("vous etes sur le magasin1");
+    }
+
+    public void setVue(LivreExpress vue){
+        this.vue=vue;
     }
     
 
