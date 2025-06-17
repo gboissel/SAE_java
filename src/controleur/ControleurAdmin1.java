@@ -71,7 +71,17 @@ public class ControleurAdmin1 {
 
     @FXML
     private void gererEditerFact(ActionEvent event) {
-        afficherPopupFacture();
+        String texte1 = this.textmois.getText();
+        String texte2 = this.textannee.getText();
+        try {
+            int valeur = Integer.parseInt(texte1);
+            int valeur2 = Integer.parseInt(texte2);
+            //this.modele.editerFacture(valeur, valeur2);
+            //afficherPopupFacture(this.modele.editerFacture(valeur, valeur2));     //mettre un return sur editerFacture  ou utiliser le txt
+        } catch (NumberFormatException e) {
+            System.out.println("Le texte n'est pas un nombre valide !");
+            // Tu peux afficher une alerte ici pour prévenir l'utilisateur
+        }
     }
 
     private void afficherPopup(String titre, String message) {
@@ -90,11 +100,11 @@ public class ControleurAdmin1 {
         return alert;
     }
 
-    private void afficherPopupFacture() {
+    private void afficherPopupFacture(String texte) {
         // Créer la zone de texte avec beaucoup de contenu
         TextArea textArea = new TextArea();
         textArea.setWrapText(true);
-        textArea.setText("Ceci est une longue zone de texte...\n".repeat(100)); // Remplissage
+        textArea.setText(texte);
 
         // Mettre la TextArea dans un ScrollPane (optionnel ici car TextArea scrolle déjà)
         ScrollPane scrollPane = new ScrollPane(textArea);
