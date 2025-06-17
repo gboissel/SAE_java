@@ -18,77 +18,43 @@ import view.*;
 import javafx.event.ActionEvent;
 import modele.*;
 
-public class ControleurConnectionUser {
+public class ControleurCreationMag {
     private LivreExpress vue;  
     private Librairie modele;
-    private String role_user;
+
     @FXML
     private TextField nom;
 
     @FXML
-    private TextField prenom;
-
-    @FXML
-    private TextField mdp;
+    private TextField ville;
 
     @FXML
     private Button boutonAcceuil;
 
-    @FXML 
-    private RadioButton option1;
-
-    @FXML 
-    private RadioButton option2;
-
-    @FXML 
-    private RadioButton option3;
-
-    @FXML
-    private ToggleGroup groupeUtilisateur;
-
     @FXML
     private Button boutonConfirmation;
-
-    @FXML
-    private Button boutonConnexion;
-
-
-
-    @FXML
-    private void validerChoix() {
-    RadioButton selection = (RadioButton) groupeUtilisateur.getSelectedToggle();
-    if (selection != null) {
-        System.out.println("Choix : " + selection.getText());
-        this.role_user=selection.getText()+"";
-    }
-    }
 
     public String getNom(){
         return this.nom.getText();
     }
 
-    public String getPrenom(){
-        return this.prenom.getText();
+    public String getVille(){
+        return this.ville.getText();
     }
 
-    public String getMdp(){
-        return this.mdp.getText();
-    }
-
-    public String getRole(){
-        return this.role_user;
-    }
     @FXML
     private void gererAcceuil(ActionEvent event) {
         afficherPopup("menu", "Fonction de retour au menu !");
     }
 
-    @FXML
-    private void gererConnexion(ActionEvent event) {
-        afficherPopup("connection", "Fonction de connexion !");
-        //this.connetion
+    public void setVue(LivreExpress vue){
+        this.vue = vue;
     }
 
+    @FXML
+    private void gererCreation(ActionEvent event) {
+        afficherPopup("connection", "Fonction de connexion !");
+    }
 
     private void afficherPopup(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -96,9 +62,5 @@ public class ControleurConnectionUser {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-
-    public void setVue(LivreExpress vue){
-        this.vue = vue;
     }
 }
