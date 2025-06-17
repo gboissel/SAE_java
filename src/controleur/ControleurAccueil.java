@@ -12,8 +12,6 @@ public class ControleurAccueil{
     private Librairie modele;
     private LivreExpress vue;
 
-    private LivreExpress vue;  
-    private Librairie modele;
     @FXML
     private Button boutonRechercher;
 
