@@ -36,7 +36,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <Label alignment="CENTER" prefHeight="48.0" prefWidth="178.0" text="Client 1">
+            <Label alignment="CENTER" prefHeight="48.0" prefWidth="178.0" text="Vendeur 1">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
