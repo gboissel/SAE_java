@@ -1,20 +1,20 @@
 {
     "java.project.sourcePaths": [],
     "java.project.referencedLibraries": [
-        "/usr/share/java/javafx-base.jar",
-        "/usr/share/java/javafx-base-11.jar",
-        "/usr/share/java/javafx-controls.jar",
-        "/usr/share/java/javafx-controls-11.jar",
-        "/usr/share/java/javafx-fxml.jar",
-        "/usr/share/java/javafx-fxml-11.jar",
-        "/usr/share/java/javafx-graphics.jar",
-        "/usr/share/java/javafx-graphics-11.jar",
-        "/usr/share/java/javafx-media.jar",
-        "/usr/share/java/javafx-media-11.jar",
-        "/usr/share/java/javafx-swing.jar",
-        "/usr/share/java/javafx-swing-11.jar",
-        "/usr/share/java/javafx-web.jar",
-        "/usr/share/java/javafx-web-11.jar"
+        "c:\\Users\\etien\\OneDrive\\Bureau\\BUT info\\Resources\\javafx-base.jar",
+        "c:\\Users\\etien\\OneDrive\\Bureau\\BUT info\\Resources\\javafx-base-11.jar",
+        "c:\\Users\\etien\\OneDrive\\Bureau\\BUT info\\Resources\\javafx-controls.jar",
+        "c:\\Users\\etien\\OneDrive\\Bureau\\BUT info\\Resources\\javafx-controls-11.jar",
+        "c:\\Users\\etien\\OneDrive\\Bureau\\BUT info\\Resources\\javafx-fxml.jar",
+        "c:\\Users\\etien\\OneDrive\\Bureau\\BUT info\\Resources\\javafx-fxml-11.jar",
+        "c:\\Users\\etien\\OneDrive\\Bureau\\BUT info\\Resources\\javafx-graphics.jar",
+        "c:\\Users\\etien\\OneDrive\\Bureau\\BUT info\\Resources\\javafx-graphics-11.jar",
+        "c:\\Users\\etien\\OneDrive\\Bureau\\BUT info\\Resources\\javafx-media.jar",
+        "c:\\Users\\etien\\OneDrive\\Bureau\\BUT info\\Resources\\javafx-media-11.jar",
+        "c:\\Users\\etien\\OneDrive\\Bureau\\BUT info\\Resources\\javafx-swing.jar",
+        "c:\\Users\\etien\\OneDrive\\Bureau\\BUT info\\Resources\\javafx-swing-11.jar",
+        "c:\\Users\\etien\\OneDrive\\Bureau\\BUT info\\Resources\\javafx-web.jar",
+        "c:\\Users\\etien\\OneDrive\\Bureau\\BUT info\\Resources\\javafx-web-11.jar"
     ],
     "java.project.outputPath": "bin"
 }
