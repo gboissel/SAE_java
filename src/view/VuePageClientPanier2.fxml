@@ -92,12 +92,12 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="96.0">
+                  <Button disable="true" mnemonicParsing="false" prefHeight="52.0" prefWidth="96.0">
                      <font>
                         <Font size="19.0" />
                      </font>
                      <graphic>
-                        <ImageView fitHeight="58.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView disable="true" fitHeight="58.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/fleche%20avant.png" />
                            </image>
