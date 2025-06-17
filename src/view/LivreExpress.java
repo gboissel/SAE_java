@@ -1,6 +1,5 @@
 package view;
-import controleur.ControleurAccueil;
-import controleur.ControleurAdmin1;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -19,8 +18,6 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.control.ButtonBar.ButtonData ;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.fxml.*;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.Arrays;
@@ -163,7 +160,13 @@ public class LivreExpress extends Application{
     }
 
 
-
+    public void popUpChampsIncomplet(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Attention");
+        alert.setHeaderText("Connexion impossible ");
+        alert.setContentText("Au moins un des champs est vide");
+        alert.showAndWait();
+    }
     public Alert popUpAide(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
