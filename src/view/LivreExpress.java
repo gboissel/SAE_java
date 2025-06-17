@@ -1,4 +1,6 @@
 package view;
+import controleur.ControleurAccueil;
+import controleur.ControleurAdmin1;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -157,12 +159,12 @@ public class LivreExpress extends Application{
     public void start(Stage primaryStage) throws Exception {
         try {
             // loader
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ConnexionConsole.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/connexionUser.fxml"));
             BorderPane root = loader.load();
             this.fenetreActuel = root;
 
             // Init controleur Vue
-            ControlleurConnexionBD controleur = loader.getController();
+            ControleurConnectionUser controleur = loader.getController();
             controleur.setVue(this);
             Scene scene = new Scene(this.fenetreActuel);
             primaryStage.setScene(scene);
