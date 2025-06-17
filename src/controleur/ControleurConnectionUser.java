@@ -58,7 +58,7 @@ public class ControleurConnectionUser {
     private void validerChoix() {
     RadioButton selection = (RadioButton) groupeUtilisateur.getSelectedToggle();
     if (selection != null) {
-        System.out.println("Choix : " + selection.getText());
+        //System.out.println("Choix : " + selection.getText());
         this.role_user=selection.getText()+"";
     }
     }

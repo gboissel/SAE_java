@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurCreationMag">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurCreationMag">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="111.0" prefWidth="800.0" style="-fx-background-color: #b4b4b4;" BorderPane.alignment="CENTER">
          <children>
@@ -69,13 +69,13 @@
                         <Insets right="30.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="prenom" promptText="ex: Paris" />
+                  <TextField fx:id="ville" promptText="ex: Paris" />
                </children>
                <VBox.margin>
                   <Insets left="30.0" top="20.0" />
                </VBox.margin>
             </HBox>
-            <Button fx:id="boutonConnexion" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#gererConnexion" prefHeight="30.0" prefWidth="173.0" style="-fx-background-color: #5ce1e6;" text="Ajouter" textAlignment="CENTER">
+            <Button fx:id="boutonConnexion" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#gererCreation" prefHeight="30.0" prefWidth="173.0" style="-fx-background-color: #5ce1e6;" text="Ajouter" textAlignment="CENTER">
                <VBox.margin>
                   <Insets left="15.0" top="30.0" />
                </VBox.margin></Button>

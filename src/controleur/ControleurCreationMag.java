@@ -51,9 +51,22 @@ public class ControleurCreationMag {
         this.vue = vue;
     }
 
+    public void setModele(Librairie modele){
+        this.modele = modele;
+    }
+
     @FXML
     private void gererCreation(ActionEvent event) {
-        afficherPopup("connection", "Fonction de connexion !");
+        //a ajouter: créé un magasin a partir d'un 
+        if(nom.getText().isEmpty()||ville.getText().isEmpty()){
+            afficherPopup("erreur", "Au moin l'un des 2 textField est vide");
+        }
+        else{
+            System.out.println("nom : " + nom.getText());
+            System.out.println("ville : " + ville.getText());
+            afficherPopup("connection", "Fonction de connexion !");
+        }
+        
     }
 
     private void afficherPopup(String titre, String message) {

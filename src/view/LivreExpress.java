@@ -1,6 +1,4 @@
 package view;
-import controleur.ControleurAccueil;
-import controleur.ControleurAdmin1;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -149,13 +147,14 @@ public void changerVue(String fxmlChemin) {
     public void start(Stage primaryStage) throws Exception {
         try {
             // loader
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/connexionUser.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ajouterMag.fxml"));
             BorderPane root = loader.load();
             this.fenetreActuel = root;
 
             // Init controleur Vue
-            ControleurConnectionUser controleur = loader.getController();
+            ControleurCreationMag controleur = loader.getController();
             controleur.setVue(this);
+            controleur.setModele(this.modele);
             Scene scene = new Scene(this.fenetreActuel);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Connexion à la base de données");
