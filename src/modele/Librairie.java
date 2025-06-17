@@ -19,14 +19,19 @@ public class Librairie {
     private List<Utilisateur> users;
     private List<Magasin> lesMagasins;
     private List<Livre> lesLivres;
+    private boolean chargee;
 
 
     public Librairie(JDBC jdbc){
+        this.chargee = false;
         this.users= new ArrayList<>();
         this.curUser = null;
         this.initialisationBD(jdbc);
     }
 
+    public boolean estChargee() {
+        return this.chargee;
+    }
 
     /**
      * renvoie la liste des utilisateur
@@ -85,7 +90,7 @@ public class Librairie {
             this.users.add(client);
             jdbc.insererClient(client, mdp);
         }
-        catch (SQLException e) {}
+        catch (SQLException e) {System.out.println("Erreur lors de la création du client");}
     }
 
     /**
@@ -96,9 +101,13 @@ public class Librairie {
         try {
             this.lesLivres = jdbc.recupererLivres(jdbc.recupererAuteurs(), jdbc.recupererEditeurs(), jdbc.recupererCategories());
             Collections.sort(this.lesLivres, new TriLivreParNom());
+            System.out.println("Chargement des livres réussi. " + this.lesLivres.size() + " livres récupérés.");
             this.lesMagasins = jdbc.recupererMagasins(this.lesLivres);
+            System.out.println("Chargement des magasins réussi. " + this.lesMagasins.size() + " magasins récupérés.");
             this.users = jdbc.recupererUtilisateurs(lesMagasins, lesLivres);
             Collections.sort(this.users);
+            System.out.println("Chargement des utilisateurs réussi. " + this.users.size() + " utilisateurs récupérés.");
+            this.chargee = true;
         }
         catch (SQLException e) {
             this.lesLivres = new ArrayList<>();
@@ -257,5 +266,9 @@ public class Librairie {
             System.out.println("Une erreur est survenue.");
             e.printStackTrace();//ca c'est bon
         }
+    }
+
+    public static void main(String[] args) {
+        Librairie lib = new Librairie(null);
     }
 }

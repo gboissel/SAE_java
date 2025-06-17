@@ -64,7 +64,7 @@ public class DetailCommande {
         if (obj == this){
             return true;
         }
-        if (!(obj instanceof Auteur)){
+        if (!(obj instanceof DetailCommande)){
             return false;
         }
         DetailCommande edit = (DetailCommande)obj;
