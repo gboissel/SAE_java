@@ -25,7 +25,7 @@
                   <Insets left="10.0" />
                </HBox.margin>
             </ImageView>
-            <Label alignment="CENTER" prefHeight="64.0" prefWidth="369.0" text="Livre Express eshop" textAlignment="CENTER" textOverrun="CLIP">
+            <Label alignment="CENTER" prefHeight="64.0" prefWidth="338.0" text="Livre Express eshop" textAlignment="CENTER" textOverrun="CLIP">
                <font>
                   <Font size="35.0" />
                </font>
@@ -33,7 +33,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <Label text="Client 1" textFill="#171717">
+            <Label prefHeight="35.0" prefWidth="136.0" text="Vendeur 1" textFill="#171717">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -41,7 +41,10 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="104.0" text="Deconnexion" />
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="106.0" text="Deconnexion">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin></Button>
          </children>
          <BorderPane.margin>
             <Insets />
@@ -76,7 +79,7 @@
                      <graphic>
                         <ImageView fitHeight="58.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../img/fleche%20arriere.png" />
+                              <Image url="@../../img/fleche%20arrière.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -88,7 +91,7 @@
                      <graphic>
                         <ImageView fitHeight="58.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../img/fleche%20avant.png" />
+                              <Image url="@../../img/59385-removebg-preview.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -174,16 +177,16 @@
                <graphic>
                   <ImageView fitHeight="62.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../img/poubelle.png" />
+                        <Image url="@../../img/poubelle-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="82.0" prefWidth="134.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="71.0" prefWidth="48.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
                <graphic>
-                  <ImageView fitHeight="62.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="62.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../img/poubelle.png" />
+                        <Image url="@../../img/poubelle-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -192,7 +195,7 @@
                <graphic>
                   <ImageView fitHeight="63.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../img/poubelle.png" />
+                        <Image url="@../../img/poubelle-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -201,7 +204,7 @@
                <graphic>
                   <ImageView fitHeight="51.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../img/poubelle.png" />
+                        <Image url="@../../img/poubelle-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -211,9 +214,9 @@
             </Button>
             <Button alignment="CENTER" mnemonicParsing="false" prefHeight="70.0" prefWidth="112.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
                <graphic>
-                  <ImageView fitHeight="62.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="62.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../img/poubelle2.png" />
+                        <Image url="@../../img/poubelle2-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -221,11 +224,11 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="70.0" prefWidth="112.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="69.0" prefWidth="76.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
                <graphic>
-                  <ImageView fitHeight="62.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="48.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../img/poubelle2.png" />
+                        <Image url="@../../img/poubelle2-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -237,7 +240,7 @@
                <graphic>
                   <ImageView fitHeight="62.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../img/poubelle2.png" />
+                        <Image url="@../../img/poubelle2-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -249,7 +252,7 @@
                <graphic>
                   <ImageView fitHeight="62.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../img/poubelle2.png" />
+                        <Image url="@../../img/poubelle2-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -261,7 +264,7 @@
                <graphic>
                   <ImageView fitHeight="63.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../img/image_ajouter.png" />
+                        <Image url="@../../img/image_ajouter-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -270,7 +273,7 @@
                <graphic>
                   <ImageView fitHeight="63.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../img/image_ajouter.png" />
+                        <Image url="@../../img/image_ajouter-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -279,7 +282,7 @@
                <graphic>
                   <ImageView fitHeight="63.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../img/image_ajouter.png" />
+                        <Image url="@../../img/image_ajouter-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -288,7 +291,7 @@
                <graphic>
                   <ImageView fitHeight="63.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../img/image_ajouter.png" />
+                        <Image url="@../../img/image_ajouter-removebg-preview.png" />
                      </image>
                   </ImageView>
                </graphic>
