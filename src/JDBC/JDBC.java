@@ -80,7 +80,7 @@ public class JDBC {
      * @throws SQLException
      */
     private void ajouterAuteurs(Livre livre, List<Auteur> lesAuteurs) throws SQLException{
-        PreparedStatement ps = laConnexion.prepareStatement("SELECT isbn, nomauteur FROM ECRIRE NATURAL JOIN LIVRE WHERE isbn = ?");
+        PreparedStatement ps = laConnexion.prepareStatement("SELECT isbn, nomauteur FROM ECRIRE NATURAL JOIN AUTEUR WHERE isbn = ?");
         ps.setString(1, livre.getISBN());
         ResultSet rs=ps.executeQuery();
         String nomauteur;
@@ -221,7 +221,7 @@ public class JDBC {
 	public List<Utilisateur> recupererUtilisateurs(List<Magasin> lesMagasins, List<Livre> lesLivres) throws SQLException {
 		List<Utilisateur> lesUtilisateurs = new ArrayList<>();
 		st=laConnexion.createStatement();
-		ResultSet rs=st.executeQuery("SELECT nomcli, prenomcli, adressecli, codepostal, villecli, mdpcli FROM ADMINISTRATEUR");
+		ResultSet rs=st.executeQuery("SELECT nomcli, prenomcli, adressecli, codepostal, villecli, mdpcli FROM CLIENT");
 		String nom;
 		String prenom;
 		String adresse;
@@ -277,7 +277,7 @@ public class JDBC {
      */
     private void ajouterCommandes(Client client, List<Magasin> lesMagasins, List<Livre> lesLivres) throws SQLException{
         st=laConnexion.createStatement();
-        PreparedStatement ps=laConnexion.prepareStatement("SELECT numcom, date DATE_FORMAT(datecom, '%d/%m/%Y'), enligne, livraison, nommag, villemag FROM CLIENT NATURAL JOIN COMMANDE NATURAL JOIN MAGASIN WHERE nomcli=? AND prenomcli=? AND adressecli=? AND codepostal=? AND villecli=?");
+        PreparedStatement ps=laConnexion.prepareStatement("SELECT numcom, DATE_FORMAT(datecom, '%d/%m/%Y') date, enligne, livraison, nommag, villemag FROM CLIENT NATURAL JOIN COMMANDE NATURAL JOIN MAGASIN WHERE nomcli=? AND prenomcli=? AND adressecli=? AND codepostal=? AND villecli=?");
         ps.setString(1, client.getNom());
         ps.setString(2, client.getPrenom());
         ps.setString(3, client.getAdresse());
@@ -383,7 +383,7 @@ public class JDBC {
         int idClient = rs.getInt("idcli");
         rs.close();
 
-        ps=laConnexion.prepareStatement("INSERT INTO COMMANDE VALUES(?, str_to_date(?, '%d/%m/%Y'), ?, ?, ?, ?)");
+        ps=laConnexion.prepareStatement("INSERT INTO COMMANDE (numcom, datecom, enligne, livraison, idcli, idmag) VALUES(?, str_to_date(?, '%d/%m/%Y'), ?, ?, ?, ?)");
         ps.setInt(1, commande.getNum());
         ps.setString(2, commande.getDate());
         String enLigne;
@@ -399,7 +399,7 @@ public class JDBC {
         ps.executeUpdate();
 
         for (int i=0; i<commande.getDetailsCommande().size(); ++i) {
-            ps=laConnexion.prepareStatement("INSERT INTO DETAILCOMMANDE VALUES(?, ?, ?, ?, ?)");
+            ps=laConnexion.prepareStatement("INSERT INTO DETAILCOMMANDE (numcom, numlig, isbn, qte, prixvente) VALUES(?, ?, ?, ?, ?)");
             ps.setInt(1, commande.getNum());
             ps.setInt(2, i+1);
             ps.setInt(3, commande.getDetailsCommande().get(i).getQte());
@@ -424,14 +424,14 @@ public class JDBC {
         int idMagasin = rs.getInt("idmag");
         rs.close();
 
-        ps=laConnexion.prepareStatement("SELECT nb COUNT(idmag) FROM POSSEDER WHERE idmag=? AND isbn=?");
+        ps=laConnexion.prepareStatement("SELECT COUNT(idmag) nb FROM POSSEDER WHERE idmag=? AND isbn=?");
         ps.setInt(1, idMagasin);
         ps.setString(2, livre.getISBN());
         rs=ps.executeQuery();
         rs.next();
         if (rs.getInt("nb")==0) {
             rs.close();
-            ps=laConnexion.prepareStatement("INSERT INTO POSSEDER VALUES (?, ?, ?)");
+            ps=laConnexion.prepareStatement("INSERT INTO POSSEDER (idmag, isbn, qte) VALUES (?, ?, ?)");
             ps.setInt(1, idMagasin);
             ps.setString(2, livre.getISBN());
             ps.setInt(3, magasin.getQteLivre(livre));
@@ -461,11 +461,11 @@ public class JDBC {
         int idMag = rs.getInt("idmag");
         rs.close();
         st=laConnexion.createStatement();
-        rs=st.executeQuery("SELECT id MAX(idven) FROM VENDEUR");
+        rs=st.executeQuery("SELECT MAX(idven) id FROM VENDEUR");
         rs.next();
         int idCli = rs.getInt("id");
         rs.close();
-        ps=laConnexion.prepareStatement("INSERT INTO VENDEUR VALUES (?, ?, ?, ?, ?)");
+        ps=laConnexion.prepareStatement("INSERT INTO VENDEUR (idven, nomven, prenomven, mdpven, idmag) VALUES (?, ?, ?, ?, ?)");
         ps.setInt(1, idCli+1);
         ps.setString(2, vendeur.getNom());
         ps.setString(3, vendeur.getPrenom());
@@ -481,11 +481,11 @@ public class JDBC {
      */
     public void insererClient(Client client, String mdp) throws SQLException{
         st=laConnexion.createStatement();
-        ResultSet rs=st.executeQuery("SELECT id MAX(idcli) FROM CLIENT");
+        ResultSet rs=st.executeQuery("SELECT MAX(idcli) id FROM CLIENT");
         rs.next();
         int id = rs.getInt("id");
         rs.close();
-        PreparedStatement ps=laConnexion.prepareStatement("INSERT INTO CLIENT VALUES (?, ?, ?, ?, ?, ?, ?)");
+        PreparedStatement ps=laConnexion.prepareStatement("INSERT INTO CLIENT (idcli, nomcli, prenomcli, adressecli, codepostal, villecli, mdpcli) VALUES (?, ?, ?, ?, ?, ?, ?)");
         ps.setInt(1, id+1);
         ps.setString(2, client.getNom());
         ps.setString(3, client.getPrenom());
@@ -498,11 +498,11 @@ public class JDBC {
 
     public void insererMagasin(Magasin magasin) throws SQLException{
         st=laConnexion.createStatement();
-        ResultSet rs=st.executeQuery("SELECT id MAX(idmag) FROM MAGASIN");
+        ResultSet rs=st.executeQuery("SELECT MAX(idmag) id FROM MAGASIN");
         rs.next();
         int id = rs.getInt("id");
         rs.close();
-        PreparedStatement ps=laConnexion.prepareStatement("INSERT INTO MAGASIN VALUES (?, ?, ?)");
+        PreparedStatement ps=laConnexion.prepareStatement("INSERT INTO MAGASIN (idmag, nommag, villemag) VALUES (?, ?, ?)");
         ps.setInt(1, id+1);
         ps.setString(2, magasin.getNom());
         ps.setString(3, magasin.getVille());
