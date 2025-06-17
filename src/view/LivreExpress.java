@@ -27,7 +27,8 @@ import java.lang.reflect.Array;
 import java.nio.Buffer;
 import java.util.ArrayList;
 import modele.Librairie;
-import controleur.ControlleurConnexionBD;
+import controleur.*;
+
 public class LivreExpress extends Application{
 
     private Librairie modele;
@@ -60,82 +61,91 @@ public class LivreExpress extends Application{
     }
 
 
-    /**
-     * @return le panel contenant le titre du jeu
-     */
-    private HBox titre(){
-        return new HBox();
-    }
     
     /**
     * @return la fenêtre d'accueil sur laquelle on peut choisir les paramètres de jeu
     */
-    private BorderPane fenetreAccueil(){
-        return new BorderPane();
+    public void fenetreAccueil(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/accueil.fxml"));
+            BorderPane newRoot = loader.load();
+            Scene newScene = new Scene(newRoot);
+            ControleurAccueil controleur = loader.getController();
+            Stage stage = (Stage) this.fenetreActuel.getScene().getWindow();
+            stage.setScene(newScene);
+
+            this.fenetreActuel = newRoot;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Erreur de chargement du fichier FXML : Acceuil");
+        }
+    }
+
+
+    /**
+    * change la fenetre actuelle pour celle du client la fenêtre du client.
+    */
+    private void fenetreClient(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/accueil.fxml"));
+            BorderPane newRoot = loader.load();
+            Scene newScene = new Scene(newRoot);
+            ControleurAccueil controleur = loader.getController();
+            Stage stage = (Stage) this.fenetreActuel.getScene().getWindow();
+            stage.setScene(newScene);
+
+            this.fenetreActuel = newRoot;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Erreur de chargement du fichier FXML : Client");
+        }
     }
 
     /**
-    * @return la fenêtre d'accueil sur laquelle on peut choisir les paramètres de jeu
+    * Change la fenetre actuelle pour celle du vendeur.
     */
-    private BorderPane fenetreClient(){
-        return new BorderPane();
+    private void fenetreVendeur(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/accueil.fxml"));
+            BorderPane newRoot = loader.load();
+            Scene newScene = new Scene(newRoot);
+            ControleurAccueil controleur = loader.getController();
+            Stage stage = (Stage) this.fenetreActuel.getScene().getWindow();
+            stage.setScene(newScene);
+
+            this.fenetreActuel = newRoot;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Erreur de chargement du fichier FXML : Vendeur");
+        }
     }
 
     /**
-    * @return la fenêtre d'accueil sur laquelle on peut choisir les paramètres de jeu
+    * La fenêtre de l'administrateur
     */
-    private BorderPane fenetreVendeur(){
-        return new BorderPane();
+    private void fenetreAdmin(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/accueil.fxml"));
+            BorderPane newRoot = loader.load();
+            Scene newScene = new Scene(newRoot);
+            ControleurAccueil controleur = loader.getController();
+            Stage stage = (Stage) this.fenetreActuel.getScene().getWindow();
+            stage.setScene(newScene);
+
+            this.fenetreActuel = newRoot;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Erreur de chargement du fichier FXML : Administrateur");
+        }
     }
 
-    /**
-    * @return la fenêtre d'accueil sur laquelle on peut choisir les paramètres de jeu
-    */
-    private BorderPane fenetreAdmini(){
-        return new BorderPane();
-    }
 
-    /**
-    * @return la fenêtre d'accueil sur laquelle on peut choisir les paramètres de jeu
-    */
-public void changerVue(String fxmlChemin) {
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlChemin));
-        BorderPane newRoot = loader.load();
-        Scene newScene = new Scene(newRoot);
 
-        // Récupère la stage depuis la scène courante existante
-        Stage stage = (Stage) this.fenetreActuel.getScene().getWindow();
-
-        // Change la scène
-        stage.setScene(newScene);
-
-        // Met à jour fenetreActuel
-        this.fenetreActuel = newRoot;
-    } catch (Exception e) {
-        e.printStackTrace();
-        System.out.println("Erreur de chargement du fichier FXML : " + fxmlChemin);
-    }
-}
-    public BorderPane bande(){
-        return new BorderPane();
-    }
-    /* 
-    
-    @Override
-    public void start(Stage stage) {
-        stage.setTitle("Livre Express App - vente de livre");
-        stage.setScene(this.laScene());
-        this.modeAccueil();
-        stage.show();
-    } 
-    */
-
-    public Alert popUpReglesDuJeu(){
+    public Alert popUpAide(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
-        alert.setHeaderText("Regle du jeu");
-        alert.setContentText("Il faut completer le mot pour gagné");
+        alert.setHeaderText("Support ");
+        alert.setContentText("Si vous avez besoin d'aide consulte le manuel d'utilisation");
         return alert;
     }
 

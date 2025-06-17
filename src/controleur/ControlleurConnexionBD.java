@@ -3,6 +3,7 @@ import modele.*;
 import view.LivreExpress;
 import JDBC.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -22,6 +23,7 @@ public class ControlleurConnexionBD {
     private TextField txtBD;
     @FXML
     public void handleConnexion() {
+        if (!this.getHost().isEmpty()| this.getBDname().isEmpty() | this.getNomUtilisateur().isEmpty())
         try{
             ConnexionMySQL laConnexion = new ConnexionMySQL();
             laConnexion.connecter(getHost(), getBDname(), getNomUtilisateur(), getMDP()); 
@@ -29,7 +31,7 @@ public class ControlleurConnexionBD {
             this.vue.initLibrairie(new Librairie (new JDBC(laConnexion)));
             while (!this.vue.getModele().estChargee()){
                 // Attendre que la librairie soit chargée
-            }this.vue.changerVue("/view/accueil.fxml");
+            }this.vue.fenetreAccueil();
         }catch (Exception e) {
             e.printStackTrace();
             // Afficher un message d'erreur à l'utilisateur
@@ -37,6 +39,20 @@ public class ControlleurConnexionBD {
             // this.vue.getPanelCentral().getChildren().add(errorText); // Exemple d'ajout
         }
         
+    }
+    private popUpConnexionInvalide(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titre);
+        alert.setHeaderText("Connexion impossible ");
+        alert.setContentText("Identifiant Invalide");
+        alert.showAndWait();
+    }
+    public popUpChampsIncomplet(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(titre);
+        alert.setHeaderText("Connexion impossible ");
+        alert.setContentText("Identifiant Invalide");
+        alert.showAndWait();
     }
     private String getMDP() {
         return txtMotDePasse.getText();
