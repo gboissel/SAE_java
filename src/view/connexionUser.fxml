@@ -44,6 +44,9 @@
                <font>
                   <Font size="26.0" />
                </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="5.0" />
+               </VBox.margin>
             </Label>
             <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="642.0">
                <children>
@@ -98,7 +101,7 @@
             </HBox>
             <Label prefHeight="46.0" prefWidth="46.0" text="Rôle">
                <VBox.margin>
-                  <Insets bottom="15.0" />
+                  <Insets bottom="15.0" left="5.0" />
                </VBox.margin>
                <font>
                   <Font size="22.0" />
@@ -109,7 +112,11 @@
             </Label>
             <HBox prefHeight="47.0" prefWidth="642.0">
                <children>
-                  <Button fx:id="boutonConfirmation" mnemonicParsing="false" onAction="#validerChoix" text="Conformer Rôle" textAlignment="CENTER" />
+                  <Button fx:id="boutonConfirmation" mnemonicParsing="false" onAction="#validerChoix" style="-fx-background-color: #5ce1e6;" text="Conformer Rôle" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets left="15.0" right="15.0" />
+                     </HBox.margin>
+                  </Button>
                   <RadioButton fx:id="option1" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="135.0" selected="true" text="Client">
                      <toggleGroup>
                         <ToggleGroup fx:id="groupeUtilisateur" />
