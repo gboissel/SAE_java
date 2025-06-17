@@ -23,35 +23,38 @@ public class ControlleurConnexionBD {
     private TextField txtBD;
     @FXML
     public void handleConnexion() {
-        if (!this.getHost().isEmpty()| this.getBDname().isEmpty() | this.getNomUtilisateur().isEmpty())
-        try{
-            ConnexionMySQL laConnexion = new ConnexionMySQL();
-            laConnexion.connecter(getHost(), getBDname(), getNomUtilisateur(), getMDP()); 
-            System.out.println("Connexion réussie à la base de données"); 
-            this.vue.initLibrairie(new Librairie (new JDBC(laConnexion)));
-            while (!this.vue.getModele().estChargee()){
-                // Attendre que la librairie soit chargée
-            }this.vue.fenetreAccueil();
-        }catch (Exception e) {
-            e.printStackTrace();
-            // Afficher un message d'erreur à l'utilisateur
-            // Ajouter le texte d'erreur à la vue, par exemple dans un Label ou une zone de texte
-            // this.vue.getPanelCentral().getChildren().add(errorText); // Exemple d'ajout
+        if (!(this.getHost().isEmpty()| this.getBDname().isEmpty() | this.getNomUtilisateur().isEmpty()| this.getBDname().isEmpty())){
+            try{
+                ConnexionMySQL laConnexion = new ConnexionMySQL();
+                laConnexion.connecter(getHost(), getBDname(), getNomUtilisateur(), getMDP()); 
+                System.out.println("Connexion réussie à la base de données"); 
+                this.vue.initLibrairie(new Librairie (new JDBC(laConnexion)));
+                while (!this.vue.getModele().estChargee()){
+                    // Attendre que la librairie soit chargée
+                }this.vue.fenetreAccueil();
+            }catch (Exception e) {
+                popUpConnexionInvalide();
+                // Afficher un message d'erreur à l'utilisateur
+                // Ajouter le texte d'erreur à la vue, par exemple dans un Label ou une zone de texte
+                // this.vue.getPanelCentral().getChildren().add(errorText); // Exemple d'ajout
+            }
+        }else{
+            popUpChampsIncomplet();
         }
         
     }
-    private popUpConnexionInvalide(){
+    private void popUpConnexionInvalide(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(titre);
+        alert.setTitle("Erreur");
         alert.setHeaderText("Connexion impossible ");
-        alert.setContentText("Identifiant Invalide");
+        alert.setContentText("Erreur lors de la connexion au serveur");
         alert.showAndWait();
     }
-    public popUpChampsIncomplet(){
+    public void popUpChampsIncomplet(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(titre);
+        alert.setTitle("Attention");
         alert.setHeaderText("Connexion impossible ");
-        alert.setContentText("Identifiant Invalide");
+        alert.setContentText("Au moins un des champs est vide");
         alert.showAndWait();
     }
     private String getMDP() {
