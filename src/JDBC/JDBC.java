@@ -498,7 +498,7 @@ public class JDBC {
 
     public void insererMagasin(Magasin magasin) throws SQLException{
         st=laConnexion.createStatement();
-        ResultSet rs=st.executeQuery("SELECT id MAX(idmag) id FROM MAGASIN");
+        ResultSet rs=st.executeQuery("SELECT MAX(idmag) id FROM MAGASIN");
         rs.next();
         int id = rs.getInt("id");
         rs.close();

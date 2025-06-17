@@ -71,13 +71,4 @@ public class Panier extends HashMap<Livre,Integer>{
         texte = texte + "\nTotal : " + this.prixTotal() + "€";
         return texte;
     }
-
-    public static void main(String[] args) {
-        Livre l1 = new Livre("123", "Livre1", 50, null, null);
-        Livre l2 = new Livre("456", "Livre2", 10, null, null);
-        Panier panier = new Panier();
-        panier.ajouter(l1, 2);
-        panier.ajouter(l2, 4);
-        System.out.println(panier);
-    }
 }

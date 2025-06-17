@@ -19,14 +19,19 @@ public class Librairie {
     private List<Utilisateur> users;
     private List<Magasin> lesMagasins;
     private List<Livre> lesLivres;
+    private boolean chargee;
 
 
     public Librairie(JDBC jdbc){
+        this.chargee = false;
         this.users= new ArrayList<>();
         this.curUser = null;
         this.initialisationBD(jdbc);
     }
 
+    public boolean estChargee() {
+        return this.chargee;
+    }
 
     /**
      * renvoie la liste des utilisateur
@@ -100,8 +105,9 @@ public class Librairie {
             this.lesMagasins = jdbc.recupererMagasins(this.lesLivres);
             System.out.println("Chargement des magasins réussi. " + this.lesMagasins.size() + " magasins récupérés.");
             this.users = jdbc.recupererUtilisateurs(lesMagasins, lesLivres);
-            System.out.println("Chargement des utilisateurs réussi. " + this.users.size() + " utilisateurs récupérés.");
             Collections.sort(this.users);
+            System.out.println("Chargement des utilisateurs réussi. " + this.users.size() + " utilisateurs récupérés.");
+            this.chargee = true;
         }
         catch (SQLException e) {
             this.lesLivres = new ArrayList<>();
@@ -260,5 +266,9 @@ public class Librairie {
             System.out.println("Une erreur est survenue.");
             e.printStackTrace();//ca c'est bon
         }
+    }
+
+    public static void main(String[] args) {
+        Librairie lib = new Librairie(null);
     }
 }
