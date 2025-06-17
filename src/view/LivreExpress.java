@@ -62,7 +62,24 @@ public class LivreExpress extends Application{
         return new Scene(this.fenetreActuel, 800, 1000);
     }
 
+    public void fenetreConnexionUser(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/connexionUser.fxml"));
+            BorderPane newRoot = loader.load();
+            Scene newScene = new Scene(newRoot);
+            ControleurConnectionUser controleur = loader.getController();
+            controleur.setVue(this);
+            controleur.setModele(this.getModele());
+            Stage stage = (Stage) this.fenetreActuel.getScene().getWindow();
+            stage.setScene(newScene);
 
+            this.fenetreActuel = newRoot;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Erreur de chargement du fichier FXML : Acceuil");
+        }
+    }
+    
     
     /**
     * @return la fenêtre d'accueil sur laquelle on peut choisir les paramètres de jeu
@@ -73,6 +90,8 @@ public class LivreExpress extends Application{
             BorderPane newRoot = loader.load();
             Scene newScene = new Scene(newRoot);
             ControleurAccueil controleur = loader.getController();
+            controleur.setVue(this);
+            controleur.setModele(this.getModele());
             Stage stage = (Stage) this.fenetreActuel.getScene().getWindow();
             stage.setScene(newScene);
 
@@ -93,6 +112,8 @@ public class LivreExpress extends Application{
             BorderPane newRoot = loader.load();
             Scene newScene = new Scene(newRoot);
             ControleurAccueil controleur = loader.getController();
+            controleur.setVue(this);
+            controleur.setModele(this.getModele());
             Stage stage = (Stage) this.fenetreActuel.getScene().getWindow();
             stage.setScene(newScene);
 
@@ -159,12 +180,12 @@ public class LivreExpress extends Application{
     public void start(Stage primaryStage) throws Exception {
         try {
             // loader
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/connexionUser.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/logBDpage.fxml"));
             BorderPane root = loader.load();
             this.fenetreActuel = root;
 
             // Init controleur Vue
-            ControleurConnectionUser controleur = loader.getController();
+            ControlleurConnexionBD controleur = loader.getController();
             controleur.setVue(this);
             Scene scene = new Scene(this.fenetreActuel);
             primaryStage.setScene(scene);

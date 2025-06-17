@@ -28,7 +28,7 @@ public class ControleurAccueil{
 
     @FXML
     private void gererConnexion(ActionEvent event) {
-        this.vue.fenetreClient();
+        this.vue.fenetreConnexionUser();
     }
 
     @FXML
@@ -47,13 +47,6 @@ public class ControleurAccueil{
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-    public void setVue(LivreExpress vue) {
-        this.vue = vue;
-    }
-
-    public void setModele(Librairie librairie) {
-        this.modele = librairie;
     }
 }
 
