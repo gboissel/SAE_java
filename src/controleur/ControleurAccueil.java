@@ -26,7 +26,7 @@ public class ControleurAccueil{
 
     @FXML
     private void gererConnexion(ActionEvent event) {
-        afficherPopup("Connexion", "Redirection vers la page de connexion...");
+        this.vue.fenetreClient();
     }
 
     @FXML
