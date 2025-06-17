@@ -76,42 +76,42 @@ public class ControleurClientMagasin {
 
     @FXML
     public void controleurBoutMag2(ActionEvent e){
-        System.out.println("vous etes sur le magasin1");
+        System.out.println("vous etes sur le magasin2");
     } 
 
     @FXML
     public void controleurBoutMag3(ActionEvent e){
-        System.out.println("vous etes sur le magasin1");
+        System.out.println("vous etes sur le magasin3");
     } 
 
     @FXML
     public void controleurBoutMag4(ActionEvent e){
-        System.out.println("vous etes sur le magasin1");
+        System.out.println("vous etes sur le magasin4");
     }
 
     @FXML
     public void controleurBoutMag5(ActionEvent e){
-        System.out.println("vous etes sur le magasin1");
+        System.out.println("vous etes sur le magasin5");
     }
 
     @FXML
     public void controleurBoutMag6(ActionEvent e){
-        System.out.println("vous etes sur le magasin1");
+        System.out.println("vous etes sur le magasin6");
     }
 
     @FXML
     public void controleurBoutMag7(ActionEvent e){
-        System.out.println("vous etes sur le magasin1");
+        System.out.println("vous etes sur le magasin7");
     }
 
     @FXML
     public void controleurBoutMag8(ActionEvent e){
-        System.out.println("vous etes sur le magasin1");
+        System.out.println("vous etes sur le magasin8");
     }
 
     @FXML
     public void controleurBoutMag9(ActionEvent e){
-        System.out.println("vous etes sur le magasin1");
+        System.out.println("vous etes sur le magasin9");
     }
 
     public void setVue(LivreExpress vue){
