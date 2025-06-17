@@ -41,7 +41,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="167.0" text="Deconnexion">
+            <Button fx:id="btnDeco" mnemonicParsing="false" onAction="#controleurBoutDeco" prefHeight="48.0" prefWidth="167.0" text="Deconnexion">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -78,15 +78,15 @@
                   <Insets left="50.0" right="50.0" top="50.0" />
                </VBox.margin>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 1" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 4" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 2" GridPane.columnIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 7" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 3" GridPane.columnIndex="2" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 9" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Button fx:id="btnMag1" mnemonicParsing="false" onAction="#controleurBoutMag1" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 1*" />
+                  <Button fx:id="btnMag5" mnemonicParsing="false" onAction="#controleurBoutMag5" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="btnMag4" mnemonicParsing="false" onAction="#controleurBoutMag4" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 4" GridPane.rowIndex="1" />
+                  <Button fx:id="btnMag2" mnemonicParsing="false" onAction="#controleurBoutMag2" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 2" GridPane.columnIndex="1" />
+                  <Button fx:id="btnMag8" mnemonicParsing="false" onAction="#controleurBoutMag8" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button fx:id="btnMag7" mnemonicParsing="false" onAction="#controleurBoutMag7" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 7" GridPane.rowIndex="2" />
+                  <Button fx:id="btnMag3" mnemonicParsing="false" onAction="#controleurBoutMag3" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 3" GridPane.columnIndex="2" />
+                  <Button fx:id="btnMag6" mnemonicParsing="false" onAction="#controleurBoutMag6" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Button fx:id="btnMag9" mnemonicParsing="false" onAction="#controleurBoutMag9" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 9" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>

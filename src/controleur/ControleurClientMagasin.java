@@ -24,6 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Alert;
 
 public class ControleurClientMagasin {
     private Librairie modele;
@@ -66,7 +67,11 @@ public class ControleurClientMagasin {
 
     @FXML
     public void controleurBoutMag1(ActionEvent e){
-        System.out.println("vous etes sur le magasin1");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("ok");
+        alert.setHeaderText(null);
+        alert.setContentText("ok");
+        alert.showAndWait();
     }
 
     @FXML
