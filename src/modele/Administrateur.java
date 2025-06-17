@@ -29,12 +29,12 @@ public class Administrateur extends Utilisateur{
 
     /**
      * Méthode permettant de créer un magasin
-     * @param nom Le nom du vendeur
-     * @param prenom Le prénom du vendeur
+     * @param nom Le nom du magasin
+     * @param ville La ville du magasin
      * @param jdbc Une instance de la classe permettant d'intéragir avec la base de données
      */
-    public void creerMagasin(String nom, String prenom, JDBC jdbc) {
-        try {jdbc.insererMagasin(new Magasin(nom, prenom));}
+    public void creerMagasin(String nom, String ville, JDBC jdbc) {
+        try {jdbc.insererMagasin(new Magasin(nom, ville));}
         catch (SQLException e) {}
     }
 
