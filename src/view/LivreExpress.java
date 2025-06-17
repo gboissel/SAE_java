@@ -1,31 +1,10 @@
 package view;
-import controleur.ControleurAccueil;
-import controleur.ControleurAdmin1;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.geometry.Insets;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.scene.control.ButtonBar.ButtonData ;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import java.util.List;
-import java.util.Optional;
-import java.util.Arrays;
-import java.io.File;
-import java.lang.reflect.Array;
-import java.nio.Buffer;
-import java.util.ArrayList;
 import modele.Librairie;
 import controleur.*;
 
@@ -49,16 +28,6 @@ public class LivreExpress extends Application{
         return this.modele;
     }
 
-    /**
-     * @return  le graphe de scène de la vue à partir de methodes précédantes
-     */
-    private Scene laScene(){
-        /* BorderPane fenetre = new BorderPane();
-        fenetre.setTop(this.bande());
-        fenetre.setCenter(this.fenetreActuel); 
-        return new Scene(fenetre, 800, 1000); */
-        return new Scene(this.fenetreActuel, 800, 1000);
-    }
 
     public void fenetreConnexionUser(){
         try {
@@ -104,7 +73,7 @@ public class LivreExpress extends Application{
     /**
     * change la fenetre actuelle pour celle du client la fenêtre du client.
     */
-    private void fenetreClient(){
+    public void fenetreClient(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/accueil.fxml"));
             BorderPane newRoot = loader.load();
@@ -125,7 +94,7 @@ public class LivreExpress extends Application{
     /**
     * Change la fenetre actuelle pour celle du vendeur.
     */
-    private void fenetreVendeur(){
+    public void fenetreVendeur(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/accueil.fxml"));
             BorderPane newRoot = loader.load();
@@ -144,7 +113,7 @@ public class LivreExpress extends Application{
     /**
     * La fenêtre de l'administrateur
     */
-    private void fenetreAdmin(){
+    public void fenetreAdmin(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/accueil.fxml"));
             BorderPane newRoot = loader.load();
@@ -184,14 +153,13 @@ public class LivreExpress extends Application{
     public void start(Stage primaryStage) throws Exception {
         try {
             // loader
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/connexionUser.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/logBDpage.fxml"));
             BorderPane root = loader.load();
             this.fenetreActuel = root;
 
             // Init controleur Vue
-            ControleurConnectionUser controleur = loader.getController();
+            ControlleurConnexionBD controleur = loader.getController();
             controleur.setVue(this);
-            controleur.setModele(this.modele);
             Scene scene = new Scene(this.fenetreActuel);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Connexion à la base de données");
