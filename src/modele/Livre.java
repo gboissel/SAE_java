@@ -28,6 +28,7 @@ public class Livre implements Comparable<Livre>{
         this.isbn=isbn;
         this.auteurs= new HashSet<>();
         this.titre=titre;
+        this.prix=prix;
         this.datePubli=datePubli;
         this.nbPages=pages;
         this.editeurs = new HashSet<>();
