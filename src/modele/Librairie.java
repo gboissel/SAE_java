@@ -85,7 +85,7 @@ public class Librairie {
             this.users.add(client);
             jdbc.insererClient(client, mdp);
         }
-        catch (SQLException e) {}
+        catch (SQLException e) {System.out.println("Erreur lors de la création du client");}
     }
 
     /**
@@ -96,8 +96,11 @@ public class Librairie {
         try {
             this.lesLivres = jdbc.recupererLivres(jdbc.recupererAuteurs(), jdbc.recupererEditeurs(), jdbc.recupererCategories());
             Collections.sort(this.lesLivres, new TriLivreParNom());
+            System.out.println("Chargement des livres réussi. " + this.lesLivres.size() + " livres récupérés.");
             this.lesMagasins = jdbc.recupererMagasins(this.lesLivres);
+            System.out.println("Chargement des magasins réussi. " + this.lesMagasins.size() + " magasins récupérés.");
             this.users = jdbc.recupererUtilisateurs(lesMagasins, lesLivres);
+            System.out.println("Chargement des utilisateurs réussi. " + this.users.size() + " utilisateurs récupérés.");
             Collections.sort(this.users);
         }
         catch (SQLException e) {
