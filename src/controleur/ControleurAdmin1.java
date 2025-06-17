@@ -54,13 +54,13 @@ public class ControleurAdmin1 {
 
     @FXML
     private void gererCreamag(ActionEvent event) {
-        afficherPopup("Recherche", "Fonction de recherche déclenchée !");
+        afficherPopup("Recherche", "Fonction de creation magasin !");
     }
 
 
     @FXML
     private void gererDeconnexion(ActionEvent event) {
-        afficherPopup("Connexion", "Redirection vers la page de connexion...");
+        afficherPopup("Connexion", "Redirection vers la page de déconnexion...");
     }
 
     @FXML
