@@ -54,7 +54,7 @@
          <children>
             <Label alignment="CENTER" text="Importer Livre Directement :">
                <font>
-                  <Font size="32.0" />
+                  <Font size="30.0" />
                </font>
                <VBox.margin>
                   <Insets left="10.0" top="10.0" />
@@ -70,7 +70,7 @@
             </Button>
             <Label alignment="CENTER" text="Importer Livre Dans Magasin :">
                <font>
-                  <Font size="32.0" />
+                  <Font size="30.0" />
                </font>
             </Label>
             <Button mnemonicParsing="false" prefHeight="75.0" prefWidth="299.0" text="Choix Du Magasin">
@@ -81,4 +81,18 @@
          </children>
       </VBox>
    </center>
+   <right>
+      <VBox prefHeight="389.0" prefWidth="174.0" style="-fx-background-color: #c2f6ff;" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="186.0" text="Choix Vendeur">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </right>
 </BorderPane>
