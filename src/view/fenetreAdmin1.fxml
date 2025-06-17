@@ -97,14 +97,14 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="402.0" prefWidth="158.0" style="-fx-background-color: #0cc0df;">
                      <children>
-                        <Button fx:id="boutonChoisir" alignment="CENTER" mnemonicParsing="false" onAction="#gererChoix" style="-fx-background-color: #5ce1e6;" text="nom_mag" />
-                        <Button fx:id="boutonChoisir" layoutY="264.0" mnemonicParsing="false" onAction="#gererChoix" style="-fx-background-color: #5ce1e6;" text="nom_mag" />
-                        <Button fx:id="boutonChoisir" layoutY="228.0" mnemonicParsing="false" onAction="#gererChoix" style="-fx-background-color: #5ce1e6;" text="nom_mag" />
-                        <Button fx:id="boutonChoisir" layoutY="188.0" mnemonicParsing="false" onAction="#gererChoix" style="-fx-background-color: #5ce1e6;" text="nom_mag" />
-                        <Button fx:id="boutonChoisir" layoutY="150.0" mnemonicParsing="false" onAction="#gererChoix" style="-fx-background-color: #5ce1e6;" text="nom_mag" />
-                        <Button fx:id="boutonChoisir" layoutY="112.0" mnemonicParsing="false" onAction="#gererChoix" style="-fx-background-color: #5ce1e6;" text="nom_mag" />
-                        <Button fx:id="boutonChoisir" layoutY="73.0" mnemonicParsing="false" onAction="#gererChoix" style="-fx-background-color: #5ce1e6;" text="nom_mag" />
-                        <Button fx:id="boutonChoisir" layoutY="35.0" mnemonicParsing="false" onAction="#gererChoix" style="-fx-background-color: #5ce1e6;" text="nom_mag" />
+                        <Button fx:id="boutonChoisir7" alignment="CENTER" mnemonicParsing="false" onAction="#gererChoix" style="-fx-background-color: #5ce1e6;" text="nom_mag" />
+                        <Button fx:id="boutonChoisir14" layoutY="264.0" mnemonicParsing="false" onAction="#gererChoix" style="-fx-background-color: #5ce1e6;" text="nom_mag" />
+                        <Button fx:id="boutonChoisir13" layoutY="228.0" mnemonicParsing="false" onAction="#gererChoix" style="-fx-background-color: #5ce1e6;" text="nom_mag" />
+                        <Button fx:id="boutonChoisir12" layoutY="188.0" mnemonicParsing="false" onAction="#gererChoix" style="-fx-background-color: #5ce1e6;" text="nom_mag" />
+                        <Button fx:id="boutonChoisir11" layoutY="150.0" mnemonicParsing="false" onAction="#gererChoix" style="-fx-background-color: #5ce1e6;" text="nom_mag" />
+                        <Button fx:id="boutonChoisir10" layoutY="112.0" mnemonicParsing="false" onAction="#gererChoix" style="-fx-background-color: #5ce1e6;" text="nom_mag" />
+                        <Button fx:id="boutonChoisir9" layoutY="73.0" mnemonicParsing="false" onAction="#gererChoix" style="-fx-background-color: #5ce1e6;" text="nom_mag" />
+                        <Button fx:id="boutonChoisir8" layoutY="35.0" mnemonicParsing="false" onAction="#gererChoix" style="-fx-background-color: #5ce1e6;" text="nom_mag" />
                      </children>
                      <padding>
                         <Insets top="10.0" />
@@ -140,32 +140,32 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="nom_mag" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="boutonChoisir1" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="nom_mag" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="nom_mag" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="boutonChoisir2" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="nom_mag" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="nom_mag" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="boutonChoisir3" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="nom_mag" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="nom_mag" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="boutonChoisir4" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="nom_mag" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="nom_mag" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="boutonChoisir5" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="nom_mag" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="nom_mag" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="boutonChoisir6" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="nom_mag" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font>
