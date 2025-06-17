@@ -1,5 +1,6 @@
 package view;
 import controleur.ControleurAccueil;
+import controleur.ControleurAdmin1;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -159,10 +160,10 @@ public class LivreExpress extends Application{
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/accueil.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/fenetreAdmin1.fxml"));
         BorderPane root = loader.load();
 
-        ControleurAccueil controleur = loader.getController();
+        ControleurAdmin1 controleur = loader.getController();
         controleur.setModele(this.librairie);
         controleur.setVue(this);
         Scene scene = new Scene(root);
