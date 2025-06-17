@@ -27,6 +27,9 @@ public class ControlleurConnexionBD {
             laConnexion.connecter(getHost(), getBDname(), getNomUtilisateur(), getMDP()); 
             System.out.println("Connexion réussie à la base de données"); 
             this.vue.initLibrairie(new Librairie (new JDBC(laConnexion)));
+            while (!this.vue.getModele().estChargee()){
+                // Attendre que la librairie soit chargée
+            }this.vue.changerVue("/view/accueil.fxml");
         }catch (Exception e) {
             e.printStackTrace();
             // Afficher un message d'erreur à l'utilisateur

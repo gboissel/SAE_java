@@ -98,26 +98,25 @@ public class LivreExpress extends Application{
     /**
     * @return la fenêtre d'accueil sur laquelle on peut choisir les paramètres de jeu
     */
-    private BorderPane fenetreConnexion(){
-        return new BorderPane();
-    }
+public void changerVue(String fxmlChemin) {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlChemin));
+        BorderPane newRoot = loader.load();
+        Scene newScene = new Scene(newRoot);
 
-    public void modeAccueil(){
-        //this.panelCentral.setCenter(this.fenetreAccueil());
-    }
-    
-    public void modeClient(){
-        //this.panelCentral.setCenter(this.fenetreClient());
-    }
+        // Récupère la stage depuis la scène courante existante
+        Stage stage = (Stage) this.fenetreActuel.getScene().getWindow();
 
-    public void modeAdmin(){
-        //this.panelCentral.setCenter(this.fenetreAdmini());
-    }
-    
-    public void modeVendeur(){
-        //this.panelCentral.setCenter(this.fenetreVendeur());
-    }
+        // Change la scène
+        stage.setScene(newScene);
 
+        // Met à jour fenetreActuel
+        this.fenetreActuel = newRoot;
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("Erreur de chargement du fichier FXML : " + fxmlChemin);
+    }
+}
     public BorderPane bande(){
         return new BorderPane();
     }
