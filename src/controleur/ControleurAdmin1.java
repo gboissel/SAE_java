@@ -1,6 +1,8 @@
 package controleur;
 
 import java.util.List;
+import java.util.Optional;
+
 import modele.*;
 
 import javafx.fxml.FXML;
@@ -71,7 +73,16 @@ public class ControleurAdmin1 extends Controleur{
 
     @FXML
     private void gererDeconnexion(ActionEvent event) {
-        popUpDeconnexion().showAndWait();
+        Optional<ButtonType> reponse = popUpDeconnexion().showAndWait();
+        if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
+            this.modele.setCurUser(null);
+            this.vue.changerVue("/view/accueil.fxml");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Déconnexion");
+            alert.setHeaderText("Déconnexion réussie !");
+            alert.setContentText("Vous êtes bien retournée sur la page d'accueil");
+        }
+
     }
 
     @FXML
@@ -87,14 +98,14 @@ public class ControleurAdmin1 extends Controleur{
             int mois = Integer.parseInt(texteMois);
             int annee = Integer.parseInt(texteAnnee);
             if (mois > 0 && mois <= 12 && texteAnnee.length() == 4) {
-                afficherPopupFacture(this.modele.editerFacture(mois, annee));
+                afficherPopupFacture(this.modele.editerFacture(mois, annee), texteMois, texteAnnee);
             }
             else {throw new NumberFormatException();}
         } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Erreur : Valeurs invalides");
-            alert.setContentText("Les valeurs rentrées sont incorrects,\n vérifiez que les valeurs rentrées correspondent bien\n à des mois et des années au format numérique.");
+            alert.setContentText("Les valeurs rentrées sont incorrects,\nvérifiez que les valeurs rentrées correspondent bien\nà des mois et des années au format numérique.");
             alert.showAndWait();
         }
     }
@@ -107,14 +118,13 @@ public class ControleurAdmin1 extends Controleur{
     }
 
     public Alert popUpDeconnexion(){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Voulez vous vraiment vous deconnecter ?\nVous serez renvoyer vers la page d'acceuil", ButtonType.YES, ButtonType.NO);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Voulez vous vraiment vous déconnecter ?\nVous serez renvoyer vers la page d'acceuil", ButtonType.YES, ButtonType.NO);
         alert.setTitle("Attention");
-        alert.setHeaderText("Confirmation");
-        alert.setContentText("La partie est en cours! \n Etes-vous sûr de l'interompre ?");
+        alert.setHeaderText("Déconnexion");
         return alert;
     }
 
-    private void afficherPopupFacture(String texte) {
+    private void afficherPopupFacture(String texte, String mois, String annee) {
         // Créer la zone de texte avec beaucoup de contenu
         TextArea textArea = new TextArea();
         textArea.setWrapText(true);
@@ -132,7 +142,7 @@ public class ControleurAdmin1 extends Controleur{
         Scene scene = new Scene(layout);
         Stage popupStage = new Stage();
         popupStage.setScene(scene);
-        popupStage.setTitle("Popup avec scroll");
+        popupStage.setTitle("factures-"+mois+"-"+annee+".txt");
         popupStage.initModality(Modality.APPLICATION_MODAL); // bloque la fenêtre principale
         popupStage.showAndWait();
     }
@@ -224,7 +234,7 @@ public class ControleurAdmin1 extends Controleur{
 
     @Override
     public void chargerPage() {
-        this.numPage=0;
+        this.numPage=1;
         nomPrenom.setText(this.modele.getCurUser().getNom() + " " + this.modele.getCurUser().getPrenom());
         this.afficherMagasins();
     }

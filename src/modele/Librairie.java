@@ -18,6 +18,7 @@ public class Librairie {
     private List<Magasin> lesMagasins;
     private List<Livre> lesLivres;
     private JDBC jdbc;
+    private Magasin curMag;
     private boolean chargee;
 
 
@@ -77,6 +78,14 @@ public class Librairie {
      */
     public Utilisateur getCurUser(){
         return this.curUser;
+    }
+
+    /**
+     * renvoie magasin courant
+     * @return le magasin courant
+     */
+    public Magasin getCurMag() {
+        return this.curMag;
     }
 
     /**
