@@ -36,6 +36,24 @@ public class ControleurVendeur2 {
     @FXML
     private Button btnRecherche;
 
+     @FXML
+    private Button btnLivre;
+
+     @FXML
+    private Button btnLivre2;
+
+     @FXML
+    private Button btnLivre3;
+
+     @FXML
+    private Button btnLivre4;
+
+     @FXML
+    private Button btnLivre5;
+
+    @FXML
+    private Button btnLivre6;
+
     @FXML
     private Button btnPanier;
 
