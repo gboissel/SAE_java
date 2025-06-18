@@ -20,7 +20,7 @@ import javafx.event.ActionEvent;
 public class ControleurAdmin1 extends Controleur{
 
     @FXML
-    private Label nomprenom
+    private Label nomprenom;
     @FXML
     private Button boutonRechercher;
 
