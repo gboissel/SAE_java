@@ -80,8 +80,7 @@ public class ControleurAdmin1 {
             //afficherPopupFacture(this.modele.editerFacture(valeur, valeur2));     //mettre un return sur editerFacture  ou utiliser le txt
         } catch (NumberFormatException e) {
             System.out.println("Le texte n'est pas un nombre valide !");
-            // Tu peux afficher une alerte ici pour prévenir l'utilisateur
-        }
+                }
     }
 
     private void afficherPopup(String titre, String message) {
