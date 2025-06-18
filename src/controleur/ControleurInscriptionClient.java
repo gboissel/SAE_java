@@ -75,7 +75,7 @@ public class ControleurInscriptionClient extends Controleur{
     @FXML
     private void gererAcceuil(ActionEvent event) {
         afficherPopup("menu", "Fonction de retour au menu !");
-        this.vue.changerVue("/view/fenetreAdmin1.fxml");
+        this.vue.changerVue("/view/connexionUser.fxml");
 
     }
 
