@@ -55,7 +55,7 @@ public class Categorie implements Comparable<Categorie>{
         if (obj == this){
             return true;
         }
-        if (!(obj instanceof Auteur)){
+        if (!(obj instanceof Categorie)){
             return false;
         }
         Categorie edit = (Categorie)obj;

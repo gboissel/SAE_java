@@ -4,20 +4,17 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import view.*;
 import javafx.event.ActionEvent;
-import modele.*;
 
-public class ControleurAdmin1 {
+public class ControleurAdmin1 extends Controleur{
 
-    private LivreExpress vue;  
-    private Librairie modele;
     @FXML
     private Button boutonRechercher;
 
@@ -54,13 +51,13 @@ public class ControleurAdmin1 {
 
     @FXML
     private void gererCreamag(ActionEvent event) {
-        afficherPopup("Recherche", "Fonction de recherche déclenchée !");
+        afficherPopup("Recherche", "Fonction de creation magasin !");
     }
 
 
     @FXML
     private void gererDeconnexion(ActionEvent event) {
-        afficherPopup("Connexion", "Redirection vers la page de connexion...");
+        popUpDeconnexion().showAndWait();
     }
 
     @FXML
@@ -79,6 +76,14 @@ public class ControleurAdmin1 {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public Alert popUpDeconnexion(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Voulez vous vraiment vous deconnecter ?\nVous serez renvoyer vers la page d'acceuil", ButtonType.YES, ButtonType.NO);
+        alert.setTitle("Attention");
+        alert.setHeaderText("Confirmation");
+        alert.setContentText("La partie est en cours! \n Etes-vous sûr de l'interompre ?");
+        return alert;
     }
 
     private void afficherPopupFacture() {
@@ -104,12 +109,5 @@ public class ControleurAdmin1 {
         popupStage.showAndWait();
     }
 
-    public void setVue(LivreExpress vue) {
-        this.vue = vue;
-    }
-
-    public void setModele(Librairie librairie) {
-        this.modele = librairie;
-    }
 }
 
