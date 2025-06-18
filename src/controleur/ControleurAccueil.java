@@ -3,6 +3,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
+
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import modele.*;
 import view.*;
@@ -33,17 +38,21 @@ public class ControleurAccueil extends Controleur{
     private TextField textLivre;
     @FXML
     private Button boutonConnexion;
-
+    @FXML
+    private Button boutonRechercher;
     @FXML
     private Button boutonChoisir;
 
     @FXML
     private void gererRechercher(ActionEvent event) {
         if(this.textLivre.getText().isEmpty()){
-            afficherPopup("erreur", this.vue.infoLivre(livre));
+            afficherPopup("erreur", "le livre est mal ecrit ou n'existe pas !!");
         }
-        Livre livre = modele.rechercheLivreParNom(this.textLivre.getText());
+        else{
+            Livre livre = modele.rechercheLivreParNom(this.textLivre.getText());
         afficherPopup("Detail Livre", this.vue.infoLivre(livre));
+        }
+        
     }   
 
     @FXML
@@ -51,7 +60,7 @@ public class ControleurAccueil extends Controleur{
         Button boutonClique = (Button) event.getSource(); // Récupère le bouton cliqué
         String texte = boutonClique.getText();
         Livre livre = modele.rechercheLivreParNom(texte);
-        afficherPopup("Detail Livre", "le champ n'est pas renseigné");
+        afficherPopup("Detail Livre", this.vue.infoLivre(livre));
 
     }
 
@@ -70,6 +79,22 @@ public class ControleurAccueil extends Controleur{
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    @Override
+    public void chargerPage() throws SQLException{
+        List<String> tmp = this.modele.getJDBC().lesXmeilleursVentes(9);
+        List<Button> boutons = Arrays.asList(bt1, bt2, bt3, bt4, bt5, bt6, bt7, bt8, bt9);
+        for (int i = 0; i < boutons.size(); i++) {
+            if (i < tmp.size()) {
+                boutons.get(i).setText(tmp.get(i));
+            } 
+            else {
+                boutons.get(i).setText("N/A");
+                boutons.get(i).setDisable(true);
+            }
+        }
+
     }
 }
 
