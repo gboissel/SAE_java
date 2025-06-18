@@ -1,35 +1,13 @@
 package controleur;
 
-import javafx.application.Application;
-import javafx.application.Platform;
-// import javafx.beans.binding.Bindings;                                       \
-                                                                                
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import modele.*;
-import view.*;
-import javafx.scene.image.ImageView;
+import modele.Magasin;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.control.Alert;
 
-public class ControleurClient1 {
-    private Librairie modele;
-    private LivreExpress vue;
-
+public class ControleurClient1 extends Controleur{
+    private int nbPage = 0;
+    private Magasin curMag = null;
     @FXML
     private Button btnDeco;
 
@@ -61,17 +39,19 @@ public class ControleurClient1 {
     private Button btnMag9;
 
     @FXML
+    private Button btnPrec;
+
+    @FXML
+    private Button btnSuiv;
+
+    @FXML
     public void controleurBoutDeco(ActionEvent e){
         System.out.println("vous etes bien deconnecter");
     }
 
     @FXML
     public void controleurBoutMag1(ActionEvent e){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("ok");
-        alert.setHeaderText(null);
-        alert.setContentText("ok");
-        alert.showAndWait();
+        this.vue.changerVue("view/VuePageClient2.fxml");
     }
 
     @FXML
@@ -113,11 +93,93 @@ public class ControleurClient1 {
     public void controleurBoutMag9(ActionEvent e){
         System.out.println("vous etes sur le magasin9");
     }
+    @FXML
+    public void pagePrec(){
+        if (this.nbPage>0) this.nbPage-=1;
 
-    public void setVue(LivreExpress vue){
-        this.vue=vue;
     }
-    
 
+    @FXML
+    public void pageSuiv(){
+        this.nbPage+=1;
+    }
 
+    @Override
+    public void chargerPage(){
+        this.nbPage = 0;
+        int dep = nbPage*9;
+        String nomMag;        
+        for (int i=nbPage*9;i<(nbPage+1)*9;i++){// sa s'execute 9 fois pour chaque page
+            System.out.println(this.modele.getMagasins().get(i).getNom());
+
+            switch ((i+dep)%9){
+            case 0:
+                try{
+                    nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                    this.btnMag1.setText(nomMag);
+                }catch(Exception e){
+                    this.btnMag1.setText("A venir ... Il n'y a plus de magasin.");
+                }
+                
+            case 1:
+                try{nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                    this.btnMag2.setText(nomMag);
+                }catch(Exception e){
+                    this.btnMag2.setText("A venir ... Il n'y a plus de magasin.");
+                }
+                
+            case 2:
+                try{nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                    this.btnMag3.setText(nomMag);}
+                catch(Exception e){
+                    this.btnMag3.setText("A venir ... Il n'y a plus de magasin.");
+                }
+                
+            case 3:
+                try{
+                    nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                    this.btnMag4.setText(nomMag);
+                }catch(Exception e){
+                    this.btnMag4.setText("A venir ... Il n'y a plus de magasin.");
+                }
+                
+            case 4:
+                try{nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                    this.btnMag5.setText(nomMag);
+                }catch(Exception e){
+                    this.btnMag5.setText("A venir ... Il n'y a plus de magasin.");
+                }
+                
+            case 5:
+                try{nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                    this.btnMag6.setText(nomMag);}
+                catch(Exception e){
+                    this.btnMag6.setText("A venir ... Il n'y a plus de magasin.");
+                }
+                
+            case 6:
+                try{nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                    this.btnMag7.setText(nomMag);}
+                catch(Exception e){
+                    this.btnMag7.setText("A venir ... Il n'y a plus de magasin.");
+                }
+                    
+            case 7:
+                try{nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                    this.btnMag8.setText(nomMag);
+                }catch(Exception e){
+                    this.btnMag8.setText("A venir ... Il n'y a plus de magasin.");
+                }
+                
+            case 8:
+                try{nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                    this.btnMag9.setText(nomMag);
+                }catch(Exception e){
+                    this.btnMag9.setText("A venir ... Il n'y a plus de magasin.");
+                }
+                
+            }
+            
+        }
+    }
 }
