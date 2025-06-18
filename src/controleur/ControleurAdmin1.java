@@ -39,6 +39,8 @@ public class ControleurAdmin1 extends Controleur{
     @FXML
     private Button boutonCreamag;
     @FXML
+    private Button boutonCreaVendeur;
+    @FXML
     private TextField textmois;
 
     @FXML
@@ -53,7 +55,10 @@ public class ControleurAdmin1 extends Controleur{
     private void gererCreamag(ActionEvent event) {
         afficherPopup("Recherche", "Fonction de creation magasin !");
     }
-
+    @FXML
+    private void gererCreaVendeur(ActionEvent event) {
+        afficherPopup("Recherche", "Fonction de creation magasin !");
+    }
 
     @FXML
     private void gererDeconnexion(ActionEvent event) {
@@ -76,8 +81,7 @@ public class ControleurAdmin1 extends Controleur{
             //afficherPopupFacture(this.modele.editerFacture(valeur, valeur2));     //mettre un return sur editerFacture  ou utiliser le txt
         } catch (NumberFormatException e) {
             System.out.println("Le texte n'est pas un nombre valide !");
-            // Tu peux afficher une alerte ici pour prévenir l'utilisateur
-        }
+                }
     }
 
     private void afficherPopup(String titre, String message) {

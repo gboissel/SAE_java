@@ -1,8 +1,8 @@
 package controleur;
 
+<<<<<<<<< Temporary merge branch 1
 import JDBC.ConnexionMySQL;
 import java.sql.PreparedStatement;
-import java.util.stream.Stream;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;

@@ -112,11 +112,6 @@
             </Label>
             <HBox prefHeight="47.0" prefWidth="642.0">
                <children>
-                  <Button fx:id="boutonConfirmation" mnemonicParsing="false" onAction="#validerChoix" style="-fx-background-color: #5ce1e6;" text="Conformer Rôle" textAlignment="CENTER">
-                     <HBox.margin>
-                        <Insets left="15.0" right="15.0" />
-                     </HBox.margin>
-                  </Button>
                   <RadioButton fx:id="option1" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" prefWidth="135.0" selected="true" text="Client">
                      <toggleGroup>
                         <ToggleGroup fx:id="groupeUtilisateur" />
