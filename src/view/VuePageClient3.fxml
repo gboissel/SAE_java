@@ -59,7 +59,7 @@
                   <Insets left="10.0" />
                </VBox.margin>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="207.0" text="Payement">
+            <Button fx:id="btnPayement" mnemonicParsing="false" onAction="#controleurPayement" prefHeight="50.0" prefWidth="207.0" text="Payement">
                <font>
                   <Font size="19.0" />
                </font>
