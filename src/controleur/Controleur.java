@@ -1,5 +1,7 @@
 package controleur;
 
+import java.sql.SQLException;
+
 import modele.*;
 import view.*;
 
@@ -22,7 +24,7 @@ public class Controleur {
         this.vue = vue;
     }
 
-    public void chargerPage(){
+    public void chargerPage() throws SQLException{
         
     }
 }

@@ -26,7 +26,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Alert;
 
-public class ControleurVendeur3 extends Controleur {
+public class ControleurClient3 extends Controleur {
     private Librairie modele;
     private LivreExpress vue;
 
@@ -50,9 +50,6 @@ public class ControleurVendeur3 extends Controleur {
 
     @FXML
     private Button btnRetour;
-
-    @FXML
-    private Button btnPayement;
 
     @FXML
     private Button btnPayement;
@@ -86,11 +83,6 @@ public class ControleurVendeur3 extends Controleur {
      @FXML
     public void controleurRetour(ActionEvent e){
         System.out.println("truc");
-    }
-    @FXML
-    public void controleurPayement(ActionEvent e){
-        System.out.println("truc");
-
     }
     @FXML
     public void controleurPayement(ActionEvent e){

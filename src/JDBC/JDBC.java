@@ -508,4 +508,30 @@ public class JDBC {
         ps.setString(3, magasin.getVille());
         ps.executeUpdate();
     }
+
+    public List<String> lesXmeilleursVentes(int x)  throws SQLException{
+        List<String> res = new ArrayList<>();
+        String sql = """
+        SELECT isbn, titre, SUM(qte) AS total_commandes
+        FROM DETAILCOMMANDE
+        NATURAL JOIN LIVRE
+        GROUP BY isbn, titre
+        ORDER BY total_commandes DESC
+        LIMIT ?""";
+        PreparedStatement pstmt = laConnexion.prepareStatement(sql);
+
+        pstmt.setInt(1, x); 
+
+        try (ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                res.add(rs.getString("titre"));
+            }
+        }
+
+         catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
 }
+

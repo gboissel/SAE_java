@@ -48,6 +48,15 @@ public class ControleurVendeur4 extends Controleur{
 
     @FXML
     private TextField TextCSecu;
+<<<<<<< HEAD
+=======
+
+    @FXML
+    private RadioButton btnDomi;
+
+    @FXML
+    private RadioButton btnRelai;
+>>>>>>> origin/fenetreClient
                                       
     @FXML
     public void controleurBoutDeco(ActionEvent e){
@@ -59,7 +68,11 @@ public class ControleurVendeur4 extends Controleur{
     }
     @FXML
     public void controleurCatalogue(ActionEvent e){
+<<<<<<< HEAD
         System.err.println("truc");
+=======
+        System.out.println("truc");
+>>>>>>> origin/fenetreClient
     }
 
     public void setVue(LivreExpress vue){

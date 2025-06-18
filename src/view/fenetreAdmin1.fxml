@@ -138,7 +138,7 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #c2f6ff;" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Meilleur statistique:">
+            <Label text="Meilleur Chiffre d'affaire:">
                <font>
                   <Font size="30.0" />
                </font>

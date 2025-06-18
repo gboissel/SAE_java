@@ -1,0 +1,985 @@
+Facture du 11/2020
+Edition des factures du magasin  La librairie parisienne
+-----------------------------------------------------
+Leroy Nicolas
+70 passage de la Colline
+37000  Tours
+Commande n° 1 du 24/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782010004612  Voir la Tunisie.        1   37,30   37,30
+-------Total   37,30
+-----------------------------------------------------
+Martin Camille
+162 boulevard de la Forêt
+33000  Bordeaux
+Commande n° 2 du 11/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782081269965  Dernières nouvelles du  1   9,00    9,00
+-------Total   9,00
+-----------------------------------------------------
+Silva Isabel
+46 place de la Forêt
+31000  Toulouse
+Commande n° 3 du 28/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782330000141  Livret de famille       1   12,40   12,40
+-------Total   12,40
+-----------------------------------------------------
+Robert Nicolas
+160 passage de la Forêt
+44000  Nantes
+Commande n° 4 du 22/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226244352  A l'ombre des bastides  2   11,90   23,80
+-------Total   23,80
+-----------------------------------------------------
+Lefebvre Paul
+28 avenue de la Paix
+06000  Nice
+Commande n° 5 du 25/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782012433373  Bretagne nord           2   9,00    18,00
+2  9782082402583  Savoir tout faire       1   13,00   13,00
+3  9782226007155  Vingt ans de rock fran  1   10,00   10,00
+-------Total   41,00
+-----------------------------------------------------
+Michel Emma
+126 avenue de la Forêt
+44000  Nantes
+Commande n° 6 du 08/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782012352711  Histoire de la menace   1   4,14    4,14
+-------Total   4,14
+-----------------------------------------------------
+Michel Jean
+103 allée de la Colline
+33000  Bordeaux
+Commande n° 7 du 30/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782082019088  Intérieurs              1   12,88   12,88
+-------Total   12,88
+-----------------------------------------------------
+Martin Laura
+112 boulevard de l'Université
+67000  Strasbourg
+Commande n° 8 du 02/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020227896  Le dico de l'argot fin  1   32,50   32,50
+-------Total   32,50
+-----------------------------------------------------
+Lopez Carlos
+1 avenue de la Paix
+06000  Nice
+Commande n° 9 du 21/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782080688422  Karoo boy               3   21,30   63,90
+-------Total   63,90
+-----------------------------------------------------
+Simon Pierre
+194 boulevard de la Colline
+37000  Tours
+Commande n° 10 du 12/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782742422364  Maroc                   2   27,00   54,00
+-------Total   54,00
+-----------------------------------------------------
+Thomas Laura
+158 allée de l'Université
+06000  Nice
+Commande n° 11 du 06/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782012353473  L' espace               1   5,99    5,99
+2  9782742758463  Fidelio de Ludwig van   1   4,59    4,59
+3  9782020146555  Dîwân                   1   32,78   32,78
+-------Total   43,36
+-----------------------------------------------------
+Bianchi Paolo
+163 allée de la Forêt
+67000  Strasbourg
+Commande n° 12 du 11/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782010201295  Roses et jardins        1   24,00   24,00
+-------Total   24,00
+-----------------------------------------------------
+12 factures éditées
+21 livres vendus
+Edition des factures du magasin  Cap au Sud
+-----------------------------------------------------
+Dubois Sophie
+77 impasse du Musée
+37000  Tours
+Commande n° 13 du 21/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020050142  Les médecines de l'Asi  1   38,50   38,50
+2  9782215054108  Le Chagrin des jaloux   1   9,00    9,00
+-------Total   47,50
+-----------------------------------------------------
+Bianchi Mehdi
+82 place du Musée
+34000  Montpellier
+Commande n° 14 du 17/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782012368378  La dégustation          1   5,99    5,99
+-------Total   5,99
+-----------------------------------------------------
+Martin Mathieu
+73 impasse de l'Université
+37000  Tours
+Commande n° 15 du 15/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782080126115  L' origine de la persp  1   22,67   22,67
+-------Total   22,67
+-----------------------------------------------------
+Petit Jean
+150 route de la Forêt
+34000  Montpellier
+Commande n° 16 du 27/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020047067  Léon Blum               2   20,00   40,00
+-------Total   40,00
+-----------------------------------------------------
+Silva Francesca
+65 quai de la Paix
+44000  Nantes
+Commande n° 17 du 30/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226170316  Comment survivre quand  1   18,00   18,00
+-------Total   18,00
+-----------------------------------------------------
+Bernard Hugo
+52 allée de l'Université
+34000  Montpellier
+Commande n° 18 du 06/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020961608  L'Europe expliquée aux  1   9,50    9,50
+-------Total   9,50
+-----------------------------------------------------
+Laurent Camille
+47 rue de la Forêt
+44000  Nantes
+Commande n° 19 du 23/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782012406223  Canada                  1   13,00   13,00
+-------Total   13,00
+-----------------------------------------------------
+Roux Paul
+63 avenue de l'Université
+38000  Grenoble
+Commande n° 20 du 09/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226006646  Punkitudes              1   25,00   25,00
+-------Total   25,00
+-----------------------------------------------------
+Durand Louis
+107 passage de la Paix
+37000  Tours
+Commande n° 21 du 05/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782742730513  Seizièmes Assises de l  2   21,50   43,00
+2  9782012008489  Créatures féroces       1   9,90    9,90
+-------Total   52,90
+-----------------------------------------------------
+Esposito Paolo
+75 allée de la Forêt
+35000  Rennes
+Commande n° 22 du 21/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782070600991  Pratique de la planche  3   9,00    27,00
+-------Total   27,00
+-----------------------------------------------------
+Bertrand Camille
+96 impasse de l'Université
+35000  Rennes
+Commande n° 23 du 21/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782010209444  La prévision des séism  1   15,10   15,10
+-------Total   15,10
+-----------------------------------------------------
+Dubois Louis
+49 quai du Musée
+69001  Lyon
+Commande n° 24 du 05/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020159647  La foi du souvenir      1   19,99   19,99
+-------Total   19,99
+-----------------------------------------------------
+Vincent Antoine
+42 impasse du Musée
+35000  Rennes
+Commande n° 25 du 12/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782215016823  L'imagerie des animaux  1   9,50    9,50
+2  9782020050074  Lutte étudiante         2   27,50   55,00
+3  9782742402649  Calvados                3   16,81   50,43
+-------Total   114,93
+-----------------------------------------------------
+Robert Mathieu
+149 place de la Paix
+51100  Reims
+Commande n° 26 du 18/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782021039559  Le cheval               2   32,50   65,00
+-------Total   65,00
+-----------------------------------------------------
+Bouzid Fatima
+150 passage de la Forêt
+69001  Lyon
+Commande n° 27 du 23/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226251978  Rapport intime          3   32,50   97,50
+-------Total   97,50
+-----------------------------------------------------
+Fernandez Alessandro
+199 chemin de l'Université
+44000  Nantes
+Commande n° 28 du 20/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782012352223  Deleuze                 1   8,07    8,07
+-------Total   8,07
+-----------------------------------------------------
+Bianchi Tiago
+142 rue du Musée
+33000  Bordeaux
+Commande n° 29 du 19/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782011691965  Les caprices de Marian  1   20,40   20,40
+-------Total   20,40
+-----------------------------------------------------
+17 factures éditées
+31 livres vendus
+Edition des factures du magasin  Ty Li-Breizh-rie
+-----------------------------------------------------
+Leroy Nicolas
+70 passage de la Colline
+37000  Tours
+Commande n° 30 du 07/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226076878  Dictionnaire de la fol  1   26,60   26,60
+-------Total   26,60
+-----------------------------------------------------
+Abdelkader Youssef
+147 route de la Paix
+06000  Nice
+Commande n° 31 du 09/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782742713110  Passion passions        1   37,00   37,00
+-------Total   37,00
+-----------------------------------------------------
+Laurent Camille
+47 rue de la Forêt
+44000  Nantes
+Commande n° 32 du 24/11/2020
+      ISBN                Titre          qte   prix    total  
+-------Total   0,00
+-----------------------------------------------------
+Petit Emma
+11 avenue de l'Université
+06000  Nice
+Commande n° 33 du 01/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782080201713  Paul Durand-Ruel        2   149,99  299,98
+-------Total   299,98
+-----------------------------------------------------
+Richard Nathan
+100 quai de la Colline
+45000  Orléans
+Commande n° 34 du 14/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782330167691  Marcel Jacno, graphist  1   39,00   39,00
+-------Total   39,00
+-----------------------------------------------------
+Lefebvre Jean
+103 chemin de la Forêt
+38000  Grenoble
+Commande n° 35 du 26/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782081622005  Ouf, pas de vacances c  2   9,00    18,00
+-------Total   18,00
+-----------------------------------------------------
+Bertrand Nathan
+133 quai du Musée
+33000  Bordeaux
+Commande n° 36 du 08/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782013304832  Choisir ses poissons d  5   6,53    32,65
+-------Total   32,65
+-----------------------------------------------------
+Carvalho Giovanni
+149 avenue du Musée
+69001  Lyon
+Commande n° 37 du 12/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782081333857  Tombée du ciel          1   19,90   19,90
+2  9782020635424  Napoléon et la mer, un  1   30,98   30,98
+3  9782012246065  Danger à l'horizon      1   8,18    8,18
+-------Total   59,06
+-----------------------------------------------------
+Carvalho Giovanni
+149 avenue du Musée
+69001  Lyon
+Commande n° 38 du 18/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782742706334  Chorégies d'Orange      1   25,00   25,00
+2  9782226091604  Paroles du Tibet        1   38,00   38,00
+-------Total   63,00
+-----------------------------------------------------
+Martinez Leonor
+176 passage du Musée
+59000  Lille
+Commande n° 39 du 24/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782080813909  Le primat de l'autre e  1   5,28    5,28
+-------Total   5,28
+-----------------------------------------------------
+Pereira Isabel
+58 rue de la Paix
+06000  Nice
+Commande n° 40 du 23/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782080688422  Karoo boy               1   21,30   21,30
+-------Total   21,30
+-----------------------------------------------------
+Carvalho Carlos
+96 boulevard de la Colline
+06000  Nice
+Commande n° 41 du 22/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020045506  Les grands économistes  1   9,00    9,00
+2  9782226190673  L'heure trouble         1   9,00    9,00
+3  9782742771806  Dossier la Guêpe        1   9,00    9,00
+4  9782010105203  Mémoire de singe et pa  1   16,00   16,00
+-------Total   43,00
+-----------------------------------------------------
+Leroy Marie
+124 chemin du Musée
+45000  Orléans
+Commande n° 42 du 08/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226005250  365 plats du jour et l  1   30,01   30,01
+-------Total   30,01
+-----------------------------------------------------
+Lefebvre Louis
+113 allée de la Paix
+31000  Toulouse
+Commande n° 43 du 23/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782227729469  Le maléfice             1   36,40   36,40
+-------Total   36,40
+-----------------------------------------------------
+Lefebvre Elodie
+79 avenue de l'Université
+06000  Nice
+Commande n° 44 du 04/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226141989  La passion des livres   1   24,30   24,30
+-------Total   24,30
+-----------------------------------------------------
+Martin Mathieu
+171 impasse du Musée
+34000  Montpellier
+Commande n° 45 du 20/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782227004030  Libres écoles?          3   28,50   85,50
+-------Total   85,50
+-----------------------------------------------------
+Thomas Louis
+51 place de la Forêt
+38000  Grenoble
+Commande n° 46 du 16/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226087089  Le chasseur Zéro        1   4,85    4,85
+-------Total   4,85
+-----------------------------------------------------
+Thomas Nathan
+49 route de la Forêt
+44000  Nantes
+Commande n° 47 du 13/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020565684  Le pays de l'écriture   1   6,70    6,70
+-------Total   6,70
+-----------------------------------------------------
+18 factures éditées
+31 livres vendus
+Edition des factures du magasin  L'européenne
+-----------------------------------------------------
+Lopez Mehdi
+22 quai du Musée
+44000  Nantes
+Commande n° 48 du 02/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782081604896  Plus de gym pour Danny  1   9,00    9,00
+2  9782020144339  Offenbach               1   23,20   23,20
+-------Total   32,20
+-----------------------------------------------------
+Dubois Pierre
+65 impasse du Musée
+33000  Bordeaux
+Commande n° 49 du 13/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782080644589  Le royaume d'Otto       1   9,00    9,00
+-------Total   9,00
+-----------------------------------------------------
+Ferrari Francesca
+185 quai de la Colline
+34000  Montpellier
+Commande n° 50 du 03/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020183550  Dans la langue de pers  1   19,69   19,69
+-------Total   19,69
+-----------------------------------------------------
+Martin Camille
+162 boulevard de la Forêt
+33000  Bordeaux
+Commande n° 51 du 03/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782010123436  La vie quotidienne des  1   7,58    7,58
+-------Total   7,58
+-----------------------------------------------------
+Ferrari André
+178 impasse de la Forêt
+51100  Reims
+Commande n° 52 du 13/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782012402157  Croatie                 1   24,00   24,00
+-------Total   24,00
+-----------------------------------------------------
+Ferrari André
+149 rue de l'Université
+37000  Tours
+Commande n° 53 du 11/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782742708499  Mademoiselle Merquem    1   27,50   27,50
+-------Total   27,50
+-----------------------------------------------------
+Laurent Emma
+66 quai de la Forêt
+75001  Paris
+Commande n° 54 du 04/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782742707119  Musiques d'Egypte       1   5,00    5,00
+-------Total   5,00
+-----------------------------------------------------
+Richard Mathieu
+123 route de la Paix
+13001  Marseille
+Commande n° 55 du 18/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782227729643  La malédiction de la l  1   9,00    9,00
+-------Total   9,00
+-----------------------------------------------------
+Petit Sophie
+143 boulevard de la Paix
+13001  Marseille
+Commande n° 56 du 11/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226318558  Un vampire sans sang-f  1   38,10   38,10
+-------Total   38,10
+-----------------------------------------------------
+Robert Mathieu
+149 place de la Paix
+51100  Reims
+Commande n° 57 du 25/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020201605  La cause des prophètes  1   22,60   22,60
+-------Total   22,60
+-----------------------------------------------------
+Petit Laura
+115 chemin de l'Université
+13001  Marseille
+Commande n° 58 du 10/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226188410  Paradis conjugal        1   11,90   11,90
+2  9782020130875  L' étoffe du diable     5   8,98    44,90
+3  9782742720682  Antigone                2   16,00   32,00
+4  9782070643486  Pourquoi aimes-tu tes   1   32,50   32,50
+-------Total   121,30
+-----------------------------------------------------
+Laurent Antoine
+105 avenue du Musée
+45000  Orléans
+Commande n° 59 du 01/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782742781171  Anthologie poétique     1   7,29    7,29
+-------Total   7,29
+-----------------------------------------------------
+Vincent Emma
+162 place de l'Université
+59000  Lille
+Commande n° 60 du 10/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782227340909  Jeu d'église            1   8,97    8,97
+-------Total   8,97
+-----------------------------------------------------
+Mokhtar Isabel
+162 passage de la Forêt
+59000  Lille
+Commande n° 61 du 29/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782742700059  Judas Iscariote         1   38,60   38,60
+-------Total   38,60
+-----------------------------------------------------
+Bouzid Mariana
+92 allée de la Colline
+51100  Reims
+Commande n° 62 du 06/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782080113030  Jean-Paul II            1   15,10   15,10
+-------Total   15,10
+-----------------------------------------------------
+Lefebvre Louis
+113 allée de la Paix
+31000  Toulouse
+Commande n° 63 du 19/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782070541867  Le défi de Kristy       1   35,70   35,70
+-------Total   35,70
+-----------------------------------------------------
+Rossi Javier
+2 boulevard de la Paix
+31000  Toulouse
+Commande n° 64 du 29/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020048484  Anti-manuel de françai  1   11,90   11,90
+2  9782012449527  New York                3   12,45   37,35
+-------Total   49,25
+-----------------------------------------------------
+17 factures éditées
+29 livres vendus
+Edition des factures du magasin  Le Ch'ti livre
+-----------------------------------------------------
+Ferrari Omar
+32 impasse de l'Université
+35000  Rennes
+Commande n° 65 du 20/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782081622616  Un Amour de cheval      1   9,00    9,00
+-------Total   9,00
+-----------------------------------------------------
+Abdelkader Leonor
+90 passage de la Paix
+34000  Montpellier
+Commande n° 66 du 01/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020141383  Histoire de l'antisémi  1   17,09   17,09
+-------Total   17,09
+-----------------------------------------------------
+Laurent Laura
+84 rue de la Colline
+69001  Lyon
+Commande n° 67 du 16/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226060013  Les années pattes d'ep  1   30,00   30,00
+-------Total   30,00
+-----------------------------------------------------
+Leroy Marie
+81 rue de la Paix
+75001  Paris
+Commande n° 68 du 07/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020061629  Sexualités occidentale  1   9,28    9,28
+2  9782205087307  Une histoire du Velvet  1   12,70   12,70
+-------Total   21,98
+-----------------------------------------------------
+Lefebvre Louis
+72 rue de la Colline
+33000  Bordeaux
+Commande n° 69 du 17/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782080660367  Correspondance          1   9,57    9,57
+-------Total   9,57
+-----------------------------------------------------
+Durand Lucie
+66 place de la Colline
+75001  Paris
+Commande n° 70 du 14/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782012262324  Joyeux anniversaire, O  1   9,00    9,00
+-------Total   9,00
+-----------------------------------------------------
+Michel Elodie
+111 quai de la Colline
+69001  Lyon
+Commande n° 71 du 28/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782081272286  C'était les Daudet      4   4,08    16,32
+2  9782082000819  Faites vos glaces et v  1   19,07   19,07
+3  9782020829342  L' étranger ou l'union  1   5,60    5,60
+-------Total   40,99
+-----------------------------------------------------
+Laurent Paul
+132 rue de l'Université
+44000  Nantes
+Commande n° 72 du 22/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226107824  Le stoïcisme au XVIe e  1   20,15   20,15
+-------Total   20,15
+-----------------------------------------------------
+Martin Marie
+61 passage de la Paix
+45000  Orléans
+Commande n° 73 du 19/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782747038737  Pour l'amour de Vanill  1   4,93    4,93
+-------Total   4,93
+-----------------------------------------------------
+Robert Mathieu
+47 allée de la Paix
+45000  Orléans
+Commande n° 74 du 17/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782080671974  Les secrets d'une vict  1   9,00    9,00
+-------Total   9,00
+-----------------------------------------------------
+Durand Marie
+170 avenue de la Forêt
+06000  Nice
+Commande n° 75 du 02/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226155870  Austerlitz              1   4,98    4,98
+2  9782020048118  Fictions freudiennes    1   5,47    5,47
+-------Total   10,45
+-----------------------------------------------------
+Laurent Antoine
+105 avenue du Musée
+45000  Orléans
+Commande n° 76 du 10/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782215124986  La licorne mystérieuse  1   4,68    4,68
+2  9782742766024  Pierre Bleu             1   32,50   32,50
+-------Total   37,18
+-----------------------------------------------------
+David Chloé
+143 allée de la Forêt
+35000  Rennes
+Commande n° 77 du 20/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782010041235  101 conseils pour vain  1   9,00    9,00
+-------Total   9,00
+-----------------------------------------------------
+Michel Lucas
+180 avenue de la Paix
+75001  Paris
+Commande n° 78 du 27/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782070115532  Album Julien Green      1   30,00   30,00
+-------Total   30,00
+-----------------------------------------------------
+Garcia Jean
+69 place de l'Université
+06000  Nice
+Commande n° 79 du 14/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782742756575  Le petit chaperon Uf    1   11,90   11,90
+-------Total   11,90
+-----------------------------------------------------
+15 factures éditées
+23 livres vendus
+Edition des factures du magasin  Rhône à lire
+-----------------------------------------------------
+Fournier Emma
+157 route de la Paix
+59000  Lille
+Commande n° 80 du 15/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020220323  Les eaux douces d'Euro  1   4,31    4,31
+-------Total   4,31
+-----------------------------------------------------
+Santos Omar
+68 boulevard du Musée
+51100  Reims
+Commande n° 81 du 16/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020838603  Tom Cox et la fin des   1   9,00    9,00
+-------Total   9,00
+-----------------------------------------------------
+Richard Julie
+182 passage de la Colline
+67000  Strasbourg
+Commande n° 82 du 04/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782227721098  L'auto de Sébastien     1   4,69    4,69
+-------Total   4,69
+-----------------------------------------------------
+Lefebvre Louis
+72 rue de la Colline
+33000  Bordeaux
+Commande n° 83 du 17/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782010196119  Pâtisserie facile       1   5,06    5,06
+2  9782226319326  Les voyageurs de l'aub  5   19,50   97,50
+-------Total   102,56
+-----------------------------------------------------
+Vincent Marie
+57 chemin de la Forêt
+31000  Toulouse
+Commande n° 84 du 01/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020227896  Le dico de l'argot fin  1   32,50   32,50
+2  9782226019363  La femme dans la Grèce  1   7,58    7,58
+-------Total   40,08
+-----------------------------------------------------
+Robert Mathieu
+149 place de la Paix
+51100  Reims
+Commande n° 85 du 12/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782227473676  Sur la traduction       1   7,60    7,60
+-------Total   7,60
+-----------------------------------------------------
+Michel Emma
+126 avenue de la Forêt
+44000  Nantes
+Commande n° 86 du 16/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020069588  Le loup meurt en silen  1   9,00    9,00
+-------Total   9,00
+-----------------------------------------------------
+Moreau Laura
+191 chemin du Musée
+45000  Orléans
+Commande n° 87 du 07/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226060198  La nouvelle hypnose     1   19,99   19,99
+-------Total   19,99
+-----------------------------------------------------
+Leroy Elodie
+142 chemin de la Forêt
+06000  Nice
+Commande n° 88 du 18/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226142733  Heureux qui communique  3   5,02    15,06
+2  9782742760671  Petites histoires de d  1   6,17    6,17
+3  9782081217782  Thérèse Raquin          1   9,00    9,00
+4  9782747026123  Le destin de Linus Hop  2   14,00   28,00
+-------Total   58,23
+-----------------------------------------------------
+Gonzalez André
+173 rue de la Paix
+31000  Toulouse
+Commande n° 89 du 06/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226131379  Un homme à distance     1   11,90   11,90
+2  9782330065850  François Couperin       1   18,00   18,00
+3  9782020662512  Entre mythe et politiq  5   11,90   59,50
+-------Total   89,40
+-----------------------------------------------------
+Petit Laura
+198 boulevard de la Paix
+13001  Marseille
+Commande n° 90 du 25/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782080687104  Comment dominer le str  1   32,30   32,30
+-------Total   32,30
+-----------------------------------------------------
+Dubois Pierre
+59 passage du Musée
+06000  Nice
+Commande n° 91 du 07/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020667760  Paul Verlaine           1   10,10   10,10
+-------Total   10,10
+-----------------------------------------------------
+Dubois Emma
+143 place de l'Université
+51100  Reims
+Commande n° 92 du 15/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020054973  Le scandale du corps p  1   9,99    9,99
+-------Total   9,99
+-----------------------------------------------------
+Roux Jean
+198 avenue du Musée
+75001  Paris
+Commande n° 93 du 22/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782010151262  En Bavière et en Forêt  1   9,00    9,00
+-------Total   9,00
+-----------------------------------------------------
+Ben Ali André
+16 avenue de la Forêt
+44000  Nantes
+Commande n° 94 du 05/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020396561  Les images qui mentent  1   35,00   35,00
+-------Total   35,00
+-----------------------------------------------------
+Bianchi Tiago
+55 chemin de la Forêt
+35000  Rennes
+Commande n° 95 du 29/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782012918474  Les animaux de la mont  1   20,00   20,00
+-------Total   20,00
+-----------------------------------------------------
+16 factures éditées
+34 livres vendus
+Edition des factures du magasin  Loire et livres
+-----------------------------------------------------
+Rossi Mariana
+140 rue de l'Université
+38000  Grenoble
+Commande n° 96 du 26/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782010151941  Les miserables          1   6,53    6,53
+-------Total   6,53
+-----------------------------------------------------
+Dubois Pierre
+65 impasse du Musée
+33000  Bordeaux
+Commande n° 97 du 19/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020066952  La crise de l'état-pro  2   9,00    18,00
+-------Total   18,00
+-----------------------------------------------------
+Roux Paul
+1 quai de l'Université
+38000  Grenoble
+Commande n° 98 du 26/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020043915  La rurbanisation ; ou,  1   9,00    9,00
+-------Total   9,00
+-----------------------------------------------------
+Costa Alessandro
+198 passage de la Paix
+13001  Marseille
+Commande n° 99 du 03/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782081286542  Le totem du peuple san  1   25,20   25,20
+-------Total   25,20
+-----------------------------------------------------
+Petit Pierre
+34 quai du Musée
+31000  Toulouse
+Commande n° 100 du 09/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226058997  Nouvelles saveurs de l  1   5,12    5,12
+-------Total   5,12
+-----------------------------------------------------
+Costa Javier
+123 rue de la Colline
+31000  Toulouse
+Commande n° 101 du 05/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226036513  L'homme au revolver     3   9,00    27,00
+2  9782012276147  Danse                   1   23,43   23,43
+3  9782012383869  Beurres aromatisés      1   39,90   39,90
+4  9782742738168  La promesse du seuil    1   57,99   57,99
+5  9782012384460  Le guide Hachette des   1   120,00  120,00
+-------Total   268,32
+-----------------------------------------------------
+Richard Louis
+152 impasse de l'Université
+44000  Nantes
+Commande n° 102 du 04/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226018830  La Navarre au Moyen Ag  1   35,00   35,00
+-------Total   35,00
+-----------------------------------------------------
+Martinez Leonor
+176 passage du Musée
+59000  Lille
+Commande n° 103 du 14/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782215011965  Un dejeuner mouvementé  1   36,40   36,40
+-------Total   36,40
+-----------------------------------------------------
+Pereira Isabel
+58 rue de la Paix
+06000  Nice
+Commande n° 104 du 15/11/2020
+      ISBN                Titre          qte   prix    total  
+-------Total   0,00
+-----------------------------------------------------
+Petit Pierre
+152 passage de la Colline
+38000  Grenoble
+Commande n° 105 du 02/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020068291  Sources                 2   8,99    17,98
+-------Total   17,98
+-----------------------------------------------------
+Fournier Manon
+24 rue de la Colline
+59000  Lille
+Commande n° 106 du 08/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782330002510  Serge Prokofiev         1   14,81   14,81
+-------Total   14,81
+-----------------------------------------------------
+Vincent Emma
+162 place de l'Université
+59000  Lille
+Commande n° 107 du 10/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782227721340  Les mots de Zaza        1   9,00    9,00
+-------Total   9,00
+-----------------------------------------------------
+Bouzid Fatima
+150 passage de la Forêt
+69001  Lyon
+Commande n° 108 du 30/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782226074775  Le théâtre de la guéri  1   10,97   10,97
+-------Total   10,97
+-----------------------------------------------------
+Dubois Pierre
+59 passage du Musée
+06000  Nice
+Commande n° 109 du 27/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782082004893  Ecologie de l'amour     2   4,46    8,92
+-------Total   8,92
+-----------------------------------------------------
+Martin Chloé
+130 chemin du Musée
+31000  Toulouse
+Commande n° 110 du 28/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782742414703  Corse-du-Sud, France    3   54,99   164,97
+-------Total   164,97
+-----------------------------------------------------
+Romano Paolo
+123 avenue de la Paix
+13001  Marseille
+Commande n° 111 du 13/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782330027483  Les dandys de Manningh  4   4,46    17,84
+-------Total   17,84
+-----------------------------------------------------
+Bianchi Mariana
+125 passage de la Paix
+69001  Lyon
+Commande n° 112 du 09/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782227478091  Chrétiens d'orient      1   8,95    8,95
+-------Total   8,95
+-----------------------------------------------------
+Bianchi Tiago
+55 chemin de la Forêt
+35000  Rennes
+Commande n° 113 du 03/11/2020
+      ISBN                Titre          qte   prix    total  
+1  9782020396561  Les images qui mentent  1   35,00   35,00
+-------Total   35,00
+-----------------------------------------------------
+18 factures éditées
+31 livres vendus
+Edition des factures du magasin  Livreshop
+-----------------------------------------------------
+0 factures éditées
+0 livres vendus
+Edition des factures du magasin  Livreshop
+-----------------------------------------------------
+0 factures éditées
+0 livres vendus
+Edition des factures du magasin  Livreshop
+-----------------------------------------------------
+0 factures éditées
+0 livres vendus
+Edition des factures du magasin  Renard qui lit
+-----------------------------------------------------
+0 factures éditées
+0 livres vendus
+*************************************
+Chiffre d'affaires global: 3 687,84
+Nombre livres vendus: 200
