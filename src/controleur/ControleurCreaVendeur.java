@@ -76,7 +76,7 @@ public class ControleurCreaVendeur extends Controleur{
     private void gererCreation(ActionEvent event) throws SQLException{
         //a ajouter: créé un magasin a partir d'un 
         if(nom.getText().isEmpty()||prenom.getText().isEmpty()||mdp.getText().isEmpty()||magasin.getText().isEmpty()){
-            afficherPopup("erreur", "Au moin l'un des 4 textField est vide");
+            afficherPopup("erreur", "Au moins l'un des 4 textField est vide");
         }
         else{
             //System.out.println("nom : " + nom.getText());

@@ -69,12 +69,14 @@ public class ControleurAdmin1 extends Controleur{
 
     @FXML
     private void gererSuivant(ActionEvent event) {
-        afficherPopup("suivant", "Fonction de page suivant !");
+        this.numPage+=1;
+        this.majAffichage();
     }
 
     @FXML
     private void gererPreced(ActionEvent event) {
-        afficherPopup("precedent", "Fonction de page precedent !");
+        this.numPage-=1;
+        this.majAffichage();
     }
 
     @FXML
@@ -103,7 +105,12 @@ public class ControleurAdmin1 extends Controleur{
 
     @FXML
     private void gererChoix(ActionEvent event) {
-        afficherPopup("Choix", "Option choisie !");
+        Button bouton = (Button) event.getSource();
+        String[] texte = bouton.getText().split("\n");
+        String nom = texte[0];
+        String ville = texte[1];
+        Magasin magasin = this.modele.getRechercheMag(String nom, String ville);
+        this.statsMagasin(magasin);
     }
 
     @FXML
@@ -158,9 +165,22 @@ public class ControleurAdmin1 extends Controleur{
         Scene scene = new Scene(layout);
         Stage popupStage = new Stage();
         popupStage.setScene(scene);
+        if (mois.length() == 1) {mois="0" + mois;}
+        if (mois.length() > 2) {mois=mois.substring(mois.length()-2);}
         popupStage.setTitle("factures-"+mois+"-"+annee+".txt");
         popupStage.initModality(Modality.APPLICATION_MODAL); // bloque la fenêtre principale
         popupStage.showAndWait();
+    }
+
+    /**
+     * Affiche les statistiques du magasin
+     * @param mag L'identifiant du magasin
+     */
+    private void statsMagasin(Magasin mag) {
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Infos");
+        alert.setContentText("Nom : " + mag.getNom() + "\nVille : " + mag.getVille() + "\nChiffre d'affaires global : " + mag.getCA() + "\nNombres de livres vendus : " + mag.nbLivresVendus());
+        alert.showAndWait();
     }
 
     /**
@@ -191,15 +211,13 @@ public class ControleurAdmin1 extends Controleur{
                                 boutonChoisir6.setText("");
                                 boutonChoisir6.setDisable(true);
                             }
-                        }
-                        else {
+                        } else {
                             boutonChoisir5.setText("");
                             boutonChoisir5.setDisable(true);
                             boutonChoisir6.setText("");
                             boutonChoisir6.setDisable(true);
                         }
-                    }
-                    else {
+                    } else {
                         boutonChoisir3.setText("");
                         boutonChoisir3.setDisable(true);
                         boutonChoisir5.setText("");
@@ -207,8 +225,7 @@ public class ControleurAdmin1 extends Controleur{
                         boutonChoisir6.setText("");
                         boutonChoisir6.setDisable(true);
                     }
-                }
-                else {
+                } else {
                     boutonChoisir3.setText("");
                     boutonChoisir3.setDisable(true);
                     boutonChoisir4.setText("");
@@ -218,8 +235,7 @@ public class ControleurAdmin1 extends Controleur{
                     boutonChoisir6.setText("");
                     boutonChoisir6.setDisable(true);
                 }
-            }
-            else {
+            } else {
                 boutonChoisir2.setText("");
                 boutonChoisir2.setDisable(true);
                 boutonChoisir3.setText("");
@@ -231,8 +247,7 @@ public class ControleurAdmin1 extends Controleur{
                 boutonChoisir6.setText("");
                 boutonChoisir6.setDisable(true);
             }
-        }
-        else {
+        }  else {
             boutonChoisir1.setText("");
             boutonChoisir1.setDisable(true);
             boutonChoisir2.setText("");
@@ -247,11 +262,23 @@ public class ControleurAdmin1 extends Controleur{
             boutonChoisir6.setDisable(true);
         }
     }
+    /**
+     * Permet de mettre à jour l'affichage des magasins lorsque l'on change de page
+     */
+    public void majAffichage() {
+        this.afficherMagasins();
+        if (this.numPage == 0) {this.boutonPreced.setDisable(true);}
+        else {this.boutonPreced.setDisable(false);}
+        int reste = this.modele.getMagasins().size() % 6;
+        int nbPagesMax = this.modele.getMagasins().size() / 6;
+        if ((this.numPage == nbPagesMax && reste != 0) || (this.numPage == nbPagesMax - 1 && reste == 0)) {this.boutonSuivant.setDisable(true);}
+        else {this.boutonSuivant.setDisable(false);}
+    }
 
     @Override
     public void chargerPage() {
-        this.numPage=1;
+        this.numPage=0;
         nomPrenom.setText(this.modele.getCurUser().getNom() + " " + this.modele.getCurUser().getPrenom());
-        this.afficherMagasins();
+        this.majAffichage();
     }
 }
