@@ -147,12 +147,12 @@ public void changerVue(String fxmlChemin) {
     public void start(Stage primaryStage) throws Exception {
         try {
             // loader
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/VuePageClientMagasin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/VuePageClient.fxml"));
             BorderPane root = loader.load();
             this.fenetreActuel = root;
 
             // Init controleur Vue
-            ControleurClientMagasin controleur = loader.getController();
+            ControleurClient controleur = loader.getController();
             controleur.setVue(this);
             Scene scene = new Scene(this.fenetreActuel);
             primaryStage.setScene(scene);
