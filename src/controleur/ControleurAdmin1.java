@@ -1,5 +1,8 @@
 package controleur;
 
+import java.util.List;
+import modele.*;
+
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -53,11 +56,12 @@ public class ControleurAdmin1 extends Controleur{
 
     @FXML
     private void gererCreamag(ActionEvent event) {
-        afficherPopup("Recherche", "Fonction de creation magasin !");
+        this.vue.changerVue("/view/ajouterMag.fxml");
     }
+
     @FXML
     private void gererCreaVendeur(ActionEvent event) {
-        afficherPopup("Recherche", "Fonction de creation magasin !");
+        this.vue.changerVue("/view/ajouterVendeur.fxml");
     }
 
     @FXML
@@ -83,8 +87,9 @@ public class ControleurAdmin1 extends Controleur{
             else {throw new NumberFormatException();}
         } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur : Valeurs invalides");
-            alert.setContentText("Les valeurs rentrées sont incorrects,\n vérifiez que les valeurs rentrées correspondent bien à des mois et des années au format numérique.");
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur : Valeurs invalides");
+            alert.setContentText("Les valeurs rentrées sont incorrects,\n vérifiez que les valeurs rentrées correspondent bien\n à des mois et des années au format numérique.");
             alert.showAndWait();
         }
     }
@@ -127,5 +132,43 @@ public class ControleurAdmin1 extends Controleur{
         popupStage.showAndWait();
     }
 
+    private void chargerPage() {
+        boutonDeconnexion.setText("Profil Administrateur\n" + this.modele.getCurUser().getNom() + " " + this.modele.getCurUser().getPrenom() + "\nSe déconnecter");
+        List<Magasin> lesMagasins = this.modele.getMagasins();
+        if (lesMagasins.size() >= 1) {
+            boutonChoisir1.setText(lesMagasins.get(0).getNom() + "\n" + lesMagasins.get(0).getVille());
+            boutonChoisir1.setDisable(false);
+            if (lesMagasins.size() >= 2) {
+                boutonChoisir2.setText(lesMagasins.get(1).getNom() + "\n" + lesMagasins.get(1).getVille());
+                boutonChoisir2.setDisable(false);
+            }
+            else {
+                boutonChoisir2.setText("");
+                boutonChoisir2.setDisable(true);
+                boutonChoisir3.setText("");
+                boutonChoisir3.setDisable(true);
+                boutonChoisir4.setText("");
+                boutonChoisir4.setDisable(true);
+                boutonChoisir5.setText("");
+                boutonChoisir5.setDisable(true);
+                boutonChoisir6.setText("");
+                boutonChoisir6.setDisable(true);
+                }
+        }
+        else {
+            boutonChoisir1.setText("");
+            boutonChoisir1.setDisable(true);
+            boutonChoisir2.setText("");
+            boutonChoisir2.setDisable(true);
+            boutonChoisir3.setText("");
+            boutonChoisir3.setDisable(true);
+            boutonChoisir4.setText("");
+            boutonChoisir4.setDisable(true);
+            boutonChoisir5.setText("");
+            boutonChoisir5.setDisable(true);
+            boutonChoisir6.setText("");
+            boutonChoisir6.setDisable(true);
+        }
+    }
 }
 
