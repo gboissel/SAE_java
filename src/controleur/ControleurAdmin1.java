@@ -1,5 +1,6 @@
 package controleur;
 
+import java.awt.Label;
 import java.util.List;
 import modele.*;
 
@@ -18,6 +19,8 @@ import javafx.event.ActionEvent;
 
 public class ControleurAdmin1 extends Controleur{
 
+    @FXML
+    private Label nomprenom
     @FXML
     private Button boutonRechercher;
 
