@@ -533,9 +533,25 @@ public class JDBC {
         }
         return res;
     }
-
-    public List<String> getLivresParClassificationEtMagasin(String nomClassification, String nomMagasin) throws SQLException {
+    /**
+     * Permet de recuperer la liste des livre appartenant a un magasin et a une categorie
+     * @param id_Class
+     * @param nomMagasin
+     * @return
+     * @throws SQLException
+     */
+    public List<String> getLivresParClassificationEtMagasin(String id_Class, String nomMagasin) throws SQLException {
     List<String> livres = new ArrayList<>();
+    int nombre; 
+
+    try {
+        nombre = Integer.parseInt(id_Class); 
+        System.out.println("Le nombre est : " + nombre);
+    } catch (NumberFormatException e) {
+        System.out.println("Erreur : la chaîne n'est pas un entier valide.");
+        return livres; 
+    }
+
     String sql = """
         SELECT DISTINCT titre
         FROM LIVRE
@@ -543,12 +559,13 @@ public class JDBC {
         NATURAL JOIN CLASSIFICATION
         NATURAL JOIN POSSEDER
         NATURAL JOIN MAGASIN
-        WHERE nomclass = ? AND nommag = ?;
+        WHERE iddewey BETWEEN ? AND ? AND nommag = ?;
     """;
 
     try (PreparedStatement pstmt = laConnexion.prepareStatement(sql)) {
-        pstmt.setString(1, nomClassification);
-        pstmt.setString(2, nomMagasin);
+        pstmt.setInt(1, nombre);
+        pstmt.setInt(2, nombre + 99); // plage de classification
+        pstmt.setString(3, nomMagasin);
 
         try (ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
@@ -558,6 +575,6 @@ public class JDBC {
     }
 
     return livres;
-}
+    }
 }
 
