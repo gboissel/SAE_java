@@ -2,9 +2,6 @@ package controleur;
 
 import modele.*;
 import view.*;
-import exception.*;
-import tri.*;
-import JDBC.*;
 
 public class Controleur {
     protected Librairie modele;
@@ -25,4 +22,7 @@ public class Controleur {
         this.vue = vue;
     }
 
+    public void chargerPage(){
+        
+    }
 }

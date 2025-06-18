@@ -1,17 +1,16 @@
 package modele;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import JDBC.JDBC;
-import tri.TriLivreParNom;
 import exception.RechercheSansResultatException;
 import exception.UtilisateurInexistantException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import tri.TriLivreParNom;
 
 public class Librairie {
     private Utilisateur curUser;
@@ -29,6 +28,19 @@ public class Librairie {
         this.jdbc = jdbc;
         this.initialisationBD(this.jdbc);
 
+    }
+
+    public void  ajouteMag(Magasin mag){
+        this.lesMagasins.add(mag);
+    }
+
+    public Magasin rechercheMagParNom(String nommag){
+        for(Magasin mag: this.lesMagasins){
+            if(mag.getNom().equals(nommag)){
+                return mag;
+            }
+        }
+        return null;
     }
 
     public boolean estChargee() {

@@ -2,6 +2,7 @@ package controleur;
 
 import JDBC.ConnexionMySQL;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.stream.Stream;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -59,6 +60,8 @@ public class ControleurCreaVendeur extends Controleur{
     @FXML
     private void gererAcceuil(ActionEvent event) {
         afficherPopup("menu", "Fonction de retour au menu !");
+        this.vue.changerVue("/view/fenetreAdmin1.fxml");
+
     }
 
     private void afficherPopup(String titre, String message) {
@@ -70,17 +73,21 @@ public class ControleurCreaVendeur extends Controleur{
     }
 
     @FXML
-    private void gererCreation(ActionEvent event) {
+    private void gererCreation(ActionEvent event) throws SQLException{
         //a ajouter: créé un magasin a partir d'un 
         if(nom.getText().isEmpty()||prenom.getText().isEmpty()||mdp.getText().isEmpty()||magasin.getText().isEmpty()){
             afficherPopup("erreur", "Au moin l'un des 4 textField est vide");
         }
         else{
-            System.out.println("nom : " + nom.getText());
-            System.out.println("prenom : " + prenom.getText());
-            System.out.println("mdp : " + mdp.getText());
-            System.out.println("magasin : " + magasin.getText());
-            afficherPopup("Creation", "La creation a bien reussi ");
+            //System.out.println("nom : " + nom.getText());
+            //System.out.println("prenom : " + prenom.getText());
+            //System.out.println("mdp : " + mdp.getText());
+            //System.out.println("magasin : " + magasin.getText());
+            Magasin mag_rech = this.modele.rechercheMagParNom(getMagasin());
+            //this.modele.getJDBC().insererVendeur(new Vendeur(getNom(), getPrenom(), getMdp(), mag_rech), getMdp());
+            this.modele.createVendeur(getNom(), getPrenom(), getMdp(), mag_rech, this.modele.getJDBC());
+            afficherPopup("Creation", "La creation Vendeur a bien reussi ");
+            this.vue.changerVue("/view/fenetreAdmini1.fxml");
         }
         
     }

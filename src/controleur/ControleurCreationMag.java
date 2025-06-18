@@ -1,12 +1,15 @@
 package controleur;
 
-import JDBC.ConnexionMySQL;
+import JDBC.*;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
+import modele.Magasin;
 
 public class ControleurCreationMag extends Controleur{
 
@@ -33,27 +36,23 @@ public class ControleurCreationMag extends Controleur{
     @FXML
     private void gererAcceuil(ActionEvent event) {
         afficherPopup("menu", "Fonction de retour au menu !");
+        this.vue.changerVue("/view/fenetreAdmin1.fxml");
     }
 
 
     @FXML
-    private void gererCreation(ActionEvent event) {
+    private void gererCreation(ActionEvent event) throws SQLException{
         //a ajouter: créé un magasin a partir d'un 
         if(nom.getText().isEmpty()||ville.getText().isEmpty()){
             afficherPopup("erreur", "Au moin l'un des 2 textField est vide");
         }
         else{
-            //ConnexionMySQL conn = modele.get
-            //PreparedStatement ps = conn.prepareStatement("INSERT INTO MAGASIN(idmag, nommag, villemag) VALUES (?, ?, ?)");
-            //int nouvelId = this.modele.getMagasins().size() + 1;
-            //ps.setInt(1, nouvelId);
-            //ps.setString(2, nom.getText()); 
-            //ps.setString(3, ville.getText()); 
-            System.out.println("nom : " + nom.getText());
-            System.out.println("ville : " + ville.getText());
-            afficherPopup("Creation", "La creation a bien reussi ");
+            this.modele.getJDBC().insererMagasin(new Magasin(nom.getText(), ville.getText()));
+            this.modele.ajouteMag(new Magasin(nom.getText(), ville.getText()));
+            //System.out.println("nom : " + nom.getText());
+            //System.out.println("ville : " + ville.getText());
+            afficherPopup("Creation", "La creation Magasin a bien reussi ");
         }
-        
     }
 
     private void afficherPopup(String titre, String message) {
