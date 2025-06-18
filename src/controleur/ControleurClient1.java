@@ -100,10 +100,12 @@ public class ControleurClient1 extends Controleur{
     }
 
     @FXML
-    public void pageSuiv(){
+    public void pageSuivante(){
         this.nbPage+=1;
     }
-
+    @FXML
+    private void accesPanier(){
+    }
     @Override
     public void chargerPage(){
         this.nbPage = 0;
