@@ -195,12 +195,12 @@
             </GridPane>
             <HBox alignment="TOP_RIGHT" prefHeight="102.0" prefWidth="591.0">
                <children>
-                  <Button fx:id="btnAcceuilChoix" alignment="CENTER" mnemonicParsing="false" onAction="#controleurAcceuilChoix" prefHeight="68.0" prefWidth="233.0" text="Choix Vendeur Acceuil" textAlignment="RIGHT">
+                  <Button fx:id="btnAcceuilChoix" alignment="CENTER" mnemonicParsing="false" onAction="#controleurAcceuilChoix" prefHeight="52.0" prefWidth="162.0" text="Choix Vendeur" textAlignment="RIGHT">
                      <font>
                         <Font size="19.0" />
                      </font>
                      <HBox.margin>
-                        <Insets right="10.0" top="10.0" />
+                        <Insets right="10.0" top="15.0" />
                      </HBox.margin>
                   </Button>
                </children>
