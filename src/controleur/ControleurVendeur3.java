@@ -26,7 +26,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Alert;
 
-public class ControleurVendeur3 {
+public class ControleurVendeur3 extends Controleur {
     private Librairie modele;
     private LivreExpress vue;
 

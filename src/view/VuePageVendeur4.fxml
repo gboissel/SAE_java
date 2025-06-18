@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurVendeur4">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="111.0" prefWidth="800.0" spacing="5.0" style="-fx-background-color: #b4b4b4;" BorderPane.alignment="CENTER">
          <children>
@@ -82,17 +82,17 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField prefHeight="48.0" prefWidth="595.0" promptText="Numero de Carte Bleue : ">
+            <TextField fx:id="TextCB" prefHeight="48.0" prefWidth="595.0" promptText="Numero de Carte Bleue : ">
                <font>
                   <Font size="19.0" />
                </font>
             </TextField>
-            <TextField prefHeight="55.0" prefWidth="595.0" promptText="Date Expiration :">
+            <TextField fx:id="TextDate" prefHeight="55.0" prefWidth="595.0" promptText="Date Expiration :">
                <font>
                   <Font size="19.0" />
                </font>
             </TextField>
-            <TextField prefHeight="55.0" prefWidth="595.0" promptText="Code de Securité : ">
+            <TextField fx:id="TextCSecu" prefHeight="55.0" prefWidth="595.0" promptText="Code de Securité : ">
                <font>
                   <Font size="19.0" />
                </font>
@@ -102,7 +102,7 @@
                   <Font size="19.0" />
                </font>
             </TextField>
-            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="141.0" text="Payer">
+            <Button fx:id="btnPayer" mnemonicParsing="false" onAction="#ControleurPayer" prefHeight="66.0" prefWidth="141.0" text="Payer">
                <font>
                   <Font size="27.0" />
                </font>

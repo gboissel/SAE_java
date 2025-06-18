@@ -41,7 +41,7 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="106.0" text="Deconnexion">
+            <Button fx:id="btnDeco" mnemonicParsing="false" onAction="#controleurDeco" prefHeight="49.0" prefWidth="106.0" text="Deconnexion">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin></Button>

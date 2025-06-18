@@ -12,7 +12,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
@@ -27,7 +26,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Alert;
 
-public class ControleurVendeur4 extends Controleur{
+public class ControleurVendeur1_2 extends Controleur {
     private Librairie modele;
     private LivreExpress vue;
 
@@ -35,34 +34,43 @@ public class ControleurVendeur4 extends Controleur{
     private Button btnDeco;
 
     @FXML
-    private Button btnCatalogue;
+    private Button btnChoixVendeur;
 
     @FXML
-    private Button btnPayer;
+    private Button btnMagasinVendeur;
 
     @FXML
-    private TextField TextCB;
+    private Button btnCatalogueVend;
 
-    @FXML
-    private TextField TextDate;
 
-    @FXML
-    private TextField TextCSecu;
-                                      
     @FXML
     public void controleurBoutDeco(ActionEvent e){
         System.out.println("vous etes bien deconnecter");
     }
+
     @FXML
-    public void controleurPayer(ActionEvent e){
-        System.out.println("Payement");        
+    public void controleurCatalogueVendeur(ActionEvent e){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("ok");
+        alert.setHeaderText(null);
+        alert.setContentText("ok");
+        alert.showAndWait();
     }
+
     @FXML
-    public void controleurCatalogue(ActionEvent e){
-        System.err.println("truc");
+    public void controleurMagasinVendeur(ActionEvent e){
+        System.out.println("vous etes sur le magasin2");
+    } 
+    @FXML
+    public void controleurChoixVendeur(ActionEvent e){
+        System.out.println("truc");
     }
+
 
     public void setVue(LivreExpress vue){
         this.vue=vue;
     }
+    
+
+
 }
