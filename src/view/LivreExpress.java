@@ -5,7 +5,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.fxml.FXMLLoader;
-<<<<<<< HEAD
 import javafx.scene.Parent;
 import javafx.fxml.*;
 
@@ -18,11 +17,8 @@ import java.nio.Buffer;
 import java.util.ArrayList;
 import modele.*;
 import controleur.*;
-=======
-import modele.Librairie;
-import controleur.*;
+import modele.*;
 
->>>>>>> origin/main
 public class LivreExpress extends Application{
 
     private Librairie modele;
@@ -109,16 +105,12 @@ public class LivreExpress extends Application{
     public void start(Stage primaryStage) throws Exception {
         try {
             // loader
-<<<<<<< HEAD
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/VuePageClient.fxml"));
-=======
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/logBDpage.fxml"));
->>>>>>> origin/main
             BorderPane root = loader.load();
             this.fenetreActuel = root;
 
             // Init controleur Vue
-            ControleurClient controleur = loader.getController();
+            ControlleurConnexionBD controleur = loader.getController();
             controleur.setVue(this);
             Scene scene = new Scene(this.fenetreActuel);
             primaryStage.setScene(scene);
