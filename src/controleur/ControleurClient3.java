@@ -26,91 +26,74 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Alert;
 
-public class ControleurClient3 extends Controleur{
+public class ControleurClient3 extends Controleur {
     private Librairie modele;
     private LivreExpress vue;
 
     @FXML
     private Button btnDeco;
 
-    @FXML
+     @FXML
     private Button btnCatalogue;
 
-    @FXML
-    private Button btnAvant;
-    
-    @FXML
+     @FXML
+    private Button btnSupprPanier;
+
+     @FXML
     private Button btnSuppr;
 
     @FXML
-    private Button btnSupprPanier;
+    private Button btnAjoute;
 
     @FXML
-    private TextField btnAjoute;
-                                      
+    private Button btnAvant;
+
+    @FXML
+    private Button btnRetour;
+
+    @FXML
+    private Button btnPayement;
+
+
     @FXML
     public void controleurBoutDeco(ActionEvent e){
         System.out.println("vous etes bien deconnecter");
     }
 
     @FXML
-    public void controleurAjoute(ActionEvent e){
-        System.out.println("Ajoute");  
-    }
-    @FXML
-    public void controleurAjoute2(ActionEvent e){
-        System.out.println("Ajoute");  
-    }
-    @FXML
-    public void controleurAjoute3(ActionEvent e){
-        System.out.println("Ajoute");  
-    }
-    @FXML
-    public void controleurAjoute4(ActionEvent e){
-        System.out.println("Ajoute");  
-    }
-    @FXML
-    public void controleurSuppr(ActionEvent e){
-        System.out.println("Suppr");        
-    }
-     @FXML
-    public void controleurSuppr2(ActionEvent e){
-        System.out.println("Suppr");        
-    }
-     @FXML
-    public void controleurSuppr3(ActionEvent e){
-        System.out.println("Suppr");        
-    }
-     @FXML
-    public void controleurSuppr4(ActionEvent e){
-        System.out.println("Suppr");        
-    }
-    @FXML
     public void controleurSupprPanier(ActionEvent e){
-        System.out.println("Suppr Panier");        
+        System.out.println("truc");
     }
-    @FXML
-    public void controleurSupprPanier2(ActionEvent e){
-        System.out.println("Suppr Panier");        
-    }
-    @FXML
-    public void controleurSupprPanier3(ActionEvent e){
-        System.out.println("Suppr Panier");        
-    }
-    @FXML
-    public void controleurSupprPanier4(ActionEvent e){
-        System.out.println("Suppr Panier");        
-    }
-    @FXML
+     @FXML
+    public void controleurSuppr(ActionEvent e){
+        System.out.println("truc");
+    } 
+     @FXML
+    public void controleurAjoute(ActionEvent e){
+        System.out.println("truc");
+    } 
+     @FXML
+    public void controleurCatalogue(ActionEvent e){
+        System.out.println("truc");
+    } 
+     @FXML
     public void controleurAvant(ActionEvent e){
+        System.out.println("truc");
+    } 
+     @FXML
+    public void controleurRetour(ActionEvent e){
         System.out.println("truc");
     }
     @FXML
-    public void controleurCatalogue(ActionEvent e){
-        System.err.println("truc");
-    }
+    public void controleurPayement(ActionEvent e){
+        System.out.println("truc");
 
+    }
+      
     public void setVue(LivreExpress vue){
         this.vue=vue;
     }
+    
+
+
 }

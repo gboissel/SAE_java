@@ -1,23 +1,24 @@
 package modele;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import JDBC.JDBC;
-import tri.TriLivreParNom;
 import exception.RechercheSansResultatException;
 import exception.UtilisateurInexistantException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import tri.TriLivreParNom;
 
 public class Librairie {
     private Utilisateur curUser;
     private List<Utilisateur> users;
     private List<Magasin> lesMagasins;
     private List<Livre> lesLivres;
+    private JDBC jdbc;
+    private Magasin curMag;
     private boolean chargee;
 
 
@@ -25,7 +26,40 @@ public class Librairie {
         this.chargee = false;
         this.users= new ArrayList<>();
         this.curUser = null;
-        this.initialisationBD(jdbc);
+        this.jdbc = jdbc;
+        this.initialisationBD(this.jdbc);
+
+    }
+
+    public void  ajouteMag(Magasin mag){
+        this.lesMagasins.add(mag);
+    }
+
+    public Magasin rechercheMagParNom(String nommag){
+        for(Magasin mag: this.lesMagasins){
+            if(mag.getNom().equals(nommag)){
+                return mag;
+            }
+        }
+        return null;
+    }
+
+    public Magasin rechercheMag(String nommag,String ville){
+        for(Magasin mag: this.lesMagasins){
+            if(mag.getNom().equals(nommag)&&mag.getVille().equals(ville)){
+                return mag;
+            }
+        }
+        return null;
+    }
+
+    public Livre rechercheLivreParNom(String nom){
+        for(Livre livre: this.lesLivres){
+            if(livre.getTitre().equals(nom)){
+                return livre;
+            }
+        }
+        return null;
     }
 
     public boolean estChargee() {
@@ -62,6 +96,22 @@ public class Librairie {
      */
     public Utilisateur getCurUser(){
         return this.curUser;
+    }
+
+    /**
+     * renvoie magasin courant
+     * @return le magasin courant
+     */
+    public Magasin getCurMag() {
+        return this.curMag;
+    }
+
+    /**
+     * Récupère l'instance de la classe permettant de manipuler la base de données
+     * @return Une instance de la classe JDBC
+     */
+    public JDBC getJDBC() {
+        return this.jdbc;
     }
     
     /**
@@ -212,7 +262,7 @@ public class Librairie {
      * @param mois
      * @param annee
      */
-    public void editerFacture(int mois, int annee){
+    public String editerFacture(int mois, int annee){
         String res = "Facture du "+mois+"/"+annee+"\n";
         int i = 0;
         String interligne = "      ISBN                Titre          qte   prix    total  \n";
@@ -282,5 +332,6 @@ public class Librairie {
             System.out.println("Une erreur est survenue.");
             e.printStackTrace();//ca c'est bon
         }
+        return res;
     }
 }

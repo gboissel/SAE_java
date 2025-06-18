@@ -45,15 +45,8 @@ public class ControleurConnectionUser extends Controleur{
     @FXML
     private Button boutonConnexion;
 
-
     @FXML
-    private void validerChoix() {
-    RadioButton selection = (RadioButton) groupeUtilisateur.getSelectedToggle();
-    if (selection != null) {
-        //System.out.println("Choix : " + selection.getText());
-        this.role_user=selection.getText()+"";
-    }
-    }
+    private Button btCreaClient;
 
     public String getNom(){
         return this.nom.getText();
@@ -74,6 +67,11 @@ public class ControleurConnectionUser extends Controleur{
     @FXML
     private void gererAcceuil(ActionEvent event) {
         this.vue.changerVue("/view/accueil.fxml");
+    }
+
+    @FXML
+    private void gererCreaClient(ActionEvent event) {
+        this.vue.changerVue("/view/creaCompteClient.fxml");
     }
 
     @FXML

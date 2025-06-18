@@ -26,7 +26,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Alert;
 
-public class ControleurClient2 extends Controleur{
+public class ControleurVendeur2 extends Controleur {
     private Librairie modele;
     private LivreExpress vue;
 
@@ -34,15 +34,18 @@ public class ControleurClient2 extends Controleur{
     private Button btnDeco;
 
     @FXML
-    private Button btnLivre1;
+    private Button btnRecherche;
 
-    @FXML
+     @FXML
+    private Button btnLivre;
+
+     @FXML
     private Button btnLivre2;
 
-    @FXML
+     @FXML
     private Button btnLivre3;
 
-    @FXML
+     @FXML
     private Button btnLivre4;
 
      @FXML
@@ -50,7 +53,7 @@ public class ControleurClient2 extends Controleur{
 
     @FXML
     private Button btnLivre6;
-    
+
     @FXML
     private Button btnLivre7;
 
@@ -64,18 +67,16 @@ public class ControleurClient2 extends Controleur{
     private Button btnPanier;
 
     @FXML
-    private Button btnRecherche;
+    private Button btnAcceuilChoix;
 
-    @FXML
-    private TextField TextRecherche;
-                                      
+
     @FXML
     public void controleurBoutDeco(ActionEvent e){
         System.out.println("vous etes bien deconnecter");
     }
 
     @FXML
-    public void controleurBoutLivre1(ActionEvent e){
+    public void controleurPanier(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("ok");
         alert.setHeaderText(null);
@@ -84,56 +85,56 @@ public class ControleurClient2 extends Controleur{
     }
 
     @FXML
-    public void controleurBoutLivre2(ActionEvent e){
-        System.out.println("vous etes sur le magasin2");
-    } 
-
-    @FXML
-    public void controleurBoutLivre3(ActionEvent e){
-        System.out.println("vous etes sur le magasin3");
-    } 
-
-    @FXML
-    public void controleurBoutLivre4(ActionEvent e){
-        System.out.println("vous etes sur le magasin4");
-    }
-
-    @FXML
-    public void controleurBoutLivre5(ActionEvent e){
-        System.out.println("vous etes sur le magasin5");
-    }
-
-    @FXML
-    public void controleurBoutLivre6(ActionEvent e){
-        System.out.println("vous etes sur le magasin6");
-    }
-
-    @FXML
-    public void controleurBoutLivre7(ActionEvent e){
-        System.out.println("vous etes sur le magasin7");
-    }
-
-    @FXML
-    public void controleurBoutLivre8(ActionEvent e){
-        System.out.println("vous etes sur le magasin8");
-    }
-
-    @FXML
-    public void controleurBoutLivre9(ActionEvent e){
-        System.out.println("vous etes sur le magasin9");
-    }
-
-    @FXML
-    public void controleurBoutPanier(ActionEvent e){
-        System.out.println("vous etes sur le magasin2");
-    } 
-
-    @FXML
-    public void controleurBoutRecherche(ActionEvent e){
+    public void controleurRecherche(ActionEvent e){
         System.out.println("vous etes sur le magasin2");
     }
+    @FXML
+    public void controleurLivre(ActionEvent e){
+        System.out.println("truc");
+    }
+     @FXML
+    public void controleurLivre2(ActionEvent e){
+        System.out.println("truc");
+    } 
+     @FXML
+    public void controleurLivre3(ActionEvent e){
+        System.out.println("truc");
+    } 
+     @FXML
+    public void controleurLivre4(ActionEvent e){
+        System.out.println("truc");
+    } 
+     @FXML
+    public void controleurLivre5(ActionEvent e){
+        System.out.println("truc");
+    } 
+     @FXML
+    public void controleurLivre6(ActionEvent e){
+        System.out.println("truc");
+    }
+    @FXML
+    public void controleurLivre7(ActionEvent e){
+        System.out.println("truc");
+    }
+    @FXML
+    public void controleurLivre8(ActionEvent e){
+        System.out.println("truc");
+    }
+    @FXML
+    public void controleurLivre9(ActionEvent e){
+        System.out.println("truc");
+    }
+    @FXML
+    public void controleurAcceuilChoix(ActionEvent e){
+        System.out.println("truc");
+    }
+      
+
 
     public void setVue(LivreExpress vue){
         this.vue=vue;
     }
+    
+
+
 }

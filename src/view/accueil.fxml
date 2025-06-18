@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurAccueil">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurAccueil">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #b4b4b4; -fx-background-insets: #15;" BorderPane.alignment="CENTER">
          <children>
@@ -53,7 +53,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="160.0" style="-fx-background-color: #5ce1e6; -fx-border-radius: 15;">
                <children>
-                  <TextField fx:id="boutonRecherche" alignment="BOTTOM_CENTER" onAction="#gererRechercher" prefHeight="26.0" prefWidth="135.0" promptText="Recherche ....." style="-fx-background-color: #ffffff;">
+                  <TextField fx:id="textLivre" alignment="BOTTOM_CENTER" onAction="#gererRechercher" prefHeight="26.0" prefWidth="135.0" promptText="Recherche ....." style="-fx-background-color: #ffffff;">
                      <HBox.margin>
                         <Insets left="3.0" right="2.0" />
                      </HBox.margin></TextField>
@@ -96,42 +96,42 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="bt1" mnemonicParsing="false" onAction="#gererBoutonLivre" prefHeight="68.0" prefWidth="180.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="bt2" mnemonicParsing="false" onAction="#gererBoutonLivre" prefHeight="68.0" prefWidth="180.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="bt3" mnemonicParsing="false" onAction="#gererBoutonLivre" prefHeight="68.0" prefWidth="180.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="bt4" mnemonicParsing="false" onAction="#gererBoutonLivre" prefHeight="68.0" prefWidth="180.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font></Button>
-                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="bt5" mnemonicParsing="false" onAction="#gererBoutonLivre" prefHeight="68.0" prefWidth="180.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font></Button>
-                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="bt6" mnemonicParsing="false" onAction="#gererBoutonLivre" prefHeight="68.0" prefWidth="180.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font></Button>
-                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Button fx:id="bt7" mnemonicParsing="false" onAction="#gererBoutonLivre" prefHeight="68.0" prefWidth="180.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font></Button>
-                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Button fx:id="bt8" mnemonicParsing="false" onAction="#gererBoutonLivre" prefHeight="68.0" prefWidth="180.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font></Button>
-                  <Button fx:id="boutonChoisir" mnemonicParsing="false" onAction="#gererChoix" prefHeight="68.0" prefWidth="117.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Button fx:id="bt9" mnemonicParsing="false" onAction="#gererBoutonLivre" prefHeight="68.0" prefWidth="180.0" style="-fx-background-color: #5ce1e6;" text="Titre" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <font>
                         <Font size="17.0" />
                      </font></Button>
