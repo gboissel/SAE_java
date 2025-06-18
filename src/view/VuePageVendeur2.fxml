@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurVendeur2">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="111.0" prefWidth="800.0" style="-fx-background-color: #b4b4b4;" BorderPane.alignment="CENTER">
          <children>
@@ -56,7 +56,7 @@
       </HBox>
    </top>
    <left>
-      <VBox prefHeight="389.0" prefWidth="207.0" style="-fx-background-color: #0cc0df;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="347.0" prefWidth="209.0" style="-fx-background-color: #0cc0df;" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="52.0" prefWidth="164.0" style="-fx-background-color: #5ce1e6;">
                <children>
@@ -65,7 +65,7 @@
                         <Insets bottom="5.0" left="10.0" top="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button mnemonicParsing="false">
+                  <Button fx:id="btnRecherche" mnemonicParsing="false" onAction="#controleurRecherche">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -86,12 +86,12 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="239.0" prefWidth="152.0">
                      <children>
-                        <Label layoutX="1.0" layoutY="-2.0" prefHeight="26.0" prefWidth="216.0" text="000 - Information" AnchorPane.bottomAnchor="206.0">
+                        <Label layoutY="1.0" prefHeight="26.0" prefWidth="216.0" text="000 - Information" AnchorPane.bottomAnchor="208.0">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutY="28.0" text="100 - Philosophie">
+                        <Label layoutY="27.0" text="100 - Philosophie">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -106,7 +106,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="1.0" layoutY="70.0" text="300 - Sciences sociales">
+                        <Label layoutY="70.0" text="300 - Sciences sociales">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -131,7 +131,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="1.0" layoutY="49.0" text="200 - Religion" AnchorPane.leftAnchor="1.0">
+                        <Label layoutY="49.0" text="200 - Religion" AnchorPane.leftAnchor="0.0">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -145,7 +145,7 @@
                   <Insets left="10.0" right="10.0" top="8.0" />
                </VBox.margin>
             </TitledPane>
-            <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="208.0" text="Mon Panier :">
+            <Button fx:id="btnPanier" mnemonicParsing="false" onAction="#controleurPanier" prefHeight="56.0" prefWidth="208.0" text="Mon Panier :">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -157,7 +157,7 @@
       </VBox>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #c2f6ff;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="334.0" prefWidth="601.0" style="-fx-background-color: #c2f6ff;" BorderPane.alignment="CENTER">
          <children>
             <Label text="Commandes recommandé:">
                <font>
@@ -182,10 +182,10 @@
                   <Insets left="50.0" right="50.0" top="50.0" />
                </VBox.margin>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 1" />
+                  <Button fx:id="btnLivre" mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 1" />
                   <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 4" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 2" GridPane.columnIndex="1" />
+                  <Button fx:id="btnLivre" mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 2" GridPane.columnIndex="1" />
                   <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 7" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 3" GridPane.columnIndex="2" />
@@ -193,24 +193,19 @@
                   <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 9" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                </children>
             </GridPane>
+            <HBox alignment="TOP_RIGHT" prefHeight="102.0" prefWidth="591.0">
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="68.0" prefWidth="174.0" text="Choix Vendeur" textAlignment="RIGHT">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </center>
-   <bottom>
-      <HBox alignment="TOP_RIGHT" prefHeight="63.0" prefWidth="790.0" style="-fx-background-color: #c2f6ff;" BorderPane.alignment="TOP_LEFT">
-         <children>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="53.0" prefWidth="184.0" text="Choix Vendeur" textAlignment="RIGHT">
-               <HBox.margin>
-                  <Insets bottom="10.0" right="10.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Button>
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </HBox>
-   </bottom>
 </BorderPane>

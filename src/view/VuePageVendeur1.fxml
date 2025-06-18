@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurVendeur1">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="111.0" prefWidth="800.0" spacing="1.0" style="-fx-background-color: #b4b4b4;" BorderPane.alignment="CENTER">
          <children>
@@ -38,7 +38,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="167.0" text="Deconnexion">
+            <Button fx:id="btnDeco" mnemonicParsing="false" onAction="#controleurDeco" prefHeight="48.0" prefWidth="167.0" text="Deconnexion">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -60,7 +60,7 @@
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="75.0" prefWidth="299.0" text="Commandes d'un Client">
+            <Button fx:id="btnCommande" mnemonicParsing="false" onAction="#controleurCommande" prefHeight="75.0" prefWidth="299.0" text="Commandes d'un Client">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -73,7 +73,7 @@
                   <Font size="32.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="75.0" prefWidth="299.0" text="Importer Des Livres">
+            <Button fx:id="btnImporter" mnemonicParsing="false" onAction="#controleurImporter" prefHeight="75.0" prefWidth="299.0" text="Importer Des Livres">
                <font>
                   <Font size="23.0" />
                </font>
