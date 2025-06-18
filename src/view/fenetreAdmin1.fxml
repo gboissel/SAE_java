@@ -46,7 +46,7 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="nomprenom" text="Nom Prenom" />
+                        <Label fx:id="nomPrenom" text="Nom Prenom" />
                         <Label text="Se deconnecter" />
                      </children>
                   </VBox>

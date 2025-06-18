@@ -1,6 +1,5 @@
 package controleur;
 
-import java.awt.Label;
 import java.util.List;
 import modele.*;
 
@@ -12,6 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -20,7 +20,7 @@ import javafx.event.ActionEvent;
 public class ControleurAdmin1 extends Controleur{
 
     @FXML
-    private Label nomprenom
+    private Label nomPrenom;
     @FXML
     private Button boutonRechercher;
 
@@ -225,7 +225,7 @@ public class ControleurAdmin1 extends Controleur{
     @Override
     public void chargerPage() {
         this.numPage=0;
-        boutonDeconnexion.setText("Profil Administrateur\n" + this.modele.getCurUser().getNom() + " " + this.modele.getCurUser().getPrenom() + "\nSe déconnecter");
+        nomPrenom.setText(this.modele.getCurUser().getNom() + " " + this.modele.getCurUser().getPrenom());
         this.afficherMagasins();
     }
 }
