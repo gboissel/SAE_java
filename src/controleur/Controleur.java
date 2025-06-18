@@ -7,8 +7,8 @@ import tri.*;
 import JDBC.*;
 
 public class Controleur {
-    private Librairie modele;
-    private LivreExpress vue;
+    protected Librairie modele;
+    protected LivreExpress vue;
 
     public Librairie getModele() {
         return modele;
