@@ -65,7 +65,7 @@ public class ControleurVendeur4 extends Controleur{
     }
     @FXML
     public void controleurCatalogue(ActionEvent e){
-        System.err.println("truc");
+        System.out.println("truc");
     }
 
     public void setVue(LivreExpress vue){
