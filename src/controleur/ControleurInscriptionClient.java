@@ -90,13 +90,8 @@ public class ControleurInscriptionClient extends Controleur{
     @FXML
     private void gererCreation(ActionEvent event) throws SQLException{
         //a ajouter: créé un magasin a partir d'un 
-<<<<<<< HEAD:src/controleur/ControleurCreaVendeur.java
-        if(nom.getText().isEmpty()||prenom.getText().isEmpty()||mdp.getText().isEmpty()||magasin.getText().isEmpty()){
-            afficherPopup("erreur", "Au moins l'un des 4 textField est vide");
-=======
         if(getNom().isEmpty()||getPrenom().isEmpty()||getAddress().isEmpty()||getPostal().isEmpty()||getMdp().isEmpty()||getVille().isEmpty()){
             afficherPopup("erreur", "Au moin l'un des 4 textField est vide");
->>>>>>> origin/fenetreClient:src/controleur/ControleurInscriptionClient.java
         }
         else{
             this.modele.createClient(getNom(), getPrenom(), getAddress() ,getPostal(),getVille(),getMdp(), this.modele.getJDBC());

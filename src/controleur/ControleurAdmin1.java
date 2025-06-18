@@ -1,5 +1,6 @@
 package controleur;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -109,7 +110,7 @@ public class ControleurAdmin1 extends Controleur{
         String[] texte = bouton.getText().split("\n");
         String nom = texte[0];
         String ville = texte[1];
-        Magasin magasin = this.modele.getRechercheMag(String nom, String ville);
+        Magasin magasin = this.modele.rechercheMag(nom, ville);
         this.statsMagasin(magasin);
     }
 
@@ -177,9 +178,15 @@ public class ControleurAdmin1 extends Controleur{
      * @param mag L'identifiant du magasin
      */
     private void statsMagasin(Magasin mag) {
-        Alert alert = new Alert(Alert.AlertType.NONE);
-        alert.setTitle("Infos");
-        alert.setContentText("Nom : " + mag.getNom() + "\nVille : " + mag.getVille() + "\nChiffre d'affaires global : " + mag.getCA() + "\nNombres de livres vendus : " + mag.nbLivresVendus());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Infos Magasin");
+        alert.setHeaderText(null);
+        DecimalFormat prix = new DecimalFormat();
+        prix.setMaximumFractionDigits(2);
+        String ca = prix.format(mag.getCA());
+        if (ca.split(",").length == 1) {ca+=",00";}
+        else if (ca.split(",")[1].length() == 1) {ca+="0";}
+        alert.setContentText("Nom : " + mag.getNom() + "\nVille : " + mag.getVille() + "\nChiffre d'affaires global : " + ca + " €\nNombres de livres vendus : " + mag.nbLivresVendus());
         alert.showAndWait();
     }
 

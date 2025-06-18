@@ -54,9 +54,6 @@ public class ControleurVendeur3 extends Controleur {
     @FXML
     private Button btnPayement;
 
-    @FXML
-    private Button btnPayement;
-
 
     @FXML
     public void controleurBoutDeco(ActionEvent e){
@@ -90,12 +87,6 @@ public class ControleurVendeur3 extends Controleur {
     @FXML
     public void controleurPayement(ActionEvent e){
         System.out.println("truc");
-
-    }
-    @FXML
-    public void controleurPayement(ActionEvent e){
-        System.out.println("truc");
-
     }
       
     public void setVue(LivreExpress vue){
