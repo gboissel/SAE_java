@@ -1,5 +1,7 @@
 package controleur;
 
+import java.util.Optional;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 // import javafx.beans.binding.Bindings;                                       \
@@ -11,6 +13,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.*;
@@ -27,11 +30,30 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Alert;
 
 public class ControleurClient2 extends Controleur{
-    private Librairie modele;
-    private LivreExpress vue;
-
     @FXML
     private Button btnDeco;
+    @FXML
+    private Label idClient;
+    @FXML
+    private Button lb1;
+    @FXML
+    private Button lb2;
+    @FXML
+    private Button lb3;
+    @FXML
+    private Button lb4;
+    @FXML
+    private Button lb5;
+    @FXML
+    private Button lb6;
+    @FXML
+    private Button lb7;
+    @FXML
+    private Button lb8;
+    @FXML
+    private Button lb9;
+    @FXML
+    private Button lb10;
 
     @FXML
     private Button btnLivre1;
@@ -70,70 +92,33 @@ public class ControleurClient2 extends Controleur{
     private TextField TextRecherche;
                                       
     @FXML
-    public void controleurBoutDeco(ActionEvent e){
-        System.out.println("vous etes bien deconnecter");
+    private void gererPanier(ActionEvent event){
+
+    }
+    @FXML
+    private void gererRecherche(ActionEvent event){
+        
+    }
+
+
+    public Alert popUpDeconnexion(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Voulez vous vraiment vous déconnecter ?\nVous serez renvoyer vers la page d'acceuil", ButtonType.YES, ButtonType.NO);
+        alert.setTitle("Attention");
+        alert.setHeaderText("Déconnexion");
+        return alert;
     }
 
     @FXML
-    public void controleurBoutLivre1(ActionEvent e){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("ok");
-        alert.setHeaderText(null);
-        alert.setContentText("ok");
-        alert.showAndWait();
-    }
+    private void gererDeconnexion(ActionEvent event) {
+        Optional<ButtonType> reponse = popUpDeconnexion().showAndWait();
+        if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
+            this.modele.setCurUser(null);
+            this.vue.changerVue("/view/accueil.fxml");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Déconnexion");
+            alert.setHeaderText("Déconnexion réussie !");
+            alert.setContentText("Vous êtes bien retournée sur la page d'accueil");
+        }
 
-    @FXML
-    public void controleurBoutLivre2(ActionEvent e){
-        System.out.println("vous etes sur le magasin2");
-    } 
-
-    @FXML
-    public void controleurBoutLivre3(ActionEvent e){
-        System.out.println("vous etes sur le magasin3");
-    } 
-
-    @FXML
-    public void controleurBoutLivre4(ActionEvent e){
-        System.out.println("vous etes sur le magasin4");
-    }
-
-    @FXML
-    public void controleurBoutLivre5(ActionEvent e){
-        System.out.println("vous etes sur le magasin5");
-    }
-
-    @FXML
-    public void controleurBoutLivre6(ActionEvent e){
-        System.out.println("vous etes sur le magasin6");
-    }
-
-    @FXML
-    public void controleurBoutLivre7(ActionEvent e){
-        System.out.println("vous etes sur le magasin7");
-    }
-
-    @FXML
-    public void controleurBoutLivre8(ActionEvent e){
-        System.out.println("vous etes sur le magasin8");
-    }
-
-    @FXML
-    public void controleurBoutLivre9(ActionEvent e){
-        System.out.println("vous etes sur le magasin9");
-    }
-
-    @FXML
-    public void controleurBoutPanier(ActionEvent e){
-        System.out.println("vous etes sur le magasin2");
-    } 
-
-    @FXML
-    public void controleurBoutRecherche(ActionEvent e){
-        System.out.println("vous etes sur le magasin2");
-    }
-
-    public void setVue(LivreExpress vue){
-        this.vue=vue;
     }
 }
