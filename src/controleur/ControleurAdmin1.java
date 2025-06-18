@@ -49,6 +49,8 @@ public class ControleurAdmin1 extends Controleur{
     @FXML
     private TextField textannee;
 
+    private int numPage;
+
     @FXML
     private void gererRechercher(ActionEvent event) {
         afficherPopup("Recherche", "Fonction de recherche déclenchée !");
@@ -132,15 +134,61 @@ public class ControleurAdmin1 extends Controleur{
         popupStage.showAndWait();
     }
 
-    private void chargerPage() {
-        boutonDeconnexion.setText("Profil Administrateur\n" + this.modele.getCurUser().getNom() + " " + this.modele.getCurUser().getPrenom() + "\nSe déconnecter");
+    /**
+     * Permet d'afficher les magasins en fonction du numéro de page
+     */
+    private void afficherMagasins() {
         List<Magasin> lesMagasins = this.modele.getMagasins();
-        if (lesMagasins.size() >= 1) {
-            boutonChoisir1.setText(lesMagasins.get(0).getNom() + "\n" + lesMagasins.get(0).getVille());
+        if (lesMagasins.size() >= 1+(6*numPage)) {
+            boutonChoisir1.setText(lesMagasins.get(0+(6*numPage)).getNom() + "\n" + lesMagasins.get(0+(6*numPage)).getVille());
             boutonChoisir1.setDisable(false);
-            if (lesMagasins.size() >= 2) {
-                boutonChoisir2.setText(lesMagasins.get(1).getNom() + "\n" + lesMagasins.get(1).getVille());
+            if (lesMagasins.size() >= 2+(6*numPage)) {
+                boutonChoisir2.setText(lesMagasins.get(1+(6*numPage)).getNom() + "\n" + lesMagasins.get(1+(6*numPage)).getVille());
                 boutonChoisir2.setDisable(false);
+                if (lesMagasins.size() >= 3+(6*numPage)) {
+                    boutonChoisir3.setText(lesMagasins.get(2+(6*numPage)).getNom() + "\n" + lesMagasins.get(2+(6*numPage)).getVille());
+                    boutonChoisir3.setDisable(false);
+                    if (lesMagasins.size() >= 4+(6*numPage)) {
+                        boutonChoisir4.setText(lesMagasins.get(3+(6*numPage)).getNom() + "\n" + lesMagasins.get(3+(6*numPage)).getVille());
+                        boutonChoisir4.setDisable(false);
+                        if (lesMagasins.size() >= 5+(6*numPage)) {
+                            boutonChoisir5.setText(lesMagasins.get(4+(6*numPage)).getNom() + "\n" + lesMagasins.get(4+(6*numPage)).getVille());
+                            boutonChoisir5.setDisable(false);
+                            if (lesMagasins.size() >= 6+(6*numPage)) {
+                                boutonChoisir6.setText(lesMagasins.get(5+(6*numPage)).getNom() + "\n" + lesMagasins.get(5+(6*numPage)).getVille());
+                                boutonChoisir6.setDisable(false);
+                            }
+                            else {
+                                boutonChoisir6.setText("");
+                                boutonChoisir6.setDisable(true);
+                            }
+                        }
+                        else {
+                            boutonChoisir5.setText("");
+                            boutonChoisir5.setDisable(true);
+                            boutonChoisir6.setText("");
+                            boutonChoisir6.setDisable(true);
+                        }
+                    }
+                    else {
+                        boutonChoisir3.setText("");
+                        boutonChoisir3.setDisable(true);
+                        boutonChoisir5.setText("");
+                        boutonChoisir5.setDisable(true);
+                        boutonChoisir6.setText("");
+                        boutonChoisir6.setDisable(true);
+                    }
+                }
+                else {
+                    boutonChoisir3.setText("");
+                    boutonChoisir3.setDisable(true);
+                    boutonChoisir4.setText("");
+                    boutonChoisir4.setDisable(true);
+                    boutonChoisir5.setText("");
+                    boutonChoisir5.setDisable(true);
+                    boutonChoisir6.setText("");
+                    boutonChoisir6.setDisable(true);
+                }
             }
             else {
                 boutonChoisir2.setText("");
@@ -153,7 +201,7 @@ public class ControleurAdmin1 extends Controleur{
                 boutonChoisir5.setDisable(true);
                 boutonChoisir6.setText("");
                 boutonChoisir6.setDisable(true);
-                }
+            }
         }
         else {
             boutonChoisir1.setText("");
@@ -169,6 +217,13 @@ public class ControleurAdmin1 extends Controleur{
             boutonChoisir6.setText("");
             boutonChoisir6.setDisable(true);
         }
+    }
+
+    @Override
+    public void chargerPage() {
+        this.numPage=0;
+        boutonDeconnexion.setText("Profil Administrateur\n" + this.modele.getCurUser().getNom() + " " + this.modele.getCurUser().getPrenom() + "\nSe déconnecter");
+        this.afficherMagasins();
     }
 }
 
