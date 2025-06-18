@@ -223,7 +223,7 @@ public class Librairie {
      * @param mois
      * @param annee
      */
-    public void editerFacture(int mois, int annee){
+    public String editerFacture(int mois, int annee){
         String res = "Facture du "+mois+"/"+annee+"\n";
         int i = 0;
         String interligne = "      ISBN                Titre          qte   prix    total  \n";
@@ -293,5 +293,6 @@ public class Librairie {
             System.out.println("Une erreur est survenue.");
             e.printStackTrace();//ca c'est bon
         }
+        return res;
     }
 }

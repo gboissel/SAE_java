@@ -73,7 +73,6 @@ public class ControleurAdmin1 extends Controleur{
     private void afficherPopup(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titre);
-        alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
@@ -86,11 +85,14 @@ public class ControleurAdmin1 extends Controleur{
         return alert;
     }
 
-    private void afficherPopupFacture() {
+    private void afficherPopupFacture() throws NumberFormatException{
         // Créer la zone de texte avec beaucoup de contenu
         TextArea textArea = new TextArea();
         textArea.setWrapText(true);
-        textArea.setText("Ceci est une longue zone de texte...\n".repeat(100)); // Remplissage
+        int mois = Integer.parseInt(textmois.getText());
+        int annee = Integer.parseInt(textannee.getText());
+
+        textArea.setText(modele.editerFacture(mois, annee)); // Remplissage
 
         // Mettre la TextArea dans un ScrollPane (optionnel ici car TextArea scrolle déjà)
         ScrollPane scrollPane = new ScrollPane(textArea);
