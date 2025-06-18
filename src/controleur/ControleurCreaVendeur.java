@@ -60,6 +60,8 @@ public class ControleurCreaVendeur extends Controleur{
     @FXML
     private void gererAcceuil(ActionEvent event) {
         afficherPopup("menu", "Fonction de retour au menu !");
+        this.vue.changerVue("/view/fenetreAdmin1.fxml");
+
     }
 
     private void afficherPopup(String titre, String message) {
@@ -82,7 +84,7 @@ public class ControleurCreaVendeur extends Controleur{
             //System.out.println("mdp : " + mdp.getText());
             //System.out.println("magasin : " + magasin.getText());
             Magasin mag_rech = this.modele.rechercheMagParNom(getMagasin());
-            this.modele.getJDBC().insererVendeur(new Vendeur(getNom(), getPrenom(), getMdp(), mag_rech), getMdp());
+            //this.modele.getJDBC().insererVendeur(new Vendeur(getNom(), getPrenom(), getMdp(), mag_rech), getMdp());
             this.modele.createVendeur(getNom(), getPrenom(), getMdp(), mag_rech, this.modele.getJDBC());
             afficherPopup("Creation", "La creation Vendeur a bien reussi ");
             this.vue.changerVue("/view/fenetreAdmini1.fxml");

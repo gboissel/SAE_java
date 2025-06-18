@@ -131,8 +131,8 @@ public class ControleurAdmin1 extends Controleur{
         popupStage.initModality(Modality.APPLICATION_MODAL); // bloque la fenêtre principale
         popupStage.showAndWait();
     }
-
-    private void chargerPage() {
+    @Override
+    public void chargerPage() {
         boutonDeconnexion.setText("Profil Administrateur\n" + this.modele.getCurUser().getNom() + " " + this.modele.getCurUser().getPrenom() + "\nSe déconnecter");
         List<Magasin> lesMagasins = this.modele.getMagasins();
         if (lesMagasins.size() >= 1) {
