@@ -39,6 +39,8 @@ public class ControleurAdmin1 extends Controleur{
     @FXML
     private Button boutonCreamag;
     @FXML
+    private Button boutonCreaVendeur;
+    @FXML
     private TextField textmois;
 
     @FXML
@@ -53,7 +55,10 @@ public class ControleurAdmin1 extends Controleur{
     private void gererCreamag(ActionEvent event) {
         afficherPopup("Recherche", "Fonction de creation magasin !");
     }
-
+    @FXML
+    private void gererCreaVendeur(ActionEvent event) {
+        afficherPopup("Recherche", "Fonction de creation magasin !");
+    }
 
     @FXML
     private void gererDeconnexion(ActionEvent event) {
@@ -67,13 +72,26 @@ public class ControleurAdmin1 extends Controleur{
 
     @FXML
     private void gererEditerFact(ActionEvent event) {
-        afficherPopupFacture();
+        String texteMois = this.textmois.getText();
+        String texteAnnee = this.textannee.getText();
+        try {
+            int mois = Integer.parseInt(texteMois);
+            int annee = Integer.parseInt(texteAnnee);
+            if (mois > 0 && mois <= 12 && texteAnnee.length() == 4) {
+                afficherPopupFacture(this.modele.editerFacture(mois, annee));
+            }
+            else {throw new NumberFormatException();}
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur : Valeurs invalides");
+            alert.setContentText("Les valeurs rentrées sont incorrects,\n vérifiez que les valeurs rentrées correspondent bien à des mois et des années au format numérique.");
+            alert.showAndWait();
+        }
     }
 
     private void afficherPopup(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titre);
-        alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
@@ -86,11 +104,11 @@ public class ControleurAdmin1 extends Controleur{
         return alert;
     }
 
-    private void afficherPopupFacture() {
+    private void afficherPopupFacture(String texte) {
         // Créer la zone de texte avec beaucoup de contenu
         TextArea textArea = new TextArea();
         textArea.setWrapText(true);
-        textArea.setText("Ceci est une longue zone de texte...\n".repeat(100)); // Remplissage
+        textArea.setText(texte);
 
         // Mettre la TextArea dans un ScrollPane (optionnel ici car TextArea scrolle déjà)
         ScrollPane scrollPane = new ScrollPane(textArea);

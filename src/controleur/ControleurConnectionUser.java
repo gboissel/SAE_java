@@ -46,15 +46,6 @@ public class ControleurConnectionUser extends Controleur{
     private Button boutonConnexion;
 
 
-    @FXML
-    private void validerChoix() {
-    RadioButton selection = (RadioButton) groupeUtilisateur.getSelectedToggle();
-    if (selection != null) {
-        //System.out.println("Choix : " + selection.getText());
-        this.role_user=selection.getText()+"";
-    }
-    }
-
     public String getNom(){
         return this.nom.getText();
     }
