@@ -255,4 +255,3 @@ public class ControleurAdmin1 extends Controleur{
         this.afficherMagasins();
     }
 }
-
