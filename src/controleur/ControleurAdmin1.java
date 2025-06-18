@@ -1,6 +1,8 @@
 package controleur;
 
 import java.util.List;
+import java.util.Optional;
+
 import modele.*;
 
 import javafx.fxml.FXML;
@@ -23,6 +25,12 @@ public class ControleurAdmin1 extends Controleur{
     private Label nomPrenom;
     @FXML
     private Button boutonRechercher;
+
+    @FXML
+    private Button boutonSuivant;
+
+    @FXML
+    private Button boutonPreced;
 
     @FXML
     private Button boutonDeconnexion;
@@ -60,6 +68,16 @@ public class ControleurAdmin1 extends Controleur{
     }
 
     @FXML
+    private void gererSuivant(ActionEvent event) {
+        afficherPopup("suivant", "Fonction de page suivant !");
+    }
+
+    @FXML
+    private void gererPreced(ActionEvent event) {
+        afficherPopup("precedent", "Fonction de page precedent !");
+    }
+
+    @FXML
     private void gererCreamag(ActionEvent event) {
         this.vue.changerVue("/view/ajouterMag.fxml");
     }
@@ -71,7 +89,13 @@ public class ControleurAdmin1 extends Controleur{
 
     @FXML
     private void gererDeconnexion(ActionEvent event) {
-        popUpDeconnexion().showAndWait();
+        Alert alert = popUpDeconnexion();
+        Optional<ButtonType> resultat = alert.showAndWait();
+        if (resultat.isPresent() && resultat.get() == ButtonType.YES) {
+            this.vue.changerVue("/view/connexionUser.fxml");
+        } else {
+            System.out.println("Déconnexion annulée.");
+        }
     }
 
     @FXML

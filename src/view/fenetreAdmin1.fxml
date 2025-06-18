@@ -101,30 +101,30 @@
                   <Insets left="15.0" top="25.0" />
                </VBox.margin>
             </Button>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="51.0" prefWidth="133.0">
                <children>
-                  <Button fx:id="btPreced" mnemonicParsing="false" onAction="#gererPreced" prefHeight="60.0" prefWidth="60.0">
+                  <Button fx:id="btPreced" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#gererPreced" prefHeight="42.0" prefWidth="42.0">
                      <graphic>
-                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/fleche%20arrière.png" />
                            </image>
                         </ImageView>
                      </graphic>
                      <HBox.margin>
-                        <Insets left="3.0" />
+                        <Insets left="5.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btSuivant" mnemonicParsing="false" onAction="#gererSuivant" prefHeight="60.0" prefWidth="60.0">
+                  <Button fx:id="btSuivant" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#gererSuivant" prefHeight="42.0" prefWidth="42.0">
                      <graphic>
-                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/59385-removebg-preview.png" />
                            </image>
                         </ImageView>
                      </graphic>
                      <HBox.margin>
-                        <Insets right="3.0" />
+                        <Insets left="20.0" right="3.0" />
                      </HBox.margin>
                   </Button>
                </children>
