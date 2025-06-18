@@ -3,16 +3,15 @@ package modele;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;// il faut tester mais normalement selon la doc ça permet de faire l'équivalent d'un input en python.
+
 import JDBC.JDBC;
 import tri.TriLivreParNom;
 import exception.RechercheSansResultatException;
 import exception.UtilisateurInexistantException;
-import java.io.FileWriter;// il faut tester mais normalement selon la doc ça permet de faire l'équivalent d'un input en python.
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DecimalFormat;
 
 public class Librairie {
     private Utilisateur curUser;
@@ -215,18 +214,23 @@ public class Librairie {
      */
     public void editerFacture(int mois, int annee){
         String res = "Facture du "+mois+"/"+annee+"\n";
-        int i = 1;
-        String interligne = "      ISBN       Titre         qte     prix   total  \n";
+        int i = 0;
+        String interligne = "      ISBN                Titre          qte   prix    total  \n";
         double ca_global = 0.0;
         int livre_vendu_glo = 0;
+        DecimalFormat prix = new DecimalFormat();
+        prix.setMaximumFractionDigits(2);
         for(Magasin mag: this.lesMagasins){
             int livre_vendu_mag = 0;
+            int nb_factures = 0;
             res+="Edition des factures du magasin  "+mag.getNom()+"\n";
-            res+="-----------------------------------------------------";
+            res+="-----------------------------------------------------\n";
             for(Commande com:mag.getCommandes()){
                 String date = com.getDate();
                 String[] parties = date.split("/");
-                if(parties[2].equals(mois+"")&&parties[3].equals(annee+"")){
+                if(parties[1].equals(mois+"")&&parties[2].equals(annee+"")){
+                    ++nb_factures;
+                    ++i;
                     int cpt = 1;
                     Client cli = com.getClient();
                     double totalCli = 0.0;
@@ -240,25 +244,37 @@ public class Librairie {
                         totalCli+=det.getQte()*det.getPrixVente();
                         livre_vendu_glo+=det.getQte();
                         livre_vendu_mag+=det.getQte();
-                        res+=cpt+"  "+livre.getISBN()+"  "+livre.getTitre()+"  "+det.getQte()+"  "+det.getPrixVente()+"  "+det.getQte()*det.getPrixVente()+"\n";
+                        String titre = livre.getTitre();
+                        while (titre.length()<22) {titre+=" ";}
+                        String prixLivre = prix.format(det.getPrixVente());
+                        if (prixLivre.split(",").length==1) {prixLivre+=",00";}
+                        else if (prixLivre.split(",")[1].length()<2) {prixLivre+="0";}
+                        while (prixLivre.length() < 6) {prixLivre+=" ";}
+                        String prixTotalLivre = prix.format(det.getPrixVente()*det.getQte());
+                        if (prixTotalLivre.split(",").length==1) {prixTotalLivre+=",00";}
+                        else if (prixTotalLivre.split(",")[1].length()<2) {prixTotalLivre+="0";}
+                        res+=cpt+"  "+livre.getISBN()+"  "+titre.substring(0, 22)+"  "+prix.format(det.getQte())+"   "+prixLivre+"  "+prixTotalLivre+"\n";
                         ++cpt;
                     }
                     res+="-------";
-                    res+="Total   "+totalCli+"\n";
+                    String prixTotal = prix.format(totalCli);
+                    if (prixTotal.split(",").length==1) {prixTotal+=",00";}
+                    else if (prixTotal.split(",")[1].length()<2) {prixTotal+="0";}
+                    res+="Total   "+prixTotal+"\n";
                     ca_global+=totalCli;
-                    res+="-----------------------------------------------------";
+                    res+="-----------------------------------------------------\n";
                 }
             }
-            res+=mag.getCommandes().size()+"  factures éditées \n";
+            res+=nb_factures+" factures éditées\n";
             res+=livre_vendu_mag+" livres vendus\n";
         }
-        res+="*************************************";
-        res+="Chiffre d'affaires global: "+ca_global+"\n";
+        res+="*************************************\n";
+        res+="Chiffre d'affaires global: "+prix.format(ca_global)+"\n";
         res+="Nombre livres vendus: "+livre_vendu_glo+"\n";
         System.out.println(res);
         //mis en place de la transcription en txt:
         try {
-            FileWriter writer = new FileWriter("mon_fichier.txt");
+            FileWriter writer = new FileWriter("factures-" + mois + "-" + annee + ".txt");
             writer.write(res);
             writer.close();
             System.out.println("Fichier texte créé avec succès !");
@@ -266,9 +282,5 @@ public class Librairie {
             System.out.println("Une erreur est survenue.");
             e.printStackTrace();//ca c'est bon
         }
-    }
-
-    public static void main(String[] args) {
-        Librairie lib = new Librairie(null);
     }
 }
