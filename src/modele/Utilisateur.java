@@ -16,14 +16,14 @@ public abstract class Utilisateur implements Comparable<Utilisateur>{
      * @return Le nom
      */
     public String getNom() {
-        return nom;
+        return this.nom;
     }
     /**
      * Permet d'obtenir le prenom de l'utilisateur.
      * @return Le prénom
      */
     public String  getPrenom(){
-        return this.nom;
+        return this.prenom;
     }
     /**
      * Permet d'obtenir le rôle de l'utlisateur soit Administrateur ou Client ou Vendeur.

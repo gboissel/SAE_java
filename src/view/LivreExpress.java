@@ -60,6 +60,7 @@ public class LivreExpress extends Application{
             Controleur controleur = loader.getController();
             controleur.setVue(this);
             controleur.setModele(this.getModele());
+            controleur.chargerPage();
             // Récupère la stage depuis la scène courante existante
             Stage stage = (Stage) this.fenetreActuel.getScene().getWindow();
 
@@ -96,7 +97,7 @@ public class LivreExpress extends Application{
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Attention");
         alert.setHeaderText("Connexion impossible ");
-        alert.setContentText("L'utilisateur n'a pas été trouvez dans la base de donnée");
+        alert.setContentText("L'utilisateur n'a pas été trouvé dans la base de données");
         alert.showAndWait();
     }
 
