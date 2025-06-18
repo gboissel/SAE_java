@@ -27,22 +27,6 @@ Edition des factures du magasin  Loire et livres
 -----------------------------------------------------
 0 factures éditées
 0 livres vendus
-Edition des factures du magasin  Livreshop
------------------------------------------------------
-0 factures éditées
-0 livres vendus
-Edition des factures du magasin  Livreshop
------------------------------------------------------
-0 factures éditées
-0 livres vendus
-Edition des factures du magasin  Livreshop
------------------------------------------------------
-0 factures éditées
-0 livres vendus
-Edition des factures du magasin  Renard qui lit
------------------------------------------------------
-0 factures éditées
-0 livres vendus
 *************************************
 Chiffre d'affaires global: 0
 Nombre livres vendus: 0
