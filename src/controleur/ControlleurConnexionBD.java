@@ -32,6 +32,7 @@ public class ControlleurConnexionBD {
                     // Attendre que la librairie soit chargée
                 }this.vue.changerVue("/view/accueil.fxml");
             }catch (Exception e) {
+                System.out.println(e.getMessage());
                 popUpConnexionInvalide();
             }
         }else{

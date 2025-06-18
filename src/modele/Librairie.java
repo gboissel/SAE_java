@@ -18,6 +18,7 @@ public class Librairie {
     private List<Utilisateur> users;
     private List<Magasin> lesMagasins;
     private List<Livre> lesLivres;
+    private JDBC jdbc;
     private boolean chargee;
 
 
@@ -25,7 +26,9 @@ public class Librairie {
         this.chargee = false;
         this.users= new ArrayList<>();
         this.curUser = null;
-        this.initialisationBD(jdbc);
+        this.jdbc = jdbc;
+        this.initialisationBD(this.jdbc);
+
     }
 
     public boolean estChargee() {
@@ -62,6 +65,14 @@ public class Librairie {
      */
     public Utilisateur getCurUser(){
         return this.curUser;
+    }
+
+    /**
+     * Récupère l'instance de la classe permettant de manipuler la base de données
+     * @return Une instance de la classe JDBC
+     */
+    public JDBC getJDBC() {
+        return this.jdbc;
     }
     
     /**
