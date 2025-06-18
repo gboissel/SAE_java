@@ -36,6 +36,7 @@ public class ControleurCreationMag extends Controleur{
     @FXML
     private void gererAcceuil(ActionEvent event) {
         afficherPopup("menu", "Fonction de retour au menu !");
+        this.vue.changerVue("/view/fenetreAdmin1.fxml");
     }
 
 
@@ -51,9 +52,7 @@ public class ControleurCreationMag extends Controleur{
             //System.out.println("nom : " + nom.getText());
             //System.out.println("ville : " + ville.getText());
             afficherPopup("Creation", "La creation Magasin a bien reussi ");
-            this.vue.changerVue("/view/fenetreAdmini1.fxml");
         }
-        
     }
 
     private void afficherPopup(String titre, String message) {

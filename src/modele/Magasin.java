@@ -87,6 +87,24 @@ public class Magasin implements Comparable<Magasin>{
         return this.vendeurs;
     }
 
+    public double getCA() {
+        double ca = 0;
+        for (Commande com:this.commandes) {
+            ca+=com.prixTotal();
+        }
+        return ca;
+    }
+
+    public int nbLivresVendus() {
+        int nb = 0;
+        for (Commande com:this.commandes) {
+            for (DetailCommande dC:com.getDetailsCommande()) {
+                nb+=dC.getQte();
+            }
+        }
+        return nb;
+    }
+
      /**
      * Met à jour la quantité d'un livre, en ajoute un dans la liste des livres du magasin, ou bien en supprime un
      * Cette fonction ne modifie pas la base de données et ne sert que pour en charger les données
