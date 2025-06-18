@@ -81,7 +81,7 @@ public class LivreExpress extends Application{
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Attention");
         alert.setHeaderText("Connexion impossible ");
-        alert.setContentText("L'utilisateur n'a pas été trouvez dans la base de donnée");
+        alert.setContentText("L'utilisateur n'a pas été trouvé dans la base de données");
         alert.showAndWait();
     }
 
