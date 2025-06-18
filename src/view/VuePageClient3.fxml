@@ -59,6 +59,14 @@
                   <Insets left="10.0" />
                </VBox.margin>
             </Label>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="207.0" text="Payement">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Button>
             <Button fx:id="btnCatalogue" mnemonicParsing="false" onAction="#controleurCatalogue" prefHeight="50.0" prefWidth="207.0" text="Retour Catalogue">
                <VBox.margin>
                   <Insets left="10.0" right="10.0" />
@@ -69,12 +77,12 @@
             </Button>
             <HBox prefHeight="79.0" prefWidth="205.0" spacing="15.0">
                <children>
-                  <Button disable="true" mnemonicParsing="false" prefHeight="52.0" prefWidth="96.0">
+                  <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="96.0">
                      <font>
                         <Font size="19.0" />
                      </font>
                      <graphic>
-                        <ImageView disable="true" fitHeight="58.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="58.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/fleche%20arriere.png" />
                            </image>
@@ -98,10 +106,13 @@
                   <Insets left="10.0" right="10.0" />
                </VBox.margin>
             </HBox>
-            <Label alignment="CENTER" prefHeight="51.0" prefWidth="209.0" text="Page 1/2">
+            <Label alignment="CENTER" prefHeight="50.0" prefWidth="185.0" text="Prix total :  308 €">
                <font>
-                  <Font size="32.0" />
+                  <Font size="23.0" />
                </font>
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
             </Label>
          </children>
          <BorderPane.margin>

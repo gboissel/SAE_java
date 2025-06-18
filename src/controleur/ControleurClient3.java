@@ -47,6 +47,9 @@ public class ControleurClient3 extends Controleur{
 
     @FXML
     private TextField btnAjoute;
+
+    @FXML
+    private Button btnRetour;
                                       
     @FXML
     public void controleurBoutDeco(ActionEvent e){
@@ -108,6 +111,10 @@ public class ControleurClient3 extends Controleur{
     @FXML
     public void controleurCatalogue(ActionEvent e){
         System.err.println("truc");
+    }
+    @FXML
+    public void controleurRetour(ActionEvent e){
+        System.out.println("truc");
     }
 
     public void setVue(LivreExpress vue){
