@@ -1,5 +1,8 @@
 package controleur;
 
+import JDBC.ConnexionMySQL;
+import java.sql.PreparedStatement;
+import java.util.stream.Stream;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -41,9 +44,15 @@ public class ControleurCreationMag extends Controleur{
             afficherPopup("erreur", "Au moin l'un des 2 textField est vide");
         }
         else{
+            //ConnexionMySQL conn = modele.get
+            //PreparedStatement ps = conn.prepareStatement("INSERT INTO MAGASIN(idmag, nommag, villemag) VALUES (?, ?, ?)");
+            //int nouvelId = this.modele.getMagasins().size() + 1;
+            //ps.setInt(1, nouvelId);
+            //ps.setString(2, nom.getText()); 
+            //ps.setString(3, ville.getText()); 
             System.out.println("nom : " + nom.getText());
             System.out.println("ville : " + ville.getText());
-            afficherPopup("connection", "Fonction de connexion !");
+            afficherPopup("Creation", "La creation a bien reussi ");
         }
         
     }
