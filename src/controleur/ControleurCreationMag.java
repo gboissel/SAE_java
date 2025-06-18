@@ -1,26 +1,12 @@
 package controleur;
 
-import java.util.stream.Stream;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import view.*;
 import javafx.event.ActionEvent;
-import modele.*;
 
-public class ControleurCreationMag {
-    private LivreExpress vue;  
-    private Librairie modele;
+public class ControleurCreationMag extends Controleur{
 
     @FXML
     private TextField nom;
@@ -47,13 +33,19 @@ public class ControleurCreationMag {
         afficherPopup("menu", "Fonction de retour au menu !");
     }
 
-    public void setVue(LivreExpress vue){
-        this.vue = vue;
-    }
 
     @FXML
     private void gererCreation(ActionEvent event) {
-        afficherPopup("connection", "Fonction de connexion !");
+        //a ajouter: créé un magasin a partir d'un 
+        if(nom.getText().isEmpty()||ville.getText().isEmpty()){
+            afficherPopup("erreur", "Au moin l'un des 2 textField est vide");
+        }
+        else{
+            System.out.println("nom : " + nom.getText());
+            System.out.println("ville : " + ville.getText());
+            afficherPopup("connection", "Fonction de connexion !");
+        }
+        
     }
 
     private void afficherPopup(String titre, String message) {

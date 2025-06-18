@@ -11,14 +11,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import view.*;
 import javafx.event.ActionEvent;
-import modele.*;
 
-public class ControleurAdmin1 {
+public class ControleurAdmin1 extends Controleur{
 
-    private LivreExpress vue;  
-    private Librairie modele;
     @FXML
     private Button boutonRechercher;
 
@@ -113,12 +109,5 @@ public class ControleurAdmin1 {
         popupStage.showAndWait();
     }
 
-    public void setVue(LivreExpress vue) {
-        this.vue = vue;
-    }
-
-    public void setModele(Librairie librairie) {
-        this.modele = librairie;
-    }
 }
 
