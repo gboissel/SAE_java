@@ -81,7 +81,7 @@ public class ControleurConnectionUser extends Controleur{
             case "Client":
                 Client tempC = new Client(this.getNom(),this.getPrenom(), null, null, null, this.getMdp());
                 if (essaieCo(tempC))
-                    this.vue.changerVue("/view/client.fxml");
+                    this.vue.changerVue("/view/VuePageClient1.fxml");
                 break;
             case "Administrateur":
                 Administrateur tempA = new Administrateur(this.getNom(), this.getPrenom(), this.getMdp());
@@ -114,6 +114,4 @@ public class ControleurConnectionUser extends Controleur{
                 this.vue.popUpUtilisateurPasTrouve();
             }return false;
         }
-
-
 }

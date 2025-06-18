@@ -87,7 +87,7 @@ public class ControleurCreaVendeur extends Controleur{
             //this.modele.getJDBC().insererVendeur(new Vendeur(getNom(), getPrenom(), getMdp(), mag_rech), getMdp());
             this.modele.createVendeur(getNom(), getPrenom(), getMdp(), mag_rech, this.modele.getJDBC());
             afficherPopup("Creation", "La creation Vendeur a bien reussi ");
-            this.vue.changerVue("/view/fenetreAdmini1.fxml");
+            this.vue.changerVue("/view/fenetreAdmin1.fxml");
         }
         
     }
