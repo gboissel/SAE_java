@@ -1,6 +1,5 @@
 package controleur;
 
-<<<<<<<<< Temporary merge branch 1
 import JDBC.ConnexionMySQL;
 import java.sql.PreparedStatement;
 import javafx.fxml.FXML;

@@ -72,16 +72,21 @@ public class ControleurAdmin1 extends Controleur{
 
     @FXML
     private void gererEditerFact(ActionEvent event) {
-        String texte1 = this.textmois.getText();
-        String texte2 = this.textannee.getText();
+        String texteMois = this.textmois.getText();
+        String texteAnnee = this.textannee.getText();
         try {
-            int valeur = Integer.parseInt(texte1);
-            int valeur2 = Integer.parseInt(texte2);
-            //this.modele.editerFacture(valeur, valeur2);
-            //afficherPopupFacture(this.modele.editerFacture(valeur, valeur2));     //mettre un return sur editerFacture  ou utiliser le txt
+            int mois = Integer.parseInt(texteMois);
+            int annee = Integer.parseInt(texteAnnee);
+            if (mois > 0 && mois <= 12 && texteAnnee.length() == 4) {
+                afficherPopupFacture(this.modele.editerFacture(mois, annee));
+            }
+            else {throw new NumberFormatException();}
         } catch (NumberFormatException e) {
-            System.out.println("Le texte n'est pas un nombre valide !");
-                }
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur : Valeurs invalides");
+            alert.setContentText("Les valeurs rentrées sont incorrects,\n vérifiez que les valeurs rentrées correspondent bien à des mois et des années au format numérique.");
+            alert.showAndWait();
+        }
     }
 
     private void afficherPopup(String titre, String message) {
@@ -99,22 +104,11 @@ public class ControleurAdmin1 extends Controleur{
         return alert;
     }
 
-<<<<<<< HEAD
-    private void afficherPopupFacture() throws NumberFormatException{
-        // Créer la zone de texte avec beaucoup de contenu
-        TextArea textArea = new TextArea();
-        textArea.setWrapText(true);
-        int mois = Integer.parseInt(textmois.getText());
-        int annee = Integer.parseInt(textannee.getText());
-
-        textArea.setText(modele.editerFacture(mois, annee)); // Remplissage
-=======
     private void afficherPopupFacture(String texte) {
         // Créer la zone de texte avec beaucoup de contenu
         TextArea textArea = new TextArea();
         textArea.setWrapText(true);
         textArea.setText(texte);
->>>>>>> origin/fenetreAdmini
 
         // Mettre la TextArea dans un ScrollPane (optionnel ici car TextArea scrolle déjà)
         ScrollPane scrollPane = new ScrollPane(textArea);
