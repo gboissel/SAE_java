@@ -45,6 +45,7 @@ public class LivreExpress extends Application{
             Controleur controleur = loader.getController();
             controleur.setVue(this);
             controleur.setModele(this.getModele());
+            controleur.chargerPage();
             // Récupère la stage depuis la scène courante existante
             Stage stage = (Stage) this.fenetreActuel.getScene().getWindow();
 
