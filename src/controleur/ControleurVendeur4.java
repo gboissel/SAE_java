@@ -38,9 +38,6 @@ public class ControleurVendeur4 extends Controleur{
     private Button btnCatalogue;
 
     @FXML
-    private Button btnRetour;
-
-    @FXML
     private Button btnPayer;
 
     @FXML
@@ -70,11 +67,6 @@ public class ControleurVendeur4 extends Controleur{
     public void controleurCatalogue(ActionEvent e){
         System.err.println("truc");
     }
-    @FXML
-    public void controleurRetour(ActionEvent e){
-        System.out.println("truc");
-    }
-
 
     public void setVue(LivreExpress vue){
         this.vue=vue;
