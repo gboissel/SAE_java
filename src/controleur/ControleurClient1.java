@@ -165,7 +165,9 @@ public class ControleurClient1 extends Controleur{
                 }
                     
             case 7:
-                try{nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                try{
+                    System.out.println("j'ai un pb !!");
+                    nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
                     this.btnMag8.setText(nomMag);
                 }catch(Exception e){
                     this.btnMag8.setText("A venir ... Il n'y a plus de magasin.");
