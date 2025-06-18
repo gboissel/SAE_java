@@ -96,6 +96,11 @@
                   <Insets left="15.0" right="10.0" top="15.0" />
                </VBox.margin>
             </Button>
+            <Button fx:id="boutonCreaVendeur" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="68.0" mnemonicParsing="false" onAction="#gererCreaVendeur" prefHeight="44.0" prefWidth="133.0" style="-fx-background-color: #5ce1e6;" text="Créer un nouveau &#10;Vendeur" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets left="15.0" top="25.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </left>

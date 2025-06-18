@@ -39,6 +39,8 @@ public class ControleurAdmin1 extends Controleur{
     @FXML
     private Button boutonCreamag;
     @FXML
+    private Button boutonCreaVendeur;
+    @FXML
     private TextField textmois;
 
     @FXML
@@ -53,7 +55,10 @@ public class ControleurAdmin1 extends Controleur{
     private void gererCreamag(ActionEvent event) {
         afficherPopup("Recherche", "Fonction de creation magasin !");
     }
-
+    @FXML
+    private void gererCreaVendeur(ActionEvent event) {
+        afficherPopup("Recherche", "Fonction de creation magasin !");
+    }
 
     @FXML
     private void gererDeconnexion(ActionEvent event) {
