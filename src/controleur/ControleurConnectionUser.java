@@ -1,26 +1,19 @@
 package controleur;
 
-import java.util.stream.Stream;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import view.*;
+import modele.Administrateur;
+import modele.Client;
+import modele.Utilisateur;
+import modele.Vendeur;
+import exception.UtilisateurInexistantException;
 import javafx.event.ActionEvent;
-import modele.*;
 
-public class ControleurConnectionUser {
-    private LivreExpress vue;  
-    private Librairie modele;
+public class ControleurConnectionUser extends Controleur{
+
     private String role_user;
     @FXML
     private TextField nom;
@@ -53,13 +46,6 @@ public class ControleurConnectionUser {
     private Button boutonConnexion;
 
 
-
-    public void setModele(Librairie lib){
-        this.modele=lib;
-    }
-    public void setVue(LivreExpress vue){
-        this.vue = vue;
-    }
     @FXML
     private void validerChoix() {
     RadioButton selection = (RadioButton) groupeUtilisateur.getSelectedToggle();
@@ -77,31 +63,59 @@ public class ControleurConnectionUser {
         return this.prenom.getText();
     }
 
-    public String getMdp(){
+    public String getMdp(){  
         return this.mdp.getText();
     }
 
     public String getRole(){
-        return this.role_user;
+        RadioButton selection = (RadioButton) groupeUtilisateur.getSelectedToggle();
+        return selection.getText()+"";
     }
     @FXML
     private void gererAcceuil(ActionEvent event) {
-        afficherPopup("menu", "Fonction de retour au menu !");
+        this.vue.changerVue("/view/accueil.fxml");
     }
 
     @FXML
     private void gererConnexion(ActionEvent event) {
-        afficherPopup("connection", "Fonction de connexion !");
-        //this.connetion
-    }
 
-
-    private void afficherPopup(String titre, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(titre);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        switch (this.getRole()) {
+            case "Client":
+                Client tempC = new Client(this.getNom(),this.getPrenom(), null, null, null, this.getMdp());
+                if (essaieCo(tempC))
+                    this.vue.changerVue("/view/client.fxml");
+                break;
+            case "Administrateur":
+                Administrateur tempA = new Administrateur(this.getNom(), this.getPrenom(), this.getMdp());
+                if (essaieCo(tempA))
+                this.vue.changerVue("/view/fenetreAdmin1.fxml");
+                break;
+            case "Vendeur":
+                Vendeur tempV = new Vendeur(this.getNom(), this.getPrenom(), this.getMdp(), null);
+                if (essaieCo(tempV))
+                    this.vue.changerVue("/view/fenetreVendeur.fxml");
+                break;
+            default:
+                this.vue.changerVue("view/accueil.fxml");// retour a l'acceuil
+        }
+        
     }
+    /**
+     * test si la connexion est possible
+     * @param temp Utilisateur une variable temporaire representant un faux profile
+     * qui essai de se connecter en attendant de savoir s'il en a les permission
+     * @return boolean true si connectez false sinon
+     */
+    private boolean essaieCo(Utilisateur temp){
+            try{
+                if (this.modele.authentification(temp)){
+                this.modele.setCurUser(this.modele.reccupUser(temp));
+                return true;
+                }
+            }catch(UtilisateurInexistantException exp){
+                this.vue.popUpUtilisateurPasTrouve();
+            }return false;
+        }
+
 
 }

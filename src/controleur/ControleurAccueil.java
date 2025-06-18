@@ -1,16 +1,11 @@
 package controleur;
-import view.LivreExpress;
-import modele.Librairie;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import view.*;
 import javafx.event.ActionEvent;
-import modele.*;
 
-public class ControleurAccueil{
-    private Librairie modele;
-    private LivreExpress vue;
+
+public class ControleurAccueil extends Controleur{
 
     @FXML
     private Button boutonRechercher;
@@ -28,18 +23,12 @@ public class ControleurAccueil{
 
     @FXML
     private void gererConnexion(ActionEvent event) {
-        this.vue.fenetreConnexionUser();
+        this.vue.changerVue("/view/connexionUser.fxml");
     }
 
     @FXML
     private void gererChoix(ActionEvent event) {
         afficherPopup("Choix", "Option choisie !");
-    }
-    public void setVue(LivreExpress vue){
-        this.vue=vue;
-    }
-    public void setModele(Librairie lib){
-        this.modele = lib;
     }
     private void afficherPopup(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
