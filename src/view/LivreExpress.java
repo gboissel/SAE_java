@@ -1,21 +1,11 @@
 package view;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.geometry.Insets;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.scene.control.ButtonBar.ButtonData ;
 import javafx.fxml.FXMLLoader;
+<<<<<<< HEAD
 import javafx.scene.Parent;
 import javafx.fxml.*;
 
@@ -28,6 +18,11 @@ import java.nio.Buffer;
 import java.util.ArrayList;
 import modele.*;
 import controleur.*;
+=======
+import modele.Librairie;
+import controleur.*;
+
+>>>>>>> origin/main
 public class LivreExpress extends Application{
 
     private Librairie modele;
@@ -38,6 +33,10 @@ public class LivreExpress extends Application{
     public void init(){
         
     }
+    /**
+     * Initialise la librairie ce qui permet d'obtenir le modele MVC en place 
+     * @param lib librairie qui est connectée a une base de donnée
+     */
     public void initLibrairie(Librairie lib){
         this.modele = lib;
     }
@@ -49,94 +48,56 @@ public class LivreExpress extends Application{
     }
 
     /**
-     * @return  le graphe de scène de la vue à partir de methodes précédantes
+     * Cette methode permet de change la fenetre courante de maniere efficace grâce à l'herediter mise en place 
+     * par la classe Controleur
+     * @param fxmlChemin "Chemin d'access au fxml de la forme /view/<nomFichier>.fxml"
      */
-    private Scene laScene(){
-        /* BorderPane fenetre = new BorderPane();
-        fenetre.setTop(this.bande());
-        fenetre.setCenter(this.fenetreActuel); 
-        return new Scene(fenetre, 800, 1000); */
-        return new Scene(this.fenetreActuel, 800, 1000);
+    public void changerVue(String fxmlChemin) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlChemin));
+            BorderPane newRoot = loader.load();
+            Scene newScene = new Scene(newRoot);
+            Controleur controleur = loader.getController();
+            controleur.setVue(this);
+            controleur.setModele(this.getModele());
+            // Récupère la stage depuis la scène courante existante
+            Stage stage = (Stage) this.fenetreActuel.getScene().getWindow();
+
+            // Change la scène
+            stage.setScene(newScene);
+
+            // Met à jour fenetreActuel
+            this.fenetreActuel = newRoot;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Erreur de chargement du fichier FXML : " + fxmlChemin);
+        }
     }
 
-
-    /**
-     * @return le panel contenant le titre du jeu
-     */
-    private HBox titre(){
-        return new HBox();
+    public void popUpChampsIncomplet(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Attention");
+        alert.setHeaderText("Connexion impossible ");
+        alert.setContentText("Au moins un des champs est vide");
+        alert.showAndWait();
     }
-    
-    /**
-    * @return la fenêtre d'accueil sur laquelle on peut choisir les paramètres de jeu
-    */
-    private BorderPane fenetreAccueil(){
-        return new BorderPane();
-    }
-
-    /**
-    * @return la fenêtre d'accueil sur laquelle on peut choisir les paramètres de jeu
-    */
-    private BorderPane fenetreClient(){
-        return new BorderPane();
-    }
-
-    /**
-    * @return la fenêtre d'accueil sur laquelle on peut choisir les paramètres de jeu
-    */
-    private BorderPane fenetreVendeur(){
-        return new BorderPane();
-    }
-
-    /**
-    * @return la fenêtre d'accueil sur laquelle on peut choisir les paramètres de jeu
-    */
-    private BorderPane fenetreAdmini(){
-        return new BorderPane();
-    }
-
-    /**
-    * @return la fenêtre d'accueil sur laquelle on peut choisir les paramètres de jeu
-    */
-public void changerVue(String fxmlChemin) {
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlChemin));
-        BorderPane newRoot = loader.load();
-        Scene newScene = new Scene(newRoot);
-
-        // Récupère la stage depuis la scène courante existante
-        Stage stage = (Stage) this.fenetreActuel.getScene().getWindow();
-
-        // Change la scène
-        stage.setScene(newScene);
-
-        // Met à jour fenetreActuel
-        this.fenetreActuel = newRoot;
-    } catch (Exception e) {
-        e.printStackTrace();
-        System.out.println("Erreur de chargement du fichier FXML : " + fxmlChemin);
-    }
-}
-    public BorderPane bande(){
-        return new BorderPane();
-    }
-    /* 
-    
-    @Override
-    public void start(Stage stage) {
-        stage.setTitle("Livre Express App - vente de livre");
-        stage.setScene(this.laScene());
-        this.modeAccueil();
-        stage.show();
-    } 
-    */
-
-    public Alert popUpReglesDuJeu(){
+    public Alert popUpAide(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
-        alert.setHeaderText("Regle du jeu");
-        alert.setContentText("Il faut completer le mot pour gagné");
+        alert.setHeaderText("Support ");
+        alert.setContentText("Si vous avez besoin d'aide consulte le manuel d'utilisation");
         return alert;
+    }
+    /**
+     * Previent l'utilisateur dans le cas où la connexion est impossible 
+     * 
+     */
+    public void popUpUtilisateurPasTrouve(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Attention");
+        alert.setHeaderText("Connexion impossible ");
+        alert.setContentText("L'utilisateur n'a pas été trouvez dans la base de donnée");
+        alert.showAndWait();
     }
 
     /**
@@ -147,7 +108,11 @@ public void changerVue(String fxmlChemin) {
     public void start(Stage primaryStage) throws Exception {
         try {
             // loader
+<<<<<<< HEAD
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/VuePageClient.fxml"));
+=======
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/logBDpage.fxml"));
+>>>>>>> origin/main
             BorderPane root = loader.load();
             this.fenetreActuel = root;
 

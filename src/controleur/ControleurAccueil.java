@@ -1,11 +1,11 @@
 package controleur;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 
-public class ControleurAccueil {
+
+public class ControleurAccueil extends Controleur{
 
     @FXML
     private Button boutonRechercher;
@@ -23,14 +23,13 @@ public class ControleurAccueil {
 
     @FXML
     private void gererConnexion(ActionEvent event) {
-        afficherPopup("Connexion", "Redirection vers la page de connexion...");
+        this.vue.changerVue("/view/connexionUser.fxml");
     }
 
     @FXML
     private void gererChoix(ActionEvent event) {
         afficherPopup("Choix", "Option choisie !");
     }
-
     private void afficherPopup(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titre);
