@@ -27,6 +27,12 @@ public class ControleurAdmin1 extends Controleur{
     private Button boutonRechercher;
 
     @FXML
+    private Button boutonSuivant;
+
+    @FXML
+    private Button boutonPreced;
+
+    @FXML
     private Button boutonDeconnexion;
 
     @FXML
@@ -59,6 +65,16 @@ public class ControleurAdmin1 extends Controleur{
     @FXML
     private void gererRechercher(ActionEvent event) {
         afficherPopup("Recherche", "Fonction de recherche déclenchée !");
+    }
+
+    @FXML
+    private void gererSuivant(ActionEvent event) {
+        afficherPopup("suivant", "Fonction de page suivant !");
+    }
+
+    @FXML
+    private void gererPreced(ActionEvent event) {
+        afficherPopup("precedent", "Fonction de page precedent !");
     }
 
     @FXML
