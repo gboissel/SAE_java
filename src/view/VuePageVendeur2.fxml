@@ -44,7 +44,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="167.0" text="Deconnexion">
+            <Button fx:id="btnDeco" mnemonicParsing="false" onAction="#controleurDeco" prefHeight="48.0" prefWidth="167.0" text="Deconnexion">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -182,20 +182,20 @@
                   <Insets left="50.0" right="50.0" top="50.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="btnLivre" mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 1" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 4" GridPane.rowIndex="1" />
-                  <Button fx:id="btnLivre" mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 2" GridPane.columnIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 7" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 3" GridPane.columnIndex="2" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 9" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Button fx:id="btnLivre" mnemonicParsing="false" onAction="#controleurLivre" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 1" />
+                  <Button fx:id="btnLivre5" mnemonicParsing="false" onAction="#controleurLivre5" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="btnLivre4" mnemonicParsing="false" onAction="#controleurLivre4" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 4" GridPane.rowIndex="1" />
+                  <Button fx:id="btnLivre2" mnemonicParsing="false" onAction="#controleurLivre2" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 2" GridPane.columnIndex="1" />
+                  <Button fx:id="btnLivre8" mnemonicParsing="false" onAction="#controleurLivre8" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button fx:id="btnLivre7" mnemonicParsing="false" onAction="#controleurLivre7" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 7" GridPane.rowIndex="2" />
+                  <Button fx:id="btnLivre3" mnemonicParsing="false" onAction="#controleurLivre3" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 3" GridPane.columnIndex="2" />
+                  <Button fx:id="btnLivre6" mnemonicParsing="false" onAction="#controleurLivre6" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Button fx:id="btnLivre9" mnemonicParsing="false" onAction="#controleurLivre9" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Livre 9" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <HBox alignment="TOP_RIGHT" prefHeight="102.0" prefWidth="591.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="68.0" prefWidth="174.0" text="Choix Vendeur" textAlignment="RIGHT">
+                  <Button fx:id="btnAcceuilChoix" alignment="CENTER" mnemonicParsing="false" onAction="#controleurAcceuilChoix" prefHeight="68.0" prefWidth="233.0" text="Choix Vendeur Acceuil" textAlignment="RIGHT">
                      <font>
                         <Font size="19.0" />
                      </font>
