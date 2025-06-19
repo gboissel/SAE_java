@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurClient2">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurClient2">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="111.0" prefWidth="800.0" style="-fx-background-color: #b4b4b4;" BorderPane.alignment="CENTER">
          <children>
@@ -61,7 +61,7 @@
          <children>
             <HBox prefHeight="52.0" prefWidth="164.0" style="-fx-background-color: #5ce1e6;">
                <children>
-                  <TextField fx:id="TextRecherche" alignment="CENTER" onAction="#gererRecherchePrecise" prefHeight="35.0" prefWidth="163.0" promptText="Categorie ....." style="-fx-background-color: 5ce1e6;">
+                  <TextField fx:id="textRecherche" alignment="CENTER" onAction="#gererRecherchePrecise" prefHeight="35.0" prefWidth="163.0" promptText="Categorie ex: 110" style="-fx-background-color: 5ce1e6;">
                      <HBox.margin>
                         <Insets bottom="5.0" left="10.0" top="10.0" />
                      </HBox.margin>
@@ -141,14 +141,19 @@
                   <Insets left="50.0" right="50.0" top="20.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="btnLivre1" mnemonicParsing="false" onAction="#gererDetailLivre" prefHeight="140.0" prefWidth="242.0" style="-fx-background-color: #5ce1e6;" text="Livre 1" />
-                  <Button fx:id="btnLivre4" mnemonicParsing="false" onAction="#gererDetailLivre" prefHeight="154.0" prefWidth="241.0" style="-fx-background-color: #5ce1e6;" text="Livre 4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button fx:id="btnLivre3" mnemonicParsing="false" onAction="#gererDetailLivre" prefHeight="112.0" prefWidth="264.0" style="-fx-background-color: #5ce1e6;" text="Livre 3" GridPane.rowIndex="1" />
-                  <Button fx:id="btnLivre2" mnemonicParsing="false" onAction="#gererDetailLivre" prefHeight="125.0" prefWidth="241.0" style="-fx-background-color: #5ce1e6;" text="Livre 2" GridPane.columnIndex="1" />
+                  <Button fx:id="btnLivre1" mnemonicParsing="false" onAction="#gererAjouterLivrePanier" prefHeight="140.0" prefWidth="242.0" style="-fx-background-color: #5ce1e6;" text="Livre 1" />
+                  <Button fx:id="btnLivre4" mnemonicParsing="false" onAction="#gererAjouterLivrePanier" prefHeight="154.0" prefWidth="241.0" style="-fx-background-color: #5ce1e6;" text="Livre 4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="btnLivre3" mnemonicParsing="false" onAction="#gererAjouterLivrePanier" prefHeight="112.0" prefWidth="264.0" style="-fx-background-color: #5ce1e6;" text="Livre 3" GridPane.rowIndex="1" />
+                  <Button fx:id="btnLivre2" mnemonicParsing="false" onAction="#gererAjouterLivrePanier" prefHeight="125.0" prefWidth="241.0" style="-fx-background-color: #5ce1e6;" text="Livre 2" GridPane.columnIndex="1" />
                </children>
             </GridPane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
+                  <Button fx:id="btRetourChoixMag" mnemonicParsing="false" onAction="#gererRetourChoixMag" style="-fx-background-color: #5ce1e6;" text="Retour" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets right="100.0" />
+                     </HBox.margin>
+                  </Button>
                   <Button fx:id="btPreced" mnemonicParsing="false" onAction="#gererPreced" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #5ce1e6;" textAlignment="CENTER">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">

@@ -6,6 +6,7 @@ import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.fxml.FXML;
@@ -50,6 +51,9 @@ public class ControleurClient1 extends Controleur{
 
     @FXML
     private Button aideB;
+
+    @FXML
+    private Label idClient;
 
     @FXML
     public void controleurBoutDeco(ActionEvent e){
@@ -143,11 +147,6 @@ public class ControleurClient1 extends Controleur{
         this.maJ();
     }
 
-    @FXML
-    private void accesPanier(){
-        this.vue.changerVue("/view/accueil.fxml");
-    }
-
     private void maJ(){
         int dep = nbPage*9;
         int compteur = 0;
@@ -172,6 +171,7 @@ public class ControleurClient1 extends Controleur{
     @Override
     public void chargerPage(){
         this.nbPage = 0;
+        this.idClient.setText(this.modele.getCurUser().getNom() + " " + this.modele.getCurUser().getPrenom());
         this.maJ();
     }
 }

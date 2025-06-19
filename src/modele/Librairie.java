@@ -20,6 +20,7 @@ public class Librairie {
     private JDBC jdbc;
     private Magasin curMag;
     private boolean chargee;
+    private Panier panier;
 
 
     public Librairie(JDBC jdbc){
@@ -30,6 +31,15 @@ public class Librairie {
         this.initialisationBD(this.jdbc);
 
     }
+
+    public Panier getPanier() {
+        return panier;
+    }
+
+    public void setPanier(Panier panier) {
+        this.panier = panier;
+    }
+
 
     public void  ajouteMag(Magasin mag){
         this.lesMagasins.add(mag);
@@ -55,6 +65,15 @@ public class Librairie {
 
     public Livre rechercheLivreParNom(String nom){
         for(Livre livre: this.lesLivres){
+            if(livre.getTitre().equals(nom)){
+                return livre;
+            }
+        }
+        return null;
+    }
+
+    public Livre rechercheLivreParNomParMagasin(String nom){
+        for(Livre livre: this.curMag.getLivres()){
             if(livre.getTitre().equals(nom)){
                 return livre;
             }
@@ -119,6 +138,7 @@ public class Librairie {
      * @param usr Le nouvel utilisateur courant
      */
     public void setCurUser(Utilisateur usr){
+        this.panier=new Panier();
         this.curUser=usr;
     }
     /**
