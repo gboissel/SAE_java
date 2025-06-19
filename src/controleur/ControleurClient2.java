@@ -90,7 +90,7 @@ public class ControleurClient2 extends Controleur{
     private TextField textRecherche;
                                       
     @FXML
-    private void gererPanier(ActionEvent event){
+    private void controleurBoutPanier(ActionEvent event){
 
     }
 

@@ -5,17 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.fxml.*;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.Arrays;
-import java.io.File;
-import java.lang.reflect.Array;
-import java.nio.Buffer;
-import java.util.ArrayList;
-import modele.*;
+import modele.Librairie;
 import controleur.*;
 import modele.*;
 
