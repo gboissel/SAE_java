@@ -72,6 +72,15 @@ public class Librairie {
         return null;
     }
 
+    public Livre rechercheLivreParNomParMagasin(String nom){
+        for(Livre livre: this.curMag.getLivres()){
+            if(livre.getTitre().equals(nom)){
+                return livre;
+            }
+        }
+        return null;
+    }
+
     public boolean estChargee() {
         return this.chargee;
     }

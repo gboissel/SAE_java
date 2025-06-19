@@ -203,8 +203,13 @@ public class ControleurClient3 extends Controleur {
         int ligne = getlignedepuisEvent(event);
         Node elem = getNode(this.grid, 0, ligne);
         Button tmp_titre = (Button) elem;
-        Livre tmp_livre = this.modele.rechercheLivreParNom(tmp_titre.getText());
-        this.modele.getPanier().ajouter(tmp_livre, 1);
+        Livre tmp_livre = this.modele.rechercheLivreParNomParMagasin(tmp_titre.getText());
+        if((this.modele.getCurMag().getQteLivre(tmp_livre)<this.modele.getPanier().get(tmp_livre))){
+            afficherPopup("Erreur","Il n'y a plus assez de stock dans le magasin");
+        }
+        else{
+            this.modele.getPanier().ajouter(tmp_livre, 1);
+        }
         this.majAffichage();
     }
 
@@ -213,7 +218,7 @@ public class ControleurClient3 extends Controleur {
         int ligne = getlignedepuisEvent(event);
         Node elem = getNode(this.grid, 0, ligne);
         Button tmp_titre = (Button) elem;
-        Livre tmp_livre = this.modele.rechercheLivreParNom(tmp_titre.getText());
+        Livre tmp_livre = this.modele.rechercheLivreParNomParMagasin(tmp_titre.getText());
         this.modele.getPanier().retirerQte(tmp_livre, 1);
         this.majAffichage();
     }
@@ -222,7 +227,7 @@ public class ControleurClient3 extends Controleur {
         int ligne = getlignedepuisEvent(event);
         Node elem = getNode(this.grid, 0, ligne);
         Button tmp_titre = (Button) elem;
-        Livre tmp_livre = this.modele.rechercheLivreParNom(tmp_titre.getText());
+        Livre tmp_livre = this.modele.rechercheLivreParNomParMagasin(tmp_titre.getText());
         this.modele.getPanier().supprimer(tmp_livre);
         this.majAffichage();
     }

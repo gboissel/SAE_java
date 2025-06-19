@@ -1,6 +1,7 @@
 package controleur;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -144,6 +145,7 @@ public class ControleurClient2 extends Controleur{
         
     }
 
+
     @FXML
     private void gererRecherche(ActionEvent event) throws SQLException{
         this.numPage=0;
@@ -190,10 +192,15 @@ public class ControleurClient2 extends Controleur{
     private void gererAjouterLivrePanier(ActionEvent event) {
         Button boutonClique = (Button) event.getSource(); // Récupère le bouton cliqué
         String texte = boutonClique.getText();
-        Livre livre = modele.rechercheLivreParNom(texte);
+        Livre livre = modele.rechercheLivreParNomParMagasin(texte);
         Optional<ButtonType> reponse = popUpMettreDansPanier(this.vue.infoLivre(livre)).showAndWait();
         if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
-            this.modele.getPanier().ajouter(livre, 1); //permet d'initialiser la ligne du panier 
+            if((this.modele.getCurMag().getQteLivre(livre)==0)){
+            afficherPopup("Erreur","Il n'y a plus assez de stock dans le magasin");
+        }
+            else{
+                this.modele.getPanier().ajouter(livre, 1);  //permet d'initialiser la ligne du panier 
+            }
             this.majAffichage();  //au cas ou le livre n'est plus en stock
         }
         else{

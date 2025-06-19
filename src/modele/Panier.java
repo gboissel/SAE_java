@@ -25,12 +25,14 @@ public class Panier extends HashMap<Livre,Integer>{
     }
 
     /**
-     * Méthode permettant de retirer des exemplaires du livre dans le panier, sans le supprimer
+     * Méthode permettant de retirer des exemplaires du livre dans le panier, sans le supprimer, sans aller dans une valeur negative
      * @param livre Le livre
      * @param qte La quantité
      */
     public void retirerQte(Livre livre, int qte) {
-        this.put(livre, this.get(livre) - qte);
+        if(!(this.get(livre) - qte<0)){
+            this.put(livre, this.get(livre) - qte);
+        }
     }
 
     /**
