@@ -110,73 +110,78 @@ public class ControleurClient1 extends Controleur{
         int dep = nbPage*9;
         String nomMag;        
         for (int i=nbPage*9;i<(nbPage+1)*9;i++){// sa s'execute 9 fois pour chaque page
-            System.out.println(this.modele.getMagasins().get(i).getNom());
 
             switch ((i+dep)%9){
-            case 0:
-                try{
-                    nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
-                    this.btnMag1.setText(nomMag);
-                }catch(Exception e){
-                    this.btnMag1.setText("A venir ... Il n'y a plus de magasin.");
-                }
-                
-            case 1:
-                try{nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
-                    this.btnMag2.setText(nomMag);
-                }catch(Exception e){
-                    this.btnMag2.setText("A venir ... Il n'y a plus de magasin.");
-                }
-                
-            case 2:
-                try{nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
-                    this.btnMag3.setText(nomMag);}
-                catch(Exception e){
-                    this.btnMag3.setText("A venir ... Il n'y a plus de magasin.");
-                }
-                
-            case 3:
-                try{
-                    nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
-                    this.btnMag4.setText(nomMag);
-                }catch(Exception e){
-                    this.btnMag4.setText("A venir ... Il n'y a plus de magasin.");
-                }
-                
-            case 4:
-                try{nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
-                    this.btnMag5.setText(nomMag);
-                }catch(Exception e){
-                    this.btnMag5.setText("A venir ... Il n'y a plus de magasin.");
-                }
-                
-            case 5:
-                try{nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
-                    this.btnMag6.setText(nomMag);}
-                catch(Exception e){
-                    this.btnMag6.setText("A venir ... Il n'y a plus de magasin.");
-                }
-                
-            case 6:
-                try{nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
-                    this.btnMag7.setText(nomMag);}
-                catch(Exception e){
-                    this.btnMag7.setText("A venir ... Il n'y a plus de magasin.");
-                }
+                case 0:
+                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                        nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                        this.btnMag1.setText(nomMag);
+                    }else{
+                        this.btnMag1.setText("A venir ... Il n'y a plus de magasin.");
+                    }
                     
-            case 7:
-                try{nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
-                    this.btnMag8.setText(nomMag);
-                }catch(Exception e){
-                    this.btnMag8.setText("A venir ... Il n'y a plus de magasin.");
-                }
-                
-            case 8:
-                try{nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
-                    this.btnMag9.setText(nomMag);
-                }catch(Exception e){
-                    this.btnMag9.setText("A venir ... Il n'y a plus de magasin.");
-                }
+                case 1:
+                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                    nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                        this.btnMag2.setText(nomMag);
+                    }else
+                        this.btnMag2.setText("A venir ... Il n'y a plus de magasin.");
+                    
+                case 2:
+                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                        nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                        this.btnMag3.setText(nomMag);
+                    }else{
+                        this.btnMag3.setText("A venir ... Il n'y a plus de magasin.");
+                    }
+                    
+                case 3:
+                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                        nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                        this.btnMag4.setText(nomMag);
+                    }else{
+                        this.btnMag4.setText("A venir ... Il n'y a plus de magasin.");
+                    }
+                    
+                case 4:
+                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                        nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                        this.btnMag5.setText(nomMag);
+                    }else{
+                        this.btnMag5.setText("A venir ... Il n'y a plus de magasin.");
+                    }
+                    
+                case 5:
+                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                        nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                        this.btnMag6.setText(nomMag);}
+                    else{
+                        this.btnMag6.setText("A venir ... Il n'y a plus de magasin.");
+                    }
+                    
+                case 6:
+                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                        nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                        this.btnMag7.setText(nomMag);}
+                    else{
+                        this.btnMag7.setText("A venir ... Il n'y a plus de magasin.");
+                    }
+                        
+                case 7:
+                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                        nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                        this.btnMag8.setText(nomMag);
+                    }else{
+                        this.btnMag8.setText("A venir ... Il n'y a plus de magasin.");
+                    }
+                    
+                case 8:
+                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                    nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
+                        this.btnMag9.setText(nomMag);
+                    }else{
+                        this.btnMag9.setText("A venir ... Il n'y a plus de magasin.");
+                    }
                 
             }
             
