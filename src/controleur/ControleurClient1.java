@@ -49,7 +49,7 @@ public class ControleurClient1 extends Controleur{
 
     @FXML
     public void controleurBoutMag1(ActionEvent e){
-        this.vue.changerVue("view/VuePageClient2.fxml");
+        this.vue.changerVue("/view/VuePageClient2.fxml");
     }
 
     @FXML
@@ -93,13 +93,17 @@ public class ControleurClient1 extends Controleur{
     }
     @FXML
     public void pagePrec(){
-        if (this.nbPage>0) this.nbPage-=1;
+        if (this.nbPage>0) {
+            this.nbPage-=1;
+            this.chargerPage();
+        }
 
     }
 
     @FXML
     public void pageSuivante(){
         this.nbPage+=1;
+        this.chargerPage();
     }
     @FXML
     private void accesPanier(){
@@ -110,25 +114,24 @@ public class ControleurClient1 extends Controleur{
         int dep = nbPage*9;
         String nomMag;        
         for (int i=nbPage*9;i<(nbPage+1)*9;i++){// sa s'execute 9 fois pour chaque page
-
+        if ((this.modele.getMagasins().size()>nbPage*9+i)){
             switch ((i+dep)%9){
                 case 0:
-                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                    if (this.modele.getMagasins().size()>nbPage*9+i){
                         nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
                         this.btnMag1.setText(nomMag);
                     }else{
                         this.btnMag1.setText("A venir ... Il n'y a plus de magasin.");
-                    }
-                    
+                    } 
                 case 1:
-                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                    if (this.modele.getMagasins().size()>nbPage*9+i){
                     nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
                         this.btnMag2.setText(nomMag);
                     }else
                         this.btnMag2.setText("A venir ... Il n'y a plus de magasin.");
                     
                 case 2:
-                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                    if (this.modele.getMagasins().size()>nbPage*9+i){
                         nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
                         this.btnMag3.setText(nomMag);
                     }else{
@@ -136,7 +139,7 @@ public class ControleurClient1 extends Controleur{
                     }
                     
                 case 3:
-                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                    if (this.modele.getMagasins().size()>nbPage*9+i){
                         nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
                         this.btnMag4.setText(nomMag);
                     }else{
@@ -144,7 +147,7 @@ public class ControleurClient1 extends Controleur{
                     }
                     
                 case 4:
-                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                    if (this.modele.getMagasins().size()>nbPage*9+i){
                         nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
                         this.btnMag5.setText(nomMag);
                     }else{
@@ -152,7 +155,7 @@ public class ControleurClient1 extends Controleur{
                     }
                     
                 case 5:
-                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                    if (this.modele.getMagasins().size()>nbPage*9+i){
                         nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
                         this.btnMag6.setText(nomMag);}
                     else{
@@ -160,7 +163,7 @@ public class ControleurClient1 extends Controleur{
                     }
                     
                 case 6:
-                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                    if (this.modele.getMagasins().size()>nbPage*9+i){
                         nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
                         this.btnMag7.setText(nomMag);}
                     else{
@@ -168,7 +171,7 @@ public class ControleurClient1 extends Controleur{
                     }
                         
                 case 7:
-                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                    if (this.modele.getMagasins().size()>nbPage*9+i){
                         nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
                         this.btnMag8.setText(nomMag);
                     }else{
@@ -176,14 +179,14 @@ public class ControleurClient1 extends Controleur{
                     }
                     
                 case 8:
-                    if (this.modele.getMagasins().size()<=nbPage*9+i){
+                    if (this.modele.getMagasins().size()>nbPage*9+i){
                     nomMag = this.modele.getMagasins().get(i+dep%9).getNom();
                         this.btnMag9.setText(nomMag);
                     }else{
                         this.btnMag9.setText("A venir ... Il n'y a plus de magasin.");
                     }
                 
-            }
+            }}
             
         }
     }
