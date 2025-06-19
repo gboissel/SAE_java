@@ -49,6 +49,8 @@ public class ControleurClient1 extends Controleur{
 
     @FXML
     public void controleurBoutMag1(ActionEvent e){
+        this.modele.setCurMag(this.modele.getMagasins().get(0+this.nbPage));
+        System.out.println(this.modele.getMagasins().get(0+this.nbPage).getNom());
         this.vue.changerVue("/view/VuePageClient2.fxml");
     }
 
