@@ -1,8 +1,12 @@
 package controleur;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.fxml.FXML;
 
 public class ControleurClient1 extends Controleur{
@@ -45,7 +49,16 @@ public class ControleurClient1 extends Controleur{
 
     @FXML
     public void controleurBoutDeco(ActionEvent e){
-        System.out.println("vous etes bien deconnecter");
+        Optional<ButtonType> reponse = this.popUpDeconnexion().showAndWait();
+        if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
+            this.modele.setCurUser(null);
+            this.vue.changerVue("/view/accueil.fxml");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Déconnexion");
+            alert.setHeaderText("Déconnexion réussie !");
+            alert.setContentText("Vous êtes bien retournée sur la page d'accueil");
+        }
+
     }
 
     @FXML
