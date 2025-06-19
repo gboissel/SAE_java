@@ -183,7 +183,7 @@ public class ControleurClient3 extends Controleur {
         Node elem = getNode(this.grid, 0, ligne);
         Button tmp_titre = (Button) elem;
         Livre tmp_livre = this.modele.rechercheLivreParNomParMagasin(tmp_titre.getText());
-        if((this.modele.getCurMag().getQteLivre(tmp_livre)<this.modele.getPanier().get(tmp_livre))){
+        if((this.modele.getCurMag().getQteLivre(tmp_livre)<=this.modele.getPanier().get(tmp_livre))){
             afficherPopup("Erreur","Il n'y a plus assez de stock dans le magasin");
         }
         else{

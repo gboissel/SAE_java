@@ -138,13 +138,6 @@ public class ControleurGererStock extends Controleur{
         majAffichage();
     }
 
-    private Alert popUpDeconnexion() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Voulez vous vraiment vous déconnecter ?\nVous serez renvoyer vers la page d'acceuil", ButtonType.YES, ButtonType.NO);
-        alert.setTitle("Attention");
-        alert.setHeaderText("Déconnexion");
-        return alert;
-    }
-
     private void popUpQte(Livre livre) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Sélection Quantité");
