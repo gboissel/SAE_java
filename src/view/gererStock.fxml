@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurGererStock">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurGererStock">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #b4b4b4; -fx-background-insets: #15;" BorderPane.alignment="CENTER">
          <children>
@@ -114,6 +114,11 @@
                   <Insets top="25.0" />
                </opaqueInsets>
             </HBox>
+            <Button fx:id="boutonRetour" mnemonicParsing="false" onAction="#gererRetour" prefHeight="58.0" prefWidth="123.0" style="-fx-background-color: #5ce1e6;" text="Retour" textAlignment="CENTER">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
    </left>

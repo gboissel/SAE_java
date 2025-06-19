@@ -113,7 +113,6 @@ public class ControleurAdmin1 extends Controleur{
             alert.setHeaderText("Déconnexion réussie !");
             alert.setContentText("Vous êtes bien retournée sur la page d'accueil");
         }
-
     }
 
     @FXML

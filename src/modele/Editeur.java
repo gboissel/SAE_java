@@ -44,7 +44,7 @@ public class Editeur implements Comparable<Editeur>{
     
     @Override
     public String toString(){
-        return "Edition "+this.nom;
+        return this.nom;
     }
     
     @Override

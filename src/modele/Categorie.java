@@ -44,7 +44,7 @@ public class Categorie implements Comparable<Categorie>{
     
     @Override
     public String toString(){
-        return "Catégorie "+this.nom;
+        return this.nom;
     }
     
     @Override

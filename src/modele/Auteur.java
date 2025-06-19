@@ -101,7 +101,7 @@ public class Auteur implements Comparable<Auteur>{
 
     @Override
     public String toString() {
-        String texte = "Auteur " + this.nom;
+        String texte = this.nom;
         if (this.naissance != null) {
             texte = texte + " né(e) en " + this.naissance;
         }

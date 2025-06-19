@@ -2,13 +2,17 @@ package controleur;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
+import exception.*;
 import javafx.event.ActionEvent;
 import modele.*;
 import view.*;
@@ -43,6 +47,8 @@ public class ControleurGererStock extends Controleur{
     @FXML
     private Button boutonDeconnexion;
     @FXML
+    private Button boutonRetour;
+    @FXML
     private Button boutonRechercher;
     @FXML
     private Button boutonChoisir;
@@ -62,7 +68,16 @@ public class ControleurGererStock extends Controleur{
         }
         else{
             Livre livre = modele.rechercheLivreParNom(this.textLivre.getText());
-        afficherPopup("Detail Livre", this.vue.infoLivre(livre));
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, this.vue.infoLivre(livre), ButtonType.NO, ButtonType.YES);
+            alert.setTitle("Info Livre");
+            if (this.modele.getCurUser().getRoles().equals("Administrateur") || this.modele.getCurMag()==null) {
+                alert.setHeaderText("Souhaitez-vous modifier le stock de ce livre dans le magasin ?");
+            }
+            else {alert.setHeaderText("Souhaitez-vous importer ce livre-ci ?");}
+            Optional<ButtonType> reponse = alert.showAndWait();
+            if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
+                popUpQte(livre);
+            }
         }
         
     }   
@@ -72,15 +87,38 @@ public class ControleurGererStock extends Controleur{
         Button boutonClique = (Button) event.getSource(); // Récupère le bouton cliqué
         String texte = boutonClique.getText();
         Livre livre = modele.rechercheLivreParNom(texte);
-        afficherPopup("Detail Livre", this.vue.infoLivre(livre));
-
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, this.vue.infoLivre(livre), ButtonType.NO, ButtonType.YES);
+        alert.setTitle("Info Livre");
+        if (this.modele.getCurUser().getRoles().equals("Administrateur") || this.modele.getCurMag()==null) {
+            alert.setHeaderText("Souhaitez-vous modifier le stock de ce livre dans le magasin ?");
+        }
+        else {alert.setHeaderText("Souhaitez-vous importer ce livre-ci ?");}
+        Optional<ButtonType> reponse = alert.showAndWait();
+        if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
+            popUpQte(livre);
+        }
     }
 
     @FXML
     private void gererDeconnexion(ActionEvent event) {
+        Optional<ButtonType> reponse = popUpDeconnexion().showAndWait();
+        if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
+            this.modele.setCurUser(null);
+            this.modele.setCurMag(null);
+            this.vue.changerVue("/view/accueil.fxml");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Déconnexion");
+            alert.setHeaderText("Déconnexion réussie !");
+            alert.setContentText("Vous êtes bien retournée sur la page d'accueil");
+        }
+    }
+
+    @FXML
+    private void gererRetour(ActionEvent event) {
         this.modele.setCurMag(null);
-        this.modele.setCurUser(null);
-        this.vue.changerVue("/view/connexionUser.fxml");
+        if (this.modele.getCurUser().getRoles().equals("Administrateur")) {
+            this.vue.changerVue("/view/fenetreAdmin1.fxml");
+        }
     }
 
     @FXML
@@ -98,6 +136,56 @@ public class ControleurGererStock extends Controleur{
     private void pageSuiv() {
         numPage+=1;
         majAffichage();
+    }
+
+    private Alert popUpDeconnexion() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Voulez vous vraiment vous déconnecter ?\nVous serez renvoyer vers la page d'acceuil", ButtonType.YES, ButtonType.NO);
+        alert.setTitle("Attention");
+        alert.setHeaderText("Déconnexion");
+        return alert;
+    }
+
+    private void popUpQte(Livre livre) {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Sélection Quantité");
+        if (this.modele.getCurUser().getRoles().equals("Administrateur") || this.modele.getCurMag()==null) {
+            dialog.setHeaderText("Saisissez la quantité de livre à ajouter au magasin");
+            if (this.modele.getCurUser().getRoles().equals("Administrateur")) {
+                dialog.setContentText("Quantité actuelle : "+this.modele.getCurMag().getQteLivre(livre));
+            }
+            else {
+                Vendeur vendeur = (Vendeur) this.modele.getCurUser();
+                dialog.setContentText("Quantité actuelle : "+vendeur.getMagasin().getQteLivre(livre));
+            }
+        }
+        else {
+            Vendeur vendeur = (Vendeur) this.modele.getCurUser();
+            dialog.setHeaderText("Saisiseez la quantité du livre à récupérer depuis le magasin sélectionné");
+            dialog.setContentText("Quantité actuelle : "+vendeur.getMagasin().getQteLivre(livre)+"\nQuantité récupérable : "+this.modele.getCurMag().getQteLivre(livre));
+        }
+        ButtonType valider = new ButtonType("Valider", ButtonBar.ButtonData.OK_DONE);
+        ButtonType annuler = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().setAll(valider, annuler);
+        Optional<String> resultat = dialog.showAndWait();
+        if (resultat.isPresent()) {
+            String valeur = resultat.get();
+            try {
+                int qte = Integer.parseInt(valeur);
+                if (this.modele.getCurUser().getRoles().equals("Administrateur")) {this.modele.getCurMag().setQteLivre(livre, this.modele.getCurMag().getQteLivre(livre) + qte, this.modele.getJDBC());}
+                else {
+                    Vendeur vendeur = (Vendeur) this.modele.getCurUser();
+                    if (this.modele.getCurMag()==null) {vendeur.getMagasin().setQteLivre(livre, vendeur.getMagasin().getQteLivre(livre) + qte, this.modele.getJDBC());}
+                    else {vendeur.transfererLivre(livre, this.modele.getCurMag(), qte, this.modele.getJDBC());}
+                }
+                afficherPopup("Info Stock", "La mise à jour du stock a bien été effectuée !");
+            }
+            catch (NumberFormatException | PasAssezDeLivreException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText("Erreur : La quantité saisie est invalide !");
+                alert.setContentText("La valeur saisie est invalide.\nVérifiez bien que la valeur rentrée est bien correcte.");
+            }
+        }
     }
 
     private void afficherPopup(String titre, String message) {
