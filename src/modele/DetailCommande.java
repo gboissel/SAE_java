@@ -1,4 +1,5 @@
 package modele;
+
 public class DetailCommande {
     private int qte;
     private double prixVente;
