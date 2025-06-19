@@ -38,17 +38,8 @@ public class ControleurClient3 extends Controleur {
     @FXML
     private Button btnDeco;
 
-     @FXML
-    private Button btnCatalogue;
-
-     @FXML
-    private Button btnSupprPanier;
-
-     @FXML
-    private Button btnSuppr;
-
     @FXML
-    private Button btnAjoute;
+    private Button btnCatalogue;
 
     @FXML
     private Button btnAvant;
@@ -61,6 +52,67 @@ public class ControleurClient3 extends Controleur {
 
     @FXML
     private Label idClient;
+
+    @FXML
+    private Label totalPanier;
+
+    @FXML
+    private Label l1;
+    @FXML
+    private Label l2;
+    @FXML
+    private Label l3;
+    @FXML
+    private Label l4;
+    @FXML
+    private Label q1;
+    @FXML
+    private Label q2;
+    @FXML
+    private Label q3;
+    @FXML
+    private Label q4;
+    @FXML
+    private Label p1;
+    @FXML
+    private Label p2;
+    @FXML
+    private Label p3;
+    @FXML
+    private Label p4;
+    @FXML
+    private Label t1;
+    @FXML
+    private Label t2;
+    @FXML
+    private Label t3;
+    @FXML
+    private Label t4;
+    @FXML
+    private Button a1;
+    @FXML
+    private Button a2;
+    @FXML
+    private Button a3;
+    @FXML
+    private Button a4;
+    @FXML
+    private Button s1;
+    @FXML
+    private Button s2;
+    @FXML
+    private Button s3;
+    @FXML
+    private Button s4;
+    @FXML
+    private Button d1;
+    @FXML
+    private Button d2;
+    @FXML
+    private Button d3;
+    @FXML
+    private Button d4;
+
 
 
     public Alert popUpDeconnexion(){
@@ -108,16 +160,38 @@ public class ControleurClient3 extends Controleur {
         }
     }
     @FXML
-    private void gererRetour(ActionEvent event){
+    private void gererRetourCatalogue(ActionEvent event){
+        this.vue.changerVue("/view/VuePageClient2.fxml");
+    }
+
+    private void majAffichage(){
+
+    }
+
+    @FXML
+    private void gererAjouter(ActionEvent event){
         if (this.numPage<this.numPageMax) {
             this.numPage+=1;
             this.majAffichage();
         }
     }
 
-    private void majAffichage(){
-
+    @FXML
+    private void gererSupprimer(ActionEvent event){
+        if (this.numPage<this.numPageMax) {
+            this.numPage+=1;
+            this.majAffichage();
+        }
     }
+    @FXML
+    private void gererEnlever(ActionEvent event){
+        if (this.numPage<this.numPageMax) {
+            this.numPage+=1;
+            this.majAffichage();
+        }
+    }
+    
+
 
     private void afficherPopup(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
