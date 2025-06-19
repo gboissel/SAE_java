@@ -150,15 +150,6 @@ public class Librairie {
     }
 
     /**
-     * change le magasin courant
-     * @param mag Le nouveau magasin courant
-     */
-    public void setCurMag(Magasin mag) {
-        this.curMag = mag;
-    }
-
-
-    /**
      * Créer un client puis l'ajoute à la liste des utilisateur
      * @param nom Son nom
      * @param prenom Son prénom
