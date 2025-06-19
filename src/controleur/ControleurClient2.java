@@ -87,7 +87,7 @@ public class ControleurClient2 extends Controleur{
     private Button btnRecherche;
 
     @FXML
-    private TextField TextRecherche;
+    private TextField textRecherche;
                                       
     @FXML
     private void gererPanier(ActionEvent event){
@@ -113,14 +113,14 @@ public class ControleurClient2 extends Controleur{
     @FXML
     private void gererRecherchePrecise(ActionEvent event) throws SQLException{
         int nombre;
-        if(this.TextRecherche.getText().isEmpty()){
+        if(this.textRecherche.getText().isEmpty()){
             afficherPopup("erreur", "Le champ est vide");
         }
         else{
             try {
-                String texte = this.TextRecherche.getText().substring(0, 3);
+                String texte = this.textRecherche.getText().substring(0, 3);
                 nombre = Integer.parseInt(texte);
-                this.tmp = this.modele.getJDBC().getLivresParClassificationEtMagasinPrecise(nombre, null); //implementer le nomMagasin
+                this.tmp = this.modele.getJDBC().getLivresParClassificationEtMagasinPrecise(nombre, this.modele.getCurMag().getNom());
                 this.numPageMax = (int) Math.ceil((double) tmp.size() / 4); // permet de definir le nombre de page maximum
                 this.majAffichage();
             } catch (NumberFormatException e) {
@@ -135,7 +135,7 @@ public class ControleurClient2 extends Controleur{
     private void gererRecherche(ActionEvent event) throws SQLException{
         Button boutonClique = (Button) event.getSource();
         String texte = boutonClique.getText().substring(0, 3);
-        this.tmp = this.modele.getJDBC().getLivresParClassificationEtMagasin(texte, null); //implementer le nomMagasin
+        this.tmp = this.modele.getJDBC().getLivresParClassificationEtMagasin(texte, this.modele.getCurMag().getNom()); 
         this.numPageMax = (int) Math.ceil((double) tmp.size() / 4); // permet de definir le nombre de page maximum
         this.majAffichage();
     }
