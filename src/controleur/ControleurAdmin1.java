@@ -65,6 +65,7 @@ public class ControleurAdmin1 extends Controleur{
 
     @FXML
     private void gererRechercher(ActionEvent event) {
+        
         afficherPopup("Recherche", "Fonction de recherche déclenchée !");
     }
 
