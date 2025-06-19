@@ -18,6 +18,7 @@ public class Librairie {
     private List<Magasin> lesMagasins;
     private List<Livre> lesLivres;
     private JDBC jdbc;
+    private Magasin curMag;
     private boolean chargee;
 
 
@@ -38,6 +39,24 @@ public class Librairie {
         for(Magasin mag: this.lesMagasins){
             if(mag.getNom().equals(nommag)){
                 return mag;
+            }
+        }
+        return null;
+    }
+
+    public Magasin rechercheMag(String nommag,String ville){
+        for(Magasin mag: this.lesMagasins){
+            if(mag.getNom().equals(nommag)&&mag.getVille().equals(ville)){
+                return mag;
+            }
+        }
+        return null;
+    }
+
+    public Livre rechercheLivreParNom(String nom){
+        for(Livre livre: this.lesLivres){
+            if(livre.getTitre().equals(nom)){
+                return livre;
             }
         }
         return null;
@@ -77,6 +96,14 @@ public class Librairie {
      */
     public Utilisateur getCurUser(){
         return this.curUser;
+    }
+
+    /**
+     * renvoie magasin courant
+     * @return le magasin courant
+     */
+    public Magasin getCurMag() {
+        return this.curMag;
     }
 
     /**

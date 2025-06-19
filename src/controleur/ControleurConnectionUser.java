@@ -45,6 +45,8 @@ public class ControleurConnectionUser extends Controleur{
     @FXML
     private Button boutonConnexion;
 
+    @FXML
+    private Button btCreaClient;
 
     public String getNom(){
         return this.nom.getText();
@@ -65,6 +67,11 @@ public class ControleurConnectionUser extends Controleur{
     @FXML
     private void gererAcceuil(ActionEvent event) {
         this.vue.changerVue("/view/accueil.fxml");
+    }
+
+    @FXML
+    private void gererCreaClient(ActionEvent event) {
+        this.vue.changerVue("/view/creaCompteClient.fxml");
     }
 
     @FXML
@@ -107,6 +114,4 @@ public class ControleurConnectionUser extends Controleur{
                 this.vue.popUpUtilisateurPasTrouve();
             }return false;
         }
-
-
 }

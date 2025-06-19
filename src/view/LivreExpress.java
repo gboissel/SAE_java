@@ -7,6 +7,7 @@ import javafx.scene.layout.*;
 import javafx.fxml.FXMLLoader;
 import modele.Librairie;
 import controleur.*;
+import modele.*;
 
 public class LivreExpress extends Application{
 
@@ -86,6 +87,19 @@ public class LivreExpress extends Application{
         alert.showAndWait();
     }
 
+    public String infoLivre(Livre livre){
+        String res = "";
+        res+="ISBN  = " +livre.getISBN()+"\n";
+        res+="Titre  = " +livre.getTitre()+"\n";
+        res+="Prix  = " +livre.getPrix()+"\n";
+        res+="Auteurs  = "+ livre.getAuteurs().toString()+"\n";
+        res+="Editeurs  = " +livre.getEditeurs().toString()+"\n";
+        res+="Classifications  = "+ livre.getClassification().toString()+"\n";
+        res+="Magasins  = " +livre.getMagasins().toString()+"\n";
+
+        return res;
+    }
+
     /**
      * Programme principal
      * @param args inutilisé
@@ -111,6 +125,8 @@ public class LivreExpress extends Application{
         }
     }
 
+
+    
     public static void main(String[] args) {
         launch(args); 
     }

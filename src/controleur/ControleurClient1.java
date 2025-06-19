@@ -1,13 +1,11 @@
 package controleur;
-
+import exception.*;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-import modele.Magasin;
 import javafx.fxml.FXML;
 
 public class ControleurClient1 extends Controleur{
     private int nbPage = 0;
-    private Magasin curMag = null;
     @FXML
     private Button btnDeco;
 
@@ -100,10 +98,12 @@ public class ControleurClient1 extends Controleur{
     }
 
     @FXML
-    public void pageSuiv(){
+    public void pageSuivante(){
         this.nbPage+=1;
     }
-
+    @FXML
+    private void accesPanier(){
+    }
     @Override
     public void chargerPage(){
         this.nbPage = 0;
