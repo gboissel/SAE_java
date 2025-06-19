@@ -92,21 +92,12 @@ public class ControleurInscriptionClient extends Controleur{
         //a ajouter: créé un magasin a partir d'un 
         if(getNom().isEmpty()||getPrenom().isEmpty()||getAddress().isEmpty()||getPostal().isEmpty()||getMdp().isEmpty()||getVille().isEmpty()){
             afficherPopup("erreur", "Au moin l'un des 4 textField est vide");
-        if(nom.getText().isEmpty()||prenom.getText().isEmpty()||mdp.getText().isEmpty()||magasin.getText().isEmpty()){
-            afficherPopup("erreur", "Au moins l'un des 4 textField est vide");
         }
         else{
-            //System.out.println("nom : " + nom.getText());
-            //System.out.println("prenom : " + prenom.getText());
-            //System.out.println("mdp : " + mdp.getText());
-            //System.out.println("magasin : " + magasin.getText());
-            Magasin mag_rech = this.modele.rechercheMagParNom(getMagasin());
-            //this.modele.getJDBC().insererVendeur(new Vendeur(getNom(), getPrenom(), getMdp(), mag_rech), getMdp());
-            this.modele.createVendeur(getNom(), getPrenom(), getMdp(), mag_rech, this.modele.getJDBC());
-            afficherPopup("Creation", "La creation Vendeur a bien reussi ");
-            this.vue.changerVue("/view/fenetreAdmin1.fxml");
+            this.modele.createClient(getNom(), getPrenom(), getAddress() ,getPostal(),getVille(),getMdp(), this.modele.getJDBC());
+            afficherPopup("Creation", "La creation Client a bien reussi \n Vous pouvez maintenant vous connecter");
+            this.vue.changerVue("/view/connexionUser.fxml");
         }
-        
     }
 }
 
