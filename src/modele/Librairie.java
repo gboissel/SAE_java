@@ -129,6 +129,14 @@ public class Librairie {
         this.curMag=mag;
     }
 
+    /**
+     * change le magasin courant
+     * @param mag Le nouveau magasin courant
+     */
+    public void setCurMag(Magasin mag) {
+        this.curMag = mag;
+    }
+
 
     /**
      * Créer un client puis l'ajoute à la liste des utilisateur
@@ -270,8 +278,9 @@ public class Librairie {
      * @param annee
      */
     public String editerFacture(int mois, int annee){
-        String res = "Facture du "+mois+"/"+annee+"\n";
-        int i = 0;
+        String moisTexte = "" + mois;
+        if (moisTexte.length()==1) {moisTexte="0"+moisTexte;}
+        String res = "Facture du "+moisTexte+"/"+annee+"\n";
         String interligne = "      ISBN                Titre          qte   prix    total  \n";
         double ca_global = 0.0;
         int livre_vendu_glo = 0;
@@ -285,16 +294,15 @@ public class Librairie {
             for(Commande com:mag.getCommandes()){
                 String date = com.getDate();
                 String[] parties = date.split("/");
-                if(parties[1].equals(mois+"")&&parties[2].equals(annee+"")){
+                if(parties[1].equals(moisTexte)&&parties[2].equals(annee+"")){
                     ++nb_factures;
-                    ++i;
                     int cpt = 1;
                     Client cli = com.getClient();
                     double totalCli = 0.0;
                     res+=cli.getNom()+" "+cli.getPrenom()+"\n";
                     res+=cli.getAdresse()+"\n";
                     res+=cli.getCodePostal()+"  "+cli.getVille()+"\n";
-                    res+="Commande n° "+i+" du "+date+"\n";
+                    res+="Commande n° "+com.getNum()+" du "+date+"\n";
                     res+=interligne;
                     for(DetailCommande det:com.getDetailsCommande()){
                         Livre livre = det.getLivre();
@@ -326,12 +334,15 @@ public class Librairie {
             res+=livre_vendu_mag+" livres vendus\n";
         }
         res+="*************************************\n";
-        res+="Chiffre d'affaires global: "+prix.format(ca_global)+"\n";
+        String caText = prix.format(ca_global);
+        if (caText.split(",").length==1) {caText+=",00";}
+        else if (caText.split(",")[1].length()<2) {caText+="0";}
+        res+="Chiffre d'affaires global: "+caText+"\n";
         res+="Nombre livres vendus: "+livre_vendu_glo+"\n";
         System.out.println(res);
         //mis en place de la transcription en txt:
         try {
-            FileWriter writer = new FileWriter("factures-" + mois + "-" + annee + ".txt");
+            FileWriter writer = new FileWriter("factures-" + moisTexte + "-" + annee + ".txt");
             writer.write(res);
             writer.close();
             System.out.println("Fichier texte créé avec succès !");
