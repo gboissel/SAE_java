@@ -508,4 +508,56 @@ public class JDBC {
         ps.setString(3, magasin.getVille());
         ps.executeUpdate();
     }
+
+    public List<String> lesXmeilleursVentes(int x)  throws SQLException{
+        List<String> res = new ArrayList<>();
+        String sql = """
+        SELECT isbn, titre, SUM(qte) AS total_commandes
+        FROM DETAILCOMMANDE
+        NATURAL JOIN LIVRE
+        GROUP BY isbn, titre
+        ORDER BY total_commandes DESC
+        LIMIT ?""";
+        PreparedStatement pstmt = laConnexion.prepareStatement(sql);
+
+        pstmt.setInt(1, x); 
+
+        try (ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                res.add(rs.getString("titre"));
+            }
+        }
+
+         catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public List<String> getLivresParClassificationEtMagasin(String nomClassification, String nomMagasin) throws SQLException {
+    List<String> livres = new ArrayList<>();
+    String sql = """
+        SELECT DISTINCT titre
+        FROM LIVRE
+        NATURAL JOIN THEMES
+        NATURAL JOIN CLASSIFICATION
+        NATURAL JOIN POSSEDER
+        NATURAL JOIN MAGASIN
+        WHERE nomclass = ? AND nommag = ?;
+    """;
+
+    try (PreparedStatement pstmt = laConnexion.prepareStatement(sql)) {
+        pstmt.setString(1, nomClassification);
+        pstmt.setString(2, nomMagasin);
+
+        try (ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                livres.add(rs.getString("titre"));
+            }
+        }
+    }
+
+    return livres;
 }
+}
+

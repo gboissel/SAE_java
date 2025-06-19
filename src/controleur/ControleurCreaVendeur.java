@@ -22,7 +22,7 @@ import javafx.event.ActionEvent;
 import modele.*;
 
 
-public class ControleurInscriptionClient extends Controleur{
+public class ControleurCreaVendeur extends Controleur{
     @FXML
     private TextField nom;
 
@@ -33,20 +33,17 @@ public class ControleurInscriptionClient extends Controleur{
     private TextField mdp;
 
     @FXML
-    private TextField address;
-
-    @FXML
-    private TextField codepostal;
-
-    @FXML
-    private TextField ville;
+    private TextField magasin;
 
     @FXML
     private Button boutonAcceuil;
 
     @FXML
-    private Button boutonCreation;
+    private Button boutonConfirmation;
 
+    public String getMagasin() {
+        return this.magasin.getText();
+    }
 
     public String getMdp() {
         return this.mdp.getText();
@@ -60,22 +57,10 @@ public class ControleurInscriptionClient extends Controleur{
         return this.prenom.getText();
     }
 
-    public String getVille() {
-        return this.ville.getText();
-    }
-
-    public String getPostal() {
-        return this.codepostal.getText();
-    }
-
-    public String getAddress() {
-        return this.address.getText();
-    }
-
     @FXML
     private void gererAcceuil(ActionEvent event) {
         afficherPopup("menu", "Fonction de retour au menu !");
-        this.vue.changerVue("/view/connexionUser.fxml");
+        this.vue.changerVue("/view/fenetreAdmin1.fxml");
 
     }
 
@@ -90,10 +75,8 @@ public class ControleurInscriptionClient extends Controleur{
     @FXML
     private void gererCreation(ActionEvent event) throws SQLException{
         //a ajouter: créé un magasin a partir d'un 
-        if(getNom().isEmpty()||getPrenom().isEmpty()||getAddress().isEmpty()||getPostal().isEmpty()||getMdp().isEmpty()||getVille().isEmpty()){
-            afficherPopup("erreur", "Au moin l'un des 4 textField est vide");
         if(nom.getText().isEmpty()||prenom.getText().isEmpty()||mdp.getText().isEmpty()||magasin.getText().isEmpty()){
-            afficherPopup("erreur", "Au moins l'un des 4 textField est vide");
+            afficherPopup("erreur", "Au moin l'un des 4 textField est vide");
         }
         else{
             //System.out.println("nom : " + nom.getText());
@@ -109,4 +92,3 @@ public class ControleurInscriptionClient extends Controleur{
         
     }
 }
-

@@ -44,6 +44,24 @@ public class Librairie {
         return null;
     }
 
+    public Magasin rechercheMag(String nommag,String ville){
+        for(Magasin mag: this.lesMagasins){
+            if(mag.getNom().equals(nommag)&&mag.getVille().equals(ville)){
+                return mag;
+            }
+        }
+        return null;
+    }
+
+    public Livre rechercheLivreParNom(String nom){
+        for(Livre livre: this.lesLivres){
+            if(livre.getTitre().equals(nom)){
+                return livre;
+            }
+        }
+        return null;
+    }
+
     public boolean estChargee() {
         return this.chargee;
     }

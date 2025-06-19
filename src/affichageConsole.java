@@ -1,4 +1,3 @@
-package view;
 import JDBC.*;
 import modele.*;
 import java.util.Scanner;

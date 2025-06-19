@@ -26,33 +26,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Alert;
 
-public class ControleurVendeur3 extends Controleur {
+public class ControleurVendeur1_2 extends Controleur {
     private Librairie modele;
     private LivreExpress vue;
 
     @FXML
     private Button btnDeco;
 
-     @FXML
-    private Button btnCatalogue;
-
-     @FXML
-    private Button btnSupprPanier;
-
-     @FXML
-    private Button btnSuppr;
+    @FXML
+    private Button btnChoixVendeur;
 
     @FXML
-    private Button btnAjoute;
+    private Button btnMagasinVendeur;
 
     @FXML
-    private Button btnAvant;
-
-    @FXML
-    private Button btnRetour;
-
-    @FXML
-    private Button btnPayement;
+    private Button btnCatalogueVend;
 
 
     @FXML
@@ -61,34 +49,24 @@ public class ControleurVendeur3 extends Controleur {
     }
 
     @FXML
-    public void controleurSupprPanier(ActionEvent e){
-        System.out.println("truc");
+    public void controleurCatalogueVendeur(ActionEvent e){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("ok");
+        alert.setHeaderText(null);
+        alert.setContentText("ok");
+        alert.showAndWait();
     }
-     @FXML
-    public void controleurSuppr(ActionEvent e){
-        System.out.println("truc");
-    } 
-     @FXML
-    public void controleurAjoute(ActionEvent e){
-        System.out.println("truc");
-    } 
-     @FXML
-    public void controleurCatalogue(ActionEvent e){
-        System.out.println("truc");
-    } 
-     @FXML
-    public void controleurAvant(ActionEvent e){
-        System.out.println("truc");
-    } 
-     @FXML
-    public void controleurRetour(ActionEvent e){
-        System.out.println("truc");
-    }
+
     @FXML
-    public void controleurPayement(ActionEvent e){
+    public void controleurMagasinVendeur(ActionEvent e){
+        System.out.println("vous etes sur le magasin2");
+    } 
+    @FXML
+    public void controleurChoixVendeur(ActionEvent e){
         System.out.println("truc");
     }
-      
+
+
     public void setVue(LivreExpress vue){
         this.vue=vue;
     }

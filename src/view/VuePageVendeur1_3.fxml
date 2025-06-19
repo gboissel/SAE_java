@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #c2f6ff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #c2f6ff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurVendeur1_3">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="111.0" prefWidth="800.0" style="-fx-background-color: #b4b4b4;" BorderPane.alignment="CENTER">
          <children>
@@ -41,7 +41,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="167.0" text="Deconnexion">
+            <Button fx:id="btnDeco" mnemonicParsing="false" onAction="#controleurDeco" prefHeight="48.0" prefWidth="167.0" text="Deconnexion">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
@@ -53,7 +53,7 @@
       </HBox>
    </top>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #c2f6ff;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="232.0" prefWidth="412.0" style="-fx-background-color: #c2f6ff;" BorderPane.alignment="CENTER">
          <children>
             <Label text="Les Magasins : ">
                <font>
@@ -63,55 +63,59 @@
                   <Insets left="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <GridPane hgap="20.0" prefHeight="192.0" prefWidth="573.0" vgap="20.0">
+            <GridPane hgap="20.0" prefHeight="253.0" prefWidth="689.0" vgap="20.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="19.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="76.0" minHeight="15.0" prefHeight="63.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="85.0" minHeight="50.0" prefHeight="57.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <VBox.margin>
                   <Insets left="50.0" right="50.0" top="50.0" />
                </VBox.margin>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 1" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 4" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 2" GridPane.columnIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 7" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 3" GridPane.columnIndex="2" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" style="-fx-background-color: #5ce1e6;" text="Magasin 9" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Button fx:id="btnmagv1" mnemonicParsing="false" onAction="#controleurMagv1" prefHeight="79.0" prefWidth="238.0" style="-fx-background-color: #5ce1e6;" text="Magasin 1" />
+                  <Button fx:id="btnmagv5" mnemonicParsing="false" onAction="#controleurMagv5" prefHeight="94.0" prefWidth="220.0" style="-fx-background-color: #5ce1e6;" text="Magasin 5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="btnmagv4" mnemonicParsing="false" onAction="#controleurMagv4" prefHeight="80.0" prefWidth="264.0" style="-fx-background-color: #5ce1e6;" text="Magasin 4" GridPane.rowIndex="1" />
+                  <Button fx:id="btnmagv2" mnemonicParsing="false" onAction="#controleurMagv2" prefHeight="50.0" prefWidth="272.0" style="-fx-background-color: #5ce1e6;" text="Magasin 2" GridPane.columnIndex="1" />
+                  <Button fx:id="btnmagv8" mnemonicParsing="false" onAction="#controleurMagv8" prefHeight="87.0" prefWidth="220.0" style="-fx-background-color: #5ce1e6;" text="Magasin 8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button fx:id="btnmagv7" mnemonicParsing="false" onAction="#controleurMagv7" prefHeight="71.0" prefWidth="220.0" style="-fx-background-color: #5ce1e6;" text="Magasin 7" GridPane.rowIndex="2" />
+                  <Button fx:id="btnmagv3" mnemonicParsing="false" onAction="#controleurMagv3" prefHeight="50.0" prefWidth="235.0" style="-fx-background-color: #5ce1e6;" text="Magasin 3" GridPane.columnIndex="2" />
+                  <Button fx:id="btnmagv6" mnemonicParsing="false" onAction="#controleurMagv6" prefHeight="73.0" prefWidth="220.0" style="-fx-background-color: #5ce1e6;" text="Magasin 6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Button fx:id="btnmagv9" mnemonicParsing="false" onAction="#controleurMagv9" prefHeight="92.0" prefWidth="220.0" style="-fx-background-color: #5ce1e6;" text="Magasin 9" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>
       </VBox>
    </center>
-   <right>
-      <VBox prefHeight="389.0" prefWidth="172.0" spacing="10.0" BorderPane.alignment="CENTER">
+   <bottom>
+      <VBox prefHeight="75.0" prefWidth="617.0" spacing="10.0" BorderPane.alignment="BOTTOM_CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="67.0" prefWidth="199.0" text="Choix Importer">
-               <font>
-                  <Font size="19.0" />
-               </font>
+            <HBox alignment="CENTER" prefHeight="66.0" prefWidth="800.0" spacing="25.0">
+               <children>
+                  <Button fx:id="btnChoixVendeur" mnemonicParsing="false" onAction="#controleurChoixVendeur" prefHeight="41.0" prefWidth="185.0" text="Choix Vendeur">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnChoixImporter" mnemonicParsing="false" onAction="#controleurChoixImporter" prefHeight="40.0" prefWidth="194.0" text="Choix Importer">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Button>
+               </children>
                <VBox.margin>
-                  <Insets right="10.0" top="10.0" />
+                  <Insets left="20.0" />
                </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="67.0" prefWidth="199.0" text="Choix Vendeur">
-               <font>
-                  <Font size="19.0" />
-               </font>
-               <VBox.margin>
-                  <Insets right="10.0" />
-               </VBox.margin>
-            </Button>
+            </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </VBox>
-   </right>
+   </bottom>
 </BorderPane>
