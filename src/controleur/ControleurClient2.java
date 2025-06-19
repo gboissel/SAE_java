@@ -89,10 +89,16 @@ public class ControleurClient2 extends Controleur{
     private Button btnRecherche;
 
     @FXML
+    private Button btRetourChoixMag;
+
+    @FXML
     private TextField textRecherche;
+
+
                                       
     @FXML
     private void controleurBoutPanier(ActionEvent event){
+        System.out.println("vers panier");
         this.vue.changerVue("/view/vuePanier.fxml");
     }
 
@@ -112,6 +118,11 @@ public class ControleurClient2 extends Controleur{
         }
     }
     
+    @FXML
+    private void gererRetourChoixMag(ActionEvent event){
+        this.vue.changerVue("/view/VuePageClient1.fxml");
+    }
+
     @FXML
     private void gererRecherchePrecise(ActionEvent event) throws SQLException{
         int nombre;
@@ -161,6 +172,12 @@ public class ControleurClient2 extends Controleur{
         alert.showAndWait();
     }
 
+    public Alert popUpMettreDansPanier(String text){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Voici le detail du livre :\n"+text+"Voulez vous ajouter ce livre au panier ?\nVous pourrais gerer la quantité dans le menu panier", ButtonType.YES, ButtonType.NO);
+        alert.setTitle("Ajouter");
+        alert.setHeaderText("Ajouter Livre");
+        return alert;
+    }
 
     public Alert popUpDeconnexion(){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Voulez vous vraiment vous déconnecter ?\nVous serez renvoyer vers la page d'acceuil", ButtonType.YES, ButtonType.NO);
@@ -168,6 +185,24 @@ public class ControleurClient2 extends Controleur{
         alert.setHeaderText("Déconnexion");
         return alert;
     }
+
+    @FXML
+    private void gererAjouterLivrePanier(ActionEvent event) {
+        Button boutonClique = (Button) event.getSource(); // Récupère le bouton cliqué
+        String texte = boutonClique.getText();
+        Livre livre = modele.rechercheLivreParNom(texte);
+        Optional<ButtonType> reponse = popUpMettreDansPanier(this.vue.infoLivre(livre)).showAndWait();
+        if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
+            System.out.println("Ajoute du livre dans le panier    :"+livre.getTitre());
+            this.majAffichage();  //au cas ou le livre n'est plus en stock
+        }
+        else{
+            System.out.println("anulation de l'ajout du livre dans le panier   :"+livre.getTitre());
+            this.majAffichage();  //au cas ou le livre n'est plus en stock
+        }
+
+    }
+   
 
     @FXML
     private void gererDeconnexion(ActionEvent event) {
