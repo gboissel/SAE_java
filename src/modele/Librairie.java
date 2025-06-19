@@ -121,6 +121,13 @@ public class Librairie {
     public void setCurUser(Utilisateur usr){
         this.curUser=usr;
     }
+    /**
+     * Met à jour le magasin courant
+     * @param mag
+     */
+    public void setCurMag(Magasin mag){
+        this.curMag=mag;
+    }
 
 
     /**
