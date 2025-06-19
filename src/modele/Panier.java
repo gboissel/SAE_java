@@ -3,8 +3,12 @@ package modele;
 import java.util.HashMap;
 
 public class Panier extends HashMap<Livre,Integer>{
+    /**
+     * Méthode indiquant si le panier est vide ou non
+     * @return true si le panier est vide, false sinon
+     */
     public boolean estVide(){
-        return this.keySet().size() == 0;
+        return this.keySet().isEmpty();
     }
     
     /**

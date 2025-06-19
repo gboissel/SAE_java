@@ -154,18 +154,6 @@ public class Magasin implements Comparable<Magasin>{
     }
 
     /**
-     * Décrémente de 1 la quantité du livre, et le supprime si il y en a plus 
-     * @param livre Le livre a enlever
-     * @param jdbc Une instance de la classe permettant d'intéragir avec la base de données
-     */
-    public void removeLivre(Livre livre, JDBC jdbc){
-        try {
-            this.setQteLivre(livre, this.getQteLivre(livre) - 1, jdbc);
-        }
-        catch (PasAssezDeLivreException e) {}
-    }
-
-    /**
      * Ajoute une commande parmis la liste des commandes
      * @param comm Une commande
      */
