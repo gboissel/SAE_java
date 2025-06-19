@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.fxml.FXML;
 
 public class ControleurClient1 extends Controleur{
@@ -48,6 +49,9 @@ public class ControleurClient1 extends Controleur{
     private Button btnSuiv;
 
     @FXML
+    private Button aideB;
+
+    @FXML
     public void controleurBoutDeco(ActionEvent e){
         Optional<ButtonType> reponse = this.popUpDeconnexion().showAndWait();
         if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
@@ -59,6 +63,14 @@ public class ControleurClient1 extends Controleur{
             alert.setContentText("Vous êtes bien retournée sur la page d'accueil");
         }
 
+    }
+    @FXML
+    public void aideHandler(){
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Aide");
+        alert.setHeaderText("Selectionner un magasin pour consulter les livre du magasin");
+        alert.setContentText("Lorsque que vous selectionnerez un magasin vous arriverz sur une page \n" + 
+            "presentant tout les livres ainsi que la possibilité de chercher un livre en particulier");
     }
 
     @FXML
@@ -128,8 +140,10 @@ public class ControleurClient1 extends Controleur{
         this.nbPage+=1;
         this.maJ();
     }
+
     @FXML
     private void accesPanier(){
+        this.vue.changerVue("/view/accueil.fxml");
     }
 
     private void maJ(){

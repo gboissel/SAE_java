@@ -157,7 +157,7 @@
                   </Button>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" text="Aide" />
+            <Button fx:id="AideB" mnemonicParsing="false" onAction="#aidehandler" text="Aide" />
          </children>
       </VBox>
    </left>
