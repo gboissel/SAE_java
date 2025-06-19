@@ -26,7 +26,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Alert;
 
-public class ControleurVendeur3 {
+public class ControleurClient1 extends Controleur {
     private Librairie modele;
     private LivreExpress vue;
 
@@ -34,44 +34,31 @@ public class ControleurVendeur3 {
     private Button btnDeco;
 
     @FXML
-    private Button btnRecherche;
-
-     @FXML
-    private Button btnLivre;
-
-     @FXML
-    private Button btnLivre2;
-
-     @FXML
-    private Button btnLivre3;
-
-     @FXML
-    private Button btnLivre4;
-
-     @FXML
-    private Button btnLivre5;
+    private Button btnMag1;
 
     @FXML
-    private Button btnLivre6;
+    private Button btnMag2;
 
     @FXML
-    private Button btnLivre7;
+    private Button btnMag3;
 
     @FXML
-    private Button btnLivre8;
+    private Button btnMag4;
 
     @FXML
-    private Button btnLivre9;
+    private Button btnMag5;
 
     @FXML
-    private Button btnPanier;
+    private Button btnMag6;
+    
+    @FXML
+    private Button btnMag7;
 
     @FXML
-    private Button btnAcceuilChoix;
+    private Button btnMag8;
 
     @FXML
-    private Button btnPayement;
-
+    private Button btnMag9;
 
     @FXML
     public void controleurBoutDeco(ActionEvent e){
@@ -79,7 +66,7 @@ public class ControleurVendeur3 {
     }
 
     @FXML
-    public void controleurPanier(ActionEvent e){
+    public void controleurBoutMag1(ActionEvent e){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("ok");
         alert.setHeaderText(null);
@@ -88,56 +75,44 @@ public class ControleurVendeur3 {
     }
 
     @FXML
-    public void controleurRecherche(ActionEvent e){
+    public void controleurBoutMag2(ActionEvent e){
         System.out.println("vous etes sur le magasin2");
-    }
-    @FXML
-    public void controleurLivre(ActionEvent e){
-        System.out.println("truc");
-    }
-     @FXML
-    public void controleurLivre2(ActionEvent e){
-        System.out.println("truc");
     } 
-     @FXML
-    public void controleurLivre3(ActionEvent e){
-        System.out.println("truc");
-    } 
-     @FXML
-    public void controleurLivre4(ActionEvent e){
-        System.out.println("truc");
-    } 
-     @FXML
-    public void controleurLivre5(ActionEvent e){
-        System.out.println("truc");
-    } 
-     @FXML
-    public void controleurLivre6(ActionEvent e){
-        System.out.println("truc");
-    }
-    @FXML
-    public void controleurLivre7(ActionEvent e){
-        System.out.println("truc");
-    }
-    @FXML
-    public void controleurLivre8(ActionEvent e){
-        System.out.println("truc");
-    }
-    @FXML
-    public void controleurLivre9(ActionEvent e){
-        System.out.println("truc");
-    }
-    @FXML
-    public void controleurAcceuilChoix(ActionEvent e){
-        System.out.println("truc");
-    }
-    @FXML
-    public void controleurPayement(ActionEvent e){
-        System.out.println("truc");
 
-    }
-      
+    @FXML
+    public void controleurBoutMag3(ActionEvent e){
+        System.out.println("vous etes sur le magasin3");
+    } 
 
+    @FXML
+    public void controleurBoutMag4(ActionEvent e){
+        System.out.println("vous etes sur le magasin4");
+    }
+
+    @FXML
+    public void controleurBoutMag5(ActionEvent e){
+        System.out.println("vous etes sur le magasin5");
+    }
+
+    @FXML
+    public void controleurBoutMag6(ActionEvent e){
+        System.out.println("vous etes sur le magasin6");
+    }
+
+    @FXML
+    public void controleurBoutMag7(ActionEvent e){
+        System.out.println("vous etes sur le magasin7");
+    }
+
+    @FXML
+    public void controleurBoutMag8(ActionEvent e){
+        System.out.println("vous etes sur le magasin8");
+    }
+
+    @FXML
+    public void controleurBoutMag9(ActionEvent e){
+        System.out.println("vous etes sur le magasin9");
+    }
 
     public void setVue(LivreExpress vue){
         this.vue=vue;

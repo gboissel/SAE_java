@@ -22,7 +22,7 @@ import javafx.event.ActionEvent;
 import modele.*;
 
 
-public class ControleurCreaVendeur extends Controleur{
+public class ControleurInscriptionClient extends Controleur{
     @FXML
     private TextField nom;
 
@@ -33,17 +33,20 @@ public class ControleurCreaVendeur extends Controleur{
     private TextField mdp;
 
     @FXML
-    private TextField magasin;
+    private TextField address;
+
+    @FXML
+    private TextField codepostal;
+
+    @FXML
+    private TextField ville;
 
     @FXML
     private Button boutonAcceuil;
 
     @FXML
-    private Button boutonConfirmation;
+    private Button boutonCreation;
 
-    public String getMagasin() {
-        return this.magasin.getText();
-    }
 
     public String getMdp() {
         return this.mdp.getText();
@@ -55,6 +58,18 @@ public class ControleurCreaVendeur extends Controleur{
 
     public String getPrenom() {
         return this.prenom.getText();
+    }
+
+    public String getVille() {
+        return this.ville.getText();
+    }
+
+    public String getPostal() {
+        return this.codepostal.getText();
+    }
+
+    public String getAddress() {
+        return this.address.getText();
     }
 
     @FXML
@@ -79,15 +94,9 @@ public class ControleurCreaVendeur extends Controleur{
             afficherPopup("erreur", "Au moins l'un des 4 textField est vide");
         }
         else{
-            //System.out.println("nom : " + nom.getText());
-            //System.out.println("prenom : " + prenom.getText());
-            //System.out.println("mdp : " + mdp.getText());
-            //System.out.println("magasin : " + magasin.getText());
-            Magasin mag_rech = this.modele.rechercheMagParNom(getMagasin());
-            //this.modele.getJDBC().insererVendeur(new Vendeur(getNom(), getPrenom(), getMdp(), mag_rech), getMdp());
-            this.modele.createVendeur(getNom(), getPrenom(), getMdp(), mag_rech, this.modele.getJDBC());
-            afficherPopup("Creation", "La creation Vendeur a bien reussi ");
-            this.vue.changerVue("/view/fenetreAdmini1.fxml");
+            this.modele.createClient(getNom(), getPrenom(), getAddress() ,getPostal(),getVille(),getMdp(), this.modele.getJDBC());
+            afficherPopup("Creation", "La creation Client a bien reussi \n Vous pouvez maintenant vous connecter");
+            this.vue.changerVue("/view/connexionUser.fxml");
         }
         
     }
