@@ -543,15 +543,7 @@ public class JDBC {
     public List<String> getLivresParClassificationEtMagasin(String id_Class, String nomMagasin) throws SQLException {
     List<String> livres = new ArrayList<>();
     int nombre; 
-
-    try {
-        nombre = Integer.parseInt(id_Class); 
-        System.out.println("Le nombre est : " + nombre);
-    } catch (NumberFormatException e) {
-        System.out.println("Erreur : la chaîne n'est pas un entier valide.");
-        return livres; 
-    }
-
+    nombre = Integer.parseInt(id_Class);   //le parseInt n'est pas dangereux car c'est une valeur que je renseigne dans l'appli
     String sql = """
         SELECT DISTINCT titre
         FROM LIVRE
@@ -566,6 +558,32 @@ public class JDBC {
         pstmt.setInt(1, nombre);
         pstmt.setInt(2, nombre + 99); // plage de classification
         pstmt.setString(3, nomMagasin);
+
+        try (ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                livres.add(rs.getString("titre"));
+            }
+        }
+    }
+
+    return livres;
+    }
+
+    public List<String> getLivresParClassificationEtMagasinPrecise(int nombre, String nomMagasin) throws SQLException {
+    List<String> livres = new ArrayList<>();
+    String sql = """
+        SELECT DISTINCT titre
+        FROM LIVRE
+        NATURAL JOIN THEMES
+        NATURAL JOIN CLASSIFICATION
+        NATURAL JOIN POSSEDER
+        NATURAL JOIN MAGASIN
+        WHERE iddewey = ? AND nommag = ?;
+    """;
+
+    try (PreparedStatement pstmt = laConnexion.prepareStatement(sql)) {
+        pstmt.setInt(1, nombre);
+        pstmt.setString(2, nomMagasin);
 
         try (ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {

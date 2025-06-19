@@ -111,6 +111,27 @@ public class ControleurClient2 extends Controleur{
     }
     
     @FXML
+    private void gererRecherchePrecise(ActionEvent event) throws SQLException{
+        int nombre;
+        if(this.TextRecherche.getText().isEmpty()){
+            afficherPopup("erreur", "Le champ est vide");
+        }
+        else{
+            try {
+                String texte = this.TextRecherche.getText().substring(0, 3);
+                nombre = Integer.parseInt(texte);
+                this.tmp = this.modele.getJDBC().getLivresParClassificationEtMagasinPrecise(nombre, null); //implementer le nomMagasin
+                this.numPageMax = (int) Math.ceil((double) tmp.size() / 4); // permet de definir le nombre de page maximum
+                this.majAffichage();
+            } catch (NumberFormatException e) {
+                afficherPopup("erreur", "Le champ renseigner n'est pas un nombre ou est invalide");
+    }
+            
+        }
+        
+    }
+
+    @FXML
     private void gererRecherche(ActionEvent event) throws SQLException{
         Button boutonClique = (Button) event.getSource();
         String texte = boutonClique.getText().substring(0, 3);
