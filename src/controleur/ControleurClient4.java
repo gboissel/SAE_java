@@ -1,31 +1,17 @@
-package controleur;
+package controleur;                                                                          
+import java.util.Optional;
 
-import javafx.application.Application;
-import javafx.application.Platform;
-// import javafx.beans.binding.Bindings;                                       \
-                                                                                
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import modele.*;
 import view.*;
-import javafx.scene.image.ImageView;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.control.Alert;
 
 public class ControleurClient4 extends Controleur{
     private Librairie modele;
@@ -33,6 +19,15 @@ public class ControleurClient4 extends Controleur{
 
     @FXML
     private Button btnDeco;
+
+    @FXML
+    private Label montant;
+
+    @FXML
+    private TextArea recap;
+    
+    @FXML
+    private Label nomCli;
 
     @FXML
     private Button btnCatalogue;
@@ -60,23 +55,35 @@ public class ControleurClient4 extends Controleur{
                                       
     @FXML
     public void controleurBoutDeco(ActionEvent e){
-        System.out.println("vous etes bien deconnecter");
+        Optional<ButtonType> reponse = this.popUpDeconnexion().showAndWait();
+        if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
+            this.modele.setCurUser(null);
+            this.vue.changerVue("/view/accueil.fxml");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Déconnexion");
+            alert.setHeaderText("Déconnexion réussie !");
+            alert.setContentText("Vous êtes bien retournée sur la page d'accueil");
+        }
     }
+
     @FXML
     public void controleurPayer(ActionEvent e){
         System.out.println("Payement");        
     }
+
     @FXML
     public void controleurCatalogue(ActionEvent e){
-        System.err.println("truc");
+        
     }
+
     @FXML
     public void controleurRetour(ActionEvent e){
-        System.out.println("truc");
+        this.vue.changerVue("/view/VuPageClient2");
     }
 
-
-    public void setVue(LivreExpress vue){
-        this.vue=vue;
+    @FXML
+    public void maJ(){
+        this.montant.setText(this.montant.getText()+this.modele.getPanier().prixTotal()+"€");
+        this.nomCli.setText(""+this.modele.getCurUser());
     }
 }
