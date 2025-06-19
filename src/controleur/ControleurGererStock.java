@@ -119,6 +119,9 @@ public class ControleurGererStock extends Controleur{
         if (this.modele.getCurUser().getRoles().equals("Administrateur")) {
             this.vue.changerVue("/view/fenetreAdmin1.fxml");
         }
+        if (this.modele.getCurUser().getRoles().equals("Vendeur")) {
+            this.vue.changerVue("/view/VuePageVendeur1.fxml");
+        }
     }
 
     @FXML

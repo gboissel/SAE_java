@@ -91,7 +91,7 @@ public class ControleurConnectionUser extends Controleur{
             case "Vendeur":
                 Vendeur tempV = new Vendeur(this.getNom(), this.getPrenom(), this.getMdp(), null);
                 if (essaieCo(tempV))
-                    this.vue.changerVue("/view/fenetreVendeur.fxml");
+                    this.vue.changerVue("/view/VuePageVendeur1.fxml");
                 break;
             default:
                 this.vue.changerVue("view/accueil.fxml");// retour a l'acceuil

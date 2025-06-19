@@ -1,5 +1,7 @@
 package controleur;
 
+import java.util.Optional;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 // import javafx.beans.binding.Bindings;                                       \
@@ -11,6 +13,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.*;
@@ -27,8 +30,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Alert;
 
 public class ControleurVendeur1 extends Controleur {
-    private Librairie modele;
-    private LivreExpress vue;
 
     @FXML
     private Button btnDeco;
@@ -39,10 +40,20 @@ public class ControleurVendeur1 extends Controleur {
     @FXML
     private Button btnImporter;
 
+    @FXML 
+    private Label idVendeur;
 
     @FXML
-    public void controleurBoutDeco(ActionEvent e){
-        System.out.println("vous etes bien deconnecter");
+    private void gererDeconnexion(ActionEvent event) {
+        Optional<ButtonType> reponse = popUpDeconnexion().showAndWait();
+        if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
+            this.modele.setCurUser(null);
+            this.vue.changerVue("/view/accueil.fxml");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Déconnexion");
+            alert.setHeaderText("Déconnexion réussie !");
+            alert.setContentText("Vous êtes bien retournée sur la page d'accueil");
+        }
     }
 
     @FXML
@@ -56,14 +67,11 @@ public class ControleurVendeur1 extends Controleur {
 
     @FXML
     public void controleurImporter(ActionEvent e){
-        System.out.println("vous etes sur le magasin2");
-    } 
+        this.vue.changerVue("/view/gererStock.fxml");
+    }  
 
-
-    public void setVue(LivreExpress vue){
-        this.vue=vue;
+    @Override
+    public void chargerPage(){
+        idVendeur.setText(this.modele.getCurUser().getNom() + " " + this.modele.getCurUser().getPrenom());
     }
-    
-
-
 }
