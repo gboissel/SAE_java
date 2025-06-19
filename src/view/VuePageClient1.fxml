@@ -33,18 +33,19 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
-            <Label alignment="CENTER" prefHeight="48.0" prefWidth="178.0" text="Client 1">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <Button fx:id="btnDeco" mnemonicParsing="false" onAction="#controleurBoutDeco" prefHeight="48.0" prefWidth="167.0" text="Deconnexion">
+            <Button fx:id="btnDeco" mnemonicParsing="false" onAction="#controleurBoutDeco" prefHeight="48.0" prefWidth="167.0">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
+               <graphic>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Profil Client" />
+                        <Label fx:id="idClient" text="nom prenom" />
+                        <Label text="Se déconnecter" />
+                     </children>
+                  </VBox>
+               </graphic>
             </Button>
          </children>
          <BorderPane.margin>
@@ -95,18 +96,6 @@
    <left>
       <VBox alignment="CENTER" prefHeight="389.0" prefWidth="168.0" style="-fx-background-color: #0cc0df;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="Panier" mnemonicParsing="false" onAction="#accesPanier" prefHeight="89.0" prefWidth="101.0">
-               <VBox.margin>
-                  <Insets bottom="15.0" top="15.0" />
-               </VBox.margin>
-               <graphic>
-                  <ImageView fitHeight="78.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../img/lePanier.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button fx:id="btnPrec" mnemonicParsing="false" onAction="#pagePrec" prefHeight="58.0" prefWidth="80.0">

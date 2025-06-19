@@ -42,8 +42,6 @@ public class Panier extends HashMap<Livre,Integer>{
     public double prixTotal() {
         double total = 0;
         for (Livre livre:this.keySet()) {
-            System.out.println(livre.getPrix());
-            System.out.println(this.get(livre));
             total = total + livre.getPrix() * this.get(livre);
         }
         return total;

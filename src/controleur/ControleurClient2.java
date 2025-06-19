@@ -1,38 +1,16 @@
 package controleur;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
-
-import javafx.application.Application;
-import javafx.application.Platform;
-// import javafx.beans.binding.Bindings;                                       \
-                                                                                
-import javafx.event.Event;
-import javafx.event.EventHandler;
+import java.util.Optional;      
 import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import modele.*;
-import view.*;
-import javafx.scene.image.ImageView;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Alert;
 
 public class ControleurClient2 extends Controleur{
@@ -99,7 +77,6 @@ public class ControleurClient2 extends Controleur{
                                       
     @FXML
     private void controleurBoutPanier(ActionEvent event){
-        System.out.println("vers panier");
         this.vue.changerVue("/view/vuePanier.fxml");
     }
 
@@ -121,7 +98,11 @@ public class ControleurClient2 extends Controleur{
     
     @FXML
     private void gererRetourChoixMag(ActionEvent event){
-        this.vue.changerVue("/view/VuePageClient1.fxml");
+        Optional<ButtonType> reponse = popUpDeRetour().showAndWait();
+        if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
+            this.modele.setPanier(new Panier());
+            this.vue.changerVue("/view/VuePageClient1.fxml");
+        }
     }
 
     @FXML
@@ -185,6 +166,13 @@ public class ControleurClient2 extends Controleur{
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Voulez vous vraiment vous déconnecter ?\nVous serez renvoyer vers la page d'acceuil", ButtonType.YES, ButtonType.NO);
         alert.setTitle("Attention");
         alert.setHeaderText("Déconnexion");
+        return alert;
+    }
+
+    public Alert popUpDeRetour(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Voulez vous vraiment vous retourner au choix des magasins ?\n Votre panier sera reinitialiser", ButtonType.YES, ButtonType.NO);
+        alert.setTitle("Retour choix magasins");
+        alert.setHeaderText("Retour");
         return alert;
     }
 
