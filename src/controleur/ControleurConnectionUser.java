@@ -7,6 +7,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import modele.Administrateur;
 import modele.Client;
+import modele.Magasin;
 import modele.Utilisateur;
 import modele.Vendeur;
 import exception.UtilisateurInexistantException;
@@ -89,7 +90,15 @@ public class ControleurConnectionUser extends Controleur{
                 this.vue.changerVue("/view/fenetreAdmin1.fxml");
                 break;
             case "Vendeur":
-                Vendeur tempV = new Vendeur(this.getNom(), this.getPrenom(), this.getMdp(), null);
+                Magasin tmpMag=null;
+                /*for(Magasin mag: this.modele.getMagasins()){
+                    for(Vendeur vendeur:mag.getVendeurs()){
+                        if (vendeur.getNom().equals(getNom())&&vendeur.getPrenom().equals(getPrenom())){
+                            tmpMag=mag;
+                        }
+                    }
+                }*/
+                Vendeur tempV = new Vendeur(this.getNom(), this.getPrenom(), this.getMdp(), tmpMag);
                 if (essaieCo(tempV))
                     this.vue.changerVue("/view/VuePageVendeur1.fxml");
                 break;
