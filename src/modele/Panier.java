@@ -34,6 +34,13 @@ public class Panier extends HashMap<Livre,Integer>{
     }
 
     /**
+     * Méthode permettant de vider complètement le panier
+     */
+    public void vider() {
+        this.clear();
+    }
+
+    /**
      * Méthode permettant de connaître le prix total du panier
      * @return Le prix total
      */

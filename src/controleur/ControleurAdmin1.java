@@ -56,6 +56,8 @@ public class ControleurAdmin1 extends Controleur{
     @FXML
     private Button boutonCreaVendeur;
     @FXML
+    private TextField textRecherche;
+    @FXML
     private TextField textmois;
 
     @FXML
@@ -65,8 +67,17 @@ public class ControleurAdmin1 extends Controleur{
 
     @FXML
     private void gererRechercher(ActionEvent event) {
-        
-        afficherPopup("Recherche", "Fonction de recherche déclenchée !");
+        String nom = textRecherche.getText();
+        textRecherche.setText("");
+        Magasin magasin = this.modele.rechercheMagParNom(nom);
+        if (magasin!=null) {this.infosMagasin(magasin);}
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur : Le magasin que vous aviez tentez de trouver est introuvable");
+            alert.setContentText("Vérifiez que vous entrez bien son nom et qu'il soit bien écrit");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -112,7 +123,7 @@ public class ControleurAdmin1 extends Controleur{
         String nom = texte[0];
         String ville = texte[1];
         Magasin magasin = this.modele.rechercheMag(nom, ville);
-        this.statsMagasin(magasin);
+        this.infosMagasin(magasin);
     }
 
     @FXML
@@ -133,13 +144,6 @@ public class ControleurAdmin1 extends Controleur{
             alert.setContentText("Les valeurs rentrées sont incorrects,\nvérifiez que les valeurs rentrées correspondent bien\nà des mois et des années au format numérique.");
             alert.showAndWait();
         }
-    }
-
-    private void afficherPopup(String titre, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(titre);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
     public Alert popUpDeconnexion(){
@@ -178,17 +182,20 @@ public class ControleurAdmin1 extends Controleur{
      * Affiche les statistiques du magasin
      * @param mag L'identifiant du magasin
      */
-    private void statsMagasin(Magasin mag) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Infos Magasin");
-        alert.setHeaderText(null);
+    private void infosMagasin(Magasin mag) {
         DecimalFormat prix = new DecimalFormat();
         prix.setMaximumFractionDigits(2);
         String ca = prix.format(mag.getCA());
         if (ca.split(",").length == 1) {ca+=",00";}
         else if (ca.split(",")[1].length() == 1) {ca+="0";}
-        alert.setContentText("Nom : " + mag.getNom() + "\nVille : " + mag.getVille() + "\nChiffre d'affaires global : " + ca + " €\nNombres de livres vendus : " + mag.nbLivresVendus());
-        alert.showAndWait();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Nom : " + mag.getNom() + "\nVille : " + mag.getVille() + "\nChiffre d'affaires global : " + ca + " €\nNombres de livres vendus : " + mag.nbLivresVendus(), ButtonType.NO, ButtonType.YES);
+        alert.setTitle("Infos Magasin");
+        alert.setHeaderText("Souhaitez-vous gérer les stocks de ce magasin ?");
+        Optional<ButtonType> reponse = alert.showAndWait();
+        if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
+            this.modele.setCurMag(mag);
+            this.vue.changerVue("/view/gererStock.fxml");
+        }
     }
 
     /**
