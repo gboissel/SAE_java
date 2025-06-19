@@ -40,7 +40,7 @@ public class Librairie {
         this.panier = panier;
     }
 
-    
+
     public void  ajouteMag(Magasin mag){
         this.lesMagasins.add(mag);
     }
@@ -129,6 +129,7 @@ public class Librairie {
      * @param usr Le nouvel utilisateur courant
      */
     public void setCurUser(Utilisateur usr){
+        this.panier=new Panier();
         this.curUser=usr;
     }
     /**

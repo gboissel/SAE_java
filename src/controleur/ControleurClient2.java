@@ -193,12 +193,10 @@ public class ControleurClient2 extends Controleur{
         Livre livre = modele.rechercheLivreParNom(texte);
         Optional<ButtonType> reponse = popUpMettreDansPanier(this.vue.infoLivre(livre)).showAndWait();
         if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
-            this.modele.getPanier().ajouter(livre, 0); //permet d'initialiser la ligne du panier 
-            System.out.println("Ajoute du livre dans le panier    :"+livre.getTitre());
+            this.modele.getPanier().ajouter(livre, 1); //permet d'initialiser la ligne du panier 
             this.majAffichage();  //au cas ou le livre n'est plus en stock
         }
         else{
-            System.out.println("anulation de l'ajout du livre dans le panier   :"+livre.getTitre());
             this.majAffichage();  //au cas ou le livre n'est plus en stock
         }
 
@@ -248,7 +246,6 @@ public class ControleurClient2 extends Controleur{
     public void chargerPage() {
         this.numPage=0;
         this.idClient.setText(this.modele.getCurUser().getNom() + " " + this.modele.getCurUser().getPrenom());
-        //this.majAffichage();
         List<Button> boutons = Arrays.asList(btnLivre1, btnLivre2, btnLivre3, btnLivre4);
         for(Button bout:boutons){
             bout.setDisable(true);

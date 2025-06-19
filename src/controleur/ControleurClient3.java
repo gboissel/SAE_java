@@ -1,6 +1,7 @@
 package controleur;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,7 @@ import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -30,6 +32,7 @@ import javafx.scene.image.ImageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.control.Alert;
 
 public class ControleurClient3 extends Controleur {
@@ -39,13 +42,16 @@ public class ControleurClient3 extends Controleur {
     private Button btnDeco;
 
     @FXML
+    private GridPane grid;
+
+    @FXML
     private Button btnCatalogue;
 
     @FXML
-    private Button btnAvant;
+    private Button btPreced;
 
     @FXML
-    private Button btnRetour;
+    private Button btSuivant;
 
     @FXML
     private Button btnPayement;
@@ -57,13 +63,13 @@ public class ControleurClient3 extends Controleur {
     private Label totalPanier;
 
     @FXML
-    private Label l1;
+    private Button l1;
     @FXML
-    private Label l2;
+    private Button l2;
     @FXML
-    private Label l3;
+    private Button l3;
     @FXML
-    private Label l4;
+    private Button l4;
     @FXML
     private Label q1;
     @FXML
@@ -114,6 +120,37 @@ public class ControleurClient3 extends Controleur {
     private Button d4;
 
 
+    /**
+     * pemret de recuperer l'indice de la ligne d'un bouton, quand on clic dessus
+     * @param event
+     * @param gridPane
+     * @return
+     */
+    public int getlignedepuisEvent(ActionEvent event) {
+        Node source = (Node) event.getSource(); // bouton cliqué
+        return GridPane.getRowIndex(source);
+    }
+
+    /**
+     * permet de recuperer un element de gridPane en fonction des coordonées
+     * @param grid
+     * @param col
+     * @param row
+     * @return
+     */
+    public Node getNode(GridPane grid, int col, int row) {
+    for (Node node : grid.getChildren()) {
+        Integer colIndex = GridPane.getColumnIndex(node);
+        Integer rowIndex = GridPane.getRowIndex(node);
+        int c = (colIndex != null) ? colIndex : 0;
+        int r = (rowIndex != null) ? rowIndex : 0;
+        if (c == col && r == row) {
+            return node;
+        }
+    }
+    return null;
+}
+
 
     public Alert popUpDeconnexion(){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Voulez vous vraiment vous déconnecter ?\nVous serez renvoyer vers la page d'acceuil", ButtonType.YES, ButtonType.NO);
@@ -154,44 +191,51 @@ public class ControleurClient3 extends Controleur {
 
     @FXML
     private void gererPayement(ActionEvent event){
-        if (this.numPage<this.numPageMax) {
-            this.numPage+=1;
-            this.majAffichage();
-        }
+        this.vue.changerVue("/view/VuePageClient4.fxml");
     }
     @FXML
     private void gererRetourCatalogue(ActionEvent event){
         this.vue.changerVue("/view/VuePageClient2.fxml");
     }
 
-    private void majAffichage(){
-
-    }
-
     @FXML
     private void gererAjouter(ActionEvent event){
-        if (this.numPage<this.numPageMax) {
-            this.numPage+=1;
-            this.majAffichage();
-        }
+        int ligne = getlignedepuisEvent(event);
+        Node elem = getNode(this.grid, 0, ligne);
+        Button tmp_titre = (Button) elem;
+        Livre tmp_livre = this.modele.rechercheLivreParNom(tmp_titre.getText());
+        this.modele.getPanier().ajouter(tmp_livre, 1);
+        this.majAffichage();
     }
 
     @FXML
     private void gererSupprimer(ActionEvent event){
-        if (this.numPage<this.numPageMax) {
-            this.numPage+=1;
-            this.majAffichage();
-        }
+        int ligne = getlignedepuisEvent(event);
+        Node elem = getNode(this.grid, 0, ligne);
+        Button tmp_titre = (Button) elem;
+        Livre tmp_livre = this.modele.rechercheLivreParNom(tmp_titre.getText());
+        this.modele.getPanier().retirerQte(tmp_livre, 1);
+        this.majAffichage();
     }
     @FXML
     private void gererEnlever(ActionEvent event){
-        if (this.numPage<this.numPageMax) {
-            this.numPage+=1;
-            this.majAffichage();
-        }
+        int ligne = getlignedepuisEvent(event);
+        Node elem = getNode(this.grid, 0, ligne);
+        Button tmp_titre = (Button) elem;
+        Livre tmp_livre = this.modele.rechercheLivreParNom(tmp_titre.getText());
+        this.modele.getPanier().supprimer(tmp_livre);
+        this.majAffichage();
     }
     
+    @FXML
+    private void gererDetailLivre(ActionEvent event){
+        this.numPage=0;
+        Button boutonClique = (Button) event.getSource(); // Récupère le bouton cliqué
+        String texte = boutonClique.getText();
+        Livre livre = modele.rechercheLivreParNom(texte);
+        afficherPopup("Detail Livre", this.vue.infoLivre(livre));
 
+    }
 
     private void afficherPopup(String titre, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -201,4 +245,66 @@ public class ControleurClient3 extends Controleur {
         alert.showAndWait();
     }
 
+    public void afficherPanier(){
+        Panier tmp = this.modele.getPanier();
+        List<Livre> cles = new ArrayList<>(tmp.keySet());
+        this.numPageMax = (int) Math.ceil((double) cles.size() / 4); // permet de definir le nombre de page maximum
+        List<Button> l = Arrays.asList(l1,l2,l3,l4);
+        List<Label> q = Arrays.asList(q1,q2,q3,q4);
+        List<Label> p = Arrays.asList(p1,p2,p3,p4);
+        List<Label> t = Arrays.asList(t1,t2,t3,t4);
+        List<Button> a = Arrays.asList(a1,a2,a3,a4);
+        List<Button> s = Arrays.asList(s1,s2,s3,s4);
+        List<Button> d = Arrays.asList(d1,d2,d3,d4);
+        this.totalPanier.setText(""+tmp.prixTotal());
+        for (int i = 0; i < 4; i++) {
+            if (numPage*4+i < cles.size()) {
+                Livre tmp_livre=cles.get(numPage*4+i);
+                l.get(i).setText(tmp_livre.getTitre());
+                l.get(i).setDisable(false);
+                a.get(i).setDisable(false);
+                s.get(i).setDisable(false);
+                d.get(i).setDisable(false);
+                q.get(i).setText(""+tmp.get(tmp_livre));
+                p.get(i).setText(""+tmp_livre.getPrix());
+                t.get(i).setText(""+tmp.prixTotalLivre(tmp_livre));
+            } 
+            else {
+                l.get(i).setText("N/A");
+                l.get(i).setDisable(true);
+                l.get(i).setDisable(true);
+                a.get(i).setDisable(true);
+                s.get(i).setDisable(true);
+                d.get(i).setDisable(true);
+                q.get(i).setText("N/A");
+                p.get(i).setText("N/A");
+                t.get(i).setText("N/A");
+            }
+        }
+    }
+
+    private void majAffichage(){
+        this.afficherPanier();
+        if (this.numPage == 0) {this.btPreced.setDisable(true);}
+        else {this.btPreced.setDisable(false);}
+        if (this.numPage == numPageMax-1) {this.btSuivant.setDisable(true);}
+        else {this.btSuivant.setDisable(false);}
+        }
+
+    @Override
+    public void chargerPage(){
+        this.idClient.setText(this.modele.getCurUser().getNom() + " " + this.modele.getCurUser().getPrenom());
+        this.numPage=0;
+        List<Button> l = Arrays.asList(l1,l2,l3,l4);
+        List<Button> a = Arrays.asList(a1,a2,a3,a4);
+        List<Button> s = Arrays.asList(s1,s2,s3,s4);
+        List<Button> d = Arrays.asList(d1,d2,d3,d4);
+        for(int i =0;i<4;i++){
+            l.get(i).setDisable(true);
+            a.get(i).setDisable(true);
+            s.get(i).setDisable(true);
+            d.get(i).setDisable(true);
+        }
+        this.majAffichage();
+    }
 }
