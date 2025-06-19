@@ -29,6 +29,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Alert;
 
 public class ControleurClient3 extends Controleur {
+    private int numPage;
+    private int numPageMax;
     @FXML
     private Button btnDeco;
 
@@ -55,6 +57,14 @@ public class ControleurClient3 extends Controleur {
 
     @FXML
     private Label idClient;
+
+
+    public Alert popUpDeconnexion(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Voulez vous vraiment vous déconnecter ?\nVous serez renvoyer vers la page d'acceuil", ButtonType.YES, ButtonType.NO);
+        alert.setTitle("Attention");
+        alert.setHeaderText("Déconnexion");
+        return alert;
+    }
 
     @FXML
     private void gererDeconnexion(ActionEvent event) {
@@ -85,4 +95,32 @@ public class ControleurClient3 extends Controleur {
             this.majAffichage();
         }
     }
+
+    @FXML
+    private void gererPayement(ActionEvent event){
+        if (this.numPage<this.numPageMax) {
+            this.numPage+=1;
+            this.majAffichage();
+        }
+    }
+    @FXML
+    private void gererRetour(ActionEvent event){
+        if (this.numPage<this.numPageMax) {
+            this.numPage+=1;
+            this.majAffichage();
+        }
+    }
+
+    private void majAffichage(){
+
+    }
+
+    private void afficherPopup(String titre, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titre);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 }
