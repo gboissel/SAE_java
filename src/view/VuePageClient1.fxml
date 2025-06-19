@@ -109,7 +109,7 @@
             </Button>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="bntPrec" mnemonicParsing="false" onAction="#pagePrec" prefHeight="58.0" prefWidth="80.0">
+                  <Button fx:id="btnPrec" mnemonicParsing="false" onAction="#pagePrec" prefHeight="58.0" prefWidth="80.0">
                      <graphic>
                         <ImageView fitHeight="55.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                            <image>

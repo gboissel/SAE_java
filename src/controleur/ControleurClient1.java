@@ -69,8 +69,9 @@ public class ControleurClient1 extends Controleur{
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Aide");
         alert.setHeaderText("Selectionner un magasin pour consulter les livre du magasin");
-        alert.setContentText("Lorsque que vous selectionnerez un magasin vous arriverz sur une page \n" + 
-            "presentant tout les livres ainsi que la possibilité de chercher un livre en particulier");
+        alert.setContentText("Lorsque vous sélectionnerez un magasin, vous arriverez sur une page\n" +
+            "présentant tous les livres du magasin ainsi que la possibilité de rechercher un livre en particulier.");
+        alert.showAndWait();
     }
 
     @FXML
@@ -130,6 +131,7 @@ public class ControleurClient1 extends Controleur{
     public void pagePrec(){
         if (this.nbPage>0) {
             this.nbPage-=1;
+            btnSuiv.setDisable(false);
             this.maJ();
         }
 
@@ -159,8 +161,12 @@ public class ControleurClient1 extends Controleur{
             }else{
                 btn.setDisable(true);
                 btn.setText("N/A");
+                btnSuiv.setDisable(true);
             }++compteur;
-        }
+        }if (nbPage == 0)
+            btnPrec.setDisable(true);
+        else
+            btnPrec.setDisable(false);
     }              
 
     @Override
