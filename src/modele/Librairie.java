@@ -20,6 +20,7 @@ public class Librairie {
     private JDBC jdbc;
     private Magasin curMag;
     private boolean chargee;
+    private Panier panier;
 
 
     public Librairie(JDBC jdbc){
@@ -31,6 +32,15 @@ public class Librairie {
 
     }
 
+    public Panier getPanier() {
+        return panier;
+    }
+
+    public void setPanier(Panier panier) {
+        this.panier = panier;
+    }
+
+    
     public void  ajouteMag(Magasin mag){
         this.lesMagasins.add(mag);
     }
