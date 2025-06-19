@@ -61,7 +61,7 @@
          <children>
             <HBox prefHeight="52.0" prefWidth="164.0" style="-fx-background-color: #5ce1e6;">
                <children>
-                  <TextField fx:id="TextRecherche" alignment="CENTER" onAction="#gererRecherchePrecise" prefHeight="35.0" prefWidth="163.0" promptText="Categorie ....." style="-fx-background-color: 5ce1e6;">
+                  <TextField fx:id="textRecherche" alignment="CENTER" onAction="#gererRecherchePrecise" prefHeight="35.0" prefWidth="163.0" promptText="Categorie ex: 110" style="-fx-background-color: 5ce1e6;">
                      <HBox.margin>
                         <Insets bottom="5.0" left="10.0" top="10.0" />
                      </HBox.margin>

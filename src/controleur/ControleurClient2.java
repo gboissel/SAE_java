@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 // import javafx.beans.binding.Bindings;                                       \
@@ -91,7 +93,7 @@ public class ControleurClient2 extends Controleur{
                                       
     @FXML
     private void controleurBoutPanier(ActionEvent event){
-
+        this.vue.changerVue("/view/vuePanier.fxml");
     }
 
     @FXML
@@ -104,7 +106,7 @@ public class ControleurClient2 extends Controleur{
 
     @FXML
     private void gererSuivant(ActionEvent event){
-        if (this.numPage<this.numPageMax) {
+        if (this.numPage+1<this.numPageMax) {
             this.numPage+=1;
             this.majAffichage();
         }
@@ -133,6 +135,7 @@ public class ControleurClient2 extends Controleur{
 
     @FXML
     private void gererRecherche(ActionEvent event) throws SQLException{
+        this.numPage=0;
         Button boutonClique = (Button) event.getSource();
         String texte = boutonClique.getText().substring(0, 3);
         this.tmp = this.modele.getJDBC().getLivresParClassificationEtMagasin(texte, this.modele.getCurMag().getNom()); 
@@ -142,6 +145,7 @@ public class ControleurClient2 extends Controleur{
 
     @FXML
     private void gererDetailLivre(ActionEvent event){
+        this.numPage=0;
         Button boutonClique = (Button) event.getSource(); // Récupère le bouton cliqué
         String texte = boutonClique.getText();
         Livre livre = modele.rechercheLivreParNom(texte);
@@ -186,7 +190,7 @@ public class ControleurClient2 extends Controleur{
         this.afficherMagasins();
         if (this.numPage == 0) {this.btPreced.setDisable(true);}
         else {this.btPreced.setDisable(false);}
-        if (this.numPage == numPageMax) {this.btSuivant.setDisable(true);}
+        if (this.numPage == numPageMax-1) {this.btSuivant.setDisable(true);}
         else {this.btSuivant.setDisable(false);}
     }
 
@@ -195,6 +199,7 @@ public class ControleurClient2 extends Controleur{
         for (int i = 0; i < boutons.size(); i++) {
             if (numPage*4+i < tmp.size()) {
                 boutons.get(i).setText(tmp.get(numPage*4+i));
+                boutons.get(i).setDisable(false);
             } 
             else {
                 boutons.get(i).setText("N/A");
@@ -208,5 +213,9 @@ public class ControleurClient2 extends Controleur{
         this.numPage=0;
         this.idClient.setText(this.modele.getCurUser().getNom() + " " + this.modele.getCurUser().getPrenom());
         //this.majAffichage();
+        List<Button> boutons = Arrays.asList(btnLivre1, btnLivre2, btnLivre3, btnLivre4);
+        for(Button bout:boutons){
+            bout.setDisable(true);
+        }
     }
 }
