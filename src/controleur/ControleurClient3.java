@@ -1,5 +1,7 @@
 package controleur;
 
+import java.util.Optional;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 // import javafx.beans.binding.Bindings;                                       \
@@ -27,9 +29,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Alert;
 
 public class ControleurClient3 extends Controleur {
-    private Librairie modele;
-    private LivreExpress vue;
-
     @FXML
     private Button btnDeco;
 
@@ -54,46 +53,36 @@ public class ControleurClient3 extends Controleur {
     @FXML
     private Button btnPayement;
 
+    @FXML
+    private Label idClient;
 
     @FXML
-    public void controleurBoutDeco(ActionEvent e){
-        System.out.println("vous etes bien deconnecter");
+    private void gererDeconnexion(ActionEvent event) {
+        Optional<ButtonType> reponse = popUpDeconnexion().showAndWait();
+        if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
+            this.modele.setCurUser(null);
+            this.vue.changerVue("/view/accueil.fxml");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Déconnexion");
+            alert.setHeaderText("Déconnexion réussie !");
+            alert.setContentText("Vous êtes bien retournée sur la page d'accueil");
+        }
+
+    }  
+
+    @FXML
+    private void gererPreced(ActionEvent event){
+        if(this.numPage>0) {
+            this.numPage-=1;
+            this.majAffichage();
+        }
     }
 
     @FXML
-    public void controleurSupprPanier(ActionEvent e){
-        System.out.println("truc");
+    private void gererSuivant(ActionEvent event){
+        if (this.numPage<this.numPageMax) {
+            this.numPage+=1;
+            this.majAffichage();
+        }
     }
-     @FXML
-    public void controleurSuppr(ActionEvent e){
-        System.out.println("truc");
-    } 
-     @FXML
-    public void controleurAjoute(ActionEvent e){
-        System.out.println("truc");
-    } 
-     @FXML
-    public void controleurCatalogue(ActionEvent e){
-        System.out.println("truc");
-    } 
-     @FXML
-    public void controleurAvant(ActionEvent e){
-        System.out.println("truc");
-    } 
-     @FXML
-    public void controleurRetour(ActionEvent e){
-        System.out.println("truc");
-    }
-    @FXML
-    public void controleurPayement(ActionEvent e){
-        System.out.println("truc");
-
-    }
-      
-    public void setVue(LivreExpress vue){
-        this.vue=vue;
-    }
-    
-
-
 }

@@ -533,8 +533,43 @@ public class JDBC {
         }
         return res;
     }
+    /**
+     * Permet de recuperer la liste des livre appartenant a un magasin et a une categorie
+     * @param id_Class
+     * @param nomMagasin
+     * @return
+     * @throws SQLException
+     */
+    public List<String> getLivresParClassificationEtMagasin(String id_Class, String nomMagasin) throws SQLException {
+    List<String> livres = new ArrayList<>();
+    int nombre; 
+    nombre = Integer.parseInt(id_Class);   //le parseInt n'est pas dangereux car c'est une valeur que je renseigne dans l'appli
+    String sql = """
+        SELECT DISTINCT titre
+        FROM LIVRE
+        NATURAL JOIN THEMES
+        NATURAL JOIN CLASSIFICATION
+        NATURAL JOIN POSSEDER
+        NATURAL JOIN MAGASIN
+        WHERE iddewey BETWEEN ? AND ? AND nommag = ?;
+    """;
 
-    public List<String> getLivresParClassificationEtMagasin(String nomClassification, String nomMagasin) throws SQLException {
+    try (PreparedStatement pstmt = laConnexion.prepareStatement(sql)) {
+        pstmt.setInt(1, nombre);
+        pstmt.setInt(2, nombre + 99); // plage de classification
+        pstmt.setString(3, nomMagasin);
+
+        try (ResultSet rs = pstmt.executeQuery()) {
+            while (rs.next()) {
+                livres.add(rs.getString("titre"));
+            }
+        }
+    }
+
+    return livres;
+    }
+
+    public List<String> getLivresParClassificationEtMagasinPrecise(int nombre, String nomMagasin) throws SQLException {
     List<String> livres = new ArrayList<>();
     String sql = """
         SELECT DISTINCT titre
@@ -543,11 +578,11 @@ public class JDBC {
         NATURAL JOIN CLASSIFICATION
         NATURAL JOIN POSSEDER
         NATURAL JOIN MAGASIN
-        WHERE nomclass = ? AND nommag = ?;
+        WHERE iddewey = ? AND nommag = ?;
     """;
 
     try (PreparedStatement pstmt = laConnexion.prepareStatement(sql)) {
-        pstmt.setString(1, nomClassification);
+        pstmt.setInt(1, nombre);
         pstmt.setString(2, nomMagasin);
 
         try (ResultSet rs = pstmt.executeQuery()) {
@@ -558,6 +593,6 @@ public class JDBC {
     }
 
     return livres;
-}
+    }
 }
 
