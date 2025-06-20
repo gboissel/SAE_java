@@ -124,9 +124,6 @@ public class LivreExpress extends Application{
             System.out.println("Erreur de chargement du fichier FXML !");
         }
     }
-
-
-    
     public static void main(String[] args) {
         launch(args); 
     }
