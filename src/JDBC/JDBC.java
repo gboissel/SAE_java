@@ -443,6 +443,7 @@ public class JDBC {
             ps.setInt(1, magasin.getQteLivre(livre));
             ps.setInt(2, idMagasin);
             ps.setString(3, livre.getISBN());
+            ps.executeUpdate();
         }
     }
 
