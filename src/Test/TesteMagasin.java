@@ -1,10 +1,13 @@
-package test;
+package Test;
 import exception.PasAssezDeLivreException;
 import modele.*;
 
-import  org.junit.jupiter.api.Test;
-import  org.junit.jupiter.api.Assertions.assertEquals;
-import  org.junit.jupiter.api.Assertions.assertTrue;
+
+import exception.PasAssezDeLivreException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
 import java.util.List;
 import java.util.Map;
@@ -19,9 +22,9 @@ public class TesteMagasin {
     @Test
     public void TesteMagasingetLivres() {
         Magasin m = new Magasin("Librairie du coin", "Paris");
-        Livre livre1 = new Livre(123456789,"Titre1",20.0,50,05/07/2023);
-        Livre livre2 = new Livre(987654321,"Titre2",40.5,86,25/12/2024);
-        Livre livre3 = new Livre(121212121, "Titre3", 8.0, 30, 12/06/2025);
+        Livre livre1 = new Livre("98165103", "Titre", 10.0, 100, 2020);
+        Livre livre2 = new Livre("98165103", "Titre", 10.0, 100, 2020);
+        Livre livre3 = new Livre("98165103", "Titre", 10.0, 100, 2020);
         try {
             m.setQteLivre(livre3, 0);
             m.setQteLivre(livre1, 5);

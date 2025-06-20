@@ -1,10 +1,12 @@
-package test;
+package Test;
 import exception.PasAssezDeLivreException;
 import modele.*;
 
-import  org.junit.jupiter.api.Test;
-import  org.junit.jupiter.api.Assertions.assertEquals;
-import  org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
+
 
 import java.util.List;
 import java.util.Map;
@@ -18,8 +20,8 @@ public class TesteLivre {
         Categorie c = new Categorie("roman");
         Client cl = new Client("michel", "jean", "14 rue de la rivière", "45000", "orleans", "mdp_452");
         Magasin m = new Magasin("Librairie Toulouse", "Toulouse");
-        Livre livre = new Livre(98169321,"L'oiseau",30.0,86, 25/8/2020);
-        Commmande co = new Commande(10, "15/04/2021", true, false, cl, m);
+        Livre livre = new Livre("98165103", "Titre", 10.0, 100, 2020);
+        Commande co = new Commande(10, "15/04/2021", true, false, cl, m);
         livre.addAuteur(a);
         livre.addAuteur(a2);
         livre.addClassification(c);

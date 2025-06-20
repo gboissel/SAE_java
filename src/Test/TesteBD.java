@@ -1,4 +1,4 @@
-package test;
+package Test;
 import modele.*;
 import JDBC.*;
 
@@ -6,9 +6,11 @@ import java.sql.*;
 import java.nio.file.*;
 import java.io.*;
 
-import  org.junit.jupiter.api.Test;
-import  org.junit.jupiter.api.Assertions.assertEquals;
-import  org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
+
 
 
 public class TesteBD {
@@ -35,10 +37,10 @@ public class TesteBD {
         + "VALUES (2, 'Garcia', 'Hugo', '167 avenue de la Forêt', '60000', 'Nice', 'mdp_hug')");
 
         ResultSet rs = stmt.executeQuery("SELECT * FROM CLIENT WHERE idcli = 2");
-        Assert.assertTrue(rs.next());
-        Assert.assertEquals("Garcia", rs.getString("nomcli"));
-        Assert.assertEquals("Hugo", rs.getString("prenomcli"));
-        Assert.assertEquals("Nice", rs.getString("villecli"));
+        assertTrue(rs.next());
+        assertEquals("Garcia", rs.getString("nomcli"));
+        assertEquals("Hugo", rs.getString("prenomcli"));
+        assertEquals("Nice", rs.getString("villecli"));
 
         stmt.close();
     }
@@ -50,9 +52,9 @@ public class TesteBD {
                 "VALUES (4,Librairie jungle,Paris)");
 
         ResultSet rs = stmt.executeQuery("SELECT * FROM MAGASIN WHERE idmag = 4");
-        Assert.assertTrue(rs.next());
-        Assert.assertEquals("Librairie jungle", rs.getString("nommag"));
-        Assert.assertEquals("Paris", rs.getString("villemag"));
+        assertTrue(rs.next());
+        assertEquals("Librairie jungle", rs.getString("nommag"));
+        assertEquals("Paris", rs.getString("villemag"));
         stmt.close();
     }
     @Test
@@ -63,8 +65,8 @@ public class TesteBD {
                 "VALUES (Hachette,10)");
 
         ResultSet rs = stmt.executeQuery("SELECT * FROM EDITEUR WHERE idedit = 10");
-        Assert.assertTrue(rs.next());
-        Assert.assertEquals("Hachette", rs.getString("nomedit"));
+        assertTrue(rs.next());
+        assertEquals("Hachette", rs.getString("nomedit"));
         stmt.close();
     }
      @Test
@@ -75,10 +77,10 @@ public class TesteBD {
                 "VALUES ('OL625587', 'Jean Michel', 1802, 1898)");
 
         ResultSet rs = stmt.executeQuery("SELECT * FROM AUTEUR WHERE idauteur = OL625587");
-        Assert.assertTrue(rs.next());
-        Assert.assertEquals("Jean Miche", rs.getString("nomauteur"));
-        Assert.assertEquals("1802", rs.getInt("anneenais"));
-        Assert.assertEquals("1898", rs.getInt("anneedeces"));
+        assertTrue(rs.next());
+        assertEquals("Jean Miche", rs.getString("nomauteur"));
+        assertEquals("1802", rs.getInt("anneenais"));
+        assertEquals("1898", rs.getInt("anneedeces"));
         stmt.close();
         
     }
@@ -90,10 +92,10 @@ public class TesteBD {
                 "VALUES (978436055252, Escale, 65, 2010, 40.76)");
 
         ResultSet rs = stmt.executeQuery("SELECT * FROM LIVRE WHERE isbn = 978436055252");
-        Assert.assertTrue(rs.next());
-        Assert.assertEquals("Escale", rs.getString("titre"));
-        Assert.assertEquals("65", rs.getInt("nbpages"));
-        Assert.assertEquals("2010", rs.getString("datepubli"));
+        assertTrue(rs.next());
+        assertEquals("Escale", rs.getString("titre"));
+        assertEquals("65", rs.getInt("nbpages"));
+        assertEquals("2010", rs.getString("datepubli"));
         stmt.close();
     }
     @Test
@@ -104,9 +106,9 @@ public class TesteBD {
                 "VALUES (4, Tuj, Claire, mdp_Tuj)");
 
         ResultSet rs = stmt.executeQuery("SELECT * FROM ADMINISTRATEUR  WHERE idadmin = 4");
-        Assert.assertTrue(rs.next());
-        Assert.assertEquals("Tuj", rs.getString("nomadmin"));
-        Assert.assertEquals("Claire", rs.getString("prenomadmin"));
+      assertTrue(rs.next());
+      assertEquals("Tuj", rs.getString("nomadmin"));
+       assertEquals("Claire", rs.getString("prenomadmin"));
 
         stmt.close();
     }
@@ -118,9 +120,9 @@ public class TesteBD {
                 "VALUES (12, POL, Laure, mdp_LP, 4)");
 
         ResultSet rs = stmt.executeQuery("SELECT * FROM VENDEUR WHERE idedit = 12");
-        Assert.assertTrue(rs.next());
-        Assert.assertEquals("POL", rs.getString("nomven"));
-        Assert.assertEquals("Laure", rs.getString("prenomven"));
+        assertTrue(rs.next());
+        assertEquals("POL", rs.getString("nomven"));
+        assertEquals("Laure", rs.getString("prenomven"));
 
         stmt.close();
     }
@@ -132,9 +134,9 @@ public class TesteBD {
                 "VALUES (6,1/8/2022,'N','M',2,4)");
 
         ResultSet rs = stmt.executeQuery("SELECT * FROM COMMANDE WHERE numcom = 6");
-        Assert.assertTrue(rs.next());
-        Assert.assertEquals("N", rs.getString("enligne"));
-        Assert.assertEquals("1/8/2022", rs.getString("datecom"));
+        assertTrue(rs.next());
+       assertEquals("N", rs.getString("enligne"));
+        assertEquals("1/8/2022", rs.getString("datecom"));
         stmt.close();
     }
    
