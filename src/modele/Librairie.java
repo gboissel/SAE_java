@@ -363,4 +363,50 @@ public class Librairie {
         }
         return res;
     }
+
+    /**
+     * permet d'obtenir les factures de chaque magasin avec un mois et une annee donnée
+     * @param client
+     */
+    public String commandesClient(Client client){
+        String res = "Les Commandes du client " + client.getNom() + " " + client.getPrenom() + "\n";
+        String interligne = "      ISBN                Titre          qte   prix    total  \n";
+        DecimalFormat prix = new DecimalFormat();
+        prix.setMaximumFractionDigits(2);
+        for (Commande com:client.gestionCommande()) {
+            String date = com.getDate();
+            int cpt = 0;
+            res+="Commande n° "+com.getNum()+" du "+date+" ";
+            String textLivraison = "";
+            if (com.estEnLigne()) {
+                textLivraison+="réalisée en ligne";
+                if (com.livreDomicile()) {
+                    textLivraison+=" et livrée à domicile";
+                }
+            }
+            else {textLivraison+="réalisée en magasin";}
+            res+=textLivraison+"\n"+interligne;
+            for (DetailCommande dC:com.getDetailsCommande()) {
+                ++cpt;
+                Livre livre=dC.getLivre();
+                String titre=livre.getTitre();
+                while (titre.length()<22) {titre+=" ";}
+                String prixLivre = prix.format(dC.getPrixVente());
+                if (prixLivre.split(",").length==1) {prixLivre+=",00";}
+                else if (prixLivre.split(",")[1].length()<2) {prixLivre+="0";}
+                while (prixLivre.length() < 6) {prixLivre+=" ";}
+                String prixTotalLivre = prix.format(dC.getPrixVente()*dC.getQte());
+                if (prixTotalLivre.split(",").length==1) {prixTotalLivre+=",00";}
+                else if (prixTotalLivre.split(",")[1].length()<2) {prixTotalLivre+="0";}
+                res+=cpt+"  "+livre.getISBN()+"  "+titre.substring(0, 22)+"  "+prix.format(dC.getQte())+"   "+prixLivre+"  "+prixTotalLivre+"\n";
+            }
+            res+="-------";
+            String prixTotal = prix.format(com.prixTotal());
+            if (prixTotal.split(",").length==1) {prixTotal+=",00";}
+            else if (prixTotal.split(",")[1].length()<2) {prixTotal+="0";}
+            res+="Total   "+prixTotal+"\n";
+            res+="-----------------------------------------------------\n";
+        }
+        return res;
+    }
 }

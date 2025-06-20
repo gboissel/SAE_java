@@ -153,17 +153,15 @@ public class ControleurAdmin1 extends Controleur{
     }
 
     private void afficherPopupFacture(String texte, String mois, String annee) {
-        // Créer la zone de texte avec beaucoup de contenu
         TextArea textArea = new TextArea();
         textArea.setWrapText(true);
         textArea.setText(texte);
+        textArea.setEditable(false);
 
-        // Mettre la TextArea dans un ScrollPane (optionnel ici car TextArea scrolle déjà)
         ScrollPane scrollPane = new ScrollPane(textArea);
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
 
-        // Créer la scène et la fenêtre
         VBox layout = new VBox(scrollPane);
         layout.setPrefSize(400, 300);
 
@@ -173,7 +171,7 @@ public class ControleurAdmin1 extends Controleur{
         if (mois.length() == 1) {mois="0" + mois;}
         if (mois.length() > 2) {mois=mois.substring(mois.length()-2);}
         popupStage.setTitle("factures-"+mois+"-"+annee+".txt");
-        popupStage.initModality(Modality.APPLICATION_MODAL); // bloque la fenêtre principale
+        popupStage.initModality(Modality.APPLICATION_MODAL);
         popupStage.showAndWait();
     }
 

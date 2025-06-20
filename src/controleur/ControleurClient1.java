@@ -4,9 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import modele.Client;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.fxml.FXML;
@@ -53,6 +60,9 @@ public class ControleurClient1 extends Controleur{
     private Button aideB;
 
     @FXML
+    private Button boutonCom;
+
+    @FXML
     private Label idClient;
 
     @FXML
@@ -76,6 +86,29 @@ public class ControleurClient1 extends Controleur{
         alert.setContentText("Lorsque vous sélectionnerez un magasin, vous arriverez sur une page\n" +
             "présentant tous les livres du magasin ainsi que la possibilité de rechercher un livre en particulier.");
         alert.showAndWait();
+    }
+
+    @FXML
+    public void gererCom(ActionEvent e) {
+        TextArea textArea = new TextArea();
+        textArea.setWrapText(true);
+        Client client = (Client) this.modele.getCurUser();
+        textArea.setText(this.modele.commandesClient(client));
+        textArea.setEditable(false);
+
+        ScrollPane scrollPane = new ScrollPane(textArea);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        VBox layout = new VBox(scrollPane);
+        layout.setPrefSize(400, 300);
+
+        Scene scene = new Scene(layout);
+        Stage popupStage = new Stage();
+        popupStage.setScene(scene);
+        popupStage.setTitle("Consultation commandes");
+        popupStage.initModality(Modality.APPLICATION_MODAL);
+        popupStage.showAndWait();
     }
 
     @FXML
