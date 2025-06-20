@@ -10,7 +10,6 @@ import java.util.List;
 
 import javafx.event.ActionEvent;
 import modele.*;
-import view.*;
 
 
 public class ControleurAccueil extends Controleur{

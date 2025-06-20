@@ -1,4 +1,5 @@
 package controleur;                                                                          
+import java.sql.SQLException;
 import java.util.Optional;
 
 import javafx.event.ActionEvent;
@@ -9,52 +10,51 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import modele.*;
-import view.*;
 import javafx.fxml.FXML;
 
 public class ControleurClient4 extends Controleur{
-    private Librairie modele;
-    private LivreExpress vue;
+    @FXML
+    Panier panier;
+    @FXML
+    Label nomCli;
 
     @FXML
-    private Button btnDeco;
+    TextField textCB;
 
     @FXML
-    private Label montant;
+    TextField textDate;
 
     @FXML
-    private TextArea recap;
-    
-    @FXML
-    private Label nomCli;
+    TextField textCS;
 
     @FXML
-    private Button btnCatalogue;
+    TextArea recap;
 
     @FXML
-    private Button btnRetour;
+    RadioButton btnDomi;
 
     @FXML
-    private Button btnPayer;
+    RadioButton btnRelais;
 
     @FXML
-    private TextField TextCB;
+    Button btnDeco;
 
     @FXML
-    private TextField TextDate;
+    private ToggleGroup groupeLivraison;
 
     @FXML
-    private TextField TextCSecu;
+    Button btnCata;
 
     @FXML
-    private RadioButton btnDomi;
-
-    @FXML
-    private RadioButton btnRelai;
+    Button btnPayer;
                                       
     @FXML
-    public void controleurBoutDeco(ActionEvent e){
+    Label montant;
+
+    @FXML
+    public void BoutDeco(ActionEvent e){
         Optional<ButtonType> reponse = this.popUpDeconnexion().showAndWait();
         if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
             this.modele.setCurUser(null);
@@ -67,23 +67,44 @@ public class ControleurClient4 extends Controleur{
     }
 
     @FXML
-    public void controleurPayer(ActionEvent e){
-        System.out.println("Payement");        
+    public void validerCommande(ActionEvent e){
+        System.out.println("Payement en cours");
+        try{
+            Commande commandeCli = new Commande(this.modele.getJDBC().maxNumeroCommande()+1 , null, this.enLigne(), false, (Client) this.modele.getCurUser(), this.modele.getCurMag());
+            DetailCommande dCo = null ;
+            for (Livre livre:this.panier.keySet()){
+                dCo = new DetailCommande(commandeCli, livre, this.panier.get(livre), livre.getPrix());
+            }
+        }catch(SQLException exceptionSQL){
+            exceptionSQL.getMessage();
+        }
+                
     }
 
     @FXML
-    public void controleurCatalogue(ActionEvent e){
-        
+    public void controllerCata(ActionEvent e){
+        this.vue.changerVue("/view/VuPageClient2.fxml");
     }
 
     @FXML
-    public void controleurRetour(ActionEvent e){
-        this.vue.changerVue("/view/VuPageClient2");
+    public String controllerTypeLivraison(){
+        RadioButton selection = (RadioButton) groupeLivraison.getSelectedToggle();
+        return selection.getText()+"";
     }
-
+    
+    private boolean enLigne(){
+        return this.controllerTypeLivraison().equals("Domicile");
+    }
     @FXML
     public void maJ(){
-        this.montant.setText(this.montant.getText()+this.modele.getPanier().prixTotal()+"€");
+        this.recap.setText(this.panier.toString());
+        this.montant.setText(this.montant.getText()+this.panier.prixTotal()+"€");
         this.nomCli.setText(""+this.modele.getCurUser());
+    }
+
+    @Override
+    public void chargerPage(){
+        this.panier=this.modele.getPanier();
+        this.maJ();
     }
 }
