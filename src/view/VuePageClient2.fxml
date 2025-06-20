@@ -22,7 +22,7 @@
          <children>
             <ImageView fitHeight="94.0" fitWidth="188.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../OneDrive/Bureau/BUT%20info/1er%20année/SAE/SAE_java/img/logo_livre(2).png" />
+                  <Image url="@../../img/logo_livre(2).png" />
                </image>
                <HBox.margin>
                   <Insets left="10.0" />
@@ -70,7 +70,7 @@
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../../OneDrive/Bureau/BUT%20info/1er%20année/SAE/SAE_java/img/image_loop.png" />
+                              <Image url="@../../img/image_loop.png" />
                            </image>
                         </ImageView>
                      </graphic>
