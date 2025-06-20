@@ -77,7 +77,7 @@ public class ControleurClient2 extends Controleur{
                                       
     @FXML
     private void controleurBoutPanier(ActionEvent event){
-        this.vue.changerVue("/view/vuePanier.fxml");
+        this.vue.changerVue("/view/VuePanier.fxml");
     }
 
     @FXML

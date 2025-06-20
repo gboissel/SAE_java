@@ -27,7 +27,7 @@ public class ControleurClient4 extends Controleur{
     TextField textDate;
 
     @FXML
-    TextField textCS;
+    TextField textCSecu;
 
     @FXML
     TextArea recap;
@@ -68,24 +68,35 @@ public class ControleurClient4 extends Controleur{
 
     @FXML
     public void validerCommande(ActionEvent e){
-        System.out.println("Payement en cours");
-        try{
-        Commande commandeCli = new Commande(this.modele.getJDBC().maxNumeroCommande()+1 , null, this.enLigne(), false, (Client) this.modele.getCurUser(), this.modele.getCurMag());
-        DetailCommande dCo = null ;
-        for (Livre livre:this.panier.keySet()){
-            dCo = new DetailCommande(commandeCli, livre, this.panier.get(livre), livre.getPrix());
+    if(this.textCB.getText().isEmpty()||this.textCSecu.getText().isEmpty()||this.textDate.getText().isEmpty()){
+                afficherPopup("erreur", "Au moin l'un des champ n'est pas complété");
+            }
+            else{
+                try{
+            Commande commandeCli = new Commande(this.modele.getJDBC().maxNumeroCommande()+1 , null, this.enLigne(), false, (Client) this.modele.getCurUser(), this.modele.getCurMag());
+            DetailCommande dCo = null ;
+            for (Livre livre:this.panier.keySet()){
+                dCo = new DetailCommande(commandeCli, livre, this.panier.get(livre), livre.getPrix());
+            }
+                this.modele.getJDBC().insererCommande(commandeCli);
+                this.modele.setPanier(new Panier());
+                afficherPopup("Commande validé", "Votre commade a bien été prise en compte \n Vous allez etre redirigé vers la page catalogue");
+                this.vue.changerVue("/view/VuePageClient2.fxml");            
+            }catch(SQLException SQLException){
+                SQLException.getMessage();
+            }
         }
-            this.modele.getJDBC().insererCommande(commandeCli);
-            System.out.println("Commande réussite");
-        }catch(SQLException SQLException){
-            SQLException.getMessage();
-        }
-                
     }
-
     @FXML
     public void controllerCata(ActionEvent e){
-        this.vue.changerVue("/view/VuPageClient2.fxml");
+        this.vue.changerVue("/view/VuePageClient2.fxml");
+    }
+    private void afficherPopup(String titre, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titre);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @FXML
