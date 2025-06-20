@@ -104,7 +104,7 @@
                         <Font size="19.0" />
                      </font>
                   </Label>
-                  <RadioButton fx:id="btnDomi" mnemonicParsing="false" onAction="#controllerTypeLivraison" prefHeight="31.0" prefWidth="130.0" selected="true" text="Domicile">
+                  <RadioButton fx:id="btnDomi" mnemonicParsing="false" onAction="#getTypeLivraison" prefHeight="31.0" prefWidth="130.0" selected="true" text="Domicile">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -112,7 +112,7 @@
                         <ToggleGroup fx:id="groupLivraison" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="btnRelais" mnemonicParsing="false" onAction="#controllerTypeLivraison" prefHeight="33.0" prefWidth="153.0" text="Point Relais" toggleGroup="$groupLivraison">
+                  <RadioButton fx:id="btnRelais" mnemonicParsing="false" onAction="#getTypeLivraison" prefHeight="33.0" prefWidth="153.0" text="Point Relais" toggleGroup="$groupLivraison">
                      <font>
                         <Font size="15.0" />
                      </font>

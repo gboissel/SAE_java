@@ -42,7 +42,7 @@ public class ControleurClient4 extends Controleur{
     Button btnDeco;
 
     @FXML
-    private ToggleGroup groupeLivraison;
+    private ToggleGroup groupLivraison;
 
     @FXML
     Button btnCata;
@@ -70,13 +70,15 @@ public class ControleurClient4 extends Controleur{
     public void validerCommande(ActionEvent e){
         System.out.println("Payement en cours");
         try{
-            Commande commandeCli = new Commande(this.modele.getJDBC().maxNumeroCommande()+1 , null, this.enLigne(), false, (Client) this.modele.getCurUser(), this.modele.getCurMag());
-            DetailCommande dCo = null ;
-            for (Livre livre:this.panier.keySet()){
-                dCo = new DetailCommande(commandeCli, livre, this.panier.get(livre), livre.getPrix());
-            }
-        }catch(SQLException exceptionSQL){
-            exceptionSQL.getMessage();
+        Commande commandeCli = new Commande(this.modele.getJDBC().maxNumeroCommande()+1 , null, this.enLigne(), false, (Client) this.modele.getCurUser(), this.modele.getCurMag());
+        DetailCommande dCo = null ;
+        for (Livre livre:this.panier.keySet()){
+            dCo = new DetailCommande(commandeCli, livre, this.panier.get(livre), livre.getPrix());
+        }
+            this.modele.getJDBC().insererCommande(commandeCli);
+            System.out.println("Commande réussite");
+        }catch(SQLException SQLException){
+            SQLException.getMessage();
         }
                 
     }
@@ -87,13 +89,13 @@ public class ControleurClient4 extends Controleur{
     }
 
     @FXML
-    public String controllerTypeLivraison(){
-        RadioButton selection = (RadioButton) groupeLivraison.getSelectedToggle();
+    public String getTypeLivraison(){
+        RadioButton selection = (RadioButton) groupLivraison.getSelectedToggle();
         return selection.getText()+"";
     }
     
     private boolean enLigne(){
-        return this.controllerTypeLivraison().equals("Domicile");
+        return this.getTypeLivraison().equals("Domicile");
     }
     @FXML
     public void maJ(){
@@ -104,6 +106,7 @@ public class ControleurClient4 extends Controleur{
 
     @Override
     public void chargerPage(){
+        this.nomCli.setText(this.modele.getCurUser().getNom()+" "+this.modele.getCurUser().getPrenom());
         this.panier=this.modele.getPanier();
         this.maJ();
     }

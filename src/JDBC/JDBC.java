@@ -336,7 +336,7 @@ public class JDBC {
      */
     public int maxNumeroCommande() throws SQLException{
         st=laConnexion.createStatement();
-        ResultSet rs=st.executeQuery("SELECT max IFNULL(MAX(numcom), 0) FROM COMMANDE");
+        ResultSet rs=st.executeQuery("SELECT IFNULL(MAX(numcom), 0) max FROM COMMANDE");
         rs.next();
         int max = rs.getInt("max");
         rs.close();
