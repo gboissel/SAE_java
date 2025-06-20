@@ -68,7 +68,6 @@ public class ControleurClient4 extends Controleur{
 
     @FXML
     public void validerCommande(ActionEvent e){
-        System.out.println("Payement en cours");
         try{
         Commande commandeCli = new Commande(this.modele.getJDBC().maxNumeroCommande()+1 , null, this.enLigne(), false, (Client) this.modele.getCurUser(), this.modele.getCurMag());
         DetailCommande dCo = null ;
@@ -77,12 +76,21 @@ public class ControleurClient4 extends Controleur{
         }
             this.modele.getJDBC().insererCommande(commandeCli);
             System.out.println("Commande réussite");
+            afficherPopup("Commande validé", "Votre commade a bien été prise en compte");
         }catch(SQLException SQLException){
             SQLException.getMessage();
         }
                 
     }
 
+
+    private void afficherPopup(String titre, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titre);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
     @FXML
     public void controllerCata(ActionEvent e){
         this.vue.changerVue("/view/VuPageClient2.fxml");
