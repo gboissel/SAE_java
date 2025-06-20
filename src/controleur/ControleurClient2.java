@@ -102,6 +102,7 @@ public class ControleurClient2 extends Controleur{
         Optional<ButtonType> reponse = popUpDeRetour().showAndWait();
         if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
             this.modele.setPanier(new Panier());
+            this.modele.setCurMag(null);
             this.vue.changerVue("/view/VuePageClient1.fxml");
         }
     }
@@ -204,6 +205,7 @@ public class ControleurClient2 extends Controleur{
         Optional<ButtonType> reponse = popUpDeconnexion().showAndWait();
         if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
             this.modele.setCurUser(null);
+            this.modele.setCurMag(null);
             this.vue.changerVue("/view/accueil.fxml");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Déconnexion");

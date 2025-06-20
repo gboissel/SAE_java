@@ -402,9 +402,9 @@ public class JDBC {
             ps=laConnexion.prepareStatement("INSERT INTO DETAILCOMMANDE (numcom, numlig, isbn, qte, prixvente) VALUES(?, ?, ?, ?, ?)");
             ps.setInt(1, commande.getNum());
             ps.setInt(2, i+1);
-            ps.setInt(3, commande.getDetailsCommande().get(i).getQte());
-            ps.setDouble(4, commande.getDetailsCommande().get(i).getPrixVente());
-            ps.setString(5, String.valueOf(commande.getDetailsCommande().get(i).getLivre().getISBN()));
+            ps.setString(3, commande.getDetailsCommande().get(i).getLivre().getISBN());
+            ps.setInt(4, commande.getDetailsCommande().get(i).getQte());
+            ps.setDouble(5, commande.getDetailsCommande().get(i).getPrixVente());
             ps.executeUpdate();
         }
     }

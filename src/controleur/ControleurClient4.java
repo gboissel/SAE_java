@@ -12,6 +12,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import modele.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 
 public class ControleurClient4 extends Controleur{
@@ -58,6 +61,7 @@ public class ControleurClient4 extends Controleur{
         Optional<ButtonType> reponse = this.popUpDeconnexion().showAndWait();
         if (reponse.isPresent() && reponse.get().equals(ButtonType.YES)) {
             this.modele.setCurUser(null);
+            this.modele.setCurMag(null);
             this.vue.changerVue("/view/accueil.fxml");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Déconnexion");
@@ -73,14 +77,18 @@ public class ControleurClient4 extends Controleur{
             }
             else{
                 try{
-            Commande commandeCli = new Commande(this.modele.getJDBC().maxNumeroCommande()+1 , null, this.enLigne(), false, (Client) this.modele.getCurUser(), this.modele.getCurMag());
-            DetailCommande dCo = null ;
+            Client client = (Client) this.modele.getCurUser();
+            LocalDateTime myDateObj = LocalDateTime.now();
+            DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String date = myDateObj.format(myFormatObj);
+            Commande commandeCli = new Commande(this.modele.getJDBC().maxNumeroCommande()+1 , date, true, this.aDomicile(), client, this.modele.getCurMag());
             for (Livre livre:this.panier.keySet()){
-                dCo = new DetailCommande(commandeCli, livre, this.panier.get(livre), livre.getPrix());
+                commandeCli.addLigne(livre, this.panier.get(livre), this.panier.prixTotalLivre(livre));
             }
                 this.modele.getJDBC().insererCommande(commandeCli);
+                client.ajouterCommande(commandeCli);
                 this.modele.setPanier(new Panier());
-                afficherPopup("Commande validé", "Votre commade a bien été prise en compte \n Vous allez etre redirigé vers la page catalogue");
+                afficherPopup("Commande validé", "Votre commande a bien été prise en compte \n Vous allez etre redirigé vers la page catalogue");
                 this.vue.changerVue("/view/VuePageClient2.fxml");            
             }catch(SQLException SQLException){
                 SQLException.getMessage();
@@ -105,7 +113,7 @@ public class ControleurClient4 extends Controleur{
         return selection.getText()+"";
     }
     
-    private boolean enLigne(){
+    private boolean aDomicile(){
         return this.getTypeLivraison().equals("Domicile");
     }
     @FXML
