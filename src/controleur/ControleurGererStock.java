@@ -180,6 +180,7 @@ public class ControleurGererStock extends Controleur{
                 alert.setTitle("Erreur");
                 alert.setHeaderText("Erreur : La quantité saisie est invalide !");
                 alert.setContentText("La valeur saisie est invalide.\nVérifiez bien que la valeur rentrée est bien correcte.");
+                alert.showAndWait();
             }
         }
     }

@@ -28,7 +28,7 @@ public class Librairie {
         this.users= new ArrayList<>();
         this.curUser = null;
         this.jdbc = jdbc;
-        this.initialisationBD(this.jdbc);
+        this.initialisationBD();
 
     }
 
@@ -172,7 +172,7 @@ public class Librairie {
      * Méthode à utiliser dans le contructeur permettant d'initialiser une base de données
      * @param jdbc
      */
-    private void initialisationBD(JDBC jdbc) {
+    private void initialisationBD() {
         try {
             this.lesLivres = jdbc.recupererLivres(jdbc.recupererAuteurs(), jdbc.recupererEditeurs(), jdbc.recupererCategories());
             Collections.sort(this.lesLivres, new TriLivreParNom());
