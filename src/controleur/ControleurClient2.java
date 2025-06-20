@@ -1,6 +1,7 @@
 package controleur;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;      
@@ -77,7 +78,7 @@ public class ControleurClient2 extends Controleur{
                                       
     @FXML
     private void controleurBoutPanier(ActionEvent event){
-        this.vue.changerVue("/view/vuePanier.fxml");
+        this.vue.changerVue("/view/VuePanier.fxml");
     }
 
     @FXML
@@ -241,9 +242,23 @@ public class ControleurClient2 extends Controleur{
     public void chargerPage() {
         this.numPage=0;
         this.idClient.setText(this.modele.getCurUser().getNom() + " " + this.modele.getCurUser().getPrenom());
+        Client cliTmp = (Client) this.modele.getCurUser();
+        List<Livre> list_tmp= cliTmp.onVousRecommande(this.modele.getCurMag());
+        this.tmp = new ArrayList<>();
+        for(Livre livre :list_tmp){
+            tmp.add(livre.getTitre());
+        }
+        this.numPageMax = (int) Math.ceil((double) tmp.size() / 4);
         List<Button> boutons = Arrays.asList(btnLivre1, btnLivre2, btnLivre3, btnLivre4);
-        for(Button bout:boutons){
-            bout.setDisable(true);
+        for (int i = 0; i < boutons.size(); i++) {
+            if (numPage*4+i < list_tmp.size()) {
+                boutons.get(i).setText(list_tmp.get(numPage*4+i).getTitre());
+                boutons.get(i).setDisable(false);
+            } 
+            else {
+                boutons.get(i).setText("N/A");
+                boutons.get(i).setDisable(true);
+            }
         }
     }
 }
