@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurVendeur1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controleur.ControleurVendeur1">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="111.0" prefWidth="800.0" spacing="1.0" style="-fx-background-color: #b4b4b4;" BorderPane.alignment="CENTER">
          <children>
@@ -82,11 +82,23 @@
                   <Font size="32.0" />
                </font>
             </Label>
-            <Button fx:id="btnImporter" mnemonicParsing="false" onAction="#controleurImporter" prefHeight="75.0" prefWidth="299.0" style="-fx-background-color: #5ce1e6;" text="Importer Des Livres">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Button>
+            <HBox prefHeight="94.0" prefWidth="800.0" spacing="90.0">
+               <children>
+                  <Button fx:id="btnImporter" mnemonicParsing="false" onAction="#controleurImporter" prefHeight="75.0" prefWidth="299.0" style="-fx-background-color: #5ce1e6;" text="Mettre à jour le stock">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnImporterMag" mnemonicParsing="false" onAction="#controleurImporterMag" prefHeight="75.0" prefWidth="421.0" style="-fx-background-color: #5ce1e6;" text="Importer depuis un autre magasin">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </HBox>
          </children>
       </VBox>
    </center>
